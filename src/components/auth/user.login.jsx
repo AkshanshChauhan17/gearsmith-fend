@@ -1,7 +1,7 @@
 import { useState } from "react"
 import authPostRequest from "./post.req"
 
-export default function UserLogin() {
+export default function UserLogin({lsDef}) {
     const [focusField, setFocusField] = useState()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -10,25 +10,48 @@ export default function UserLogin() {
     const handleLogin = (url)=>{
         const login = async ()=> {
             await authPostRequest(url, {email: email, password: password})
-                .then((res)=>console.log(res))
+                .then(async(res)=>{
+                    if(res.loginStatus) {
+                        await lsDef(res.loginStatus)
+                        localStorage.setItem("token", res.token)
+                        alert(res.message)
+                        window.location.href = "/"
+                    } else {
+                        localStorage.clear()
+                        alert(res.message)
+                    }
+                })
                 .catch(err=>{throw err})
 
             setLoading(false);
         }
         login()
     }
+
+    const clearAllUseState = ()=>{
+        setEmail("")
+        setPassword("")
+        setLoading(false)
+        setFocusField(400)
+    }
+
+    if(loading) {
+        return <div className="loading">
+            <div className="loader"></div>
+        </div>
+    }
     return (
         <div className="login-section">
-            <form action="#">
+            <form action="#" onSubmit={()=>{handleLogin("http://localhost:1000/user/login"); setLoading(true); clearAllUseState();}}>
                 <fieldset className={focusField===0 || email!="" ? "focus-field" : "field"}>
                     <legend>User Email</legend>
-                    <input type="email" required onFocus={()=>setFocusField(0)} onBlur={()=>setFocusField(email ==="" ? 400 : 0)} onChange={(e)=>setEmail(e.target.value)} />
+                    <input type="email" required onFocus={()=>setFocusField(0)} onBlur={()=>setFocusField(email ==="" ? 400 : 0)} onChange={(e)=>setEmail(e.target.value)} value={email} />
                 </fieldset>
                 <fieldset className={focusField===1 || password!="" ? "focus-field" : "field"}>
-                    <legend>User Email</legend>
-                    <input type="password" required onFocus={()=>setFocusField(1)} onBlur={()=>setFocusField(password ==="" ? 400 : 0)} onChange={(e)=>setPassword(e.target.value)} />
+                    <legend>User Password</legend>
+                    <input type="password" required onFocus={()=>setFocusField(1)} onBlur={()=>setFocusField(password ==="" ? 400 : 0)} onChange={(e)=>setPassword(e.target.value)} value={password} />
                 </fieldset>
-                <button className="button" onClick={()=>{handleLogin("http://localhost:1000/user/login"); setLoading(true);}}>Log In</button>
+                <input type="submit" className="button" value="Log In" />
             </form>
         </div>
     )

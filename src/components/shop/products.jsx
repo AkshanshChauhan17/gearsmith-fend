@@ -122,4 +122,4 @@ const mapStateToProps = (state)=> ({
     product_data: state.product.product_data,
 })
 
-export default connect(mapStateToProps)(Products);
+export default connect(mapStateToProps)(Products)

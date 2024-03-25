@@ -782,10 +782,15 @@ form {
 }
 
 .login-section {
+    height: calc(100vh - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     form {
         display: grid;
-        gap: 30px;
-        button {
+        gap: 20px;
+        .button {
             width: 100%;
             padding: 20px;
             font-size: 20px;
@@ -795,8 +800,9 @@ form {
             color: white;
             cursor: pointer;
             margin-top: 20px;
+            border-radius: 5px;
         }
-        button:hover {
+        .button:hover {
             background-color: blue;
         }
     }

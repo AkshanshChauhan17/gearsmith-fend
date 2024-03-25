@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { imageList } from "../../functions/images"
 import { AiFillShop, AiFillShopping, AiOutlineLogin, AiOutlineShop, AiTwotoneShop } from 'react-icons/ai'
 
-export default function Navigation() {
+export default function Navigation({ls}) {
 
     const [navigation, setNavigation] = useState([])
     const [clicked, setClicked] = useState(0)
@@ -17,6 +17,11 @@ export default function Navigation() {
                 setClicked("/" + window.location.href.split("/").splice(-1)[0])
             })
     }, [])
+
+    const handleLogout = ()=>{
+        localStorage.clear()
+        lsDef(false)
+    }
 
     return (
         <div className="nav grid gap-20" style={{backgroundImage: "url(" + imageList[2] + ")"}}>
@@ -38,10 +43,18 @@ export default function Navigation() {
                     Cart
                     <AiOutlineShop/>
                 </div>
-                <div className="flex color-white link center gap-5 button-black-hollow hover-invert">
-                    Login
-                    <AiOutlineLogin />
-                </div>
+                {
+                    !ls ?
+                    <Link to="/user/login" className="flex color-white link center gap-5 button-black-hollow hover-invert">
+                        Login
+                        <AiOutlineLogin />
+                    </Link>
+                    :
+                    <Link to="/" className="flex color-white link center gap-5 button-black-hollow hover-invert" onClick={()=>handleLogout()}>
+                        Logout
+                        <AiOutlineLogin />
+                    </Link>
+                }
             </div>
         </div>
     )
