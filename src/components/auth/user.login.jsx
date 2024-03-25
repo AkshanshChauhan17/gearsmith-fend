@@ -1,5 +1,6 @@
 import { useState } from "react"
 import authPostRequest from "./post.req"
+import { Link } from "react-router-dom"
 
 export default function UserLogin({lsDef}) {
     const [focusField, setFocusField] = useState()
@@ -43,6 +44,11 @@ export default function UserLogin({lsDef}) {
     return (
         <div className="login-section">
             <form action="#" onSubmit={()=>{handleLogin("http://localhost:1000/user/login"); setLoading(true); clearAllUseState();}}>
+                <div className="login-heading">Login
+                    <div className="gearsmith-logo"></div>
+                </div>
+                <hr />
+                <br />
                 <fieldset className={focusField===0 || email!="" ? "focus-field" : "field"}>
                     <legend>User Email</legend>
                     <input type="email" required onFocus={()=>setFocusField(0)} onBlur={()=>setFocusField(email ==="" ? 400 : 0)} onChange={(e)=>setEmail(e.target.value)} value={email} />
@@ -52,6 +58,7 @@ export default function UserLogin({lsDef}) {
                     <input type="password" required onFocus={()=>setFocusField(1)} onBlur={()=>setFocusField(password ==="" ? 400 : 0)} onChange={(e)=>setPassword(e.target.value)} value={password} />
                 </fieldset>
                 <input type="submit" className="button" value="Log In" />
+                <br />
             </form>
         </div>
     )
