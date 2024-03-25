@@ -1,7 +1,6 @@
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     outline: 0px solid red;
-    transition-duration: 0.2s;
 }
 
 .flex {
@@ -148,6 +147,8 @@ hr {
     display: grid;
     scroll-snap-align: center;
     margin: 2px;
+    transform: scale(90%);
+    height: fit-content;
     .product-dp-ar {
         overflow: hidden;
         position: relative;
@@ -359,6 +360,9 @@ hr {
 
 .focused {
     color: rgb(41, 41, 41);
+    transform: scale(100%);
+    margin: 0px 20px;
+    z-index: 200;
 }
 
 .loading-ar {
@@ -592,6 +596,7 @@ form {
         .product-dp {
             width: 100%;
             object-fit: contain;
+            transition-duration: 0.2s;
         }
         .product-dp-url:hover {
             background-color: rgba(0, 0, 0, 0.80);
@@ -615,6 +620,10 @@ form {
                 align-items: center;
                 justify-content: center;
                 font-weight: 600;
+                transition-duration: 0.2s;
+                .arrow {
+                    transition-duration: 0.2s;
+                }
             }
             .text:hover {
                 color: greenyellow;
@@ -631,7 +640,7 @@ form {
         }
     }
     .product-data {
-        height: 180px;
+        height: fit-content;
         padding: 10px 10px;
         display: flex;
         flex-direction: column;
@@ -648,7 +657,26 @@ form {
         .product-small-text {
             font-size: 15px;
             font-weight: 400;
-            margin-top: auto;
+        }
+        .view-button {
+            padding: 15px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 0px;
+            outline: 0px;
+            background-color: rgb(241, 241, 241);
+            color: rgb(46, 46, 46);
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .view-button:hover {
+            background-color: rgb(191, 255, 217);
+        }
+        .view-button:active {
+            background-color: rgb(0, 187, 75);
+            color: white;
         }
     }
 }
@@ -670,6 +698,11 @@ form {
         overflow-x: scroll;
         scroll-behavior: smooth;
         scroll-snap-type: x mandatory;
+        position: relative;
+        align-items: center;
+        * {
+            transition-duration: 0.2s;
+        }
     }
     .products {
         display: flex;
@@ -686,10 +719,24 @@ form {
     display: grid;
     gap: 60px;
     margin: 0px 50px;
+    position: relative;
+    .left {
+        position: absolute;
+        z-index: 100;
+        height: 100%;
+        left: 0px;
+        width: 50%;
+    }
+    .right {
+        width: 50%;
+        position: absolute;
+        z-index: 100;
+        height: 100%;
+        right: 0px;
+    }
 }
 
 .ctrl-button {
-    padding: 5px 10px;
     margin: 10px;
     font-size: 20px;
     font-weight: 500;
@@ -703,13 +750,21 @@ form {
     width: fit-content;
 }
 
+.ctrl-button:hover {
+    color: white;
+}
+
 .ctrl-button:active {
-    background-color: rgb(174, 255, 174);
+    color: rgb(0, 235, 0);
 }
 
 .paging {
     display: flex;
     gap: 10px;
+    width: 100%;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
     .ring-active {
         width: 10px;
         height: 10px;

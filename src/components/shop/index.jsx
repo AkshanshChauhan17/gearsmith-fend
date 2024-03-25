@@ -671,6 +671,7 @@ function Shop({setProductData, product_data}) {
                         Everything is new and Fresh
                     </div>
                 </div>
+                <button className="ctrl-button left" disabled={pagingIndex<=0} onClick={()=>{setPagingIndex(pagingIndex-1); scrollToCard(pagingIndex-1);}}><AiOutlineArrowLeft /></button>
                 <div className="new-arrivals">
                     {
                         allNewArrivals.map((d, i)=>{
@@ -678,8 +679,8 @@ function Shop({setProductData, product_data}) {
                         })
                     }
                 </div>
+                <button className="ctrl-button right" disabled={pagingIndex>=allNewArrivals.length -1} onClick={()=>{setPagingIndex(pagingIndex+1); scrollToCard(pagingIndex+1);}}><AiOutlineArrowRight /></button>
                 <div className="new-arrivals-slider-controls">
-                    <button className="ctrl-button" disabled={pagingIndex<=0} onClick={()=>{setPagingIndex(pagingIndex-1); scrollToCard(pagingIndex-1);}}><AiOutlineArrowLeft /> Previous</button>
                     <div className="paging">
                         {
                             allNewArrivals.map((x, i)=>{
@@ -687,7 +688,6 @@ function Shop({setProductData, product_data}) {
                             })
                         }
                     </div>
-                    <button className="ctrl-button" disabled={pagingIndex>=allProduct.length -1} onClick={()=>{setPagingIndex(pagingIndex+1); scrollToCard(pagingIndex+1);}}>Next <AiOutlineArrowRight /></button>
                 </div>
             </div>
             <hr />
