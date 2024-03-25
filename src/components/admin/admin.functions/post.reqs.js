@@ -23,7 +23,10 @@ export const postNewProduct = async(name, price, media, color_list, size_list, p
 
     await fetch("http://localhost:1000/product/add_product", requestOptions)
         .then((response) => response.json())
-        .then((result) => res = result)
+        .then((result) => {
+            console.log(res)
+            res = result
+        })
         .catch((error) => console.error(error));
 
     return res;
@@ -48,7 +51,10 @@ export const fetchProductImageWithMedia = (product_id) => {
 
     fetch("http://localhost:1000/product/fetch_media_into_product/", requestOptions)
         .then((response) => response.json())
-        .then((result) => res = result)
+        .then((result) => {
+            console.log(res)
+            res = result
+        })
         .catch((error) => console.error(error));
 
     return res;
@@ -77,12 +83,18 @@ export const uploadProductImage = async(product_name, fileInput, image_path) => 
 
     await fetch("http://localhost:1000/product/add_product_image", requestOptions)
         .then((response) => response.json())
-        .then((result) => res = 0)
+        .then((result) => {
+            console.log(res)
+            res = result
+        })
         .catch((error) => console.error(error));
 
     await fetchProductImageWithMedia(product_id)
         .then((response) => response.json())
-        .then((result) => res = result)
+        .then((result) => {
+            console.log(res)
+            res = result
+        })
         .catch((error) => console.error(error));
 
     return res;

@@ -13,7 +13,6 @@ export default function UserSignin({lsDef, ls}) {
     const [mobile, setMobile] = useState("")
 
     const [base64Images, setBase64Images] = useState({
-        original: '',
         small: '',
         medium: '',
         large: ''
@@ -56,7 +55,6 @@ export default function UserSignin({lsDef, ls}) {
                 const largeBase64 = canvas.toDataURL('image/jpeg');
 
                 setBase64Images({
-                    original: reader.result,
                     small: smallBase64,
                     medium: mediumBase64,
                     large: largeBase64
@@ -70,9 +68,9 @@ export default function UserSignin({lsDef, ls}) {
     const handleSignin = (url)=>{
         const signIn = async ()=> {
             await authPostRequest(url, {email: email, password: password, meta: { first_name: f_name, last_name: l_name, mobile_no: mobile, profile_photo: base64Images}})
-                .then(async(res)=>{
-                    if(res.loginStatus) {
-                        await lsDef(res.loginStatus)
+                .then(async (res)=>{
+                    if(res.token) {
+                        lsDef(true)
                         localStorage.setItem("token", res.token)
                         alert(res.message)
                     } else {
@@ -86,6 +84,8 @@ export default function UserSignin({lsDef, ls}) {
         }
         signIn()
     }
+
+    console.log(ls)
 
     const clearAllUseState = ()=>{
         setEmail("")
