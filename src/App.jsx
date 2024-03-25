@@ -33,7 +33,7 @@ function App({login_status, setLoginStatus}) {
     return <BrowserRouter>
       <Routes>
         <Route path='/' element={<UserLogin lsDef={setLoginStatus} />} />
-        <Route path='/register' element={<UserSignin lsDef={setLoginStatus} />} />
+        <Route path='/register' element={<UserSignin ls={login_status} lsDef={setLoginStatus} />} />
       </Routes>
     </BrowserRouter>
   }

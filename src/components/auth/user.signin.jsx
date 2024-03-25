@@ -1,12 +1,16 @@
 import { useState } from "react"
 import authPostRequest from "./post.req"
 import { Link } from "react-router-dom"
+import { AiFillLock, AiFillMail, AiFillPhone } from "react-icons/ai"
 
-export default function UserSignin({lsDef}) {
+export default function UserSignin({lsDef, ls}) {
     const [focusField, setFocusField] = useState()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
+    const [l_name, setLastName] = useState("")
+    const [f_name, setFirstName] = useState("")
+    const [mobile, setMobile] = useState("")
 
     const [base64Images, setBase64Images] = useState({
         original: '',
@@ -65,13 +69,12 @@ export default function UserSignin({lsDef}) {
 
     const handleSignin = (url)=>{
         const signIn = async ()=> {
-            await authPostRequest(url, {email: email, password: password, meta: { first_name: f_name, last_name: l_name, mobile_no: mob_no, profile_photo: base64Images}})
+            await authPostRequest(url, {email: email, password: password, meta: { first_name: f_name, last_name: l_name, mobile_no: mobile, profile_photo: base64Images}})
                 .then(async(res)=>{
                     if(res.loginStatus) {
                         await lsDef(res.loginStatus)
                         localStorage.setItem("token", res.token)
                         alert(res.message)
-                        window.location.href = "/"
                     } else {
                         localStorage.clear()
                         alert(res.message)
@@ -89,6 +92,10 @@ export default function UserSignin({lsDef}) {
         setPassword("")
         setLoading(false)
         setFocusField(400)
+    }
+
+    if(ls) {
+        return <Link to="/" style={{width: "100vw", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>Successfully Registered</Link> 
     }
 
     if(loading) {
@@ -113,12 +120,26 @@ export default function UserSignin({lsDef}) {
                             </div>
                         <hr />
                         <fieldset className={focusField===0 || email!="" ? "focus-field" : "field"}>
-                            <legend>User Email</legend>
+                            <legend>User Email <AiFillMail /></legend>
                             <input type="email" required onFocus={()=>setFocusField(0)} onBlur={()=>setFocusField(email ==="" ? 400 : 0)} onChange={(e)=>setEmail(e.target.value)} value={email} />
                         </fieldset>
                         <fieldset className={focusField===1 || password!="" ? "focus-field" : "field"}>
-                            <legend>User Password</legend>
+                            <legend>User Password <AiFillLock /></legend>
                             <input type="password" required onFocus={()=>setFocusField(1)} onBlur={()=>setFocusField(password ==="" ? 400 : 0)} onChange={(e)=>setPassword(e.target.value)} value={password} />
+                        </fieldset>
+                        <div className="flex gap-10">
+                            <fieldset className={focusField===2 || f_name!="" ? "focus-field" : "field"}>
+                                <legend>First Name </legend>
+                                <input type="text" required onFocus={()=>setFocusField(2)} onBlur={()=>setFocusField(f_name ==="" ? 400 : 0)} onChange={(e)=>setFirstName(e.target.value)} value={f_name} />
+                            </fieldset>
+                            <fieldset className={focusField===3 || l_name!="" ? "focus-field" : "field"}>
+                                <legend>Last Name</legend>
+                                <input type="text" required onFocus={()=>setFocusField(3)} onBlur={()=>setFocusField(l_name ==="" ? 400 : 0)} onChange={(e)=>setLastName(e.target.value)} value={l_name} />
+                            </fieldset>
+                        </div>
+                        <fieldset className={focusField===4 || mobile!="" ? "focus-field" : "field"}>
+                            <legend>Mobile Number <AiFillPhone /></legend>
+                            <input type="tel" required onFocus={()=>setFocusField(4)} onBlur={()=>setFocusField(mobile ==="" ? 400 : 0)} onChange={(e)=>setMobile(e.target.value)} value={mobile} />
                         </fieldset>
                         <input type="submit" className="button" value="Sign In" />
                             </div>

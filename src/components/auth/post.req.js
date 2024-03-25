@@ -2,7 +2,7 @@ export default async function authPostRequest(url, data) {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    const raw = JSON.stringify({ "email": data.email, "password": data.password });
+    const raw = JSON.stringify(data);
 
     const requestOptions = {
         method: "POST",
