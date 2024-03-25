@@ -29,7 +29,12 @@ function App({login_status, setLoginStatus}) {
   }, [])
 
   if(!login_status) {
-    return <UserLogin lsDef={setLoginStatus} />
+    return <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<UserLogin lsDef={setLoginStatus} />} />
+        <Route path='/register' element={<UserLogin lsDef={setLoginStatus} />} />
+      </Routes>
+    </BrowserRouter>
   }
 
   return (
