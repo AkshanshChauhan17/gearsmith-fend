@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import { setLoginStatus } from './redux/store/actions'
 import verifyToken from './components/auth/verify.token'
 import { useEffect, useState } from 'react'
+import UserSignin from './components/auth/user.signin'
 
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState({})
@@ -32,7 +33,7 @@ function App({login_status, setLoginStatus}) {
     return <BrowserRouter>
       <Routes>
         <Route path='/' element={<UserLogin lsDef={setLoginStatus} />} />
-        <Route path='/register' element={<UserLogin lsDef={setLoginStatus} />} />
+        <Route path='/register' element={<UserSignin lsDef={setLoginStatus} />} />
       </Routes>
     </BrowserRouter>
   }

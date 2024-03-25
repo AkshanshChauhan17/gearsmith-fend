@@ -59,7 +59,10 @@ export default function UserLogin({lsDef}) {
                 </fieldset>
                 <input type="submit" className="button" value="Log In" />
                 <br />
-                <Link to="heo">sd</Link>
+                <div className="footer">
+                For new user
+                <Link to="/register">Register here.</Link>
+                </div>
             </form>
         </div>
     )
