@@ -40,7 +40,7 @@ export default function UserLogin({lsDef}) {
     }
 
     if(loading) {
-        return <div className="loading">
+        return <div className="loading-ar">
             <div className="loader"></div>
         </div>
     }

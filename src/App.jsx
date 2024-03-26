@@ -29,6 +29,11 @@ function App({login_status, setLoginStatus}) {
       })
   }
 
+  const handleLogout = ()=>{
+    localStorage.clear()
+    setLoginStatus(false)
+  }
+
   useEffect(()=>{
     handleVerifyToken()
   }, [])
@@ -50,7 +55,7 @@ function App({login_status, setLoginStatus}) {
           <Route path='/shop' element={<Shop />} />
           <Route path='/product/:name' element={<Products />} />
           <Route path='/admin' element={<Admin />} />
-          <Route path='/user/profile' element={<Profile ud={userData} um={userMeta} />} />
+          <Route path='/user/profile' element={<Profile ud={userData} um={userMeta} logOut={handleLogout} />} />
         </Routes>
         <Footer />
       </BrowserRouter>

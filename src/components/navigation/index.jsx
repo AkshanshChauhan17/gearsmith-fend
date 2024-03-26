@@ -18,11 +18,6 @@ export default function Navigation({ls, ud, um}) {
             })
     }, [])
 
-    const handleLogout = ()=>{
-        localStorage.clear()
-        lsDef(false)
-    }
-
     return (
         <div className="nav grid gap-20" style={{backgroundImage: "url(" + imageList[2] + ")"}}>
             <br />
