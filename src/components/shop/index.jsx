@@ -660,6 +660,12 @@ function Shop({setProductData, product_data}) {
         cardRef.current[i].current.scrollIntoView({behaver: 'smooth', block: 'center', inline: 'center'})
     }
 
+    if(allProduct.length===0 || allNewArrivals.length===0) {
+        return <div className="loading-ar">
+            <div className="loader"></div>
+        </div>
+    }
+
     return (
         <div className="shop">
             <div className="middle-block">

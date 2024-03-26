@@ -461,6 +461,9 @@ form {
                 padding: 10px;
                 outline: 1px solid rgba(0, 0, 0, 0.2);
             }
+            .button {
+                cursor: pointer;
+            }
         }
         .images-selected {
             display: flex;
@@ -468,7 +471,8 @@ form {
             gap: 20px;
             .image {
                 width: 100px;
-                min-width: 400px;
+                height: 100px;
+                object-fit: cover;
             }
         }
     }
@@ -832,7 +836,7 @@ form {
                     width: 100%;
                     position: relative;
                     img {
-                        width: 100%;
+                        width: 100px;
                         aspect-ratio: 1;
                     }
                     input {

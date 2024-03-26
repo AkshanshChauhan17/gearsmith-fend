@@ -25,6 +25,8 @@ export default function Admin() {
         const [noOfImages, setNoOfImages] = useState([])
         const [noOfImagePaths, setNoOfImagePaths] = useState([])
 
+        const [media, setMedia] = useState([])
+
         const resetAll = ()=> {
             setColorList([])
             setFocusField()
@@ -113,6 +115,54 @@ export default function Admin() {
                     })
             }) 
         }
+
+        const handleImageChange = (e) => {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+    
+            reader.onload = () => {
+                const img = new Image();
+                img.src = reader.result;
+    
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+    
+                    // Resize for small image
+                    const smallWidth = 100; // Set your desired width
+                    const smallHeight = (img.height / img.width) * smallWidth;
+                    canvas.width = smallWidth;
+                    canvas.height = smallHeight;
+                    ctx.drawImage(img, 0, 0, smallWidth, smallHeight);
+                    const smallBase64 = canvas.toDataURL('image/jpeg');
+    
+                    // Resize for medium image
+                    const mediumWidth = 300; // Set your desired width
+                    const mediumHeight = (img.height / img.width) * mediumWidth;
+                    canvas.width = mediumWidth;
+                    canvas.height = mediumHeight;
+                    ctx.drawImage(img, 0, 0, mediumWidth, mediumHeight);
+                    const mediumBase64 = canvas.toDataURL('image/jpeg');
+    
+                    // Resize for large image
+                    const largeWidth = 600; // Set your desired width
+                    const largeHeight = (img.height / img.width) * largeWidth;
+                    canvas.width = largeWidth;
+                    canvas.height = largeHeight;
+                    ctx.drawImage(img, 0, 0, largeWidth, largeHeight);
+                    const largeBase64 = canvas.toDataURL('image/jpeg');
+    
+                    const newMedia = [...media, {
+                        small: smallBase64,
+                        medium: mediumBase64,
+                        large: largeBase64
+                    }]
+                    setMedia(newMedia);
+                };
+            };
+    
+            reader.readAsDataURL(file);
+        };
 
         if(loading) {
             return <div className="loading-ar">
@@ -207,20 +257,16 @@ export default function Admin() {
                         <div className="form-subheading">Upload Images for Your Product</div>
                         <br />
                         <div className="image-upload-ar">
-                            <div className="image-uploader">
-                                <input type="number" min={1} max={10} disabled={noOfImagePaths.length>0} required onChange={(e)=>{handleNoOfImages(e.target.value)}}/>
+                            <div className="images-selected">
                                 {
-                                    noOfImages.map((image_inp, i)=>{
-                                        return  <input type="file" accept="image/*" key={i} required hidden={noOfImagePaths[i]} onChange={(e)=>handleImagePaths(e.target.files[0])} />
+                                    media.map((img, i)=>{
+                                        return <img src={img.small} className="image" key={i}/>
                                     })
                                 }
                             </div>
-                            <div className="images-selected">
-                                {
-                                    noOfImagePaths.map((img, i)=>{
-                                        return <img src={URL.createObjectURL(img)} className="image" key={i}/>
-                                    })
-                                }
+                            <div className="image-uploader">
+                                <input type="file" accept="image/*" onChange={(e)=>handleImageChange(e)} />
+                                <input type="button" className="button" value="Delete All Images" />
                             </div>
                         </div>
                     </div>

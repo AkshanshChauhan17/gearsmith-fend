@@ -9,6 +9,8 @@ export default function UserLogin({lsDef}) {
     const [loading, setLoading] = useState(false)
 
     const handleLogin = (url)=>{
+        setLoading(true)
+        console.log(url, email, password)
         const login = async ()=> {
             await authPostRequest(url, {email: email, password: password})
                 .then(async(res)=>{
@@ -24,7 +26,8 @@ export default function UserLogin({lsDef}) {
                 })
                 .catch(err=>{throw err})
 
-            setLoading(false);
+            setLoading(false)
+            clearAllUseState()
         }
         login()
     }
@@ -43,7 +46,7 @@ export default function UserLogin({lsDef}) {
     }
     return (
         <div className="login-section">
-            <form action="#" onSubmit={()=>{handleLogin("http://localhost:1000/user/login"); setLoading(true); clearAllUseState();}}>
+            <form action="#" onSubmit={()=>handleLogin("http://localhost:1000/user/login")}>
                 <div className="login-heading">Login
                     <div className="gearsmith-logo"></div>
                 </div>
