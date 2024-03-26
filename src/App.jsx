@@ -11,6 +11,7 @@ import verifyToken from './components/auth/verify.token'
 import { useEffect, useState } from 'react'
 import UserSignin from './components/auth/user.signin'
 import Footer from './components/footer'
+import Profile from './components/auth/profile'
 
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState([])
@@ -49,6 +50,7 @@ function App({login_status, setLoginStatus}) {
           <Route path='/shop' element={<Shop />} />
           <Route path='/product/:name' element={<Products />} />
           <Route path='/admin' element={<Admin />} />
+          <Route path='/user/profile' element={<Profile ud={userData} um={userMeta} />} />
         </Routes>
         <Footer />
       </BrowserRouter>
