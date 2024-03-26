@@ -607,8 +607,7 @@ form {
 }
 
 .product-small-card {
-    flex: 1;
-    min-width: 300px;
+    width: 200px;
     outline: 1px solid rgba(0, 0, 0, 0.2);
     display: grid;
     scroll-snap-align: start;
@@ -665,13 +664,12 @@ form {
         }
     }
     .product-data {
-        height: fit-content;
         padding: 10px 10px;
         display: flex;
         flex-direction: column;
-        gap: 10px;
         border-top: 1px solid rgba(0, 0, 0, 0.2);
         background-color: white;
+        height: 100px;
         .product-heading {
             font-size: 20px;
             font-weight: 500;
@@ -683,6 +681,9 @@ form {
         .product-small-text {
             font-size: 15px;
             font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .view-button {
             padding: 15px;
@@ -1047,6 +1048,10 @@ form {
     color: white;
 }
 
+fieldset {
+    background: white;
+}
+
 .profile {
     padding: 0px 50px;
     display: grid;
@@ -1067,7 +1072,6 @@ form {
         width: 160px;
         height: 70px;
         color: white;
-        font-size: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1084,14 +1088,14 @@ form {
             position: absolute;
             right: 0%;
             transition-duration: 0.2s;
-            font-size: 30px;
+            font-size: 20px;
         }
         .icon {
             width: 100%;
             position: absolute;
             right: 100%;
             transition-duration: 0.2s;
-            font-size: 40px;
+            font-size: 30px;
         }
     }
     .profile-button-action:hover {

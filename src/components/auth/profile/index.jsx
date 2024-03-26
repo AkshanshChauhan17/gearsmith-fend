@@ -1,4 +1,5 @@
-import { AiOutlineLogout } from "react-icons/ai";
+import { AiFillPlusCircle, AiOutlineLogout, AiOutlinePlusCircle } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 export default function Profile({um, ud, logOut}) {
     return (
@@ -7,6 +8,14 @@ export default function Profile({um, ud, logOut}) {
             <div className="info-text"><b>Email.</b> {ud.email}</div>
             <div className="info-text"><b>Name. </b>{um.first_name} {um.last_name}</div>
             <div className="info-text"><b>Mob.</b> {um.mobile_no}</div>
+            {
+                ud.is_admin===1 &&
+                <Link to="/admin">
+                    <button to="/admin" className="profile-button-action">
+                        <div className="text">Add Product</div> <AiOutlinePlusCircle className="icon" />
+                    </button> 
+                </Link>
+            }
             <button className="profile-button-action" onClick={()=>logOut()}>
                 <div className="text">Log Out</div> <AiOutlineLogout className="icon" />
             </button>

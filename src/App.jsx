@@ -56,6 +56,7 @@ function App({login_status, setLoginStatus}) {
     <div className="app">
         <Navigation lsDef={setLoginStatus} ls={login_status} ud={userData} um={userMeta} />
         <Routes>
+          <Route path='/' element={<Home />} />
           <Route path='/shop' element={<Shop />} />
           <Route path='/product/:name' element={<Products />} />
           <Route path='/admin' element={<Admin />} />

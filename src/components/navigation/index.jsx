@@ -40,7 +40,7 @@ export default function Navigation({ls, ud, um}) {
                     </Link>
                     <div className="profile-ar">
                         <Link to="/user/profile" className="profile-icon" >
-                            <img src={um.profile_photo.small} className="profile-image" />
+                            <img src={um.profile_photo && um.profile_photo.small} className="profile-image" />
                             <AiOutlineUser className="profile-info" onClick={()=>setClicked("null")}/>
                         </Link>
                         <div className="dropdown">
