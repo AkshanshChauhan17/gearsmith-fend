@@ -1182,3 +1182,61 @@ fieldset {
         }
     }
 }
+
+.home {
+    padding: 0px 50px;
+    display: grid;
+    grid-area: 20px;
+    .section {
+        display: flex;
+        grid-area: 20px;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 40px;
+        .section-left {
+            flex: 1;
+            min-width: 300px;
+            display: grid;
+            gap: 10px;
+            align-content: center;
+            .small-font {
+                font-size: 25px;
+                font-weight: 300;
+            }
+            .big-font {
+                font-size: 50px;
+            }
+            .section-left-upper {
+                display: grid;
+                gap: 5px;
+            }
+        }
+        .section-right {
+            flex: 1;
+            min-width: 400px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            gap: 10px;
+            .arrow {
+                font-size: 30px;
+                cursor: pointer;
+            }
+            .arrow:hover {
+                color: rgb(80, 80, 80);
+            }
+            .slider-ar {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .slider-image {
+                    width: 100%;
+                    aspect-ratio: 1;
+                    object-fit: cover;
+                    object-position: top;
+                }
+            }
+        }
+    }
+}

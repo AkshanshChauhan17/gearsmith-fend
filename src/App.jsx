@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react'
 import UserSignin from './components/auth/user.signin'
 import Footer from './components/footer'
 import Profile from './components/auth/profile'
+import Home from './components/home'
 
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState([])
