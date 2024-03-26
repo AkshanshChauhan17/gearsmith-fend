@@ -10,16 +10,19 @@ import { setLoginStatus } from './redux/store/actions'
 import verifyToken from './components/auth/verify.token'
 import { useEffect, useState } from 'react'
 import UserSignin from './components/auth/user.signin'
+import Footer from './components/footer'
 
 function App({login_status, setLoginStatus}) {
-  const [userData, setUserData] = useState({})
+  const [userData, setUserData] = useState([])
+  const [userMeta, setUserMeta] = useState({})
   const handleVerifyToken = async ()=> {
     await verifyToken()
       .then((res)=>{
         if(res.message != "Authorized") {
-          return setLoginStatus(false)
+          setLoginStatus(false)
         } else {
           setUserData(res.result[0])
+          setUserMeta(JSON.parse(res.result[0].meta))
           setLoginStatus(true)
         }
       })
@@ -41,12 +44,13 @@ function App({login_status, setLoginStatus}) {
   return (
     <div className="app">
       <BrowserRouter>
-        <Navigation lsDef={setLoginStatus} ls={login_status} />
+        <Navigation lsDef={setLoginStatus} ls={login_status} ud={userData} um={userMeta} />
         <Routes>
           <Route path='/shop' element={<Shop />} />
           <Route path='/product/:name' element={<Products />} />
           <Route path='/admin' element={<Admin />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   )

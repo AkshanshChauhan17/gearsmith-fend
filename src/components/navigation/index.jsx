@@ -2,9 +2,9 @@ import { useEffect, useState } from "react"
 import { getRequest } from "../../functions/get.req"
 import { Link } from "react-router-dom"
 import { imageList } from "../../functions/images"
-import { AiFillShop, AiFillShopping, AiOutlineLogin, AiOutlineShop, AiTwotoneShop } from 'react-icons/ai'
+import { AiFillShop, AiFillShopping, AiOutlineLogin, AiOutlineShop, AiOutlineUser, AiTwotoneShop } from 'react-icons/ai'
 
-export default function Navigation({ls}) {
+export default function Navigation({ls, ud, um}) {
 
     const [navigation, setNavigation] = useState([])
     const [clicked, setClicked] = useState(0)
@@ -39,22 +39,22 @@ export default function Navigation({ls}) {
                         })
                     }
                 </div>
-                <div className="flex color-white link center gap-5 button-black-hollow hover-invert">
-                    Cart
-                    <AiOutlineShop/>
+                <div className="flex gap-20 center">
+                    <Link to="/user/cart" className="flex color-white link center font-l">
+                        <AiOutlineShop />
+                    </Link>
+                    <div className="profile-ar">
+                        <Link to="/user/profile" className="profile-icon" >
+                            <img src={um.profile_photo.small} className="profile-image" />
+                            <AiOutlineUser className="profile-info" onClick={()=>setClicked("null")}/>
+                        </Link>
+                        <div className="dropdown">
+                            {
+                                ud.email
+                            }
+                        </div>
+                    </div>
                 </div>
-                {
-                    !ls ?
-                    <Link to="/user/login" className="flex color-white link center gap-5 button-black-hollow hover-invert">
-                        Login
-                        <AiOutlineLogin />
-                    </Link>
-                    :
-                    <Link to="/" className="flex color-white link center gap-5 button-black-hollow hover-invert" onClick={()=>handleLogout()}>
-                        Logout
-                        <AiOutlineLogin />
-                    </Link>
-                }
             </div>
         </div>
     )

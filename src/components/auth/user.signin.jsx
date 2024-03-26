@@ -63,13 +63,14 @@ export default function UserSignin({lsDef, ls}) {
         };
 
         reader.readAsDataURL(file);
-    };
+    }
 
     const handleSignin = (url)=>{
         setLoading(true)
         const signIn = async ()=> {
             await authPostRequest(url, {email: email, password: password, meta: { first_name: f_name, last_name: l_name, mobile_no: mobile, profile_photo: base64Images}})
                 .then(async (res)=>{
+                    console.log(res)
                     if(res.token) {
                         lsDef(true)
                         localStorage.setItem("token", res.token)
@@ -81,22 +82,25 @@ export default function UserSignin({lsDef, ls}) {
                 })
                 .catch(err=>{throw err})
             setLoading(false)
+            return clearAllUseState()
         }
         signIn()
-        clearAllUseState()
     }
-
-    console.log(ls)
 
     const clearAllUseState = ()=>{
         setEmail("")
         setPassword("")
+        setBase64Images({
+            small: '',
+            medium: '',
+            large: ''
+        })
         setLoading(false)
         setFocusField(400)
     }
 
     if(loading) {
-        return <div className="loading">
+        return <div className="loading-ar">
             <div className="loader"></div>
         </div>
     }
@@ -111,7 +115,7 @@ export default function UserSignin({lsDef, ls}) {
                 <div className="form-section">
                     <div className="left-section">
                         <div className="selected-image-section">
-                            <img src={base64Images.medium} alt="" />
+                            <img src={base64Images.large} alt="" />
                             <input type="file" accept="image/*"  onChange={(e)=>{handleImageChange(e)}} required />
                         </div>
                         </div>
