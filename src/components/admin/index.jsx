@@ -116,6 +116,12 @@ export default function Admin() {
             }) 
         }
 
+        const handleDeleteImage = (index)=>{
+            const newMedia = [...media]
+            const updateMedia = newMedia.splice(index, 1);
+            setMedia(updateMedia)
+        }
+
         const handleImageChange = (e) => {
             const file = e.target.files[0];
             const reader = new FileReader();
@@ -260,7 +266,7 @@ export default function Admin() {
                             <div className="images-selected">
                                 {
                                     media.map((img, i)=>{
-                                        return <img src={img.small} className="image" key={i}/>
+                                        return <img src={img.small} className="image" key={i} onClick={()=>handleDeleteImage(i-1)}/>
                                     })
                                 }
                             </div>
