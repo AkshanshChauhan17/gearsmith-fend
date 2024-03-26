@@ -469,10 +469,27 @@ form {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
+            * {
+                transition-duration: 0s;
+            }
             .image {
                 width: 100px;
                 height: 100px;
                 object-fit: cover;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                font-size: 20px;
+                .cross {
+                    position: absolute;
+                    left: 10px;
+                    top: 10px;
+                    cursor: pointer;
+                }
+                .cross:hover {
+                    color: red;
+                }
             }
         }
     }

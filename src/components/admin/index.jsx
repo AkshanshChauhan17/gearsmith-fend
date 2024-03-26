@@ -1,6 +1,6 @@
-import { isEmptyObject } from "jquery"
 import { useEffect, useState } from "react"
-import {postNewProduct, uploadProductImage} from "./admin.functions/post.reqs"
+import postNewProduct from "./admin.functions/post.reqs"
+import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai"
 
 export default function Admin() {
     const AddProduct = ()=> {
@@ -20,10 +20,13 @@ export default function Admin() {
         const [selectSize3, setSelectSize3] = useState({})
         const [selectSize4, setSelectSize4] = useState({})
 
-        const [loading, setLoading] = useState(false)
+        const [uploadSuccess, setUploadSuccess] = useState({
+            status: false,
+            message: "",
+            visible: false
+        })
 
-        const [noOfImages, setNoOfImages] = useState([])
-        const [noOfImagePaths, setNoOfImagePaths] = useState([])
+        const [loading, setLoading] = useState(false)
 
         const [media, setMedia] = useState([])
 
@@ -40,9 +43,6 @@ export default function Admin() {
             setSelectSize2({})
             setSelectSize3({})
             setSelectSize4({})
-            setLoading(false)
-            setNoOfImages([])
-            setNoOfImagePaths([])
         }
 
         const availableSize = [
@@ -74,52 +74,25 @@ export default function Admin() {
             setSizeList(newSizeList)
         }, [selectSize1, selectSize2, selectSize3, selectSize4])
 
-        const handleNoOfImages = (val)=> {
-            var newNoOfImage = [];
-            for(var i=0; i<val; i++) {
-                newNoOfImage.push(i)
-            }
-            setNoOfImages(newNoOfImage);
-        }
-
-        const handleImagePaths = (path)=>{
-            var newImagePath = [...noOfImagePaths, path];
-            setNoOfImagePaths(newImagePath);
-        }
-
         const handleFormSubmit = async()=> {
-            await postNewProduct(name, price, [], colorList, sizeList, productSummary)
+            setLoading(true)
+            await postNewProduct(name, price, media, colorList, sizeList, productSummary)
                 .then((res)=>{
                     if(res.affectedRows!=0) {
                         setLoading(false)
+                        setUploadSuccess({status: true, message: "Product Upload Successfully", visible: true})
+                    } else {
+                        setLoading(true)
+                        setUploadSuccess({status: false, message: "Product Failed to Upload", visible: true})
                     }
                 })
                 .catch(error=>setLoading(false))
-                .finally(()=>setLoading(true))
-
-            noOfImagePaths.map(async (file)=>{
-                await uploadProductImage(name, file, file.name)
-                    .then((res)=>{
-                        if(res.affectedRows!=0) {
-                            alert("Product Uploaded Successfully!")
-                            setLoading(false)
-                        } else {
-                            alert("Something Wrong!")
-                            setLoading(false)
-                        }
-                    })
-                    .catch((err)=>setLoading(false))
-                    .finally(()=>{
-                        setLoading(false)
-                        resetAll()
-                    })
-            }) 
+            resetAll()
         }
 
-        const handleDeleteImage = (index)=>{
-            const newMedia = [...media]
-            const updateMedia = newMedia.splice(index, 1);
-            setMedia(updateMedia)
+        const handleDeleteImage = (indexToRemove)=>{
+            const updatedMedia = media.filter((_, index)=>index!==indexToRemove)
+            setMedia(updatedMedia)
         }
 
         const handleImageChange = (e) => {
@@ -176,9 +149,23 @@ export default function Admin() {
             </div>
         }
 
+        if(uploadSuccess.visible) {
+            return <div className="success-message flex center" style={{backgroundColor: uploadSuccess.status ? "darkgreen" : "darkred", color: "white", padding: "20px 40px", justifyContent: "space-evenly", fontSize: "30px"}}>
+                <AiFillCheckCircle />
+                {
+                    uploadSuccess.message
+                }
+                <AiFillCloseCircle style={{cursor: "pointer"}} onClick={()=>setUploadSuccess({
+                    status: false,
+                    message: "",
+                    visible: false
+                })} />
+            </div>
+        }
+
         return(
             <div className="add-product-section">
-                <form action="#" onSubmit={()=>{handleFormSubmit(); setLoading(true);}}>
+                <form action="#" onSubmit={()=>handleFormSubmit()}>
                     <div>
                         <div className="form-heading">Product Details</div>
                         <div className="form-subheading">Enter Product Details Like: Name, Price, Product Summary</div>
@@ -266,13 +253,16 @@ export default function Admin() {
                             <div className="images-selected">
                                 {
                                     media.map((img, i)=>{
-                                        return <img src={img.small} className="image" key={i} onClick={()=>handleDeleteImage(i-1)}/>
+                                        return <div className="image">
+                                            <img src={img.small} className="image" key={i}/>
+                                            <AiFillCloseCircle className="cross" onClick={()=>handleDeleteImage(i)} /> 
+                                        </div>
                                     })
                                 }
                             </div>
                             <div className="image-uploader">
-                                <input type="file" accept="image/*" onChange={(e)=>handleImageChange(e)} />
-                                <input type="button" className="button" value="Delete All Images" />
+                                <input type="file" accept="image/*" onChange={(e)=>{handleImageChange(e); e.target.value=null}} />
+                                <input type="button" className="button" value="Delete All Images" onClick={()=>setMedia([])} />
                             </div>
                         </div>
                     </div>
@@ -282,6 +272,7 @@ export default function Admin() {
             </div>
         )
     }
+
     return(
         <div className="admin">
             <AddProduct />

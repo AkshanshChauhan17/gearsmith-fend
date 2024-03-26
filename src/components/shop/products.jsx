@@ -9,37 +9,20 @@ function Products({product_data}) {
     const [productImages, setProductImages] = useState([])
     const [productData, setProductData] = useState()
     const [productSize, setProductSize] = useState([])
-    const [productsLength, setProductsLength] = useState(0)
-    const [productImage, setProductImage] = useState([])
+    const [imageIndex, setImageIndex] = useState(0)
     const [loading, setLoading] = useState(true)
 
-    const getImage = (url, index)=>{
-        getRequest("media/image?image_path=" + url)
-            .then((image)=>{
-                productImages.push(image)
-                if(index===0) {
-                    setProductImage(image.images[2].base64)
-                }
-                if(index>=productsLength) {
-                    setLoading(false)
-                }
-                setProductImages(productImages)
-            }).catch(err=>console.error(err))
-            .finally(()=>setProductsLength(index))
-    }
 
     useEffect(() => {
         Promise.all([
             getRequest("product/" + window.location.href.split("/").splice(-1)),
-            getRequest("product/image/" + window.location.href.split("/").splice(-1))
         ])
-        .then(([productResponse, imageResponse]) => {
+        .then(([productResponse]) => {
+            console.log(productResponse)
             setProductData(productResponse)
             setProductColor(JSON.parse(productResponse.color_list))
             setProductSize(JSON.parse(productResponse.size_list))
-
-            const imagePromises = imageResponse.map((image, i) => getImage(image.url, i))
-            return Promise.all(imagePromises)
+            setProductImages(JSON.parse(productResponse.media))
         })
         .catch(err => console.error(err))
     }, [])
@@ -54,13 +37,13 @@ function Products({product_data}) {
         <div className="product-view">
             <div className="product-view-left">
                 <div className="product-view-image-slider">
-                <img className="product-view-image" src={productImage} alt="" />
+                <img className="product-view-image" src={productImages[imageIndex].large} alt="" />
                 </div>
                 <br />
                 <div className="product-view-image-slider-controls">
                     {
                         productImages.map((image, i)=>{
-                            return <img className={productImage===image.images[2].base64 ? "product-view-control-image-active" : "product-view-control-image"} onClick={()=>setProductImage(image.images[2].base64)} loading="lazy" key={i} src={image.images[0].base64} /> 
+                            return <img className={imageIndex===i ? "product-view-control-image-active" : "product-view-control-image"} onClick={()=>setImageIndex(i)} loading="lazy" key={i} src={image.small} /> 
                         })
                     }
                 </div>

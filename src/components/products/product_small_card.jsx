@@ -15,7 +15,7 @@ export default function ProductSmallCard({spd, data, image, url, name, price, is
             {
                 productImage &&
                 <div className="product-dp-ar">
-                    <img className="product-dp" src={productImage.images[1].base64} alt="" loading="lazy" />
+                    <img className="product-dp" src={d[0].medium} alt="" loading="lazy" />
                     <div className="product-dp-url">
                         <Link className="text" to={url} onClick={()=>spd({data, image})}>GET <AiOutlineArrowRight className="arrow" /></Link>
                     </div>
