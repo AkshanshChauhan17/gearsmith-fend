@@ -51,6 +51,8 @@ function Shop({setProductData, product_data}) {
                         Everything is new and Fresh
                     </div>
                 </div>
+                <br />
+                <br />
                 <button className="ctrl-button left" disabled={pagingIndex<=0} onClick={()=>{setPagingIndex(pagingIndex-1); scrollToCard(pagingIndex-1);}}><AiOutlineArrowLeft /></button>
                 <div className="new-arrivals">
                     {
@@ -80,6 +82,8 @@ function Shop({setProductData, product_data}) {
                         Here are all Products
                     </div>
                 </div>
+                <br />
+                <br />
                 <div className="products">
                     {
                         allProduct.map((d, i)=>{
