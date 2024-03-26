@@ -66,6 +66,7 @@ export default function UserSignin({lsDef, ls}) {
     };
 
     const handleSignin = (url)=>{
+        setLoading(true)
         const signIn = async ()=> {
             await authPostRequest(url, {email: email, password: password, meta: { first_name: f_name, last_name: l_name, mobile_no: mobile, profile_photo: base64Images}})
                 .then(async (res)=>{
@@ -79,10 +80,10 @@ export default function UserSignin({lsDef, ls}) {
                     }
                 })
                 .catch(err=>{throw err})
-
-            setLoading(false);
+            setLoading(false)
         }
         signIn()
+        clearAllUseState()
     }
 
     console.log(ls)
@@ -94,18 +95,19 @@ export default function UserSignin({lsDef, ls}) {
         setFocusField(400)
     }
 
-    if(ls) {
-        return <Link to="/" style={{width: "100vw", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>Successfully Registered</Link> 
-    }
-
     if(loading) {
         return <div className="loading">
             <div className="loader"></div>
         </div>
     }
+
+    if(ls) {
+        return <Link to="/" style={{width: "100vw", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>Successfully Registered</Link> 
+    }
+
     return (
         <div className="signin-section">
-            <form action="#" onSubmit={()=>{handleSignin("http://localhost:1000/user/signin"); setLoading(true); clearAllUseState();}}>
+            <form action="#" onSubmit={()=>handleSignin("http://localhost:1000/user/signin")}>
                 <div className="form-section">
                     <div className="left-section">
                         <div className="selected-image-section">

@@ -2,7 +2,6 @@ import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai"
 import ProductCard from "../products/product_card"
 import ProductSmallCard from "../products/product_small_card"
 import { useEffect, useRef, useState } from "react"
-import { isEmptyObject } from "jquery"
 import { connect } from "react-redux"
 import { setProductData } from "../../redux/store/actions"
 import { getRequest } from "../../functions/get.req"
@@ -20,7 +19,6 @@ function Shop({setProductData, product_data}) {
         getRequest("product/new_arrive")
             .then((data)=>setAllNewArrivals(data))
     }, [])
-    console.log(product_data)
 
     const feedProductData = (d) => {
         setProductData({
@@ -85,7 +83,7 @@ function Shop({setProductData, product_data}) {
                 <div className="products">
                     {
                         allProduct.map((d, i)=>{
-                            return <ProductSmallCard spd={feedProductData} data={d} image={d.media[0].medium} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.name} key={i}/>
+                            return <ProductSmallCard spd={feedProductData} data={d} image={JSON.parse(d.media)[0].medium} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.name} key={i}/>
                         })
                     }
                 </div>

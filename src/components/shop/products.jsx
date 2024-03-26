@@ -10,8 +10,6 @@ function Products({product_data}) {
     const [productData, setProductData] = useState()
     const [productSize, setProductSize] = useState([])
     const [imageIndex, setImageIndex] = useState(0)
-    const [loading, setLoading] = useState(true)
-
 
     useEffect(() => {
         Promise.all([
@@ -27,7 +25,7 @@ function Products({product_data}) {
         .catch(err => console.error(err))
     }, [])
 
-    if(loading & isEmptyObject(productData)) {
+    if(isEmptyObject(productData)) {
         return <div className="loading-ar">
             <div className="loader"></div>
         </div>

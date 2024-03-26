@@ -1,21 +1,13 @@
 import { useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { getRequest } from "../../functions/get.req";
 
 export default function ProductSmallCard({spd, data, image, url, name, price, isTex}) {
-    const [productImage, setProductImage] = useState()
-    useEffect(()=>{
-        getRequest(image)
-            .then((data)=>setProductImage(data))
-            .catch((err)=>console.error(err))
-    }, [])  
     return (
         <div className="product-small-card">
             {
-                productImage &&
                 <div className="product-dp-ar">
-                    <img className="product-dp" src={d[0].medium} alt="" loading="lazy" />
+                    <img className="product-dp" src={image} alt="" loading="lazy" />
                     <div className="product-dp-url">
                         <Link className="text" to={url} onClick={()=>spd({data, image})}>GET <AiOutlineArrowRight className="arrow" /></Link>
                     </div>
