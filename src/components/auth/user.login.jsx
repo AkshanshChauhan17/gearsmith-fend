@@ -64,7 +64,7 @@ export default function UserLogin({lsDef}) {
                 <br />
                 <div className="footer">
                 For new user
-                <Link to="/">Register here.</Link>
+                <Link to="/register">Register here.</Link>
                 </div>
             </form>
         </div>

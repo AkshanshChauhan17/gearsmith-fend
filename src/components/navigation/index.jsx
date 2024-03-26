@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { getRequest } from "../../functions/get.req"
 import { Link } from "react-router-dom"
 import { imageList } from "../../functions/images"
-import { AiFillShop, AiFillShopping, AiOutlineLogin, AiOutlineShop, AiOutlineUser, AiTwotoneShop } from 'react-icons/ai'
+import { AiOutlineShop, AiOutlineUser, AiTwotoneShop } from 'react-icons/ai'
 
 export default function Navigation({ls, ud, um}) {
 

@@ -1,5 +1,5 @@
 import './App.scss'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import Navigation from './components/navigation'
 import Shop from './components/shop'
 import Products from './components/shop/products'
@@ -16,6 +16,8 @@ import Profile from './components/auth/profile'
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState([])
   const [userMeta, setUserMeta] = useState({})
+  const navigate = useNavigate()
+
   const handleVerifyToken = async ()=> {
     await verifyToken()
       .then((res)=>{
@@ -32,24 +34,26 @@ function App({login_status, setLoginStatus}) {
   const handleLogout = ()=>{
     localStorage.clear()
     setLoginStatus(false)
+    navigate("/")
   }
 
   useEffect(()=>{
     handleVerifyToken()
+    navigate("/")
   }, [])
 
   if(!login_status) {
-    return <BrowserRouter>
+    return <>
       <Routes>
         <Route path='/' element={<UserLogin lsDef={setLoginStatus} />} />
         <Route path='/register' element={<UserSignin ls={login_status} lsDef={setLoginStatus} />} />
       </Routes>
-    </BrowserRouter>
+    </>
+    
   }
 
   return (
     <div className="app">
-      <BrowserRouter>
         <Navigation lsDef={setLoginStatus} ls={login_status} ud={userData} um={userMeta} />
         <Routes>
           <Route path='/shop' element={<Shop />} />
@@ -58,7 +62,6 @@ function App({login_status, setLoginStatus}) {
           <Route path='/user/profile' element={<Profile ud={userData} um={userMeta} logOut={handleLogout} />} />
         </Routes>
         <Footer />
-      </BrowserRouter>
     </div>
   )
 }
