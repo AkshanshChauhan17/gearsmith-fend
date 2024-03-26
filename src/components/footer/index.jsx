@@ -1,4 +1,4 @@
-import { AiFillFacebook, AiFillInstagram, AiFillYoutube, AiOutlineFacebook, AiOutlineInstagram, AiOutlineYoutube } from "react-icons/ai";
+import { AiOutlineFacebook, AiOutlineInstagram, AiOutlineYoutube } from "react-icons/ai";
 import { Link } from "react-router-dom"
 import icon_g_pay from '../../assets/images/google-pay.png'
 import icon_master_card from '../../assets/images/master-card.webp'
