@@ -11,7 +11,7 @@ function Products({product_data, ud}) {
     const [productData, setProductData] = useState()
     const [productSize, setProductSize] = useState([])
     const [imageIndex, setImageIndex] = useState(0)
-    const [quantity, setQuantity] = useState(0)
+    const [quantity, setQuantity] = useState(1)
     const [quantityVerification, setQuantityVerification] = useState(false)
     const [addToCartStatus, setAddToCartStatus] = useState({status: false, message: "ADD TO CART"})
 

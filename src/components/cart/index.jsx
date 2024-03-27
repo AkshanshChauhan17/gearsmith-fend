@@ -9,17 +9,18 @@ export default function Cart({ud}) {
 
     const handleRemoveFormCart = (product_id)=> {
         removeProductFromCart(ud.email, product_id)
-            .then((d)=>console.log(d))
+            .then((d)=>{
+                console.log(d)
+            })
             .catch((e)=>console.error(e))
     }
 
     useEffect(()=>{
         getRequest("product/get_from_cart/" + ud.email)
             .then((res)=>{
-                console.log(res)
                 setUserCartData(res)
             }).catch((err)=>console.error(err))
-    }, [removeProductFromCart])
+    }, [])
     
     if(userCartData.length===0) {
         return <div className="loading-ar gap-10 font-ss">

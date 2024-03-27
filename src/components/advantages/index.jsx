@@ -53,27 +53,27 @@ export default function Advantages() {
             />
           </div>
           <div className="right">
-            <div class="main-heading">01 Pervasive Protection</div>
-            <ul class="main-list">
-              <li class="main-item">Endure extreme climatic conditions</li>
-              <li class="main-item">Protection against surveillance</li>
-              <li class="main-item">Minimizing combat fatigue</li>
+            <div className="main-heading">01 Pervasive Protection</div>
+            <ul className="main-list">
+              <li className="main-item">Endure extreme climatic conditions</li>
+              <li className="main-item">Protection against surveillance</li>
+              <li className="main-item">Minimizing combat fatigue</li>
             </ul>
           </div>
         </div>
         <hr />
         <div className="way">
           <div className="right">
-            <div class="main-heading">02 Enhanced Flexibility</div>
-            <ul class="main-list">
-              <li class="main-item">
+            <div className="main-heading">02 Enhanced Flexibility</div>
+            <ul className="main-list">
+              <li className="main-item">
                 Increased ability to move arms, legs etc
               </li>
-              <li class="main-item">
+              <li className="main-item">
                 Reacting to signs of danger and grappling with someone if
                 necessary
               </li>
-              <li class="main-item">Maneuverability and comfort</li>
+              <li className="main-item">Maneuverability and comfort</li>
             </ul>
           </div>
           <div className="left">
@@ -94,14 +94,14 @@ export default function Advantages() {
             />
           </div>
           <div className="right">
-            <div class="main-heading">03 Vital Visibility</div>
-            <ul class="main-list">
-              <li class="main-item">Fine line of visibility</li>
-              <li class="main-item">
+            <div className="main-heading">03 Vital Visibility</div>
+            <ul className="main-list">
+              <li className="main-item">Fine line of visibility</li>
+              <li className="main-item">
                 Operations in varied terrain consisting of different flora and
                 fauna
               </li>
-              <li class="main-item">
+              <li className="main-item">
                 Blending in for surveillance & own security
               </li>
             </ul>
@@ -110,18 +110,18 @@ export default function Advantages() {
         <hr />
         <div className="way">
           <div className="right">
-            <div class="main-heading">04 Storage</div>
-            <ul class="main-list">
-              <li class="main-item">
+            <div className="main-heading">04 Storage</div>
+            <ul className="main-list">
+              <li className="main-item">
                 Outfitted with ample pockets both inside and outside
               </li>
-              <li class="main-item">
+              <li className="main-item">
                 Adequate space to hold and accommodate specific equipments
               </li>
-              <li class="main-item">
+              <li className="main-item">
                 Easy user interface by faster access to weapons and equipments
               </li>
-              <li class="main-item">
+              <li className="main-item">
                 Secured compartments to prevent loss of equipments
               </li>
             </ul>
@@ -144,12 +144,12 @@ export default function Advantages() {
             />
           </div>
           <div className="right">
-            <div class="main-heading">05 Aesthetics</div>
-            <ul class="main-list">
-              <li class="main-item">Display of soft power</li>
-              <li class="main-item">Upkeep of morale</li>
-              <li class="main-item">Competitive edge</li>
-              <li class="main-item">Uniformity</li>
+            <div className="main-heading">05 Aesthetics</div>
+            <ul className="main-list">
+              <li className="main-item">Display of soft power</li>
+              <li className="main-item">Upkeep of morale</li>
+              <li className="main-item">Competitive edge</li>
+              <li className="main-item">Uniformity</li>
             </ul>
           </div>
         </div>

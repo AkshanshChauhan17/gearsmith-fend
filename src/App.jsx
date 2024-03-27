@@ -1,5 +1,5 @@
 import './App.scss'
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import Navigation from './components/navigation'
 import Shop from './components/shop'
 import Products from './components/shop/products'
@@ -43,7 +43,6 @@ function App({login_status, setLoginStatus}) {
 
   useEffect(()=>{
     handleVerifyToken()
-    navigate("/")
   }, [])
 
   if(!login_status) {
