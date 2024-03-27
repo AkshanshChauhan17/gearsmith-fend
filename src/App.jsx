@@ -13,6 +13,7 @@ import UserSignin from './components/auth/user.signin'
 import Footer from './components/footer'
 import Profile from './components/auth/profile'
 import Home from './components/home'
+import Advantages from './components/advantages'
 
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState([])
@@ -60,6 +61,7 @@ function App({login_status, setLoginStatus}) {
           <Route path='/shop' element={<Shop />} />
           <Route path='/product/:name' element={<Products />} />
           <Route path='/admin' element={<Admin />} />
+          <Route path='/advantage' element={<Advantages />} />
           <Route path='/user/profile' element={<Profile ud={userData} um={userMeta} logOut={handleLogout} />} />
         </Routes>
         <Footer />

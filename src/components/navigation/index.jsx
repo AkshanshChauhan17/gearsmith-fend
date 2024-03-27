@@ -26,16 +26,16 @@ export default function Navigation({ls, ud, um}) {
                 <img src={imageList[0]} alt="" style={{filter: "invert(1)", width: "100%", maxWidth: "100px", minWidth: "80px"}} />
             </div>
             <hr/>
-            <div className="flex gap-20 wrap space-between padding-20-20">
-                <div className="flex gap-20 wrap">
+            <div className="nav-links-ar">
+                <div className="nav-link">
                     {
                         navigation.map((link, i)=>{
-                            return <Link className={clicked===link.path ? "link button-black color-white hover active" : "link button-black color-white hover inactive"} to={link.path} key={i} onClick={()=>setClicked(link.path)}>{link.name}</Link>
+                            return <Link className={clicked===link.path ? "link button-in color-white hover active" : "link button-in color-white hover inactive"} to={link.path} key={i} onClick={()=>setClicked(link.path)}>{link.name}</Link>
                         })
                     }
                 </div>
                 <div className="flex gap-20 center nav-controls">
-                    <Link to="/user/cart" className="flex color-white link center font-l">
+                    <Link to="/user/cart" className="flex color-white link center font-m">
                         <AiOutlineShop />
                     </Link>
                     <div className="profile-ar">

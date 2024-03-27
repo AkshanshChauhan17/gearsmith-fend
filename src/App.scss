@@ -114,9 +114,26 @@ hr {
     padding: 40px;
     background-blend-mode: color-dodge;
     background-color: rgb(9, 9, 9);
+    .nav-links-ar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        align-items: center;
+        padding: 20px 20px;
+        justify-content: space-between;
+        .nav-link {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            .button-in {
+                font-size: 20px;
+                font-weight: 600;
+            }
+        }
+    }
     .nav-controls {
         display: flex;
-        gap: 80px;
+        gap: 20px;
     }
 }
 
@@ -721,6 +738,7 @@ form {
 .shop {
     display: grid;
     gap: 80px;
+    padding: 0px 40px;
     .new-arrivals-slider-controls {
         display: flex;
         gap: 20px;
@@ -755,7 +773,6 @@ form {
 .middle-block {
     display: grid;
     gap: 0px;
-    margin: 0px 50px;
     position: relative;
     .left {
         position: absolute;
@@ -1193,7 +1210,7 @@ fieldset {
 }
 
 .home {
-    padding: 0px 50px;
+    padding: 0px 40px;
     display: grid;
     grid-area: 20px;
     gap: 80px;
@@ -1375,4 +1392,65 @@ fieldset {
     }
 }
 
-.advantage {}
+.advantage {
+    display: grid;
+    padding: 0px 40px;
+    gap: 40px;
+    .scrolling-text {
+        background-image: url("http://localhost:1000/static/images/bg-layer.webp");
+        padding: 40px;
+        color: white;
+        display: grid;
+        gap: 40px;
+        .st-head {
+            font-size: 40px;
+            font-weight: 600;
+        }
+        .st-content {
+            font-size: 20px;
+            display: grid;
+            font-weight: 300;
+            .st-content-b {
+                font-weight: 400;
+            }
+        }
+    }
+    .ways-ar {
+        display: grid;
+        gap: 20px;
+        .way {
+            display: flex;
+            .main-heading {
+                font-size: 30px;
+                font-weight: 500;
+                margin-bottom: 10px;
+            }
+            .main-list {
+                font-size: 20px;
+                display: grid;
+                gap: 10px;
+                font-weight: 400;
+            }
+            .left {
+                flex: 1;
+                padding: 20px;
+                aspect-ratio: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            }
+            .right {
+                padding: 20px;
+                flex: 1;
+                aspect-ratio: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}
