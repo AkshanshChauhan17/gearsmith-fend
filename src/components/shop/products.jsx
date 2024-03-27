@@ -1,22 +1,49 @@
-import { isEmptyObject } from "jquery"
+import { isEmptyObject, isNumeric } from "jquery"
 import { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { getRequest } from "../../functions/get.req"
+import { addProductToCart } from "../cart/post.reqs"
 
-function Products({product_data}) {
+function Products({product_data, ud}) {
     const [productColorIndex, setProductColorIndex] = useState(0)
     const [productColor, setProductColor] = useState([])
     const [productImages, setProductImages] = useState([])
     const [productData, setProductData] = useState()
     const [productSize, setProductSize] = useState([])
     const [imageIndex, setImageIndex] = useState(0)
+    const [quantity, setQuantity] = useState(0)
+    const [quantityVerification, setQuantityVerification] = useState(false)
+    const [addToCartStatus, setAddToCartStatus] = useState({status: false, message: "ADD TO CART"})
+
+    const handleAddToCart = ()=>{
+        addProductToCart(ud.email, product_data.productView.data.product_id, quantity)
+            .then((d)=>{
+                if(d.affectedRows===1) {
+                    return setAddToCartStatus({
+                        status: true,
+                        message: "Product is Added To Cart."
+                    })
+                }
+                setAddToCartStatus({
+                    status: false,
+                    message: "Product is Already in Cart!"
+                })
+            })
+            .catch((e)=>console.error(e))
+    }
+
+    useEffect(()=>{
+        if(quantity<=0 || !isNumeric(quantity)) {
+            return setQuantityVerification(false)
+        }
+        return setQuantityVerification(true)
+    }, [quantity])
 
     useEffect(() => {
         Promise.all([
-            getRequest("product/" + window.location.href.split("/").splice(-1)),
+            getRequest("product/" + product_data.productView.data.product_id),
         ])
         .then(([productResponse]) => {
-            console.log(productResponse)
             setProductData(productResponse)
             setProductColor(JSON.parse(productResponse.color_list))
             setProductSize(JSON.parse(productResponse.size_list))
@@ -86,15 +113,20 @@ function Products({product_data}) {
                     </div>
                     <div className="drop-section">
                         Quantity
-                        <input type="number" min={1} max={100}/>
+                        <input type="number" min={1} max={100} required value={quantity} onChange={(e)=>setQuantity(e.target.value)}/>
                     </div>
                 </div>
                 <br />
-                <div className="submit-ar">
-                    <button className="button-atoc">
-                        Add to Cart
-                    </button>
-                </div>
+                {
+                    quantityVerification ? 
+                    <div className="submit-ar">
+                        <button className="button-atoc" disabled={addToCartStatus.status} onClick={()=>handleAddToCart()}>
+                            {
+                                addToCartStatus.message
+                            }
+                        </button>
+                    </div> : null
+                }
             </div>
         </div>
     )

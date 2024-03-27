@@ -1,24 +1,29 @@
 import { useEffect, useState } from "react"
 import { getRequest } from "../../functions/get.req"
 import CartProduct from "./cart_product"
+import { removeProductFromCart } from "./post.reqs"
+import { AiTwotoneWarning } from "react-icons/ai"
 
 export default function Cart({ud}) {
     const [userCartData, setUserCartData] = useState([])
-    console.log(ud)
-    const handleRemoveFormCart = ()=> {
-        
+
+    const handleRemoveFormCart = (product_id)=> {
+        removeProductFromCart(ud.email, product_id)
+            .then((d)=>console.log(d))
+            .catch((e)=>console.error(e))
     }
+
     useEffect(()=>{
         getRequest("product/get_from_cart/" + ud.email)
             .then((res)=>{
                 console.log(res)
                 setUserCartData(res)
             }).catch((err)=>console.error(err))
-    }, [handleRemoveFormCart])
+    }, [removeProductFromCart])
     
     if(userCartData.length===0) {
-        return <div className="loading-ar">
-            <div className="loader"></div>
+        return <div className="loading-ar gap-10 font-ss">
+            no data found  <AiTwotoneWarning />
         </div>
     }
 

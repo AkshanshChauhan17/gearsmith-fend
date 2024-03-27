@@ -5,6 +5,7 @@ import { MdProductionQuantityLimits } from "react-icons/md"
 
 export default function CartProduct({pi, pq, hrcDef}) {
     const [productData, setProductData] = useState({})
+    
     useState(()=>{
         getRequest("product/" + pi)
             .then((pd)=>setProductData(pd))
@@ -41,7 +42,7 @@ export default function CartProduct({pi, pq, hrcDef}) {
                 </div>
             </div>
             <div className="controls">
-                <div className="control">
+                <div className="control" onClick={()=>hrcDef(pi)}>
                     <AiOutlineDelete />REMOVE
                 </div>
                 <div className="control">
