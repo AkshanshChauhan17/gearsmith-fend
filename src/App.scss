@@ -1500,3 +1500,50 @@ fieldset {
 }
 
 .review {}
+
+.cart {
+    padding: 0px 40px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    .cart-product {
+        min-width: 400px;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        .cart-product-image {
+            height: 100%;
+            max-width: 100%;
+            aspect-ratio: 1;
+        }
+        .info-ar {
+            height: 100%;
+            display: grid;
+            align-content: space-between;
+        }
+        .controls {
+            display: grid;
+            height: 100%;
+            align-content: space-between;
+            .control {
+                height: fit-content;
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: black;
+                color: white;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .control:nth-child(1):hover {
+                background-color: rgb(128, 0, 0);
+            }
+            .control:nth-child(2):hover {
+                background-color: green;
+            }
+        }
+    }
+}
