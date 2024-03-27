@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 export default function Advantages() {
   const [scrollY, setScrollY] = useState(0);
-  const [maxScroll, setMaxScroll] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
