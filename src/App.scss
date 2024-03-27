@@ -746,7 +746,7 @@ form {
         flex-wrap: wrap;
         gap: 20px;
         align-content: space-between;
-        justify-content: space-between;
+        justify-content: start;
         scroll-behavior: smooth;
         scroll-snap-type: x mandatory;
     }
@@ -1374,3 +1374,5 @@ fieldset {
         }
     }
 }
+
+.advantage {}
