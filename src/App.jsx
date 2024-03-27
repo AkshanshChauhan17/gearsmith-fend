@@ -50,7 +50,6 @@ function App({login_status, setLoginStatus}) {
         <Route path='/register' element={<UserSignin ls={login_status} lsDef={setLoginStatus} />} />
       </Routes>
     </>
-    
   }
 
   return (

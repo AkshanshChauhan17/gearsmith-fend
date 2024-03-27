@@ -1,9 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { MdAccessTime, MdOutlineLocalHospital, MdOutlineSecurity } from "react-icons/md";
 
 export default function Home() {
     const [sliderIndex, setSliderIndex] = useState(0)
     const slider_images = ["http://localhost:1000/static/images/home-slider-1.webp", "http://localhost:1000/static/images/home-slider-2.webp"]
+    const [scrollY, setScrollY] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollY(Math.round(window.scrollY));
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
     return (
         <div className="home">
             <div className="section">
@@ -27,6 +41,40 @@ export default function Home() {
                     <AiOutlineArrowRight className="arrow" onClick={()=>setSliderIndex(sliderIndex===1 ? 0 : 1)}/>
                 </div>
             </div>
+            <div className="middle" style={{backgroundPositionY: scrollY*0.5}}>
+                <div className="big-font">Tactical  apparel elevates the operator's</div>
+                <div className="middle-flex">
+                    <div className="middle-flex-box">
+                        <MdOutlineSecurity className="icon" />
+                        <div className="text">SECURITY</div>
+                    </div>
+                    <div className="middle-flex-box">
+                        <MdAccessTime className="icon" />
+                        <div className="text">SECURITY</div>
+                    </div>
+                    <div className="middle-flex-box">
+                        <MdOutlineLocalHospital className="icon" />
+                        <div className="text">SECURITY</div>
+                    </div>
+                </div>
+                <button className="middle-button">
+                    <div className="text">Shop Now</div>
+                    <AiOutlineArrowRight className="icon" />
+                </button>
+            </div>
+            <form action="" className="bottom">
+                <div className="left"></div>
+                <div className="right">
+                    <div className="right-title">Get Updates</div>
+                    <div className="right-subtitle">
+                    Get info about our latest products & updates. Subscribe to our newsletter.
+                    </div>
+                    <div className="inputs">
+                        <input type="text" name="" id=""  placeholder="Email" required/>
+                        <input type="submit" value="Subscribe" />
+                    </div>
+                </div>
+            </form>
         </div>
     )
 }
