@@ -1418,8 +1418,11 @@ fieldset {
     .ways-ar {
         display: grid;
         gap: 40px;
+        flex: 1;
         .way {
             display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
             .main-heading {
                 font-size: 30px;
                 font-weight: 500;
@@ -1495,3 +1498,5 @@ fieldset {
         }
     }
 }
+
+.review {}
