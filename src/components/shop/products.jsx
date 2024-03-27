@@ -72,7 +72,8 @@ function Products({product_data}) {
                 <div className="drop-ar">
                     <div className="drop-section">
                         Size
-                        <select name="" id="">
+                        <select name="" id="" required>
+                            <option value=""></option>
                             {
                                 productSize.map((ps, i)=>{
                                     if(isEmptyObject(ps)) {

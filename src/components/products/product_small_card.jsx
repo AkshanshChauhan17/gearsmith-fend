@@ -16,9 +16,6 @@ export default function ProductSmallCard({spd, data, image, url, name, price, is
             <div className="product-data">
                 <div className="product-heading">{name}</div>
                 <div className="product-price">{price}</div>
-                <br />
-                <div className="product-small-text">{isTex ? "Sales Tex Included" : null}</div>
-                <br />
                 <Link className="text view-button" to={url} onClick={()=>spd({data, image})}>Buy</Link>
             </div>
         </div>

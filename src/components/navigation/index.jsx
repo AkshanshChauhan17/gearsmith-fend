@@ -34,7 +34,7 @@ export default function Navigation({ls, ud, um}) {
                         })
                     }
                 </div>
-                <div className="flex gap-20 center">
+                <div className="flex gap-20 center nav-controls">
                     <Link to="/user/cart" className="flex color-white link center font-l">
                         <AiOutlineShop />
                     </Link>

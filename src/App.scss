@@ -114,6 +114,10 @@ hr {
     padding: 40px;
     background-blend-mode: color-dodge;
     background-color: rgb(9, 9, 9);
+    .nav-controls {
+        display: flex;
+        gap: 80px;
+    }
 }
 
 .heading {
@@ -207,6 +211,10 @@ hr {
         .product-heading {
             font-size: 25px;
             font-weight: 500;
+            width: 250px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .product-price {
             font-size: 20px;
@@ -607,7 +615,7 @@ form {
 }
 
 .product-small-card {
-    width: 200px;
+    width: 240px;
     outline: 1px solid rgba(0, 0, 0, 0.2);
     display: grid;
     scroll-snap-align: start;
@@ -619,7 +627,7 @@ form {
         aspect-ratio: 1/1;
         .product-dp {
             width: 100%;
-            object-fit: contain;
+            aspect-ratio: 1;
             transition-duration: 0.2s;
         }
         .product-dp-url:hover {
@@ -664,15 +672,20 @@ form {
         }
     }
     .product-data {
-        padding: 10px 10px;
+        padding: 10px;
         display: flex;
         flex-direction: column;
         border-top: 1px solid rgba(0, 0, 0, 0.2);
         background-color: white;
-        height: 100px;
+        gap: 10px;
+        height: fit-content;
         .product-heading {
             font-size: 20px;
             font-weight: 500;
+            width: 200px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .product-price {
             font-size: 20px;
@@ -681,9 +694,6 @@ form {
         .product-small-text {
             font-size: 15px;
             font-weight: 400;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
         .view-button {
             padding: 15px;
@@ -747,7 +757,6 @@ form {
     gap: 0px;
     margin: 0px 50px;
     position: relative;
-    justify-content: center;
     .left {
         position: absolute;
         z-index: 100;
