@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { getRequest } from "../../functions/get.req"
 import { addProductToCart } from "../cart/post.reqs"
+import { AiOutlineLoading } from "react-icons/ai"
 
 function Products({product_data, ud}) {
     const [productColorIndex, setProductColorIndex] = useState(0)
@@ -14,8 +15,10 @@ function Products({product_data, ud}) {
     const [quantity, setQuantity] = useState(1)
     const [quantityVerification, setQuantityVerification] = useState(false)
     const [addToCartStatus, setAddToCartStatus] = useState({status: false, message: "ADD TO CART"})
+    const [onClickAddToCart, setOnClickAddToCart] = useState(false)
 
     const handleAddToCart = ()=>{
+        setOnClickAddToCart(true)
         addProductToCart(ud.email, product_data.productView.data.product_id, quantity)
             .then((d)=>{
                 if(d.affectedRows===1) {
@@ -30,6 +33,7 @@ function Products({product_data, ud}) {
                 })
             })
             .catch((e)=>console.error(e))
+            .finally(()=>setOnClickAddToCart(false))
     }
 
     useEffect(()=>{
@@ -122,7 +126,7 @@ function Products({product_data, ud}) {
                     <div className="submit-ar">
                         <button className="button-atoc" disabled={addToCartStatus.status} onClick={()=>handleAddToCart()}>
                             {
-                                addToCartStatus.message
+                                onClickAddToCart ? <AiOutlineLoading className="loader" /> : addToCartStatus.message
                             }
                         </button>
                     </div> : null
