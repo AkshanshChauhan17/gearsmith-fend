@@ -6,11 +6,13 @@ import { AiTwotoneWarning } from "react-icons/ai"
 
 export default function Cart({ud}) {
     const [userCartData, setUserCartData] = useState([])
+    const [removeCount, setRemoveCount] = useState(1)
 
     const handleRemoveFormCart = (product_id)=> {
         removeProductFromCart(ud.email, product_id)
-            .then((d)=>{
-                console.log(d)
+            .then(()=>{
+                const i = removeCount + 1
+                setRemoveCount(i)
             })
             .catch((e)=>console.error(e))
     }
@@ -20,7 +22,7 @@ export default function Cart({ud}) {
             .then((res)=>{
                 setUserCartData(res)
             }).catch((err)=>console.error(err))
-    }, [])
+    }, [removeCount])
     
     if(userCartData.length===0) {
         return <div className="loading-ar gap-10 font-ss">

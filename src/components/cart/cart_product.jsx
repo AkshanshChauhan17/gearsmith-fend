@@ -1,14 +1,17 @@
 import { useState } from "react"
 import { getRequest } from "../../functions/get.req"
-import { AiOutlineDelete } from "react-icons/ai"
+import { AiOutlineDelete, AiOutlineLoading } from "react-icons/ai"
 import { MdProductionQuantityLimits } from "react-icons/md"
 
 export default function CartProduct({pi, pq, hrcDef}) {
     const [productData, setProductData] = useState({})
-    
+    const [onClickRemove, setOnClickRemove] = useState(false)
     useState(()=>{
         getRequest("product/" + pi)
-            .then((pd)=>setProductData(pd))
+            .then((pd)=>{
+                setProductData(pd)
+                setOnClickRemove(false)
+            })
             .catch(err=>console.log(err))
     }, [])
 
@@ -42,12 +45,16 @@ export default function CartProduct({pi, pq, hrcDef}) {
                 </div>
             </div>
             <div className="controls">
-                <div className="control" onClick={()=>hrcDef(pi)}>
-                    <AiOutlineDelete />REMOVE
-                </div>
-                <div className="control">
+                <button className="control" disabled={onClickRemove} onClick={()=>{hrcDef(pi); setOnClickRemove(true);}}>
+                    {
+                        onClickRemove ? <AiOutlineLoading className="loader" /> : <span>
+                            <AiOutlineDelete />REMOVE
+                        </span>
+                    }
+                </button>
+                <button className="control">
                     <MdProductionQuantityLimits />BUY
-                </div>
+                </button>
             </div>
         </div>
     )
