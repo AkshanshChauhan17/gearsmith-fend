@@ -16,11 +16,13 @@ import Home from './components/home'
 import Advantages from './components/advantages'
 import AboutUs from './components/about'
 import Cart from './components/cart'
+import { AiOutlineLoading, AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState([])
   const [userMeta, setUserMeta] = useState({})
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(true)
 
   const handleVerifyToken = async ()=> {
     await verifyToken()
@@ -33,6 +35,7 @@ function App({login_status, setLoginStatus}) {
           setLoginStatus(true)
         }
       })
+      setLoading(false)
   }
 
   const handleLogout = ()=>{
@@ -43,7 +46,16 @@ function App({login_status, setLoginStatus}) {
 
   useEffect(()=>{
     handleVerifyToken()
+    navigate("/")
   }, [])
+
+  if(loading) {
+    return <div className="logo-loading-ar">
+      <div className="logo-loader">
+        <AiOutlineLoading3Quarters className='loader white' />
+      </div>
+    </div>
+  }
 
   if(!login_status) {
     return <>
