@@ -1,7 +1,6 @@
-var url_prefix = "http://localhost:1000/"
+import url_main from "./url";
 
-export async function postRequest(url) {
+export async function postRequest(url_main) {
     var res;
-
     return res;
 };

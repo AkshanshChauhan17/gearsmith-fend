@@ -1,3 +1,5 @@
+import url_main from "../../functions/url";
+
 export async function removeProductFromCart(email, p_id) {
     var res = null;
     const myHeaders = new Headers();
@@ -15,7 +17,7 @@ export async function removeProductFromCart(email, p_id) {
         redirect: "follow"
     };
 
-    await fetch("http://localhost:1000/product/remove_from_cart", requestOptions)
+    await fetch(url_main + "product/remove_from_cart", requestOptions)
         .then((response) => response.json())
         .then((result) => res = result)
         .catch((error) => console.error(error));
@@ -41,7 +43,7 @@ export async function addProductToCart(email, p_id, q) {
         redirect: "follow"
     };
 
-    await fetch("http://localhost:1000/product/add_to_cart", requestOptions)
+    await fetch(url_main + "product/add_to_cart", requestOptions)
         .then((response) => response.json())
         .then((result) => res = result)
         .catch((error) => console.error(error));

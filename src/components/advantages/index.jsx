@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import url_main from "../../functions/url";
 
 export default function Advantages() {
   const [scrollY, setScrollY] = useState(0);
@@ -47,7 +48,7 @@ export default function Advantages() {
         <div className="way">
           <div className="left">
             <img
-              src="http://localhost:1000/static/images/av-images (5).webp"
+              src={url_main + "static/images/av-images (5).webp"}
               alt=""
               className="image"
             />
@@ -78,7 +79,7 @@ export default function Advantages() {
           </div>
           <div className="left">
             <img
-              src="http://localhost:1000/static/images/av-images (2).webp"
+              src={url_main + "static/images/av-images (2).webp"}
               alt=""
               className="image"
             />
@@ -88,7 +89,7 @@ export default function Advantages() {
         <div className="way">
           <div className="left">
             <img
-              src="http://localhost:1000/static/images/av-images (4).webp"
+              src={url_main + "static/images/av-images (4).webp"}
               alt=""
               className="image"
             />
@@ -128,7 +129,7 @@ export default function Advantages() {
           </div>
           <div className="left">
             <img
-              src="http://localhost:1000/static/images/av-images (3).webp"
+              src= {url_main + "static/images/av-images (3).webp"}
               alt=""
               className="image"
             />
@@ -138,7 +139,7 @@ export default function Advantages() {
         <div className="way">
           <div className="left">
             <img
-              src="http://localhost:1000/static/images/av-images (1).webp"
+              src={url_main + "static/images/av-images (1).webp"}
               alt=""
               className="image"
             />

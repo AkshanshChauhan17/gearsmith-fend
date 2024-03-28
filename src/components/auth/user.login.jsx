@@ -1,6 +1,7 @@
 import { useState } from "react"
 import authPostRequest from "./post.req"
 import { Link } from "react-router-dom"
+import url_main from "../../functions/url"
 
 export default function UserLogin({lsDef}) {
     const [focusField, setFocusField] = useState()
@@ -46,7 +47,7 @@ export default function UserLogin({lsDef}) {
     }
     return (
         <div className="login-section">
-            <form action="#" onSubmit={()=>handleLogin("http://localhost:1000/user/login")}>
+            <form action="#" onSubmit={()=>handleLogin(url_main + "user/login")}>
                 <div className="login-heading">Login
                     <div className="gearsmith-logo"></div>
                 </div>

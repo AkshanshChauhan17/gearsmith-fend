@@ -2,6 +2,7 @@ import { useState } from "react"
 import authPostRequest from "./post.req"
 import { Link } from "react-router-dom"
 import { AiFillLock, AiFillMail, AiFillPhone } from "react-icons/ai"
+import url_main from "../../functions/url"
 
 export default function UserSignin({lsDef, ls}) {
     const [focusField, setFocusField] = useState()
@@ -111,7 +112,7 @@ export default function UserSignin({lsDef, ls}) {
 
     return (
         <div className="signin-section">
-            <form action="#" onSubmit={()=>handleSignin("http://localhost:1000/user/signin")}>
+            <form action="#" onSubmit={()=>handleSignin(url_main + "user/signin")}>
                 <div className="form-section">
                     <div className="left-section">
                         <div className="selected-image-section">

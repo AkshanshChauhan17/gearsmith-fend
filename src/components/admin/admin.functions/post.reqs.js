@@ -1,4 +1,5 @@
 import { getRequest } from "../../../functions/get.req";
+import url_main from "../../../functions/url";
 
 const postNewProduct = async(name, price, media, color_list, size_list, product_summary) => {
     var res = null;
@@ -21,7 +22,7 @@ const postNewProduct = async(name, price, media, color_list, size_list, product_
         redirect: "follow"
     };
 
-    await fetch("http://localhost:1000/product/add_product", requestOptions)
+    await fetch(url_main + "product/add_product", requestOptions)
         .then((response) => response.json())
         .then((result) => {
             console.log(res)

@@ -1,6 +1,5 @@
 import $ from "jquery";
-
-var url_prefix = "http://localhost:1000/"
+import url_main from "./url";
 
 export async function getRequest(url) {
     var res;
@@ -10,7 +9,7 @@ export async function getRequest(url) {
         redirect: "follow"
     };
 
-    await fetch(url_prefix + url, requestOptions)
+    await fetch(url_main + url, requestOptions)
         .then((response) => response.json())
         .then((result) => res = result)
         .catch((error) => console.error(error));

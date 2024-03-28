@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { MdAccessTime, MdOutlineLocalHospital, MdOutlineSecurity } from "react-icons/md";
+import url_main from "../../functions/url";
 
 export default function Home() {
     const [sliderIndex, setSliderIndex] = useState(0)
-    const slider_images = ["http://localhost:1000/static/images/home-slider-1.webp", "http://localhost:1000/static/images/home-slider-2.webp"]
+    const slider_images = [url_main + "static/images/home-slider-1.webp", url_main + "static/images/home-slider-2.webp"]
     const [scrollY, setScrollY] = useState(0);
 
     useEffect(() => {
