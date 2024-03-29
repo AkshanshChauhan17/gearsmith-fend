@@ -3,17 +3,19 @@ import { getRequest } from "../../functions/get.req"
 import { AiOutlineDelete, AiOutlineLoading } from "react-icons/ai"
 import { MdProductionQuantityLimits } from "react-icons/md"
 
-export default function CartProduct({pi, pq, hrcDef}) {
+export default function CartProduct({pi, pq, hrcDef, ps, pc}) {
     const [productData, setProductData] = useState({})
     const [onClickRemove, setOnClickRemove] = useState(false)
 
     useState(()=>{
+        setOnClickRemove(true)
         getRequest("product/" + pi)
             .then((pd)=>{
-                setProductData(pd)
+                const newProductData = pd;
+                setProductData(newProductData)
+                setOnClickRemove(false)
             })
             .catch(err=>console.log(err))
-            .finally(()=>setOnClickRemove(false))
     }, [hrcDef])
 
     if(productData.length===0) {
@@ -39,14 +41,15 @@ export default function CartProduct({pi, pq, hrcDef}) {
                         <b>Quantity: </b>
                         {pq}
                     </div>
-                    <div className="info">
-                        <b>Price: </b>
-                        {productData.price}
-                    </div>
+                </div>
+                <div className="bottom">
+                    <span>Product <b>{ps}</b> in Size and <b>{pc}</b> in Color</span>
+                    <div>₹{productData.price}</div>
+                    <h2>Total: ₹{productData.price * pq}</h2>
                 </div>
             </div>
             <div className="controls">
-                <button className="control" disabled={onClickRemove} onClick={()=>{hrcDef(pi); setOnClickRemove(true);}}>
+                <button className="control" disabled={onClickRemove} onClick={()=>{hrcDef(pi);}}>
                     {
                         onClickRemove ? <AiOutlineLoading className="loader" /> : <span>
                             <AiOutlineDelete />REMOVE

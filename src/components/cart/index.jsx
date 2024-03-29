@@ -32,9 +32,10 @@ export default function Cart({ud}) {
 
     return (
         <div className="cart">
+            <h2>Total Products in Cart: {userCartData.length}</h2>
             {
                 userCartData.map((data, i)=>{
-                    return <CartProduct key={i} pi={data.product_id} pq={data.quantity} hrcDef={handleRemoveFormCart} />
+                    return <CartProduct key={i} pi={data.product_id} pq={data.quantity} pc={data.color} ps={data.size} hrcDef={handleRemoveFormCart} />
                 })
             }
         </div>

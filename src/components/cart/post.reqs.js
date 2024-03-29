@@ -25,7 +25,7 @@ export async function removeProductFromCart(email, p_id) {
     return res;
 };
 
-export async function addProductToCart(email, p_id, q) {
+export async function addProductToCart(email, p_id, q, s, c) {
     var res = null;
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -33,7 +33,9 @@ export async function addProductToCart(email, p_id, q) {
     const raw = JSON.stringify({
         "email": email,
         "product_id": p_id,
-        "quantity": q
+        "quantity": q,
+        "size": s,
+        "color": c
     });
 
     const requestOptions = {

@@ -11,6 +11,7 @@ function Products({product_data, ud}) {
     const [productImages, setProductImages] = useState([])
     const [productData, setProductData] = useState()
     const [productSize, setProductSize] = useState([])
+    const [productSizeSelected, setProductSizeSelected] = useState("")
     const [imageIndex, setImageIndex] = useState(0)
     const [quantity, setQuantity] = useState(1)
     const [quantityVerification, setQuantityVerification] = useState(false)
@@ -19,7 +20,7 @@ function Products({product_data, ud}) {
 
     const handleAddToCart = ()=>{
         setOnClickAddToCart(true)
-        addProductToCart(ud.email, product_data.productView.data.product_id, quantity)
+        addProductToCart(ud.email, product_data.productView.data.product_id, quantity, productSizeSelected, productColor[productColorIndex].color_name)
             .then((d)=>{
                 if(d.affectedRows===1) {
                     return setAddToCartStatus({
@@ -103,14 +104,14 @@ function Products({product_data, ud}) {
                 <div className="drop-ar">
                     <div className="drop-section">
                         Size
-                        <select name="" id="" required>
+                        <select name="" id="" required onChange={(e)=>setProductSizeSelected(e.target.value)}>
                             <option value=""></option>
                             {
                                 productSize.map((ps, i)=>{
                                     if(isEmptyObject(ps)) {
                                         return null
                                     }
-                                    return <option value={ps.size_name} key={i}>{ps.size_name + " " + ps.size}</option>
+                                    return <option value={ps.size_name + " " + ps.size} key={i}>{ps.size_name + " " + ps.size}</option>
                                 })
                             }
                         </select>
@@ -122,7 +123,7 @@ function Products({product_data, ud}) {
                 </div>
                 <br />
                 {
-                    quantityVerification ? 
+                    quantityVerification & productSizeSelected!="" ? 
                     <div className="submit-ar">
                         <button className="button-atoc" disabled={addToCartStatus.status} onClick={()=>handleAddToCart()}>
                             {

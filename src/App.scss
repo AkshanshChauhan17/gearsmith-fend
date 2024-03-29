@@ -409,10 +409,11 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
+    filter: invert(1);
     .logo-loader {
         width: 100px;
         height: 100px;
-        background-image: url("http://3.91.203.73:1000/static/images/main-logo.webp");
+        background-image: url("./assets/images/gearsmith-logo.webp");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -1543,19 +1544,24 @@ fieldset {
 .review {}
 
 .cart {
+    height: 100vh;
     padding: 0px 40px;
-    display: flex;
+    display: grid;
     gap: 20px;
-    flex-wrap: wrap;
+    align-content: start;
+    overflow-y: scroll;
     .cart-product {
+        width: max-content;
+        height: 150px;
         min-width: 400px;
         display: flex;
         gap: 20px;
         align-items: center;
         border: 1px solid rgba(0, 0, 0, 0.2);
         padding: 10px;
+        justify-content: center;
         .cart-product-image {
-            height: 100%;
+            height: 150px;
             max-width: 100%;
             aspect-ratio: 1;
         }
