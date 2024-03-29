@@ -16,7 +16,7 @@ import Home from './components/home'
 import Advantages from './components/advantages'
 import AboutUs from './components/about'
 import Cart from './components/cart'
-import { AiOutlineLoading, AiOutlineLoading3Quarters } from 'react-icons/ai'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState([])

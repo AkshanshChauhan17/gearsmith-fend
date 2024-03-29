@@ -46,13 +46,7 @@ export default function Advantages() {
       </div>
       <div className="ways-ar">
         <div className="way">
-          <div className="left">
-            <img
-              src={url_main + "static/images/av-images (5).webp"}
-              alt=""
-              className="image"
-            />
-          </div>
+        <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (5).webp" + "')"}}></div>
           <div className="right">
             <div className="main-heading">01 Pervasive Protection</div>
             <ul className="main-list">
@@ -77,23 +71,11 @@ export default function Advantages() {
               <li className="main-item">Maneuverability and comfort</li>
             </ul>
           </div>
-          <div className="left">
-            <img
-              src={url_main + "static/images/av-images (2).webp"}
-              alt=""
-              className="image"
-            />
-          </div>
+          <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (2).webp" + "')"}}></div>
         </div>
         <hr />
         <div className="way">
-          <div className="left">
-            <img
-              src={url_main + "static/images/av-images (4).webp"}
-              alt=""
-              className="image"
-            />
-          </div>
+        <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (4).webp" + "')"}}></div>
           <div className="right">
             <div className="main-heading">03 Vital Visibility</div>
             <ul className="main-list">
@@ -127,23 +109,11 @@ export default function Advantages() {
               </li>
             </ul>
           </div>
-          <div className="left">
-            <img
-              src= {url_main + "static/images/av-images (3).webp"}
-              alt=""
-              className="image"
-            />
-          </div>
+          <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (3).webp" + "')"}}></div>
         </div>
         <hr />
         <div className="way">
-          <div className="left">
-            <img
-              src={url_main + "static/images/av-images (1).webp"}
-              alt=""
-              className="image"
-            />
-          </div>
+        <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (1).webp" + "')"}}></div>
           <div className="right">
             <div className="main-heading">05 Aesthetics</div>
             <ul className="main-list">

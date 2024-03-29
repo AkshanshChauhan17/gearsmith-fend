@@ -1388,10 +1388,10 @@ fieldset {
         grid-area: 20px;
         width: 100%;
         flex-wrap: wrap;
-        gap: 40px;
+        gap: 80px;
         .section-left {
             flex: 1;
-            min-width: 300px;
+            min-width: 200px;
             display: grid;
             gap: 10px;
             align-content: center;
@@ -1402,7 +1402,7 @@ fieldset {
         }
         .section-right {
             flex: 1;
-            min-width: 400px;
+            min-width: 200px;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
@@ -1415,8 +1415,8 @@ fieldset {
                 color: rgb(80, 80, 80);
             }
             .slider-ar {
-                width: 100%;
                 display: flex;
+                width: 100%;
                 align-items: center;
                 justify-content: center;
                 .slider-image {
@@ -1424,6 +1424,7 @@ fieldset {
                     aspect-ratio: 1;
                     object-fit: cover;
                     object-position: top;
+                    min-width: 100px;
                 }
             }
         }
@@ -1458,6 +1459,7 @@ fieldset {
         flex-direction: column;
         gap: 40px;
         align-items: center;
+        flex: 1;
         .way {
             display: flex;
             flex-wrap: wrap;
@@ -1468,15 +1470,11 @@ fieldset {
                 aspect-ratio: 1;
                 padding: 20px;
                 display: flex;
-                flex-direction: column;
                 gap: 10px;
                 min-width: 200px;
-                .image {
-                    display: flex;
-                    flex: 1;
-                    aspect-ratio: 1;
-                    object-fit: cover;
-                }
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
             }
             .right {
                 .main-heading {
@@ -1495,7 +1493,6 @@ fieldset {
                 }
                 padding: 20px;
                 flex: 1;
-                aspect-ratio: 1;
                 display: grid;
                 flex-direction: column;
                 gap: 10px;
@@ -1588,6 +1585,19 @@ fieldset {
             .control:nth-child(2):hover {
                 background-color: green;
             }
+        }
+    }
+}
+
+@media (max-width: "700px") {
+    .cart {
+        .cart-product {
+            zoom: 0.5;
+        }
+    }
+    .footer-ar {
+        .footer-bottom {
+            zoom: 40%;
         }
     }
 }

@@ -6,14 +6,15 @@ import { MdProductionQuantityLimits } from "react-icons/md"
 export default function CartProduct({pi, pq, hrcDef}) {
     const [productData, setProductData] = useState({})
     const [onClickRemove, setOnClickRemove] = useState(false)
+
     useState(()=>{
         getRequest("product/" + pi)
             .then((pd)=>{
                 setProductData(pd)
-                setOnClickRemove(false)
             })
             .catch(err=>console.log(err))
-    }, [])
+            .finally(()=>setOnClickRemove(false))
+    }, [hrcDef])
 
     if(productData.length===0) {
         return <div className="loading-ar">
