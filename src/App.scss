@@ -836,11 +836,8 @@ form {
     .products {
         display: flex;
         flex-wrap: wrap;
-        gap: 20px;
-        align-content: space-between;
-        justify-content: start;
-        scroll-behavior: smooth;
-        scroll-snap-type: x mandatory;
+        gap: 10px;
+        justify-content: center;
     }
 }
 
@@ -1585,7 +1582,7 @@ fieldset {
     gap: 20px;
     align-content: start;
     .cart-product {
-        width: max-content;
+        width: 800px;
         height: 150px;
         min-width: 400px;
         display: flex;
@@ -1601,6 +1598,7 @@ fieldset {
         }
         .info-ar {
             height: 100%;
+            width: 100%;
             display: grid;
             align-content: space-between;
         }

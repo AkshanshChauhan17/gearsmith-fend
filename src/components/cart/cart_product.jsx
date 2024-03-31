@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { getRequest } from "../../functions/get.req"
-import { AiOutlineDelete, AiOutlineLoading } from "react-icons/ai"
+import { AiOutlineDelete, AiOutlineDeliveredProcedure, AiOutlineLoading } from "react-icons/ai"
 import { MdProductionQuantityLimits } from "react-icons/md"
 
 export default function CartProduct({pi, pq, hrcDef, ps, pc}) {
@@ -9,6 +9,7 @@ export default function CartProduct({pi, pq, hrcDef, ps, pc}) {
 
     useState(()=>{
         setOnClickRemove(true)
+        
         getRequest("product/" + pi)
             .then((pd)=>{
                 const newProductData = pd;
@@ -29,23 +30,11 @@ export default function CartProduct({pi, pq, hrcDef, ps, pc}) {
             <img src={productData.media && JSON.parse(productData.media)[0].small} className="cart-product-image" />
             <div className="info-ar">
                 <div className="upper">
-                    <b>Id: </b>
-                    {productData.product_id}
+                    <AiOutlineDeliveredProcedure size={20} /> {productData.product_id}
                 </div>
                 <div className="bottom">
-                    <div className="info">
-                        <b>Name: </b>
-                        {productData.name}
-                    </div>
-                    <div className="info">
-                        <b>Quantity: </b>
-                        {pq}
-                    </div>
-                </div>
-                <div className="bottom">
-                    <span>Product <b>{ps}</b> in Size and <b>{pc}</b> in Color</span>
-                    <div>₹{productData.price}</div>
-                    <h2>Total: ₹{productData.price * pq}</h2>
+                    <h2>{productData.name}</h2>
+                    <h3>₹{productData.price * pq}</h3>
                 </div>
             </div>
             <div className="controls">

@@ -57,7 +57,7 @@ function Shop({setProductData, product_data}) {
                 <div className="new-arrivals">
                     {
                         allNewArrivals.map((d, i)=>{
-                            return <ProductCard spd={feedProductData} data={d} pushRef={pushRef} cardRef={cardRef} image={JSON.parse(d.media)[0].medium} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.product_id} key={i} index={i} pagingIndex={pagingIndex} />
+                            return <ProductCard spd={feedProductData} data={d} pushRef={pushRef} cardRef={cardRef} image={JSON.parse(d.media)[0].medium} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.product_id} key={i} index={i} pagingIndex={pagingIndex} spiDef={setPagingIndex} scDef={scrollToCard} />
                         })
                     }
                 </div>
