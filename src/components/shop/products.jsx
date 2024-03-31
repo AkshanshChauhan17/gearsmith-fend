@@ -3,15 +3,15 @@ import { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { getRequest } from "../../functions/get.req"
 import { addProductToCart } from "../cart/post.reqs"
-import { AiOutlineLoading } from "react-icons/ai"
+import { AiFillLock, AiOutlineLoading } from "react-icons/ai"
 
-function Products({product_data, ud}) {
+function Products({ud}) {
     const [productColorIndex, setProductColorIndex] = useState(0)
     const [productColor, setProductColor] = useState([])
     const [productImages, setProductImages] = useState([])
     const [productData, setProductData] = useState()
     const [productSize, setProductSize] = useState([])
-    const [productSizeSelected, setProductSizeSelected] = useState("")
+    const [productSizeSelected, setProductSizeSelected] = useState("default")
     const [imageIndex, setImageIndex] = useState(0)
     const [quantity, setQuantity] = useState(1)
     const [quantityVerification, setQuantityVerification] = useState(false)
@@ -20,7 +20,7 @@ function Products({product_data, ud}) {
 
     const handleAddToCart = ()=>{
         setOnClickAddToCart(true)
-        addProductToCart(ud.email, product_data.productView.data.product_id, quantity, productSizeSelected, productColor[productColorIndex].color_name)
+        addProductToCart(ud.email, window.location.href.split("/").splice(-1), quantity, productSizeSelected, productColor.length===0 ? "default" : productColor[productColorIndex].color_name)
             .then((d)=>{
                 if(d.affectedRows===1) {
                     return setAddToCartStatus({
@@ -46,7 +46,7 @@ function Products({product_data, ud}) {
 
     useEffect(() => {
         Promise.all([
-            getRequest("product/" + product_data.productView.data.product_id),
+            getRequest("product/" + window.location.href.split("/").splice(-1)),
         ])
         .then(([productResponse]) => {
             setProductData(productResponse)
@@ -104,8 +104,8 @@ function Products({product_data, ud}) {
                 <div className="drop-ar">
                     <div className="drop-section">
                         Size
-                        <select name="" id="" required onChange={(e)=>setProductSizeSelected(e.target.value)}>
-                            <option value=""></option>
+                        <select name="" id="" required value={productSizeSelected} onChange={(e)=>setProductSizeSelected(e.target.value)}>
+                            <option value="default">Original</option>
                             {
                                 productSize.map((ps, i)=>{
                                     if(isEmptyObject(ps)) {
@@ -123,14 +123,20 @@ function Products({product_data, ud}) {
                 </div>
                 <br />
                 {
-                    quantityVerification & productSizeSelected!="" ? 
+                    quantityVerification || productSizeSelected!=null ? 
                     <div className="submit-ar">
                         <button className="button-atoc" disabled={addToCartStatus.status} onClick={()=>handleAddToCart()}>
                             {
                                 onClickAddToCart ? <AiOutlineLoading className="loader" /> : addToCartStatus.message
                             }
                         </button>
-                    </div> : null
+                    </div> : <div className="submit-ar" style={{opacity: 0.5}}>
+                        <button className="button-atoc" disabled={true}>
+                            {
+                                addToCartStatus.message
+                            } <AiFillLock />
+                        </button>
+                    </div>
                 }
             </div>
         </div>

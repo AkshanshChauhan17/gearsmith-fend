@@ -29,6 +29,7 @@ function App({login_status, setLoginStatus}) {
       .then((res)=>{
         if(res.message != "Authorized") {
           setLoginStatus(false)
+          navigate("/")
         } else {
           setUserData(res.result[0])
           setUserMeta(JSON.parse(res.result[0].meta))
