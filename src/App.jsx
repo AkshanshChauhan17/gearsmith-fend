@@ -46,7 +46,6 @@ function App({login_status, setLoginStatus}) {
 
   useEffect(()=>{
     handleVerifyToken()
-    navigate("/")
   }, [])
 
   if(loading) {
