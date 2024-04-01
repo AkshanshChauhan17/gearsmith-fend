@@ -17,6 +17,7 @@ import Advantages from './components/advantages'
 import AboutUs from './components/about'
 import Cart from './components/cart'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
+import PaymentForm from './components/order'
 
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState([])
@@ -78,6 +79,7 @@ function App({login_status, setLoginStatus}) {
           <Route path='/about' element={<AboutUs />} />
           <Route path='/user/cart' element={<Cart ud={userData} />} />
           <Route path='/user/profile' element={<Profile ud={userData} um={userMeta} logOut={handleLogout} />} />
+          <Route path='/order' element={<PaymentForm />} />
         </Routes>
         <Footer />
     </div>
