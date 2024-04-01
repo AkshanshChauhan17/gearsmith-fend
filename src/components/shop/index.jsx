@@ -52,6 +52,7 @@ function Shop({setProductData, product_data}) {
                     </div>
                 </div>
                 <br />
+                <hr />
                 <br />
                 <button className="ctrl-button left" disabled={pagingIndex<=0} onClick={()=>{setPagingIndex(pagingIndex-1); scrollToCard(pagingIndex-1);}}><AiOutlineArrowLeft /></button>
                 <div className="new-arrivals">
@@ -83,6 +84,7 @@ function Shop({setProductData, product_data}) {
                     </div>
                 </div>
                 <br />
+                <hr />
                 <br />
                 <div className="products">
                     {

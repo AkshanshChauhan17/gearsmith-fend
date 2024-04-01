@@ -64,7 +64,7 @@ export default function Home() {
                 </button>
             </div>
             <form action="" className="bottom">
-                <div className="left"></div>
+                <div className="left" onMouseMove={(e)=>handleMovement(e)} style={{filter: `brightness(10) drop-shadow(0px 20px 5px rgba(0, 0, 0, 0.2))`}}></div>
                 <div className="right">
                     <div className="right-title">Get Updates</div>
                     <div className="right-subtitle">
