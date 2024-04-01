@@ -267,9 +267,9 @@ hr {
         flex-direction: column;
         gap: 10px;
         border-top: 1px solid rgba(0, 0, 0, 0.2);
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), black);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.8));
         backdrop-filter: blur(40px);
-        color: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
         bottom: 0px;
         height: 200px;
         .product-heading {
@@ -287,7 +287,7 @@ hr {
         .product-summary {
             font-size: 15px;
             font-weight: 400;
-            color: rgb(219, 219, 219);
+            color: rgb(86, 86, 86);
             font-style: italic;
         }
         .product-small-text {
