@@ -3,7 +3,8 @@ import { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { getRequest } from "../../functions/get.req"
 import { addProductToCart } from "../cart/post.reqs"
-import { AiFillLock, AiOutlineLoading } from "react-icons/ai"
+import { AiFillLock, AiOutlineLeft, AiOutlineLoading, AiOutlineRight, AiOutlineRollback } from "react-icons/ai"
+import { Link } from "react-router-dom"
 
 function Products({ud}) {
     const [productColorIndex, setProductColorIndex] = useState(0)
@@ -17,10 +18,11 @@ function Products({ud}) {
     const [quantityVerification, setQuantityVerification] = useState(false)
     const [addToCartStatus, setAddToCartStatus] = useState({status: false, message: "ADD TO CART"})
     const [onClickAddToCart, setOnClickAddToCart] = useState(false)
+    const [productPrice, setProductPrice] = useState(0)
 
     const handleAddToCart = ()=>{
         setOnClickAddToCart(true)
-        addProductToCart(ud.email, window.location.href.split("/").splice(-1), quantity, productSizeSelected, productColor.length===0 ? "default" : productColor[productColorIndex].color_name)
+        addProductToCart(ud.email, window.location.href.split("/").splice(-1), quantity, productSizeSelected, productColor.length===0 ? "default" : productColor[productColorIndex].color_name, productPrice)
             .then((d)=>{
                 if(d.affectedRows===1) {
                     return setAddToCartStatus({
@@ -53,6 +55,7 @@ function Products({ud}) {
             setProductColor(JSON.parse(productResponse.color_list))
             setProductSize(JSON.parse(productResponse.size_list))
             setProductImages(JSON.parse(productResponse.media))
+            setProductPrice(productResponse.price)
         })
         .catch(err => console.error(err))
     }, [])
@@ -65,6 +68,9 @@ function Products({ud}) {
 
     return(
         <div className="product-view">
+            <Link to={"/shop"} className="url-top">
+                <AiOutlineRollback /> back
+            </Link>
             <div className="product-view-left">
                 <div className="product-view-image-slider">
                 <img className="product-view-image" src={productImages[imageIndex].large} alt="" />

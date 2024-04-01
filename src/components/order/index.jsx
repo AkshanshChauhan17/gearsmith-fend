@@ -1,11 +1,9 @@
 import { useState } from "react"
 import url_main from "../../functions/url"
 import logo from "../../assets/images/gearsmith-logo.webp"
+import { AiOutlineLoading } from "react-icons/ai"
 
 export default function PaymentForm() {
-    const [orderId, setOrderId] = useState('')
-    const [error, setError] = useState('')
-
     function loadScript(src) {
         return new Promise((resolve) => {
             const script = document.createElement("script");
@@ -96,12 +94,12 @@ export default function PaymentForm() {
     }
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>Buy React now!</p>
-                <button className="App-link" onClick={displayRazorpay}>
-                    Pay ₹500
+        <div className="payment-form">
+            <header className="payment-heade">
+                <img src={logo} className="payment-logo" alt="logo" />
+                <p></p>
+                <button className="payment-button" onClick={displayRazorpay}>
+                    Pay
                 </button>
             </header>
         </div>

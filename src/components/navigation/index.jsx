@@ -19,13 +19,10 @@ export default function Navigation({ls, ud, um}) {
     }, [])
 
     return (
-        <div className="nav grid gap-20" style={{backgroundImage: "url(" + imageList[2] + ")"}}>
-            <br />
-            <div className="flex gap-20 padding-20-20 center warp">
-                <img src={imageList[1]} alt="" style={{width: "100%", maxWidth: "500px", minWidth: "200px"}} />
-                <img src={imageList[0]} alt="" style={{filter: "invert(1)", width: "100%", maxWidth: "100px", minWidth: "80px"}} />
+        <div className="nav" style={{backgroundImage: "url(" + imageList[2] + ")"}}>
+            <div className="nav-left">
+                <img src={imageList[0]} alt="" style={{filter: "invert(1)"}} />
             </div>
-            <hr/>
             <div className="nav-links-ar">
                 <div className="nav-link">
                     {
@@ -34,8 +31,8 @@ export default function Navigation({ls, ud, um}) {
                         })
                     }
                 </div>
-                <div className="flex gap-20 center nav-controls">
-                    <Link to="/user/cart" className="flex color-white link center font-m">
+                <div className="nav-controls">
+                    <Link to="/user/cart" className="nav-icon">
                         <AiOutlineShop />
                     </Link>
                     <div className="profile-ar">

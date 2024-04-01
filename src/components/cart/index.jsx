@@ -3,24 +3,37 @@ import { getRequest } from "../../functions/get.req"
 import CartProduct from "./cart_product"
 import { removeProductFromCart } from "./post.reqs"
 import { AiTwotoneWarning } from "react-icons/ai"
+import { useNavigate } from "react-router-dom"
 
 export default function Cart({ud}) {
     const [userCartData, setUserCartData] = useState([])
     const [removeCount, setRemoveCount] = useState(1)
+    var [totalCost, setTotalCost] = useState(0)
+    var navigate = useNavigate()
 
     const handleRemoveFormCart = (product_id)=> {
         removeProductFromCart(ud.email, product_id)
             .then(()=>{
                 const i = removeCount + 1
                 setRemoveCount(i)
+                navigate(0)
             })
             .catch((e)=>console.error(e))
     }
 
     useEffect(()=>{
         getRequest("product/get_from_cart/" + ud.email)
-            .then((res)=>{
-                setUserCartData(res)
+            .then(async (res)=>{
+                var newUserCartData = []
+                setUserCartData(newUserCartData)
+                var newTotalCost = 0
+                await res.map((d)=>{
+                    console.log(d.price * d.quantity)
+                    newTotalCost = newTotalCost + (d.price * d.quantity)
+                    setTotalCost(newTotalCost)
+                })
+                newUserCartData = res
+                setUserCartData(newUserCartData)
             }).catch((err)=>console.error(err))
     }, [removeCount])
     
@@ -33,11 +46,20 @@ export default function Cart({ud}) {
     return (
         <div className="cart">
             <h1>Total Products in Cart: {userCartData.length}</h1>
-            {
-                userCartData.map((data, i)=>{
-                    return <CartProduct key={i} pi={data.product_id} pq={data.quantity} pc={data.color} ps={data.size} hrcDef={handleRemoveFormCart} />
-                })
-            }
+            <h2>Total Cost: {totalCost}</h2>
+            <br />
+            <br />
+            <div className="cart-product-ar">
+                <div className="cart-products-left">
+                    {
+                        userCartData.map((data, i)=>{
+                            return <CartProduct key={i} pi={data.product_id} pq={data.quantity} pc={data.color} ps={data.size} hrcDef={handleRemoveFormCart} />
+                        })
+                    }
+                </div>
+                <div className="cart-products-right">
+                </div>
+            </div>
         </div>
     )
 }

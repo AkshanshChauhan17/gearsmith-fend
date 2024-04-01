@@ -6,6 +6,7 @@ import { MdProductionQuantityLimits } from "react-icons/md"
 export default function CartProduct({pi, pq, hrcDef, ps, pc}) {
     const [productData, setProductData] = useState({})
     const [onClickRemove, setOnClickRemove] = useState(false)
+    const [quantity, setQuantity] = useState(pq)
 
     useState(()=>{
         setOnClickRemove(true)
@@ -27,26 +28,26 @@ export default function CartProduct({pi, pq, hrcDef, ps, pc}) {
 
     return (
         <div className="cart-product">
-            <img src={productData.media && JSON.parse(productData.media)[0].small} className="cart-product-image" />
+            <img src={productData.media && JSON.parse(productData.media)[0].medium} className="cart-product-image" />
             <div className="info-ar">
                 <div className="upper">
                     <AiOutlineDeliveredProcedure size={20} /> {productData.product_id}
                 </div>
                 <div className="bottom">
-                    <h2>{productData.name}</h2>
-                    <h3>₹{productData.price * pq}</h3>
+                    <b>Quantity</b> <input disabled type="number" value={quantity} onChange={(e)=>setQuantity(e.target.value)} min={1} max={100}/>
+                </div>
+                <div className="bottom">
+                    <h3>{productData.name}</h3>
+                    <h2>₹{productData.price * quantity}</h2>
                 </div>
             </div>
             <div className="controls">
                 <button className="control" disabled={onClickRemove} onClick={()=>{hrcDef(pi);}}>
                     {
                         onClickRemove ? <AiOutlineLoading className="loader" /> : <span>
-                            <AiOutlineDelete />REMOVE
+                            <AiOutlineDelete />Remove
                         </span>
                     }
-                </button>
-                <button className="control">
-                    <MdProductionQuantityLimits />BUY
                 </button>
             </div>
         </div>

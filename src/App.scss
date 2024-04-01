@@ -1,6 +1,5 @@
 * {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    outline: 0px solid red;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 hr {
@@ -50,13 +49,12 @@ hr {
 }
 
 .hover:hover {
-    color: rgb(255, 255, 255);
+    color: rgb(46, 46, 46);
 }
 
 .active {
     opacity: 1;
-    color: rgb(255, 255, 255);
-    text-decoration: underline;
+    color: rgb(30, 30, 30);
 }
 
 .inactive {
@@ -68,7 +66,7 @@ hr {
 }
 
 .color-white {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 }
 
 .button-black {
@@ -111,24 +109,41 @@ hr {
 
 hr {
     opacity: 0.4;
-    width: calc(100% - 40px);
+    width: calc(100%);
 }
 
 .nav {
-    padding: 40px;
-    background-blend-mode: color-dodge;
-    background-color: rgb(9, 9, 9);
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    padding: 20px 40px;
+    height: fit-content;
+    flex-wrap: wrap;
+    background-blend-mode: color-burn;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    .nav-left {
+        height: 60px;
+        filter: invert(1) brightness(0);
+        img {
+            height: 60px;
+            width: 60px;
+            object-fit: contain;
+        }
+    }
     .nav-links-ar {
+        flex: 1;
         display: flex;
         flex-wrap: wrap;
         gap: 40px;
+        height: fit-content;
         align-items: center;
-        padding: 20px 20px;
-        justify-content: space-between;
+        justify-content: right;
         .nav-link {
             display: flex;
             flex-wrap: wrap;
-            gap: 50px;
+            gap: 20px;
+            justify-content: space-between;
             .button-in {
                 font-size: 20px;
                 font-weight: 600;
@@ -138,17 +153,28 @@ hr {
     .nav-controls {
         display: flex;
         gap: 20px;
+        .nav-icon {
+            font-size: 35px;
+            display: flex;
+            align-items: center;
+            color: black;
+        }
+        .nav-icon:hover {
+            color: rgb(62, 62, 62);
+        }
     }
 }
 
 .heading {
-    font-size: 60px;
+    font-size: 40px;
     font-weight: 500;
+    text-align: center;
 }
 
 .sub-heading {
     font-size: 20px;
     opacity: 0.8;
+    text-align: center;
 }
 
 .content {
@@ -173,20 +199,22 @@ hr {
 
 .product-card {
     color: rgb(196, 196, 196);
-    outline: 1px solid rgba(0, 0, 0, 0.2);
-    display: grid;
+    outline: 0px solid rgba(0, 0, 0, 0.2);
+    display: flex;
     scroll-snap-align: center;
     margin: 2px;
-    transform: scale(90%);
     height: fit-content;
+    height: 500px;
+    width: 500px;
+    position: relative;
     .product-dp-ar {
         overflow: hidden;
         position: relative;
-        width: 300px;
-        height: 300px;
+        height: 100%;
+        aspect-ratio: 1;
         .product-dp {
-            width: 300px;
-            height: 300px;
+            height: 100%;
+            aspect-ratio: 1;
         }
         .product-dp-url:hover {
             background-color: rgba(0, 0, 0, 0.80);
@@ -196,8 +224,8 @@ hr {
             position: absolute;
             z-index: 10;
             top: 0;
-            width: 300px;
-            height: 300px;
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -226,14 +254,18 @@ hr {
         }
     }
     .product-data {
-        height: 180px;
+        width: calc(100% - 40px);
+        position: absolute;
         padding: 20px;
         display: flex;
         flex-direction: column;
         gap: 10px;
         border-top: 1px solid rgba(0, 0, 0, 0.2);
-        background-color: rgb(255, 255, 255);
-        color: black;
+        background-color: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(40px);
+        color: rgb(255, 255, 255);
+        bottom: 0px;
+        height: 200px;
         .product-heading {
             font-size: 25px;
             font-weight: 500;
@@ -245,6 +277,12 @@ hr {
         .product-price {
             font-size: 20px;
             font-weight: 400;
+        }
+        .product-summary {
+            font-size: 15px;
+            font-weight: 400;
+            color: rgb(219, 219, 219);
+            font-style: italic;
         }
         .product-small-text {
             font-size: 15px;
@@ -259,8 +297,28 @@ hr {
     gap: 40px;
     padding: 0px 60px;
     flex-wrap: wrap;
+    position: relative;
+    padding-top: 60px;
+    .url-top {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        cursor: pointer;
+        top: 0px;
+        text-decoration: none;
+        font-weight: 600;
+        color: black;
+    }
+    .url-top:hover {
+        color: rgb(107, 0, 0);
+    }
+    .url-top:active {
+        color: red;
+    }
     .product-view-left {
-        flex: 1;
+        flex: 0.7;
         display: grid;
         min-width: 400px;
         .product-content {
@@ -271,8 +329,8 @@ hr {
             aspect-ratio: 1/1;
             outline: 1px solid rgba(0, 0, 0, 0.2);
             .product-view-image {
-                height: 100%;
-                width: 100%;
+                height: calc(100% - 5px);
+                width: calc(100% - 1px);
             }
         }
         .product-view-image-slider-controls {
@@ -310,15 +368,19 @@ hr {
         .product-heading {
             font-size: 40px;
             font-weight: 600;
-            margin-bottom: 30px;
         }
         .product-price {
             font-size: 30px;
             font-weight: 400;
         }
         .product-text {
-            font-size: 20px;
+            font-size: 15px;
             font-weight: 400;
+        }
+        .product-content {
+            font-size: 20px;
+            font-style: italic;
+            color: gray;
         }
         .product-color-section {
             display: grid;
@@ -400,12 +462,9 @@ hr {
 }
 
 .focused {
-    color: rgb(17, 255, 0);
-    transform: scale(100%);
-    margin: 0px 20px;
     z-index: 200;
     outline: 0px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 .logo-loading-ar {
@@ -675,11 +734,12 @@ form {
 }
 
 .product-small-card {
-    width: 240px;
-    outline: 1px solid rgba(0, 0, 0, 0.2);
+    min-width: 240px;
+    outline: 0px double rgba(0, 0, 0, 0.2);
     display: grid;
     scroll-snap-align: start;
     margin: 2px;
+    flex: 0.2;
     .product-dp-ar {
         overflow: hidden;
         position: relative;
@@ -739,17 +799,26 @@ form {
         background-color: white;
         gap: 10px;
         height: fit-content;
+        align-items: center;
         .product-heading {
             font-size: 20px;
             font-weight: 500;
-            width: 180px;
+            width: 200px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            text-align: center;
+        }
+        .product-rating {
+            font-size: 20px;
+            text-align: center;
+            color: rgb(255, 157, 11);
         }
         .product-price {
-            font-size: 20px;
+            font-size: 15px;
             font-weight: 400;
+            text-align: center;
+            justify-content: space-between;
         }
         .product-small-text {
             font-size: 15px;
@@ -759,7 +828,7 @@ form {
     .product-bottom {
         display: flex;
         background-color: rgb(255, 255, 255);
-        border-top: 2px solid rgb(241, 241, 241);
+        border-top: 1px solid rgb(241, 241, 241);
         .view-button {
             padding: 15px;
             font-size: 20px;
@@ -822,7 +891,7 @@ form {
     }
     .new-arrivals {
         display: flex;
-        gap: 20px;
+        gap: 10px;
         overflow-y: hidden;
         overflow-x: scroll;
         scroll-behavior: smooth;
@@ -837,7 +906,7 @@ form {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
-        justify-content: center;
+        flex-wrap: wrap;
     }
 }
 
@@ -950,8 +1019,9 @@ form {
             aspect-ratio: 1;
             position: absolute;
             top: 100%;
-            background-color: rgb(0, 0, 0);
-            color: white;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: rgb(253, 253, 253);
         }
     }
     .dropdown {
@@ -970,7 +1040,7 @@ form {
 
 .profile-ar:hover {
     .dropdown {
-        display: grid;
+        display: none;
     }
 }
 
@@ -1288,10 +1358,12 @@ fieldset {
     .small-font {
         font-size: 25px;
         font-weight: 300;
+        text-align: center;
     }
     .big-font {
-        font-size: 50px;
+        font-size: 40px;
         font-weight: 600;
+        text-align: center;
     }
     .bottom {
         display: flex;
@@ -1493,6 +1565,7 @@ fieldset {
         gap: 40px;
         align-items: center;
         flex: 1;
+        scroll-behavior: smooth;
         .way {
             display: flex;
             flex-wrap: wrap;
@@ -1511,7 +1584,7 @@ fieldset {
             }
             .right {
                 .main-heading {
-                    font-size: 30px;
+                    font-size: 40px;
                     font-weight: 500;
                     margin-bottom: 10px;
                 }
@@ -1545,12 +1618,14 @@ fieldset {
         margin: 0px;
     }
     .main-heading {
-        font-size: 45px;
+        font-size: 40px;
         margin-bottom: 40px;
+        font-weight: 600;
     }
     .inner-heading {
         font-size: 30px;
         margin-bottom: 20px;
+        font-weight: 600;
     }
     .content {
         font-size: 20px;
@@ -1581,34 +1656,40 @@ fieldset {
     display: grid;
     gap: 20px;
     align-content: start;
-    .cart-product {
-        width: 800px;
-        height: 150px;
-        min-width: 400px;
+    .cart-products {
         display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .cart-product {
+        zoom: 0.8;
+        background-color: white;
+        width: fit-content;
+        height: fit-content;
+        display: grid;
         gap: 20px;
         align-items: center;
         border: 1px solid rgba(0, 0, 0, 0.2);
-        padding: 10px;
+        padding: 20px;
         justify-content: center;
         .cart-product-image {
-            height: 150px;
-            max-width: 100%;
+            width: 100%;
+            aspect-ratio: 1;
             aspect-ratio: 1;
         }
         .info-ar {
-            height: 100%;
+            gap: 20px;
             width: 100%;
             display: grid;
             align-content: space-between;
         }
         .controls {
-            display: grid;
+            display: flex;
             height: 100%;
+            gap: 20px;
             align-content: space-between;
             .control {
-                min-width: 100px;
-                padding: 12px 10px;
+                padding: 15px 10px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -1616,6 +1697,11 @@ fieldset {
                 color: white;
                 border-radius: 5px;
                 cursor: pointer;
+                border: 0px;
+                outline: 0px;
+                flex: 1;
+                font-size: 25px;
+                align-items: center;
             }
             .control:nth-child(1):hover {
                 background-color: rgb(128, 0, 0);

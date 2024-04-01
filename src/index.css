@@ -1,14 +1,10 @@
 :root {
-  border: 0px;
-  outline: 0px;
   padding: 0px;
   margin: 0px;
 }
 
 * {
-  outline: 0px solid red;
-  border: 0px;
-  outline: 0px;
+  outline: 0px solid rgb(21, 0, 255);
   padding: 0px;
   margin: 0px;
 }

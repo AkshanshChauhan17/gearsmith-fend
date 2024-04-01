@@ -18,7 +18,7 @@ export default function ProductCard({rotate, spd, data, pagingIndex, index, push
             <div className="product-data">
                 <div className="product-heading">{name}</div>
                 <div className="product-price">{price}</div>
-                <br />
+                <div className="product-summary">{data.product_summary.split(" ").length>20 ? data.product_summary.split(" ").splice(0, 20).join(" ") + "..." : data.product_summary.split(" ").splice(0, 20).join(" ") + "."}</div>
                 <div className="product-small-text">{isTex ? "Sales Tex Included" : null}</div>
             </div>
         </div>
