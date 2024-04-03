@@ -146,6 +146,9 @@ function Shop({setProductData, product_data}) {
                             PRICE
                             <hr />
                             <div className="feature">
+                                <label><input type="radio" name="group-price" onChange={()=>filterByPrice(0, 50000)} /> All</label>
+                            </div>
+                            <div className="feature">
                                 <label><input type="radio" name="group-price" onChange={()=>filterByPrice(100, 500)} /> ₹100 - ₹500</label>
                             </div>
                             <div className="feature">
@@ -159,9 +162,6 @@ function Shop({setProductData, product_data}) {
                             </div>
                             <div className="feature">
                                 <label><input type="radio" name="group-price" onChange={()=>filterByPrice(10000, 50000)} /> ₹10000 - ₹50000</label>
-                            </div>
-                            <div className="feature">
-                                <label><input type="radio" name="group-price" onChange={()=>filterByPrice(100, 500)} /> ₹100 - ₹200</label>
                             </div>
                         </div>
                     </div>
