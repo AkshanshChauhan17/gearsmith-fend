@@ -118,54 +118,71 @@ hr {
 }
 
 .nav {
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
-    padding: 20px 40px;
-    height: fit-content;
+    flex-direction: column;
+    gap: 80px;
     flex-wrap: wrap;
     background-blend-mode: color-burn;
     background-color: rgb(255, 255, 255);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    .nav-left {
-        height: 60px;
-        filter: invert(1) brightness(0);
-        img {
-            height: 60px;
-            width: 60px;
-            object-fit: contain;
-        }
-    }
-    .nav-links-ar {
-        flex: 1;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 40px;
-        height: fit-content;
-        align-items: center;
-        justify-content: right;
-        .nav-link {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: space-between;
-            .button-in {
-                font-size: 20px;
-                font-weight: 600;
-            }
-        }
-    }
-    .nav-controls {
+    text-transform: uppercase;
+    .top {
         display: flex;
         gap: 20px;
-        .nav-icon {
-            font-size: 35px;
-            display: flex;
-            align-items: center;
-            color: black;
+        font-size: 15px;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        background-color: rgb(0, 0, 0);
+        .top-link {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
         }
-        .nav-icon:hover {
-            color: rgb(62, 62, 62);
+    }
+    .bottom {
+        display: flex;
+        gap: 40px;
+        background-color: rgb(255, 255, 255);
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        .nav-left {
+            height: 40px;
+            filter: invert(1) brightness(0);
+            img {
+                height: 40px;
+                width: 40px;
+                object-fit: contain;
+            }
+        }
+        .nav-links-ar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            height: fit-content;
+            align-items: center;
+            .nav-link {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: space-between;
+                .button-in {
+                    font-size: 18px;
+                    font-weight: 600;
+                }
+            }
+        }
+        .nav-controls {
+            display: flex;
+            gap: 20px;
+            .nav-icon {
+                font-size: 30px;
+                display: flex;
+                align-items: center;
+                color: black;
+            }
+            .nav-icon:hover {
+                color: rgb(62, 62, 62);
+            }
         }
     }
 }
@@ -1016,8 +1033,8 @@ form {
     position: relative;
     justify-items: center;
     .profile-icon {
-        height: 60px;
-        width: 60px;
+        height: 40px;
+        width: 40px;
         border-radius: 50%;
         overflow: hidden;
         position: relative;
@@ -1030,11 +1047,11 @@ form {
         }
         .profile-info {
             transition-duration: 0.2s;
-            height: 100%;
-            width: 100%;
+            height: 110%;
+            width: 110%;
             aspect-ratio: 1;
             position: absolute;
-            top: 100%;
+            top: 105%;
             border-radius: 50%;
             background-color: rgba(0, 0, 0, 0.7);
             color: rgb(253, 253, 253);
