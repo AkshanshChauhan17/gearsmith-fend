@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineRight } from "react-icons/ai";
 import { MdAccessTime, MdOutlineLocalHospital, MdOutlineSecurity } from "react-icons/md";
 import url_main from "../../functions/url";
+import { Link } from "react-router-dom";
 
 export default function Home() {
     const [sliderIndex, setSliderIndex] = useState(0)
@@ -19,8 +20,46 @@ export default function Home() {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+    
+    const product_type_links = ["New Arrivals", "Bag & Packs", "Footwear", "Accessories"]
     return (
         <div className="home">
+            <div className="ad">
+                <div className="text">
+                    <div className="title">
+                        Conquer the Elements with Gear Smith
+                    </div>
+                    <div className="subtitle">
+                        Stay Dry, Stay Comfortable, Stay Adventurous
+                    </div>
+                    <button>
+                        SHOP NOW
+                    </button>
+                </div>
+            </div>
+            <div className="product-types">
+                {
+                    product_type_links.map((product_name, i)=>{
+                        return <div className="product">
+                            <div className="product-heading">{product_name}</div>
+                            <Link to={"/product/" + product_name} className="product-button">Shop Now<AiOutlineRight className="arrow" /></Link>
+                        </div>
+                    })
+                }
+            </div>
+            <div className="ad2">
+                <div className="text">
+                    <div className="title">
+                        Discover the Technical Revolution
+                    </div>
+                    <div className="subtitle">
+                        Unleash Your Potential with Innovative Technical Clothing
+                    </div>
+                    <button>
+                        EXPLORE NOW
+                    </button>
+                </div>
+            </div>
             <div className="section">
                 <div className="section-left">
                     <div className="section-left-upper">

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { getRequest } from "../../functions/get.req"
 import { Link } from "react-router-dom"
 import { imageList } from "../../functions/images"
-import { AiOutlineShop, AiOutlineShoppingCart, AiOutlineUser, AiTwotoneShop } from 'react-icons/ai'
+import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai'
 
 export default function Navigation({ls, ud, um}) {
 
@@ -37,6 +37,10 @@ export default function Navigation({ls, ud, um}) {
                                 return <Link className={clicked===link.path ? "link button-in color-white hover active" : "link button-in color-white hover inactive"} to={link.path} key={i} onClick={()=>setClicked(link.path)}>{link.name}</Link>
                             })
                         }
+                    </div>
+                    <div className="search-ar">
+                        <input type="text"/>
+                        <AiOutlineSearch className="icon" />
                     </div>
                     <div className="nav-controls">
                         <Link to="/user/cart" className="nav-icon">

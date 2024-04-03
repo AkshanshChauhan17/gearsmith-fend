@@ -1,4 +1,4 @@
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai"
+import { AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineLeft, AiOutlineRight } from "react-icons/ai"
 import ProductCard from "../products/product_card"
 import ProductSmallCard from "../products/product_small_card"
 import { useEffect, useRef, useState } from "react"
@@ -11,11 +11,16 @@ function Shop({setProductData, product_data}) {
     const [pagingIndex, setPagingIndex] = useState(0)
     const [allProduct, setAllProduct] = useState([])
     const [allNewArrivals, setAllNewArrivals] = useState([])
+    const [featureVisible, setFeatureVisible] = useState(true)
+    const [allProductDefault, setAllProductDefault] = useState([])
     const cardRef = useRef([])
 
     useEffect(()=>{
         getRequest("product")
-            .then((data)=>setAllProduct(data))
+            .then((data)=>{
+                setAllProduct(data)
+                setAllProductDefault(data)
+            })
         getRequest("product/new_arrive")
             .then((data)=>setAllNewArrivals(data))
     }, [])
@@ -34,7 +39,13 @@ function Shop({setProductData, product_data}) {
         cardRef.current[i].current.scrollIntoView({behaver: 'smooth', block: 'center', inline: 'center'})
     }
 
-    if(allProduct.length===0 || allNewArrivals.length===0) {
+    const filterByPrice = (min, max)=>{
+        const newProductFilter = allProductDefault.filter(product => product.price >= min && product.price <= max)
+        setAllProduct(newProductFilter)
+        console.log(newProductFilter)
+    }
+
+    if(allProductDefault.length===0 || allNewArrivals.length===0) {
         return <div className="loading-ar">
             <div className="loader"></div>
         </div>
@@ -73,7 +84,6 @@ function Shop({setProductData, product_data}) {
                     </div>
                 </div>
             </div>
-            <hr />
             <div className="middle-block">
                 <div>
                     <div className="heading">
@@ -86,12 +96,82 @@ function Shop({setProductData, product_data}) {
                 <br />
                 <hr />
                 <br />
-                <div className="products">
+                <div className="filters">
                     {
-                        allProduct.map((d, i)=>{
-                            return <ProductSmallCard spd={feedProductData} data={d} image={JSON.parse(d.media)[0].medium} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.product_id} key={i}/>
-                        })
+                        featureVisible ?
+                        <div className="features-btn" onClick={()=>setFeatureVisible(false)}>
+                            <b>FEATURE</b><AiOutlineLeft />
+                        </div> : <div className="features-btn" onClick={()=>setFeatureVisible(true)}>
+                            <b>FEATURE</b><AiOutlineRight />
+                        </div>
                     }
+                    <div className="items-counter">
+                        <b>TOTAL PRODUCTS:</b> {
+                            allProduct.length
+                        }
+                    </div>
+                    <div className="sort-ar">
+                        SORT BY: <select>
+                            <option value="name">Name</option>
+                            <option value="cost">Cost</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </div>
+                </div>
+                <div className="product-feature-ar">
+                    <div className="features-ar" style={featureVisible ? {display: ""} : {display: "none"}}>
+                        <div className="features">
+                            CATEGORY
+                            <hr />
+                            <div className="feature">
+                                <label><input type="radio" name="group-category"/> Accessories</label>
+                            </div>
+                            <div className="feature">
+                                <label><input type="radio" name="group-category"/> Bag & Pack</label>
+                            </div>
+                            <div className="feature">
+                                <label><input type="radio" name="group-category"/> Pant</label>
+                            </div>
+                            <div className="feature">
+                                <label><input type="radio" name="group-category"/> Shirt</label>
+                            </div>
+                            <div className="feature">
+                                <label><input type="radio" name="group-category"/> Patch</label>
+                            </div>
+                            <div className="feature">
+                                <label><input type="radio" name="group-category"/> Shorts</label>
+                            </div>
+                        </div>
+                        <div className="features">
+                            PRICE
+                            <hr />
+                            <div className="feature">
+                                <label><input type="radio" name="group-price" onChange={()=>filterByPrice(100, 500)} /> ₹100 - ₹500</label>
+                            </div>
+                            <div className="feature">
+                                <label><input type="radio" name="group-price" onChange={()=>filterByPrice(500, 1000)} /> ₹500 - ₹1000</label>
+                            </div>
+                            <div className="feature">
+                                <label><input type="radio" name="group-price" onChange={()=>filterByPrice(1000, 5000)} /> ₹1000 - ₹5000</label>
+                            </div>
+                            <div className="feature">
+                                <label><input type="radio" name="group-price" onChange={()=>filterByPrice(5000, 10000)} /> ₹5000 - ₹10000</label>
+                            </div>
+                            <div className="feature">
+                                <label><input type="radio" name="group-price" onChange={()=>filterByPrice(10000, 50000)} /> ₹10000 - ₹50000</label>
+                            </div>
+                            <div className="feature">
+                                <label><input type="radio" name="group-price" onChange={()=>filterByPrice(100, 500)} /> ₹100 - ₹200</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="products">
+                        {
+                            allProduct.map((d, i)=>{
+                                return <ProductSmallCard spd={feedProductData} data={d} image={JSON.parse(d.media)[0].medium} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.product_id} key={i}/>
+                            })
+                        }
+                    </div>
                 </div>
             </div>
         </div>

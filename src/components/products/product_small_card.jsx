@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AiFillStar, AiOutlineArrowRight, AiOutlineHeart, AiOutlineLike, AiOutlineShareAlt, AiOutlineStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineArrowRight, AiOutlineEye, AiOutlineHeart, AiOutlineLike, AiOutlineShareAlt, AiOutlineStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 export default function ProductSmallCard({spd, data, image, url, name, price, isTex}) {
@@ -30,28 +30,26 @@ export default function ProductSmallCard({spd, data, image, url, name, price, is
             {
                 <div className="product-dp-ar">
                     <img className="product-dp" src={image} alt="" loading="lazy" />
-                    <div className="product-dp-url">
-                        <Link className="text" to={url} onClick={()=>spd({data, image})}>GET <AiOutlineArrowRight className="arrow" /></Link>
-                    </div>
                 </div>
             }
             <div className="product-data">
-                <div className="product-heading">{name}</div>
+                <Link className="product-heading" to={url} onClick={()=>spd({data, image})}>{name}</Link>
                 <div className="product-price">{price}</div>
                 <div className="product-rating">
                     {
                         rating.map((start, i)=>{
                             if(start===1) {
-                                return <AiFillStar />
+                                return <AiFillStar key={i} />
                             } else {
-                                return <AiOutlineStar />
+                                return <AiOutlineStar key={i} />
                             }
                         })
                     }
+                    (0)
                 </div>
             </div>
             <div className="product-bottom">
-                <Link className="text view-button" to={url} onClick={()=>spd({data, image})}>View</Link>
+                <Link className="text view-button" to={url} onClick={()=>spd({data, image})}><AiOutlineEye /></Link>
                 <AiOutlineShareAlt className="like-button" onClick={handleShareButtonClick} />
             </div>
         </div>
