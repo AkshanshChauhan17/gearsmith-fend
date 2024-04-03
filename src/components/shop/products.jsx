@@ -67,10 +67,11 @@ function Products({ud}) {
     }
 
     return(
-        <div className="product-view">
+        <div className="product-view-ar">
             <Link to={"/shop"} className="url-top">
-                <AiOutlineRollback /> back
+                <AiOutlineRollback /> {"Shop/Product/" + productData.name}
             </Link>
+        <div className="product-view">
             <div className="product-view-left">
                 <div className="product-view-image-slider">
                 <img className="product-view-image" src={productImages[imageIndex].large} alt="" />
@@ -122,21 +123,19 @@ function Products({ud}) {
                             }
                         </select>
                     </div>
-                    <div className="drop-section">
-                        Quantity
-                        <input type="number" min={1} max={100} required value={quantity} onChange={(e)=>setQuantity(e.target.value)}/>
-                    </div>
                 </div>
                 <br />
                 {
                     quantityVerification || productSizeSelected!=null ? 
                     <div className="submit-ar">
+                        <input type="number" min={1} max={100} required value={quantity} onChange={(e)=>setQuantity(e.target.value)}/>
                         <button className="button-atoc" disabled={addToCartStatus.status} onClick={()=>handleAddToCart()}>
                             {
                                 onClickAddToCart ? <AiOutlineLoading className="loader" /> : addToCartStatus.message
                             }
                         </button>
                     </div> : <div className="submit-ar" style={{opacity: 0.5}}>
+                    <input type="number" min={1} max={100} required value={quantity} onChange={(e)=>setQuantity(e.target.value)}/>
                         <button className="button-atoc" disabled={true}>
                             {
                                 addToCartStatus.message
@@ -145,6 +144,7 @@ function Products({ud}) {
                     </div>
                 }
             </div>
+        </div>
         </div>
     )
 }

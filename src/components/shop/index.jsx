@@ -13,6 +13,7 @@ function Shop({setProductData, product_data}) {
     const [allNewArrivals, setAllNewArrivals] = useState([])
     const [featureVisible, setFeatureVisible] = useState(true)
     const [allProductDefault, setAllProductDefault] = useState([])
+    const [filter, setFilter] = useState("--filter--")
     const cardRef = useRef([])
 
     useEffect(()=>{
@@ -42,7 +43,28 @@ function Shop({setProductData, product_data}) {
     const filterByPrice = (min, max)=>{
         const newProductFilter = allProductDefault.filter(product => product.price >= min && product.price <= max)
         setAllProduct(newProductFilter)
-        console.log(newProductFilter)
+        setFilter("--filter--")
+    }
+
+    function sortProduct(type) {
+        setFilter(type)
+        if(type==="name a to z") {
+            const newProductSort1 = allProduct.slice().sort((a, b) => a.name.localeCompare(b.name));
+            setAllProduct(newProductSort1)
+            console.log(newProductSort1, type)
+        } if(type==="price 0 to 50000") {
+            const newProductSort2 = allProduct.slice().sort((a, b) => a.price - b.price);
+            setAllProduct(newProductSort2)
+            console.log(newProductSort2, type)
+        } if(type==="name z to a") {
+            const newProductSort3 = allProduct.slice().sort((a, b) => b.name.localeCompare(a.name));
+            setAllProduct(newProductSort3)
+            console.log(newProductSort3, type)
+        } if(type==="price 50000 to 0") {
+            const newProductSort4 = allProduct.slice().sort((a, b) => b.price - a.price);
+            setAllProduct(newProductSort4)
+            console.log(newProductSort4, type)
+        }
     }
 
     if(allProductDefault.length===0 || allNewArrivals.length===0) {
@@ -111,10 +133,12 @@ function Shop({setProductData, product_data}) {
                         }
                     </div>
                     <div className="sort-ar">
-                        SORT BY: <select>
-                            <option value="name">Name</option>
-                            <option value="cost">Cost</option>
-                            <option value="rating">Rating</option>
+                        SORT BY: <select value={filter} onChange={(e)=>sortProduct(e.target.value)}>
+                            <option value="--filter--">--Filter--</option>
+                            <option value="name a to z">Name A to Z</option>
+                            <option value="name z to a">Name Z to A</option>
+                            <option value="price 0 to 50000">Cost 0 to 50000</option>
+                            <option value="price 50000 to 0">Cost 50000 to 0</option>
                         </select>
                     </div>
                 </div>
@@ -149,7 +173,7 @@ function Shop({setProductData, product_data}) {
                                 <label><input type="radio" name="group-price" onChange={()=>filterByPrice(0, 50000)} /> All</label>
                             </div>
                             <div className="feature">
-                                <label><input type="radio" name="group-price" onChange={()=>filterByPrice(100, 500)} /> ₹100 - ₹500</label>
+                                <label><input type="radio" name="group-price" onChange={()=>filterByPrice(0, 500)} /> ₹0 - ₹500</label>
                             </div>
                             <div className="feature">
                                 <label><input type="radio" name="group-price" onChange={()=>filterByPrice(500, 1000)} /> ₹500 - ₹1000</label>
