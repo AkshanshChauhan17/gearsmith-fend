@@ -332,7 +332,132 @@ hr {
 
 .product-view-ar {
     display: grid;
-    padding: 40px;
+    padding: 80px 40px;
+    .oth-review {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        .stars {
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            gap: 10px;
+            flex: 1;
+            .filled {
+                font-size: 30px;
+                color: rgb(255, 153, 0);
+            }
+            .empty {
+                font-size: 30px;
+                color: rgb(193, 193, 193);
+            }
+        }
+        .oth-review-card {
+            flex: 1;
+            max-width: 400px;
+            outline: 1px solid #c6c6c6;
+            font-size: 20px;
+            padding: 20px;
+            flex-wrap: wrap;
+            .top-user-info {
+                display: flex;
+                gap: 20px;
+                img {
+                    width: 80px;
+                    height: 80px;
+                    border-top-left-radius: 10%;
+                    border-bottom-right-radius: 10%;
+                }
+                .top-right {
+                    display: grid;
+                    align-content: center;
+                    .title {
+                        font-weight: 600;
+                    }
+                    .subtitle {
+                        color: rgb(152, 152, 152);
+                        font-weight: 200;
+                    }
+                }
+            }
+            .top-middle {
+                color: #9b9b9b;
+            }
+        }
+    }
+    .review-heading {
+        font-size: 28px;
+        font-weight: 600;
+        margin: 40px 0px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .icon {
+            color: rgb(255, 115, 0);
+        }
+    }
+    .review-section-inputs {
+        display: grid;
+        gap: 20px;
+        .review-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .stars {
+                display: flex;
+                align-items: center;
+                font-size: 20px;
+                cursor: pointer;
+                gap: 10px;
+                .filled {
+                    font-size: 30px;
+                    color: rgb(255, 153, 0);
+                }
+                .empty {
+                    font-size: 30px;
+                    color: rgb(193, 193, 193);
+                }
+            }
+            .profile {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 20px;
+                font-style: italic;
+                img {
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+        }
+        .comment {
+            padding: 20px;
+            font-size: 20px;
+            width: calc(100% - 40px);
+            resize: none;
+            outline: 1px solid rgb(211, 211, 211);
+            border: 0px;
+        }
+        .comment-submit {
+            padding: 20px 30px;
+            border: 0px;
+            outline: 0px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: 700;
+            width: fit-content;
+            color: black;
+            background-color: rgba(0, 0, 0, 0);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .comment-submit:hover {
+            color: rgb(255, 68, 0);
+        }
+    }
     .url-top {
         font-size: 15px;
         cursor: pointer;
@@ -1807,8 +1932,8 @@ fieldset {
 
 .advantage {
     display: grid;
-    padding: 0px 40px;
-    gap: 60px;
+    padding: 40px;
+    gap: 40px;
     .scrolling-text {
         background-image: url("http://3.91.203.73:1000/static/images/bg-layer.webp");
         padding: 40px;
@@ -1816,15 +1941,17 @@ fieldset {
         display: grid;
         gap: 40px;
         .st-head {
-            font-size: 40px;
+            font-size: 30px;
             font-weight: 600;
         }
         .st-content {
             font-size: 20px;
             display: grid;
             font-weight: 300;
+            font-style: italic;
+            color: rgb(212, 212, 212);
             .st-content-b {
-                font-weight: 400;
+                font-weight: 200;
             }
         }
     }
@@ -1853,9 +1980,11 @@ fieldset {
                 background-position: center;
             }
             .right {
+                color: white;
+                background: linear-gradient(45deg, rgb(40, 40, 40), rgb(0, 0, 0));
                 .main-heading {
-                    font-size: 40px;
-                    font-weight: 500;
+                    font-size: 30px;
+                    font-weight: 700;
                     margin-bottom: 10px;
                 }
                 .main-list {
@@ -1863,9 +1992,10 @@ fieldset {
                     display: grid;
                     flex-direction: column;
                     gap: 10px;
-                    font-weight: 400;
+                    font-weight: 200;
                     justify-content: center;
-                    margin-left: 40px;
+                    list-style-type: disc;
+                    list-style-position: inside;
                 }
                 padding: 20px;
                 flex: 1;
@@ -1881,19 +2011,20 @@ fieldset {
 }
 
 .about {
-    padding: 0px 40px;
+    padding: 40px;
     display: grid;
     gap: 0px;
     * {
         margin: 0px;
     }
     .main-heading {
-        font-size: 40px;
-        margin-bottom: 40px;
-        font-weight: 600;
+        font-size: 30px;
+        margin-bottom: 20px;
+        font-weight: 700;
+        text-align: center;
     }
     .inner-heading {
-        font-size: 30px;
+        font-size: 24px;
         margin-bottom: 20px;
         font-weight: 600;
     }
@@ -1906,7 +2037,8 @@ fieldset {
         position: relative;
         overflow: hidden;
         transition-duration: 0.2s;
-        background: linear-gradient(180deg, rgb(255, 255, 255), rgb(255, 255, 255));
+        color: white;
+        background: linear-gradient(180deg, rgb(31, 31, 31), rgb(0, 0, 0));
         .image {
             flex: 0.7;
             background-position: 0px 10px;
@@ -1919,6 +2051,15 @@ fieldset {
             padding: 40px;
             min-width: 200px;
             transition-duration: 0.2s;
+            background-color: rgb(88, 88, 88);
+            background-blend-mode: color-burn;
+            background-size: cover;
+            background-position: 0px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            justify-content: center;
+            text-align: left;
         }
     }
 }
@@ -2009,7 +2150,7 @@ fieldset {
             display: grid;
             gap: 40px;
             .st-head {
-                font-size: 40px;
+                font-size: 30px;
                 font-weight: 600;
             }
             .st-content {
