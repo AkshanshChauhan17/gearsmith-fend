@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import url_main from "../../functions/url";
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai"
 
 export default function Advantages() {
   const [scrollY, setScrollY] = useState(0);
@@ -46,9 +47,10 @@ export default function Advantages() {
       </div>
       <div className="ways-ar">
         <div className="way">
-        <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (5).webp" + "')"}}></div>
+        <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (5).webp" + "')"}}>
+        <div className="main-heading">Pervasive Protection <AiOutlineRight className="icon" /></div>
+        </div>
           <div className="right">
-            <div className="main-heading">01 Pervasive Protection</div>
             <ul className="main-list">
               <li className="main-item">Endure extreme climatic conditions</li>
               <li className="main-item">Protection against surveillance</li>
@@ -56,10 +58,8 @@ export default function Advantages() {
             </ul>
           </div>
         </div>
-        <hr />
         <div className="way">
           <div className="right">
-            <div className="main-heading">02 Enhanced Flexibility</div>
             <ul className="main-list">
               <li className="main-item">
                 Increased ability to move arms, legs etc
@@ -71,13 +71,15 @@ export default function Advantages() {
               <li className="main-item">Maneuverability and comfort</li>
             </ul>
           </div>
-          <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (2).webp" + "')"}}></div>
+          <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (2).webp" + "')"}}>
+          <div className="main-heading"><AiOutlineLeft className="icon" /> Enhanced</div>
+          </div>
         </div>
-        <hr />
         <div className="way">
-        <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (4).webp" + "')"}}></div>
+        <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (4).webp" + "')"}}>
+        <div className="main-heading">Vital Visibility <AiOutlineRight className="icon" /></div>
+        </div>
           <div className="right">
-            <div className="main-heading">03 Vital Visibility</div>
             <ul className="main-list">
               <li className="main-item">Fine line of visibility</li>
               <li className="main-item">
@@ -90,10 +92,8 @@ export default function Advantages() {
             </ul>
           </div>
         </div>
-        <hr />
         <div className="way">
           <div className="right">
-            <div className="main-heading">04 Storage</div>
             <ul className="main-list">
               <li className="main-item">
                 Outfitted with ample pockets both inside and outside
@@ -109,13 +109,15 @@ export default function Advantages() {
               </li>
             </ul>
           </div>
-          <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (3).webp" + "')"}}></div>
+          <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (3).webp" + "')"}}>
+          <div className="main-heading"><AiOutlineLeft className="icon" /> Storage</div>
+          </div>
         </div>
-        <hr />
         <div className="way">
-        <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (1).webp" + "')"}}></div>
+        <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (1).webp" + "')"}}>
+        <div className="main-heading">Aesthetics <AiOutlineRight className="icon" /></div>
+        </div>
           <div className="right">
-            <div className="main-heading">05 Aesthetics</div>
             <ul className="main-list">
               <li className="main-item">Display of soft power</li>
               <li className="main-item">Upkeep of morale</li>

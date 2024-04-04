@@ -1,4 +1,4 @@
-import { AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineLeft, AiOutlineRight } from "react-icons/ai"
+import { AiFillCaretLeft, AiFillCaretRight, AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineCaretRight, AiOutlineDown, AiOutlineLeft, AiOutlineRight, AiOutlineUp } from "react-icons/ai"
 import ProductCard from "../products/product_card"
 import ProductSmallCard from "../products/product_small_card"
 import { useEffect, useRef, useState } from "react"
@@ -24,6 +24,7 @@ function Shop({setProductData, product_data}) {
             })
         getRequest("product/new_arrive")
             .then((data)=>setAllNewArrivals(data))
+        window.scrollTo(0, 0)
     }, [])
 
     const feedProductData = (d) => {
@@ -79,6 +80,7 @@ function Shop({setProductData, product_data}) {
                 <div className="head">
                     <div className="heading">
                         New Arrivals
+                        <AiFillCaretRight className="icon" />
                     </div>
                     <div className="sub-heading">
                         Everything is new and Fresh
@@ -107,25 +109,24 @@ function Shop({setProductData, product_data}) {
                 </div>
             </div>
             <hr />
-            <div className="middle-block">
-                <div className="head">
+            <div className="head">
                     <div className="heading">
                         Products
+                        <AiFillCaretRight className="icon" />
                     </div>
                     <div className="sub-heading">
                         Here are all Products
                     </div>
                 </div>
-                <br />
                 <hr />
-                <br />
+            <div className="middle-block">
                 <div className="filters">
                     {
                         featureVisible ?
                         <div className="features-btn" onClick={()=>setFeatureVisible(false)}>
-                            <b>FEATURE</b><AiOutlineLeft />
+                            <b>FEATURE CLOSE</b><AiOutlineUp />
                         </div> : <div className="features-btn" onClick={()=>setFeatureVisible(true)}>
-                            <b>FEATURE</b><AiOutlineRight />
+                            <b>FEATURE OPEN</b><AiOutlineDown />
                         </div>
                     }
                     <div className="items-counter">
@@ -187,6 +188,35 @@ function Shop({setProductData, product_data}) {
                             </div>
                             <div className="feature">
                                 <label><input type="radio" name="group-price" onChange={()=>filterByPrice(10000, 50000)} /> ₹10000 - ₹50000</label>
+                            </div>
+                        </div>
+                        <div className="features">
+                            RATING
+                            <hr />
+                            <div className="feature">
+                                <label>
+                                    <input type="radio" name="group-star" value={5} />&#9733; &#9733; &#9733; &#9733; &#9733;
+                                </label>
+                            </div>
+                            <div className="feature">
+                                <label>
+                                    <input type="radio" name="group-star" value={5} />&#9733; &#9733; &#9733; &#9733;
+                                </label>
+                            </div>
+                            <div className="feature">
+                                <label>
+                                    <input type="radio" name="group-star" value={5} />&#9733; &#9733; &#9733;
+                                </label>
+                            </div>
+                            <div className="feature">
+                                <label>
+                                    <input type="radio" name="group-star" value={5} />&#9733; &#9733;
+                                </label>
+                            </div>
+                            <div className="feature">
+                                <label>
+                                    <input type="radio" name="group-star" value={5} />&#9733;
+                                </label>
                             </div>
                         </div>
                     </div>

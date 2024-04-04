@@ -138,6 +138,7 @@ function Products({ud}) {
             setProductPrice(productResponse.price)
         })
         .catch(err => console.error(err))
+        window.scrollTo(0, 0)
     }, [])
 
     if(isEmptyObject(productData)) {
@@ -168,14 +169,14 @@ function Products({ud}) {
                 <div className="product-view-right">
                     <div className="product-heading">{productData.name}</div>
                     <br />
+                    <div className="product-price">₹ {productData.price}</div>
+                    <div className="product-text">Sales Tex Included</div>
+                    <br />
                     <div className="product-content">
                         {
                             productData.product_summary
                         }
                     </div>
-                    <br />
-                    <div className="product-price">₹ {productData.price}</div>
-                    <div className="product-text">Sales Tex Included</div>
                     <br />
                     <div className="product-color-section">
                         {productColor.length>0 && <div className="product-color-text">Color: {productColor[productColorIndex].color_name}</div>}
