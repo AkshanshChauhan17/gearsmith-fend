@@ -49,8 +49,8 @@ export default function ProductSmallCard({spd, data, image, url, name, price, is
                 </div>
             </div>
             <div className="product-bottom">
-                <Link className="text view-button" to={url} onClick={()=>spd({data, image})}><AiOutlineEye /></Link>
-                <AiOutlineShareAlt className="like-button" onClick={handleShareButtonClick} />
+                <Link className="text view-button" to={url} onClick={()=>spd({data, image})}>VIEW NOW</Link>
+                <div className="like-button" onClick={handleShareButtonClick}> SHARE NOW </div>
             </div>
         </div>
     )

@@ -430,6 +430,8 @@ hr {
                 display: flex;
                 align-items: center;
                 gap: 10px;
+                padding: 0px;
+                background-color: transparent;
                 font-size: 20px;
                 font-style: italic;
                 img {
@@ -918,7 +920,7 @@ form {
 .product-small-card {
     min-width: 240px;
     height: fit-content;
-    border: 1px solid rgb(222, 222, 222);
+    outline: 1px solid rgba(0, 0, 0, 0.2);
     display: grid;
     scroll-snap-align: start;
     flex: 0.3;
@@ -978,7 +980,7 @@ form {
         padding: 20px;
         display: flex;
         flex-direction: column;
-        border-top: 1px solid rgb(222, 222, 222);
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
         background-color: rgb(255, 255, 255);
         gap: 5px;
         height: fit-content;
@@ -1017,25 +1019,26 @@ form {
     }
     .product-bottom {
         display: flex;
-        background-color: #ffffff;
-        border-top: 1px solid rgb(222, 222, 222);
+        background-color: #efefef;
+        border-top: 0px solid rgb(222, 222, 222);
+        gap: 0px;
         .view-button {
             padding: 15px;
-            font-size: 25px;
+            font-size: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 0px;
             outline: 0px;
-            background-color: rgba(50, 50, 50, 0);
-            font-weight: 300;
+            background-color: rgb(83, 83, 83);
+            font-weight: 600;
             cursor: pointer;
             width: 100%;
-            color: rgb(38, 38, 38);
+            color: rgb(255, 255, 255);
             text-decoration: none;
         }
         .view-button:hover {
-            color: rgb(12, 82, 0);
+            color: rgb(38, 255, 0);
         }
         .view-button:active {
             background-color: rgb(0, 187, 75);
@@ -1043,18 +1046,19 @@ form {
         }
         .like-button {
             padding: 15px;
-            font-size: 25px;
+            font-size: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 0px;
             outline: 0px;
-            background-color: rgba(50, 50, 50, 0);
+            background-color: rgba(255, 255, 255);
             font-weight: 600;
             cursor: pointer;
-            width: 100%;
+            width: calc(100% - 4px);
             color: rgb(38, 38, 38);
             text-decoration: none;
+            border: 1px solid rgb(77, 77, 77);
         }
         .like-button:hover {
             color: rgb(0, 74, 158);
@@ -1074,6 +1078,7 @@ form {
     display: grid;
     gap: 20px;
     padding: 0px;
+    background-color: rgb(248, 248, 248);
     .head {
         background-image: url("./assets/images/movable-bg.gif");
         background-size: 100px;
@@ -1134,9 +1139,8 @@ form {
             align-content: start;
             gap: 40px;
             min-width: 200px;
-            border-left: 1px solid rgb(234, 234, 234);
-            border-right: 1px solid rgb(234, 234, 234);
-            border-bottom: 1px solid rgb(234, 234, 234);
+            border: 1px solid rgb(197, 197, 197);
+            border-top: 0px;
             height: fit-content;
             .features {
                 display: grid;
@@ -1161,19 +1165,19 @@ form {
     .filters {
         margin: 0px 20px;
         padding: 10px 20px;
-        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
         background-color: rgb(255, 255, 255);
-        border: rgb(234, 234, 234);
+        border: 1px solid rgb(197, 197, 197);
         z-index: 100;
         display: flex;
         justify-content: space-between;
         gap: 20px;
         align-items: center;
+        color: rgb(64, 64, 64);
         .features-btn {
             display: flex;
             align-items: center;
             cursor: pointer;
-            color: rgb(165, 44, 0);
+            color: rgb(36, 36, 36);
         }
         .features-btn:hover {
             color: orangered;
@@ -1529,19 +1533,83 @@ fieldset {
 }
 
 .profile {
-    padding: 0px 50px;
+    padding: 40px;
     display: grid;
     gap: 40px;
-    justify-items: center;
-    .profile-image {
+    background-color: #fafafa;
+    .profile-left {
         width: 300px;
-        height: 300px;
-        border-radius: 50%;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    }
-    .info-text {
-        font-size: 20px;
-        font-style: italic;
+        display: grid;
+        gap: 20px;
+        filter: drop-shadow(0px 0px 10px rgba(169, 169, 169, 0.2));
+        .top-details {
+            display: grid;
+            gap: 1px;
+            background-color: rgb(214, 214, 214);
+            .inner-controls {
+                display: flex;
+                gap: 1px;
+                background-color: rgb(214, 214, 214);
+                button {
+                    width: 100%;
+                    padding: 20px;
+                    font-size: 15px;
+                    border: 0px;
+                    outline: 0px;
+                    background-color: white;
+                    cursor: pointer;
+                }
+                button:hover {
+                    color: orangered;
+                }
+            }
+            .details {
+                display: grid;
+                align-items: center;
+                justify-items: center;
+                padding: 40px;
+                gap: 10px;
+                background-color: white;
+                .profile-image {
+                    width: 150px;
+                    height: 150px;
+                    margin-bottom: 20px;
+                    border-radius: 50%;
+                }
+                .info-text {
+                    font-size: 20px;
+                }
+            }
+        }
+        .controls {
+            display: grid;
+            gap: 1px;
+            background-color: rgb(235, 235, 235);
+            .control {
+                padding: 20px;
+                display: flex;
+                gap: 10px;
+                text-decoration: none;
+                align-items: center;
+                justify-content: space-between;
+                font-weight: 600;
+                color: rgb(53, 53, 53);
+                font-size: 15px;
+                background-color: rgb(255, 255, 255);
+                .left-icon {
+                    width: fit-content;
+                }
+                .middle-text {
+                    width: 100%;
+                }
+                .right-icon {
+                    width: fit-content;
+                }
+            }
+            .control:hover {
+                color: orangered;
+            }
+        }
     }
     .profile-button-action {
         padding: 15px 30px;

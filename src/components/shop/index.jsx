@@ -14,6 +14,7 @@ function Shop({setProductData, product_data}) {
     const [featureVisible, setFeatureVisible] = useState(true)
     const [allProductDefault, setAllProductDefault] = useState([])
     const [filter, setFilter] = useState("--filter--")
+    const [zoomProduct, setZoomProduct] = useState(0)
     const cardRef = useRef([])
 
     useEffect(()=>{
@@ -142,6 +143,11 @@ function Shop({setProductData, product_data}) {
                             <option value="price 0 to 50000">Cost 0 to 50000</option>
                             <option value="price 50000 to 0">Cost 50000 to 0</option>
                         </select>
+                        <select value={zoomProduct} onChange={(e)=>setZoomProduct(e.target.value)}>
+                            <option value={1}>Zoom at 0x</option>
+                            <option value={0.9}>Zoom at -1x</option>
+                            <option value={0.8}>Zoom at -2x</option>
+                        </select>
                     </div>
                 </div>
                 <div className="product-feature-ar">
@@ -220,7 +226,7 @@ function Shop({setProductData, product_data}) {
                             </div>
                         </div>
                     </div>
-                    <div className="products">
+                    <div className="products" style={{zoom: zoomProduct}}>
                         {
                             allProduct.map((d, i)=>{
                                 return <ProductSmallCard spd={feedProductData} data={d} image={JSON.parse(d.media)[0].medium} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.product_id} key={i}/>

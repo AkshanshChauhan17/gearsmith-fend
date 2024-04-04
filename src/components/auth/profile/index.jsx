@@ -1,24 +1,55 @@
-import { AiFillPlusCircle, AiOutlineLogout, AiOutlinePlusCircle } from "react-icons/ai";
+import { AiFillBell, AiFillMail, AiFillMessage, AiFillSetting, AiOutlineLogout } from "react-icons/ai";
+import { FaAngleRight, FaArrowRight, FaCartArrowDown, FaMailBulk, FaSignOutAlt, FaUser } from "react-icons/fa"
 import { Link } from "react-router-dom";
 
 export default function Profile({um, ud, logOut}) {
     return (
         <div className="profile">
-            <img src={um.profile_photo.large} alt="" className="profile-image" />
-            <div className="info-text"><b>Email.</b> {ud.email}</div>
-            <div className="info-text"><b>Name. </b>{um.first_name} {um.last_name}</div>
-            <div className="info-text"><b>Mob.</b> {um.mobile_no}</div>
-            {
-                ud.is_admin===1 &&
-                <Link to="/admin">
-                    <button to="/admin" className="profile-button-action">
-                        <div className="text">Add Product</div> <AiOutlinePlusCircle className="icon" />
-                    </button> 
-                </Link>
-            }
-            <button className="profile-button-action" onClick={()=>logOut()}>
-                <div className="text">Log Out</div> <AiOutlineLogout className="icon" />
-            </button>
+            <div className="profile-left">
+                <div className="top-details">
+                    <div className="details">
+                        <img src={um.profile_photo.large} alt="" className="profile-image" />
+                        <div className="info-text"><b>{um.first_name} {um.last_name}</b></div>
+                        <div className="info-text">{ud.email}</div>
+                    </div>
+                    <div className="inner-controls">
+                        <button>
+                            <AiFillMessage />
+                        </button>
+                        <button>
+                            <FaUser/>
+                        </button>
+                        <button>
+                            <AiFillBell />
+                        </button>
+                    </div>
+                </div>
+                <div className="controls">
+                    {
+                        ud.is_admin===1 &&
+                        <Link to="/admin" className="control">
+                            <FaUser className="left-icon" />
+                            <div className="middle-text">Admin</div>
+                            <FaArrowRight className="right-icon"/>
+                        </Link>
+                    }
+                    <div className="control">
+                        <AiFillSetting className="left-icon" />
+                        <div className="middle-text">Setting</div> 
+                        <FaArrowRight className="right-icon" />
+                    </div>
+                    <div className="control">
+                        <FaCartArrowDown className="left-icon" />
+                        <div className="middle-text">My Order</div> 
+                        <FaArrowRight className="right-icon" />
+                    </div>
+                    <div className="control" onClick={()=>logOut()}>
+                        <FaSignOutAlt className="left-icon" />
+                        <div className="middle-text">Logout</div> 
+                        <FaArrowRight className="right-icon" />
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
