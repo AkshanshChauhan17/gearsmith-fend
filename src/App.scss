@@ -514,8 +514,6 @@ hr {
 
 .focused {
     z-index: 200;
-    outline: 0px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 .logo-loading-ar {
@@ -787,11 +785,11 @@ form {
 .product-small-card {
     min-width: 240px;
     height: fit-content;
-    outline: 0px solid rgba(0, 0, 0, 0.2);
+    border: 1px solid rgb(222, 222, 222);
     display: grid;
     scroll-snap-align: start;
     flex: 0.3;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
     .product-dp-ar {
         overflow: hidden;
         position: relative;
@@ -847,8 +845,8 @@ form {
         padding: 20px;
         display: flex;
         flex-direction: column;
-        border-top: 0px solid rgba(0, 0, 0, 0.2);
-        background: linear-gradient(0deg, rgb(255, 255, 255), rgb(224, 224, 224));
+        border-top: 1px solid rgb(222, 222, 222);
+        background-color: rgb(255, 255, 255);
         gap: 5px;
         height: fit-content;
         align-items: center;
@@ -886,8 +884,8 @@ form {
     }
     .product-bottom {
         display: flex;
-        background-color: rgb(255, 255, 255);
-        border-top: 1px solid rgb(241, 241, 241);
+        background-color: #ffffff;
+        border-top: 1px solid rgb(222, 222, 222);
         .view-button {
             padding: 15px;
             font-size: 25px;
@@ -900,11 +898,10 @@ form {
             font-weight: 300;
             cursor: pointer;
             width: 100%;
-            color: rgb(12, 82, 0);
+            color: rgb(177, 177, 177);
             text-decoration: none;
         }
         .view-button:hover {
-            background-color: rgb(191, 255, 217);
             color: rgb(12, 82, 0);
         }
         .view-button:active {
@@ -923,11 +920,10 @@ form {
             font-weight: 600;
             cursor: pointer;
             width: 100%;
-            color: rgb(0, 74, 158);
+            color: rgb(177, 177, 177);
             text-decoration: none;
         }
         .like-button:hover {
-            background-color: rgb(191, 212, 255);
             color: rgb(0, 74, 158);
         }
         .like-button:active {
@@ -943,8 +939,25 @@ form {
 
 .shop {
     display: grid;
-    gap: 80px;
-    padding: 40px 80px;
+    gap: 20px;
+    padding: 40px;
+    background-color: rgb(255, 255, 255);
+    .head {
+        background-image: url("./assets/images/bg-pattern.jpg");
+        background-size: 100px;
+        background-position-y: 0px;
+        background: linear-gradient(270deg, rgba(0, 0, 0, 0.05), rgb(255, 255, 255), rgba(0, 0, 0, 0.05));
+        padding: 10px 20px;
+        .heading {
+            font-size: 30px;
+            text-align: center;
+        }
+        .sub-heading {
+            color: rgb(152, 152, 152);
+            font-size: 15px;
+            text-align: center;
+        }
+    }
     .new-arrivals-slider-controls {
         display: flex;
         gap: 20px;
@@ -994,8 +1007,8 @@ form {
     }
     .filters {
         padding: 10px 20px;
-        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-        background-color: white;
+        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+        background-color: rgb(245, 245, 245);
         margin-bottom: 30px;
         display: flex;
         justify-content: space-between;
@@ -1020,7 +1033,7 @@ form {
                 font-size: 15px;
                 color: rgb(41, 41, 41);
                 padding: 5px 10px;
-                background-color: rgb(239, 239, 239);
+                background-color: rgb(255, 255, 255);
                 outline: 0px;
                 border: 0px;
                 option {

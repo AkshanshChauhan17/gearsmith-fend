@@ -76,7 +76,7 @@ function Shop({setProductData, product_data}) {
     return (
         <div className="shop">
             <div className="middle-block">
-                <div>
+                <div className="head">
                     <div className="heading">
                         New Arrivals
                     </div>
@@ -106,8 +106,9 @@ function Shop({setProductData, product_data}) {
                     </div>
                 </div>
             </div>
+            <hr />
             <div className="middle-block">
-                <div>
+                <div className="head">
                     <div className="heading">
                         Products
                     </div>
