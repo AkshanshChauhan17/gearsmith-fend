@@ -7,6 +7,7 @@ import { AiFillLock, AiOutlineLoading, AiOutlineRollback, AiOutlineSend, AiOutli
 import { Link } from "react-router-dom"
 import Rating from "./rating"
 import user from "../../assets/images/unnamed.webp"
+import { postRating } from "./rating.post"
 
 function Products({ud}) {
     const [productColorIndex, setProductColorIndex] = useState(0)
@@ -21,11 +22,37 @@ function Products({ud}) {
     const [addToCartStatus, setAddToCartStatus] = useState({status: false, message: "ADD TO CART"})
     const [onClickAddToCart, setOnClickAddToCart] = useState(false)
     const [productPrice, setProductPrice] = useState(0)
+    const [comment, setComment] = useState("")
     const [rating, setRating] = useState(0)
+    const [ratingData, setRatingData] = useState([])
+    const [ratingLoad, setRatingLoad] = useState(false)
 
     const handleClick = (selectedRating) => {
         setRating(selectedRating)
     } 
+
+    const getRating = async ()=>{
+        if(isEmptyObject(productData)) {
+            return null
+        }
+        await getRequest("product/rate/" + productData.product_id)
+            .then((e)=>setRatingData(e))
+        console.log(ratingData)
+    }
+
+    const handleRating = async()=>{
+        setRatingLoad(true)
+        await postRating(ud.email, JSON.parse(ud.meta).profile_photo.small, productData.product_id, rating, comment)
+            .then((e)=>{
+                if(e.affectedRows>=1) {
+                    setRating(0)
+                    setComment("")
+                }
+            }).catch((err)=>{
+                console.error(err)
+            })
+        getRating()
+    }
 
     const handleAddToCart = ()=>{
         setOnClickAddToCart(true)
@@ -44,81 +71,10 @@ function Products({ud}) {
                 })
             })
             .catch((e)=>console.error(e))
-            .finally(()=>setOnClickAddToCart(false))
+            .finally(()=>{
+                setOnClickAddToCart(false)
+            })
     }
-
-    const reviews = [
-          {
-            "id": 1,
-            "comment": "Great product! Really satisfied with the quality.",
-            "email": "user1@example.com",
-            "image": "https://example.com/user1_avatar.jpg",
-            "rating": 5
-          },
-          {
-            "id": 2,
-            "comment": "Excellent service. Prompt delivery and good customer support.",
-            "email": "user2@example.com",
-            "image": "https://example.com/user2_avatar.jpg",
-            "rating": 5
-          },
-          {
-            "id": 3,
-            "comment": "Absolutely fantastic! Couldn't be happier with my purchase.",
-            "email": "user3@example.com",
-            "image": "https://example.com/user3_avatar.jpg",
-            "rating": 4
-          },
-          {
-            "id": 4,
-            "comment": "Amazing experience! The product exceeded my expectations.",
-            "email": "user4@example.com",
-            "image": "https://example.com/user4_avatar.jpg",
-            "rating": 3
-          },
-          {
-            "id": 5,
-            "comment": "Top-notch quality and superb customer service!",
-            "email": "user5@example.com",
-            "image": "https://example.com/user5_avatar.jpg",
-            "rating": 5
-          },
-          {
-            "id": 6,
-            "comment": "Incredible product! Will definitely recommend it to others.",
-            "email": "user6@example.com",
-            "image": "https://example.com/user6_avatar.jpg",
-            "rating": 4
-          },
-          {
-            "id": 7,
-            "comment": "Outstanding service! Fast shipping and great communication.",
-            "email": "user7@example.com",
-            "image": "https://example.com/user7_avatar.jpg",
-            "rating": 5
-          },
-          {
-            "id": 8,
-            "comment": "Exceptional quality and value for money.",
-            "email": "user8@example.com",
-            "image": "https://example.com/user8_avatar.jpg",
-            "rating": 5
-          },
-          {
-            "id": 9,
-            "comment": "Brilliant experience! Will definitely purchase again.",
-            "email": "user9@example.com",
-            "image": "https://example.com/user9_avatar.jpg",
-            "rating": 5
-          },
-          {
-            "id": 10,
-            "comment": "Absolutely thrilled with my purchase! 5 stars all the way.",
-            "email": "user10@example.com",
-            "image": "https://example.com/user10_avatar.jpg",
-            "rating": 5
-          }
-        ]
 
     useEffect(()=>{
         if(quantity<=0 || !isNumeric(quantity)) {
@@ -126,6 +82,10 @@ function Products({ud}) {
         }
         return setQuantityVerification(true)
     }, [quantity])
+
+    useEffect(()=>{
+        getRating()
+    }, [productData])
 
     useEffect(() => {
         Promise.all([
@@ -229,7 +189,7 @@ function Products({ud}) {
             </div>
             <hr />
             <div className="review-heading">
-                Your Reviews <AiOutlineSwapRight className="icon" />
+                Make Reviews <AiOutlineSwapRight className="icon" />
             </div>
             <div className="review-section-inputs">
                 <div className="review-top">
@@ -253,20 +213,20 @@ function Products({ud}) {
                     <img src={JSON.parse(ud.meta).profile_photo.small} alt="" />
                 </div>
                 </div>
-                <textarea cols="30" rows="10" className="comment" placeholder="comment here"></textarea>
-                <button className="comment-submit">Post <AiOutlineSend /></button>
+                <textarea cols="30" rows="10" className="comment" value={comment} placeholder="comment here" onChange={(e)=>setComment(e.target.value)}></textarea>
+                <button className="comment-submit" onClick={()=>handleRating()}>Post<AiOutlineSend /></button>
             </div>
             <br />
             <hr />
             <div className="review-heading">
-                Other Reviews (10) <AiOutlineSwapRight className="icon" />
+                View Reviews ({ratingData.length}) <AiOutlineSwapRight className="icon" />
             </div>
             <div className="oth-review">
-            {
-                reviews.map((data, i)=>{
-                    return <Rating user={user} data={data} i={i} />
-                })
-            }
+                {
+                    ratingData.map((data, i)=>{
+                        return <Rating data={data} i={i} />
+                    })
+                }
             </div>
         </div>
     )

@@ -4,7 +4,7 @@ import ProductSmallCard from "../products/product_small_card"
 import { useEffect, useRef, useState } from "react"
 import { connect } from "react-redux"
 import { setProductData } from "../../redux/store/actions"
-import { getRequest } from "../../functions/get.req"
+import { getRequest, getRequestStream } from "../../functions/get.req"
 
 
 function Shop({setProductData, product_data}) {
@@ -15,18 +15,20 @@ function Shop({setProductData, product_data}) {
     const [allProductDefault, setAllProductDefault] = useState([])
     const [filter, setFilter] = useState("--filter--")
     const [zoomProduct, setZoomProduct] = useState(0)
+    const [totalPages, setTotalPages] = useState(0)
     const cardRef = useRef([])
+    const [page, setPage] = useState(1)
 
     useEffect(()=>{
-        getRequest("product")
+        getRequestStream("product?page=" + page)
             .then((data)=>{
-                setAllProduct(data)
-                setAllProductDefault(data)
+                setAllProduct(data.data)
+                setTotalPages(data.total)
+                setAllProductDefault(data.data)
             })
         getRequest("product/new_arrive")
             .then((data)=>setAllNewArrivals(data))
-        window.scrollTo(0, 0)
-    }, [])
+    }, [page])
 
     const feedProductData = (d) => {
         setProductData({
@@ -69,7 +71,7 @@ function Shop({setProductData, product_data}) {
         }
     }
 
-    if(allProductDefault.length===0 || allNewArrivals.length===0) {
+    if(allNewArrivals.length===0) {
         return <div className="loading-ar">
             <div className="loader"></div>
         </div>
@@ -234,6 +236,13 @@ function Shop({setProductData, product_data}) {
                         }
                     </div>
                 </div>
+                <div className="pagination">
+                            {
+                                [...Array(totalPages)].map((e, i)=>{
+                                    return <div className="page" onClick={()=>setPage(i+1)}>{i + 1}</div>
+                                })
+                            }
+                        </div>
             </div>
         </div>
     )
