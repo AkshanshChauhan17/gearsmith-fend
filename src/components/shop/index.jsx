@@ -135,7 +135,7 @@ function Shop({setProductData, product_data}) {
                     <div className="items-counter">
                         <b>TOTAL PRODUCTS:</b> {
                             allProduct.length
-                        }
+                        } <span></span> in {page} Page
                     </div>
                     <div className="sort-ar">
                         SORT BY: <select value={filter} onChange={(e)=>sortProduct(e.target.value)}>
@@ -239,7 +239,7 @@ function Shop({setProductData, product_data}) {
                 <div className="pagination">
                             {
                                 [...Array(totalPages)].map((e, i)=>{
-                                    return <div className="page" onClick={()=>setPage(i+1)}>{i + 1}</div>
+                                    return <div className={page===i+1 ? "selected-page" : "unselected-page"} onClick={()=>setPage(i+1)}>{i + 1}</div>
                                 })
                             }
                         </div>

@@ -31,7 +31,7 @@ export default function Rating({i, data, user}) {
                 data.comment
             }
         </div>
-        <br />
+        {/* <br />
         <div className="bottom-controls">
             {
                 isLike ?
@@ -39,7 +39,6 @@ export default function Rating({i, data, user}) {
                 :
                     <AiFillLike className="like-button" onClick={()=>setIsLike(true)} />
             }
-            29
-        </div>
+        </div> */}
     </div>
 }

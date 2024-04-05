@@ -189,7 +189,7 @@ function Products({ud}) {
             </div>
             <hr />
             <div className="review-heading">
-                Make Reviews <AiOutlineSwapRight className="icon" />
+                <div className="heading-text">Make Reviews</div> <AiOutlineSwapRight className="icon" />
             </div>
             <div className="review-section-inputs">
                 <div className="review-top">
@@ -214,20 +214,28 @@ function Products({ud}) {
                 </div>
                 </div>
                 <textarea cols="30" rows="10" className="comment" value={comment} placeholder="comment here" onChange={(e)=>setComment(e.target.value)}></textarea>
+                <div className="controls">
                 <button className="comment-submit" onClick={()=>handleRating()}>Post<AiOutlineSend /></button>
+                </div>
             </div>
             <br />
             <hr />
             <div className="review-heading">
-                View Reviews ({ratingData.length}) <AiOutlineSwapRight className="icon" />
+                <div className="heading-text">View Reviews</div> ({ratingData.length}) <AiOutlineSwapRight className="icon" />
             </div>
-            <div className="oth-review">
-                {
-                    ratingData.map((data, i)=>{
-                        return <Rating data={data} i={i} />
-                    })
-                }
-            </div>
+            <br />
+            {
+                ratingData.length===0 ?
+                <div className="oth-review">
+                    Post your first rating!!!
+                </div>:<div className="oth-review">
+                    {
+                        ratingData.map((data, i)=>{
+                            return <Rating data={data} i={i} />
+                        })
+                    }
+                </div>
+            }
         </div>
     )
 }
