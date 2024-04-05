@@ -1,9 +1,40 @@
 import { useEffect, useState } from "react";
 import { AiFillStar, AiOutlineArrowRight, AiOutlineEye, AiOutlineHeart, AiOutlineLike, AiOutlineShareAlt, AiOutlineStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { getRequest } from "../../functions/get.req";
+import { isEmptyObject } from "jquery";
 
-export default function ProductSmallCard({spd, data, image, url, name, price, isTex}) {
-    const rating = [1, 1, 1, 1, 0]
+export default function ProductSmallCard({spd, data, image, url, name, price, isHide}) {
+    const [rating, setRating] = useState({})
+
+    const fetchData = async (url, setDataFunction) => {
+        try {
+            if (data.length===0) {
+                throw "false"
+            }
+    
+            const d = await getRequest(url)
+            setDataFunction(d)
+            return d
+        } catch (error) {
+            throw error
+        }
+    }
+    
+
+    const getRatingPercentage = async () => {
+        try {
+            fetchData("product/rate/percentage/" + data.product_id, setRating)
+        } catch (error) {
+            null
+        }
+    }
+    
+    useEffect(() => {
+      getRatingPercentage()
+    }, [])
+    
+
     async function handleShareButtonClick () {
         var content = `Product Name: ${name}\n Price: ${price}\nshop now visit -> ${window.location.hostname + url}`
         try {
@@ -37,21 +68,21 @@ export default function ProductSmallCard({spd, data, image, url, name, price, is
                 <div className="product-price">{price}</div>
                 <div className="product-rating">
                     {
-                        rating.map((start, i)=>{
-                            if(start===1) {
+                        [...Array(5)].map((_, i)=>{
+                            const ratingValue = i + 1
+                            if(ratingValue <= rating.averageRating) {
                                 return <AiFillStar key={i} />
                             } else {
                                 return <AiOutlineStar key={i} />
                             }
                         })
-                    }
-                    (0)
+                    } ({rating.averageRating===null ? "NaN" : rating.averageRating+"/5"})
                 </div>
             </div>
             <div className="color-available">
             {
                 JSON.parse(data.color_list).map((e, i)=>{
-                    return <div className="color" style={{backgroundColor: e.color_code}} title={e.color_name}></div>
+                    return <div className="color" key={i} style={{backgroundColor: e.color_code}} title={e.color_name}></div>
                 })
             }
             </div>

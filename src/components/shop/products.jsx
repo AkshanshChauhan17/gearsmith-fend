@@ -26,37 +26,10 @@ function Products({ud}) {
     const [rating, setRating] = useState(0)
     const [ratingData, setRatingData] = useState([])
     const [ratingLoad, setRatingLoad] = useState(false)
-    const [avRating, setAvRating] = useState(0)
-    const [fiveStarRatingPercentage, setFiveStartRatingPercentage] = useState({
-        one_star: 0,
-        two_star: 0,
-        three_star: 0,
-        four_star: 0,
-        five_star: 0
-    })
+    const [fiveStarRatingPercentage, setFiveStartRatingPercentage] = useState({})
 
     const handleClick = (selectedRating) => {
         setRating(selectedRating)
-    }
-
-    const calculateAverageRating = (ratingsObject) => {
-        let totalWeightedRating = 0
-        let totalPercentage = 0
-    
-        for (const key in ratingsObject) {
-            const percentage = parseFloat(ratingsObject[key])
-            const rating = ratingsObject[key]
-            totalWeightedRating += rating * percentage
-            totalPercentage += percentage
-        }
-    
-        if (totalPercentage === 0) {
-            return 0
-        }
-    
-        const averageRating = totalWeightedRating / totalPercentage;
-        console.log(averageRating)
-        setAvRating(Math.floor(averageRating / 10))
     }
 
     const fetchData = async (url, setDataFunction) => {
@@ -273,7 +246,7 @@ function Products({ud}) {
             <br />
             <hr />
             <div className="review-heading">
-                <div className="heading-text">View Reviews</div> ({ratingData.length}) <AiOutlineSwapRight className="icon" />
+                <div className="heading-text">View Reviews</div> ({ratingData.averageRating}) <AiOutlineSwapRight className="icon" />
             </div>
             <br />
             {
@@ -283,62 +256,62 @@ function Products({ud}) {
                 </div>:
                 <div className="oth-review">
                     <div className="upr-rating">
-                    <div className="total-rating">
+                    <div className="total-rating-rv">
                         {
-                            <div className="stars">
-                            {
-                                [...Array(5)].map((_, i)=>{
-                                    const ratingValue = i + 1
-                                    return (
-                                        <span
-                                        key={i} 
-                                        className={avRating <= rating ? "filled" : "empty"}
-                                        onClick={()=>handleClick(ratingValue)}>
-                                            &#9733;
-                                        </span>
-                                    )
-                                })
-                            } ({avRating}/5)
+                            <div className="stars-rv">
+                                {
+                                    [...Array(5)].map((_, i)=>{
+                                        const ratingValue = i + 1
+                                        return (
+                                            <span
+                                            key={i} 
+                                            className={i < Math.round(fiveStarRatingPercentage.averageRating) ? "filled" : "empty"}
+                                            onClick={()=>handleClick(ratingValue)}>
+                                                &#9733;
+                                            </span>
+                                        )
+                                    })
+                                } ({fiveStarRatingPercentage.averageRating}/5)
                             </div>
                         }
                     </div>
                     <div className="review-graph">
                     <div className="meter-ar">
                         <div className="meter-star">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-                        <meter className="meter" min={0} max={100} value={fiveStarRatingPercentage.five_star} />
-                        <div className="meter-text">({fiveStarRatingPercentage.five_star})</div>
+                        <meter className="meter" min={0} max={100} value={fiveStarRatingPercentage.newRatingPercentage.five_star} />
+                        <div className="meter-text">({fiveStarRatingPercentage.newRatingPercentage.five_star})</div>
                     </div>
                     <br />
                     <hr />
                     <br />
                     <div className="meter-ar">
                         <div className="meter-star">&#9733; &#9733; &#9733; &#9733;</div>
-                        <meter className="meter" min={0} max={100} value={fiveStarRatingPercentage.four_star} />
-                        <div className="meter-text">({fiveStarRatingPercentage.four_star})</div>
+                        <meter className="meter" min={0} max={100} value={fiveStarRatingPercentage.newRatingPercentage.four_star} />
+                        <div className="meter-text">({fiveStarRatingPercentage.newRatingPercentage.four_star})</div>
                     </div>
                     <br />
                     <hr />
                     <br />
                     <div className="meter-ar">
                         <div className="meter-star">&#9733; &#9733; &#9733;</div>
-                        <meter className="meter" min={0} max={100} value={fiveStarRatingPercentage.three_star} />
-                        <div className="meter-text">({fiveStarRatingPercentage.three_star})</div>
+                        <meter className="meter" min={0} max={100} value={fiveStarRatingPercentage.newRatingPercentage.three_star} />
+                        <div className="meter-text">({fiveStarRatingPercentage.newRatingPercentage.three_star})</div>
                     </div>
                     <br />
                     <hr />
                     <br />
                     <div className="meter-ar">
                         <div className="meter-star">&#9733; &#9733;</div>
-                        <meter className="meter" min={0} max={100} value={fiveStarRatingPercentage.two_star} />
-                        <div className="meter-text">({fiveStarRatingPercentage.two_star})</div>
+                        <meter className="meter" min={0} max={100} value={fiveStarRatingPercentage.newRatingPercentage.two_star} />
+                        <div className="meter-text">({fiveStarRatingPercentage.newRatingPercentage.two_star})</div>
                     </div>
                     <br />
                     <hr />
                     <br />
                     <div className="meter-ar">
                         <div className="meter-star">&#9733;</div>
-                        <meter className="meter" min={0} max={100} value={fiveStarRatingPercentage.one_star} />
-                        <div className="meter-text">({fiveStarRatingPercentage.one_star})</div>
+                        <meter className="meter" min={0} max={100} value={fiveStarRatingPercentage.newRatingPercentage.one_star} />
+                        <div className="meter-text">({fiveStarRatingPercentage.newRatingPercentage.one_star})</div>
                     </div>
                     </div>
                     </div>

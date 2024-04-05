@@ -337,6 +337,28 @@ hr {
     }
 }
 
+.upr-rating {
+    display: grid;
+    gap: 10px;
+    .total-rating-rv {
+        padding: 40px;
+        font-size: 30px;
+        font-weight: 600;
+        background-color: rgb(255, 255, 255);
+        .stars-rv {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            .filled {
+                color: orange;
+            }
+            .empty {
+                color: gray;
+            }
+        }
+    }
+}
+
 .review-graph {
     display: grid;
     background-color: white;
@@ -346,9 +368,11 @@ hr {
     .meter-ar {
         display: flex;
         align-items: center;
+        gap: 10px;
         .meter-star {
             width: 100px;
             color: orange;
+            text-align: center;
         }
         .meter {
             width: 100px;
