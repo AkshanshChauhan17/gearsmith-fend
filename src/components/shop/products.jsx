@@ -26,18 +26,59 @@ function Products({ud}) {
     const [rating, setRating] = useState(0)
     const [ratingData, setRatingData] = useState([])
     const [ratingLoad, setRatingLoad] = useState(false)
+    const [loadCount, setLoadCount] = useState(0)
+    const [fiveStarRatingPercentage, setFiveStartRatingPercentage] = useState({
+        one_star: 0,
+        two_star: 0,
+        three_star: 0,
+        four_star: 0,
+        five_star: 0
+    })
 
     const handleClick = (selectedRating) => {
         setRating(selectedRating)
     } 
 
-    const getRating = async ()=>{
-        if(isEmptyObject(productData)) {
-            return null
+    const getRating = ()=>{
+        return new Promise(async (resolve, reject)=>{
+            if(isEmptyObject(productData)) {
+                reject("false")
+            }
+            await getRequest("product/rate/" + productData.product_id)
+                .then((e)=>setRatingData(e))
+            resolve(()=>calculateRatingPercentage())
+        })
+    }
+
+    const calculateRatingPercentage =()=>{
+        var one=0, two=0, three=0, four=0, five=0;
+        ratingData.forEach((r, i)=>{
+            switch (r.rating) {
+                case "1":
+                    one = one + 1
+                    break
+                case "2":
+                    two = two + 1
+                    break
+                case "3":
+                    three = three + 1
+                    break
+                case "4":
+                    four = four + 1
+                    break
+                case "5":
+                    five = five + 1
+                    break
+            }
+        })
+        const newRatingPercentage = {
+            five_star: (five/ratingData.length)*100,
+            four_star: (four/ratingData.length)*100,
+            three_star: (three/ratingData.length)*100,
+            two_star: (two/ratingData.length)*100,
+            one_star: (one/ratingData.length)*100
         }
-        await getRequest("product/rate/" + productData.product_id)
-            .then((e)=>setRatingData(e))
-        console.log(ratingData)
+        setFiveStartRatingPercentage(newRatingPercentage)
     }
 
     const handleRating = async()=>{
@@ -51,7 +92,7 @@ function Products({ud}) {
             }).catch((err)=>{
                 console.error(err)
             })
-        getRating()
+        getRating().finally(()=>calculateRatingPercentage())
     }
 
     const handleAddToCart = ()=>{
@@ -85,7 +126,17 @@ function Products({ud}) {
 
     useEffect(()=>{
         getRating()
+        .then((e)=>{
+            e()
+        })
+        .finally(()=>{
+            calculateRatingPercentage()
+        })
     }, [productData])
+
+    useEffect(()=>{
+        calculateRatingPercentage()
+    }, [loadCount])
 
     useEffect(() => {
         Promise.all([
@@ -229,6 +280,45 @@ function Products({ud}) {
                 <div className="oth-review">
                     Post your first rating!!!
                 </div>:<div className="oth-review">
+                <div className="review-graph">
+                <div className="meter-ar">
+                    <div className="meter-star">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                    <meter className="meter" min={0} max={100} value={fiveStarRatingPercentage.five_star} />
+                    <div className="meter-text">({fiveStarRatingPercentage.five_star})</div>
+                </div>
+                <br />
+                <hr />
+                <br />
+                <div className="meter-ar">
+                    <div className="meter-star">&#9733; &#9733; &#9733; &#9733;</div>
+                    <meter className="meter" min={0} max={100} value={fiveStarRatingPercentage.four_star} />
+                    <div className="meter-text">({fiveStarRatingPercentage.four_star})</div>
+                </div>
+                <br />
+                <hr />
+                <br />
+                <div className="meter-ar">
+                    <div className="meter-star">&#9733; &#9733; &#9733;</div>
+                    <meter className="meter" min={0} max={100} value={fiveStarRatingPercentage.three_star} />
+                    <div className="meter-text">({fiveStarRatingPercentage.three_star})</div>
+                </div>
+                <br />
+                <hr />
+                <br />
+                <div className="meter-ar">
+                    <div className="meter-star">&#9733; &#9733;</div>
+                    <meter className="meter" min={0} max={100} value={fiveStarRatingPercentage.two_star} />
+                    <div className="meter-text">({fiveStarRatingPercentage.two_star})</div>
+                </div>
+                <br />
+                <hr />
+                <br />
+                <div className="meter-ar">
+                    <div className="meter-star">&#9733;</div>
+                    <meter className="meter" min={0} max={100} value={fiveStarRatingPercentage.one_star} />
+                    <div className="meter-text">({fiveStarRatingPercentage.one_star})</div>
+                </div>
+            </div>
                     {
                         ratingData.map((data, i)=>{
                             return <Rating data={data} i={i} />

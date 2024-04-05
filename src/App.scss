@@ -337,9 +337,35 @@ hr {
     }
 }
 
+.review-graph {
+    display: grid;
+    background-color: white;
+    width: fit-content;
+    padding: 20px;
+    zoom: 1.5;
+    .meter-ar {
+        display: flex;
+        align-items: center;
+        .meter-star {
+            width: 100px;
+            color: orange;
+        }
+        .meter {
+            width: 100px;
+            height: 20px;
+            &::-webkit-meter-bar {
+                border-radius: 0px;
+                background-color: whitesmoke;
+                border: 0px;
+            }
+        }
+    }
+}
+
 .product-view-ar {
     display: grid;
     padding: 80px 40px;
+    background-color: whitesmoke;
     .oth-review {
         display: flex;
         flex-wrap: wrap;
@@ -361,6 +387,8 @@ hr {
             }
         }
         .oth-review-card {
+            background-color: white;
+            border-radius: 5px;
             flex: 1;
             max-width: 400px;
             font-size: 15px;
@@ -369,7 +397,8 @@ hr {
             display: grid;
             gap: 6px;
             cursor: pointer;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
             .bottom-controls {
                 display: flex;
                 align-items: center;
@@ -431,6 +460,8 @@ hr {
     .review-section-inputs {
         display: grid;
         gap: 20px;
+        background-color: white;
+        padding: 20px 40px;
         .review-top {
             display: flex;
             align-items: center;
