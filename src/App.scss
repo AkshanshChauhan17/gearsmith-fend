@@ -358,6 +358,9 @@ hr {
                 background-color: whitesmoke;
                 border: 0px;
             }
+            &::-webkit-meter-optimum-value {
+                background-color: orange;
+            }
         }
     }
 }
