@@ -21,7 +21,7 @@ export default function Navigation({ls, ud, um}) {
     return (
         <div className="nav" style={{backgroundImage: "url(" + imageList[2] + ")"}}>
             <div className="top">
-                <Link className="top-link">SHIP TO: India</Link>
+                <Link className="top-link">SHIP TO: India <div className="india-flag-icon"></div></Link>
                 <Link className="top-link">GIFT CARDS</Link>
                 <Link className="top-link">STORE LOCATION</Link>
                 <Link to="user/profile" className="top-link">MY ACCOUNT</Link>

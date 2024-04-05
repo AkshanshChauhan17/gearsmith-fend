@@ -135,6 +135,9 @@ hr {
         padding: 10px;
         background-color: rgb(0, 0, 0);
         .top-link {
+            display: flex;
+            gap: 10px;
+            align-items: center;
             text-decoration: none;
             color: rgb(255, 255, 255);
         }
@@ -367,6 +370,16 @@ hr {
             gap: 6px;
             cursor: pointer;
             box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            .bottom-controls {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding-top: 10px;
+                .like-button {
+                    color: #9b9b9b;
+                    font-size: 20px;
+                }
+            }
             .top-user-info {
                 display: flex;
                 gap: 20px;
@@ -917,13 +930,42 @@ form {
     }
 }
 
+.india-flag-icon {
+    background-image: url("./assets/images/india-flag-icon.svg");
+    width: 20px;
+    height: 15px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.color-available {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    position: absolute;
+    width: fit-content;
+    top: 10px;
+    left: 10px;
+    align-items: center;
+    .color {
+        width: 20px;
+        height: 20px;
+        border: 5px solid rgba(255, 255, 255, 0.356);
+        cursor: pointer;
+    }
+}
+
 .product-small-card {
     min-width: 240px;
+    position: relative;
     height: fit-content;
     outline: 1px solid rgba(0, 0, 0, 0.2);
     display: grid;
     scroll-snap-align: start;
     flex: 0.3;
+    gap: 1px;
+    background-color: #e6e6e6;
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
     .product-dp-ar {
         overflow: hidden;
@@ -982,7 +1024,7 @@ form {
         flex-direction: column;
         border-top: 1px solid rgba(0, 0, 0, 0.2);
         background-color: rgb(255, 255, 255);
-        gap: 5px;
+        gap: 10px;
         height: fit-content;
         align-items: center;
         .product-heading {
@@ -997,7 +1039,7 @@ form {
             color: rgb(0, 0, 0);
         }
         .product-rating {
-            font-size: 15px;
+            font-size: 20px;
             text-align: center;
             color: rgb(255, 157, 11);
             display: flex;
@@ -1009,9 +1051,25 @@ form {
             font-weight: 400;
             text-align: center;
             justify-content: space-between;
-            font-style: italic;
-            color: rgb(104, 104, 104);
+            color: rgb(215, 1, 1);
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) -300%, rgb(255, 255, 255));
+            width: fit-content;
+            padding: 5px 10px;
+            height: 20px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-weight: 600;
         }
+        // .product-price::before {
+        //     content: "";
+        //     padding: 6px 5px;
+        //     background-color: rgb(174, 0, 0);
+        //     position: absolute;
+        //     top: -11px;
+        //     width: calc(100% - 10px);
+        //     left: -0px;
+        // }
         .product-small-text {
             font-size: 15px;
             font-weight: 400;
@@ -1019,9 +1077,10 @@ form {
     }
     .product-bottom {
         display: flex;
-        background-color: #efefef;
+        background-color: #ffffff;
         border-top: 0px solid rgb(222, 222, 222);
-        gap: 0px;
+        gap: 10px;
+        padding: 10px;
         .view-button {
             padding: 15px;
             font-size: 12px;
@@ -1030,19 +1089,19 @@ form {
             justify-content: center;
             border: 0px;
             outline: 0px;
-            background-color: rgb(83, 83, 83);
+            background-color: rgba(0, 119, 255, 0.1);
             font-weight: 600;
             cursor: pointer;
             width: 100%;
-            color: rgb(255, 255, 255);
+            color: rgb(0, 119, 255);
             text-decoration: none;
         }
         .view-button:hover {
-            color: rgb(38, 255, 0);
+            opacity: 0.8;
         }
         .view-button:active {
-            background-color: rgb(0, 187, 75);
-            color: rgb(255, 255, 255);
+            background-color: rgb(0, 78, 187);
+            color: rgb(249, 249, 249);
         }
         .like-button {
             padding: 15px;
@@ -1052,13 +1111,14 @@ form {
             justify-content: center;
             border: 0px;
             outline: 0px;
-            background-color: rgba(255, 255, 255);
+            background-color: rgb(255, 255, 255);
             font-weight: 600;
             cursor: pointer;
             width: calc(100% - 4px);
-            color: rgb(38, 38, 38);
+            color: rgb(0, 119, 255);
             text-decoration: none;
-            border: 1px solid rgb(77, 77, 77);
+            border: 1px solid rgba(0, 119, 255, 0.2);
+            ;
         }
         .like-button:hover {
             color: rgb(0, 74, 158);

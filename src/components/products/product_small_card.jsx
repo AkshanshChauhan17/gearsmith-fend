@@ -48,6 +48,13 @@ export default function ProductSmallCard({spd, data, image, url, name, price, is
                     (0)
                 </div>
             </div>
+            <div className="color-available">
+            {
+                JSON.parse(data.color_list).map((e, i)=>{
+                    return <div className="color" style={{backgroundColor: e.color_code}} title={e.color_name}></div>
+                })
+            }
+            </div>
             <div className="product-bottom">
                 <Link className="text view-button" to={url} onClick={()=>spd({data, image})}>VIEW NOW</Link>
                 <div className="like-button" onClick={handleShareButtonClick}> SHARE NOW </div>

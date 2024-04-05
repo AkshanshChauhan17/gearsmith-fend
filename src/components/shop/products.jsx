@@ -4,8 +4,9 @@ import { connect } from "react-redux"
 import { getRequest } from "../../functions/get.req"
 import { addProductToCart } from "../cart/post.reqs"
 import { AiFillLock, AiOutlineLoading, AiOutlineRollback, AiOutlineSend, AiOutlineSwapRight } from "react-icons/ai"
-import user from "../../assets/images/unnamed.webp"
 import { Link } from "react-router-dom"
+import Rating from "./rating"
+import user from "../../assets/images/unnamed.webp"
 
 function Products({ud}) {
     const [productColorIndex, setProductColorIndex] = useState(0)
@@ -263,34 +264,7 @@ function Products({ud}) {
             <div className="oth-review">
             {
                 reviews.map((data, i)=>{
-                    return <div className="oth-review-card" key={i}>
-                            <div className="top-user-info">
-                                <img src={user} alt="" />
-                                <div className="top-right">
-                                    <div className="title">{data.email}</div>
-                                    <div className="subtitle">name</div>
-                                </div>
-                            </div>
-                            <div className="stars">
-                                {
-                                    [...Array(5)].map((_, i)=>{
-                                        const ratingValue = i + 1
-                                        return (
-                                            <span
-                                            key={i} 
-                                            className={ratingValue <= data.rating ? "filled" : "empty"}>
-                                                &#9733;
-                                            </span>
-                                        )
-                                    })
-                                } ({data.rating}/5)
-                            </div>
-                            <div className="top-middle">
-                                {
-                                    data.comment
-                                }
-                            </div>
-                    </div>
+                    return <Rating user={user} data={data} i={i} />
                 })
             }
             </div>
