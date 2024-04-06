@@ -40,7 +40,7 @@ export default function Home() {
             <div className="product-types">
                 {
                     product_type_links.map((product_name, i)=>{
-                        return <div className="product">
+                        return <div className="product" key={i}>
                             <div className="product-heading">{product_name}</div>
                             <Link to={"/product/" + product_name} className="product-button">Shop Now<AiOutlineRight className="arrow" /></Link>
                         </div>

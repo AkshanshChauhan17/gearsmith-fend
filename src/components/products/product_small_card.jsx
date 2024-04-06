@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { getRequest } from "../../functions/get.req";
 import { isEmptyObject } from "jquery";
 
-export default function ProductSmallCard({spd, data, image, url, name, price, isHide}) {
+export default function ProductSmallCard({spd, data, image, url, name, price, isHide, pg}) {
     const [rating, setRating] = useState({})
 
     const fetchData = async (url, setDataFunction) => {
@@ -32,7 +32,8 @@ export default function ProductSmallCard({spd, data, image, url, name, price, is
     
     useEffect(() => {
       getRatingPercentage()
-    }, [])
+      console.log("dd")
+    }, [data])
     
 
     async function handleShareButtonClick () {

@@ -28,13 +28,14 @@ function App({login_status, setLoginStatus}) {
   const handleVerifyToken = async ()=> {
     await verifyToken()
       .then((res)=>{
+        console.log(res)
         if(res.message != "Authorized") {
           setLoginStatus(false)
           navigate("/")
         } else {
+          setLoginStatus(true)
           setUserData(res.result[0])
           setUserMeta(JSON.parse(res.result[0].meta))
-          setLoginStatus(true)
         }
       })
       setLoading(false)

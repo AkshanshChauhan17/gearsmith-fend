@@ -231,7 +231,7 @@ function Shop({setProductData, product_data}) {
                     <div className="products" style={{zoom: zoomProduct}}>
                         {
                             allProduct.map((d, i)=>{
-                                return <ProductSmallCard spd={feedProductData} data={d} image={JSON.parse(d.media)[0].medium} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.product_id} key={i}/>
+                                return <ProductSmallCard pg={page} spd={feedProductData} data={d} image={JSON.parse(d.media)[0].medium} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.product_id} key={i}/>
                             })
                         }
                     </div>
