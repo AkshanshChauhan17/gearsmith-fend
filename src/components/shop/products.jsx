@@ -169,18 +169,36 @@ function Products({ud}) {
                         </div>
                     </div>
                     <div className="product-heading">{productData.name}</div>
-                    <br />
+                    <div className="total-rating-rv">
+                            {
+                                <div className="stars-rv">
+                                    {
+                                        [...Array(5)].map((_, i)=>{
+                                            const ratingValue = i + 1
+                                            return (
+                                                <span
+                                                key={i} 
+                                                className={i < Math.round(fiveStarRatingPercentage.averageRating) ? "filled" : "empty"}
+                                                onClick={()=>handleClick(ratingValue)}>
+                                                    &#9733;
+                                                </span>
+                                            )
+                                        })
+                                    } <div className="stars-rv-text">{ratingData.length} reviews</div>
+                                </div>
+                            }
+                        </div>
                     <div className="product-price">₹ {productData.price}</div>
-                    <div className="product-text">Sales Tex Included</div>
+                    {/* <div className="product-text">Sales Tex Included</div>
                     <br />
                     <div className="product-content">
                         {
                             productData.product_summary
                         }
                     </div>
-                    <br />
+                    <br /> */}
                     <div className="product-color-section">
-                        {productColor.length>0 && <div className="product-color-text">Color: {productColor[productColorIndex].color_name}</div>}
+                        {productColor.length>0 && <div className="product-color-text"><b>Color:</b> {productColor[productColorIndex].color_name}</div>}
                         <div className="product-color-selection-ar">
                             {
                                 productColor.map((col, i)=>{
@@ -189,28 +207,25 @@ function Products({ud}) {
                             }
                         </div>
                     </div>
-                    <br />
                     <div className="drop-ar">
                         <div className="drop-section">
-                            Size
-                            <select name="" id="" required value={productSizeSelected} onChange={(e)=>setProductSizeSelected(e.target.value)}>
-                                <option value="default">Original</option>
+                            <div className="drop-section-heading"><b>Size:</b> {productSizeSelected}</div>
+                            <div className="drop-size-ar" value={productSizeSelected}>
                                 {
                                     productSize.map((ps, i)=>{
                                         if(isEmptyObject(ps)) {
                                             return null
                                         }
-                                        return <option value={ps.size_name + " " + ps.size} key={i}>{ps.size_name + " " + ps.size}</option>
+                                        return <button className={productSizeSelected===ps.size_name + " " + ps.size ? "drop-size-btn-selected" : "drop-size-btn"} value={ps.size_name + " " + ps.size} key={i} onClick={(e)=>setProductSizeSelected(e.target.value)}>{ps.size}</button>
                                     })
                                 }
-                            </select>
+                            </div>
                         </div>
                     </div>
-                    <br />
                     {
                         quantityVerification || productSizeSelected!=null ? 
                         <div className="submit-ar">
-                            <input type="number" min={1} max={100} required value={quantity} onChange={(e)=>setQuantity(e.target.value)}/>
+                            <input className="submit-quantity" type="number" min={1} max={100} required value={quantity} onChange={(e)=>setQuantity(e.target.value)}/>
                             <button className="button-atoc" disabled={addToCartStatus.status} onClick={()=>handleAddToCart()}>
                                 {
                                     onClickAddToCart ? <AiOutlineLoading className="loader" /> : addToCartStatus.message
@@ -226,9 +241,8 @@ function Products({ud}) {
                         </div>
                     }
                 </div>
-            </div>
-            <hr />
-            <div className="review-heading">
+                <div className="review-arr">
+                <div className="review-heading">
                 <div className="heading-text">Make Reviews</div> <AiOutlineSwapRight className="icon" />
             </div>
             <div className="review-section-inputs">
@@ -258,8 +272,8 @@ function Products({ud}) {
                 <button className="comment-submit" onClick={()=>handleRating()}>Post<AiOutlineSend /></button>
                 </div>
             </div>
-            <br />
-            <hr />
+                </div>
+            </div>
             <div className="review-heading">
                 <div className="heading-text">View Reviews</div> ({ratingData.length}) <AiOutlineSwapRight className="icon" />
             </div>
