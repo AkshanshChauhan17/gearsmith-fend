@@ -2453,26 +2453,127 @@ fieldset {
 .about {
     display: grid;
     background-color: rgb(255, 255, 255);
-    color: rgb(2, 2, 2);
     * {
         margin: 0px;
     }
-    .main-heading {
-        font-size: 30px;
-        color: white;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .promises {
+        background-color: rgb(30, 30, 30);
+        padding: 80px 40px;
+        display: grid;
         gap: 10px;
-        background: linear-gradient(90deg, rgb(67, 67, 67), rgb(0, 0, 0), rgb(61, 61, 61));
-        padding: 20px;
-        .icon {
-            color: orangered;
+        .promises-heading {
+            font-size: 30px;
+            font-weight: 600;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            .icon {
+                color: orangered;
+            }
+        }
+        .promises-subheading {
+            font-size: 20px;
+            font-weight: 400;
+            color: rgb(202, 202, 202);
+        }
+        .promises-social-ar {
+            display: flex;
+            gap: 10px;
+            .promises-social-head {
+                color: #ffffff;
+                font-size: 30px;
+                margin-bottom: 20px;
+                flex: 1;
+            }
+            .promises-social-links {
+                display: grid;
+                color: white;
+                font-size: 20px;
+                gap: 10px;
+                flex: 1;
+                justify-items: left;
+                .icon {
+                    color: orangered;
+                }
+            }
+        }
+    }
+    .main-heading {
+        display: flex;
+        .right {
+            flex: 1;
+        }
+        .left {
+            flex: 1;
+            font-size: 20px;
+            color: white;
+            display: grid;
+            align-content: center;
+            gap: 20px;
+            background-color: rgb(255, 255, 255);
+            margin: 40px;
+            margin-right: 0px;
+            padding: 40px;
+            height: 100vh;
+            text-align: left;
+            .icon {
+                color: orangered;
+            }
+            .heading {
+                font-size: 35px;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                gap: 10px;
+                color: orangered;
+            }
+            .subheading {
+                font-size: 22px;
+                color: #909090;
+                font-weight: 300;
+            }
+        }
+        .right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 40px;
+            margin-left: 0px;
+            background-color: rgb(255, 255, 255);
+            .bg {
+                display: none;
+                overflow: hidden;
+                background-color: rgb(0, 0, 0);
+                background-image: url("./assets/images/giphy.gif");
+                background-size: 60px;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-blend-mode: lighten;
+                filter: blur(50000px) invert(1);
+                flex: 1;
+                height: 100%;
+                animation: blurin 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0s;
+            }
+            .logo {
+                background-image: url("./assets/images/gearsmith-logo.webp");
+                background-size: 60px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                filter: blur(0px);
+                width: 200px;
+                height: 200px;
+                position: absolute;
+                animation: blurout 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0s;
+            }
         }
     }
     .inner-heading {
-        font-size: 24px;
+        font-size: 30px;
         margin-bottom: 20px;
         font-weight: 600;
         color: orangered;
@@ -2482,8 +2583,86 @@ fieldset {
     }
     .content {
         font-size: 20px;
-        color: rgb(255, 237, 231);
-        ;
+        color: #383838;
+    }
+    .story {
+        text-align: center;
+        display: flex;
+        gap: 20px;
+        background-color: rgb(30, 30, 30);
+        justify-items: center;
+        height: 100vh;
+        .left {
+            text-align: center;
+            display: grid;
+            background-color: rgb(30, 30, 30);
+            justify-items: center;
+            align-content: center;
+            gap: 20px;
+            flex: 1;
+            padding: 80px 40px;
+            .story-heading {
+                font-size: 30px;
+                font-weight: 600;
+                color: rgb(249, 249, 249)
+            }
+            .story-subheading {
+                font-size: 20px;
+                color: #d1d1d1;
+                width: 620px;
+                text-align: justify;
+                font-style: italic;
+            }
+        }
+        .right {
+            background-image: url("./assets/images/story.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            mix-blend-mode: lighten;
+            flex: 1;
+        }
+    }
+    .values-ar {
+        display: grid;
+        width: 100%;
+        background-color: rgb(30, 30, 30);
+        .values-heading {
+            font-size: 30px;
+            color: white;
+            font-weight: 600;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            .icon {
+                color: orangered;
+            }
+        }
+        .values {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            gap: 40px;
+            padding: 40px;
+            .values-columns {
+                display: grid;
+                gap: 10px;
+                .h {
+                    color: #ffffff;
+                    font-size: 20px;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    .icon {
+                        color: orangered;
+                    }
+                }
+                .sh {
+                    color: #c6c6c6;
+                    font-size: 15px;
+                    font-weight: 100;
+                }
+            }
+        }
     }
     section {
         display: flex;
@@ -2492,9 +2671,10 @@ fieldset {
         overflow: hidden;
         transition-duration: 0.2s;
         color: white;
-        background: linear-gradient(180deg, rgb(31, 31, 31), rgb(0, 0, 0));
+        padding: 40px;
+        flex: 1;
         .image {
-            flex: 0.7;
+            flex: 1;
             background-position: 0px 10px;
             aspect-ratio: 1;
             background-size: cover;
@@ -2505,7 +2685,7 @@ fieldset {
             padding: 40px;
             min-width: 200px;
             transition-duration: 0.2s;
-            background-color: rgb(88, 88, 88);
+            background-color: rgb(255, 255, 255);
             background-blend-mode: color-burn;
             background-size: cover;
             background-position: 0px 10px;
@@ -2515,6 +2695,24 @@ fieldset {
             justify-content: center;
             text-align: left;
         }
+    }
+}
+
+@keyframes blurin {
+    from {
+        filter: blur(0px) invert(1);
+    }
+    to {
+        filter: blur(50000px) invert(1);
+    }
+}
+
+@keyframes blurout {
+    from {
+        filter: blur(200px);
+    }
+    to {
+        filter: blur(0px);
     }
 }
 
