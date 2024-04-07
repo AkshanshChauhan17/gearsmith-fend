@@ -144,6 +144,7 @@ function Products({ud}) {
             <Link to={"/shop"} className="url-top">
                 <AiOutlineRollback /> {"Shop/Product/" + productData.name}
             </Link>
+            <br />
             <div className="product-view">
                 <div className="product-view-left">
                     <div className="product-view-image-slider">
@@ -241,7 +242,8 @@ function Products({ud}) {
                         </div>
                     }
                 </div>
-                <div className="review-arr">
+            </div>
+            <div className="review-arr">
                 <div className="review-heading">
                 <div className="heading-text">Make Reviews</div> <AiOutlineSwapRight className="icon" />
             </div>
@@ -267,30 +269,23 @@ function Products({ud}) {
                     <img src={JSON.parse(ud.meta).profile_photo.small} alt="" />
                 </div>
                 </div>
-                <textarea cols="30" rows="10" className="comment" value={comment} placeholder="comment here" onChange={(e)=>setComment(e.target.value)}></textarea>
-                <div className="controls">
-                <button className="comment-submit" onClick={()=>handleRating()}>Post<AiOutlineSend /></button>
+                <div hidden={rating===0}>
+                    <textarea cols="30" rows="10" className="comment" value={comment} placeholder="comment here" onChange={(e)=>setComment(e.target.value)}></textarea>
+                    <div className="controls">
+                        <button className="comment-submit" onClick={()=>handleRating()}>Post<AiOutlineSend /></button>
+                    </div>
                 </div>
             </div>
                 </div>
-            </div>
             <div className="review-heading">
                 <div className="heading-text">View Reviews</div> ({ratingData.length}) <AiOutlineSwapRight className="icon" />
             </div>
-            <br />
             {
                 ratingData.length===0 ?
                 <div className="oth-review">
                     Post your first rating!!!
                 </div>:
                 <div className="oth-review">
-                    <div className="all-rating">
-                        {
-                            ratingData.map((data, i)=>{
-                                return <Rating data={data} i={i} />
-                            })
-                        }
-                    </div>
                     <div className="upr-rating">
                         <div className="total-rating-rv">
                             {
@@ -338,6 +333,13 @@ function Products({ud}) {
                                 <div className="meter-text">{fiveStarRatingPercentage.newRatingPercentage.one_star}</div>
                             </div>
                         </div>
+                    </div>
+                    <div className="all-rating">
+                        {
+                            ratingData.map((data, i)=>{
+                                return <Rating data={data} i={i} />
+                            })
+                        }
                     </div>
                 </div>
             }
