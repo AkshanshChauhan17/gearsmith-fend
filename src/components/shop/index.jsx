@@ -28,6 +28,7 @@ function Shop({setProductData, product_data}) {
             })
         getRequest("product/new_arrive")
             .then((data)=>setAllNewArrivals(data))
+        window.scrollTo(0, 0)
     }, [page])
 
     const feedProductData = (d) => {
@@ -96,7 +97,7 @@ function Shop({setProductData, product_data}) {
                 <div className="new-arrivals">
                     {
                         allNewArrivals.map((d, i)=>{
-                            return <ProductCard spd={feedProductData} data={d} pushRef={pushRef} cardRef={cardRef} image={JSON.parse(d.media)[0].medium} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.product_id} key={i} index={i} pagingIndex={pagingIndex} spiDef={setPagingIndex} scDef={scrollToCard} />
+                            return <ProductCard spd={feedProductData} data={d} pushRef={pushRef} cardRef={cardRef} image={d.media} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.product_id} key={i} index={i} pagingIndex={pagingIndex} spiDef={setPagingIndex} scDef={scrollToCard} />
                         })
                     }
                 </div>
@@ -231,7 +232,7 @@ function Shop({setProductData, product_data}) {
                     <div className="products" style={{zoom: zoomProduct}}>
                         {
                             allProduct.map((d, i)=>{
-                                return <ProductSmallCard pg={page} spd={feedProductData} data={d} image={JSON.parse(d.media)[0].medium} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.product_id} key={i}/>
+                                return <ProductSmallCard pg={page} spd={feedProductData} data={d} image={d.media} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.product_id} key={i}/>
                             })
                         }
                     </div>

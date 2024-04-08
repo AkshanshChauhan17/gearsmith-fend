@@ -131,6 +131,7 @@ function Products({ud}) {
             setProductPrice(productResponse.price)
         })
         .catch(err => console.error(err))
+        window.scrollTo(0, 0)
     }, [])
 
     if(isEmptyObject(productData) || isEmptyObject(fiveStarRatingPercentage)) {
