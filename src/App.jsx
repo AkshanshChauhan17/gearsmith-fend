@@ -20,6 +20,7 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import PaymentForm from './components/order'
 import { PrivacyPolicy } from './components/privacy_policy'
 import TermAndCondition from './components/tc'
+import Review from './components/reviews'
 
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState([])
@@ -83,6 +84,7 @@ function App({login_status, setLoginStatus}) {
           <Route path='/user/cart' element={<Cart ud={userData} />} />
           <Route path='/user/profile' element={<Profile ud={userData} um={userMeta} logOut={handleLogout} />} />
           <Route path='/order' element={<PaymentForm />} />
+          <Route path='/reviews' element={<Review />} />
           <Route path='/privacy-policy' element={<PrivacyPolicy />} />
           <Route path='/terms-conditions' element={<TermAndCondition />} />
         </Routes>
