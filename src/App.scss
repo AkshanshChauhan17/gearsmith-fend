@@ -2450,6 +2450,53 @@ fieldset {
     }
 }
 
+.privacy-policy {
+    .pp:nth-child(odd) {
+        padding: 40px;
+        background-color: rgb(255, 255, 255);
+        height: fit-content;
+        color: rgb(0, 0, 0);
+        display: grid;
+        gap: 20px;
+        align-content: center;
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            .icon {
+                color: orangered;
+            }
+        }
+        .content {
+            font-size: 18px;
+            color: #363636;
+        }
+    }
+    .pp:nth-child(even) {
+        padding: 40px;
+        background-color: black;
+        height: fit-content;
+        color: white;
+        display: grid;
+        gap: 20px;
+        align-content: center;
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            .icon {
+                color: orangered;
+            }
+        }
+        .content {
+            font-size: 18px;
+            color: #e1e1e1;
+        }
+    }
+}
+
 .about {
     display: grid;
     background-color: rgb(255, 255, 255);
@@ -2515,7 +2562,6 @@ fieldset {
             margin: 40px;
             margin-right: 0px;
             padding: 40px;
-            height: 100vh;
             text-align: left;
             .icon {
                 color: orangered;
@@ -2694,6 +2740,60 @@ fieldset {
             align-items: left;
             justify-content: center;
             text-align: left;
+        }
+    }
+}
+
+.tc-ar {
+    .tc-main-heading {
+        font-size: 28px;
+        font-weight: 600;
+        padding: 20px 40px;
+        padding-top: 80px;
+    }
+    .small-text {
+        font-size: 20px;
+        padding: 5px 40px;
+    }
+    .content-ar {
+        margin-top: 80px;
+        display: grid;
+        .tc-content:nth-child(even) {
+            padding: 40px;
+            display: grid;
+            gap: 18px;
+            .tc-content-title {
+                font-size: 28px;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                .icon {
+                    color: orangered;
+                }
+            }
+            .tc-content-text {
+                font-size: 18px;
+            }
+        }
+        .tc-content:nth-child(odd) {
+            padding: 40px;
+            display: grid;
+            gap: 18px;
+            background-color: black;
+            .tc-content-title {
+                font-size: 28px;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                color: white;
+                .icon {
+                    color: orangered;
+                }
+            }
+            .tc-content-text {
+                font-size: 18px;
+                color: rgb(215, 215, 215);
+            }
         }
     }
 }

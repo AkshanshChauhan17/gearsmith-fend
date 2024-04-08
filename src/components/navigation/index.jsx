@@ -36,7 +36,7 @@ export default function Navigation({ls, ud, um}) {
                             navigation.map((link, i)=>{
                                 return <Link className={clicked===link.path ? "link button-in color-white hover active" : "link button-in color-white hover inactive"} to={link.path} key={i} onClick={()=>setClicked(link.path)}>{link.name}</Link>
                             })
-                        }
+                        }   
                     </div>
                     <div className="search-ar">
                         <input type="text"/>
