@@ -1208,17 +1208,16 @@ form {
 }
 
 .product-small-card {
-    min-width: 240px;
-    width: calc(100% / 10);
-    flex: 1;
-    max-width: calc(100%/4);
     position: relative;
     height: fit-content;
-    outline: 1px solid rgba(0, 0, 0, 0.2);
+    outline: 0px solid rgba(0, 0, 0, 0.2);
     display: grid;
     scroll-snap-align: start;
     gap: 1px;
+    min-width: 250px;
+    max-width: 300px;
     background-color: #e6e6e6;
+    flex: 1;
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
     .product-dp-ar {
         overflow: hidden;
@@ -1275,7 +1274,7 @@ form {
         padding: 20px;
         display: flex;
         flex-direction: column;
-        border-top: 1px solid rgba(0, 0, 0, 0.2);
+        border-top: 0px solid rgba(0, 0, 0, 0.2);
         background-color: rgb(255, 255, 255);
         gap: 10px;
         height: fit-content;
@@ -1292,12 +1291,15 @@ form {
             color: rgb(0, 0, 0);
         }
         .product-rating {
-            font-size: 20px;
+            font-size: 15px;
             text-align: center;
             color: rgb(255, 157, 11);
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 2px;
+            .text {
+                color: black;
+            }
         }
         .product-price {
             font-size: 15px;
@@ -1387,14 +1389,14 @@ form {
 }
 
 .product-small-card:hover {
-    outline: 1px solid rgba(0, 0, 0, 0.1);
+    outline: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .shop {
     display: grid;
     gap: 20px;
     padding: 0px;
-    background-color: rgb(248, 248, 248);
+    background-color: rgb(255, 255, 255);
     .head {
         background-image: url("./assets/images/movable-bg.gif");
         background-size: 100px;
@@ -2347,7 +2349,6 @@ fieldset {
 .advantage {
     display: grid;
     padding: 0px;
-    gap: 0px;
     background-color: rgb(255, 255, 255);
     .scrolling-text {
         background-image: url("http://3.91.203.73:1000/static/images/bg-layer.webp");
@@ -2382,6 +2383,7 @@ fieldset {
             flex-wrap: wrap;
             gap: 0px;
             width: 100%;
+            background: linear-gradient(0deg, black, rgb(25, 25, 25));
             .left {
                 flex: 0.5;
                 aspect-ratio: 1;
@@ -2410,43 +2412,145 @@ fieldset {
                 }
             }
             .right {
-                color: rgb(7, 7, 7);
-                .main-list {
-                    font-size: 20px;
-                    text-transform: capitalize;
-                    display: flex;
-                    flex-wrap: wrap;
-                    grid-template-columns: repeat(2, 1fr);
-                    font-weight: 200;
-                    list-style-type: none;
-                    flex: 1;
-                    .main-item {
-                        min-width: 300px;
-                        flex: 1;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        text-align: center;
-                        padding: 40px;
-                        background-image: url("./assets/images/movable-bg.gif");
-                        background-repeat: no-repeat;
-                        background-position: center;
-                        background-size: cover;
-                        background-color: rgb(21, 21, 21);
-                        background-blend-mode: overlay;
-                        color: white;
-                    }
-                    .main-item:hover {
-                        color: orangered;
-                        background-color: rgb(46, 46, 46);
-                    }
-                }
                 flex: 1;
                 display: flex;
-                flex-direction: column;
-                min-width: 200px;
+                .container {
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    grid-template-rows: auto auto;
+                    .content-part {
+                        outline: 1px solid rgb(31, 31, 31);
+                        padding: 40px;
+                        display: grid;
+                        gap: 10px;
+                        align-content: center;
+                        h2 {
+                            font-size: 20px;
+                            color: white;
+                        }
+                        p {
+                            font-size: 15px;
+                            color: #c4c4c4;
+                        }
+                    }
+                }
             }
         }
+    }
+}
+
+.advantages-strip-pay {
+    padding: 80px;
+    h2 {
+        font-size: 30px;
+        color: rgb(45, 45, 45);
+        text-transform: uppercase;
+        padding: 40px;
+        padding-bottom: 0px;
+        text-align: center;
+    }
+    .container {
+        padding: 40px;
+        display: grid;
+        gap: 20px;
+        grid-template-columns: auto auto;
+        justify-items: center;
+        justify-content: center;
+        .advantage {
+            width: 300px;
+            display: grid;
+            gap: 20px;
+            padding: 20px;
+            border: 1px solid rgb(231, 231, 231);
+            h3 {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 20px;
+                color: rgb(67, 67, 67);
+                .icon {
+                    color: rgb(67, 67, 67);
+                }
+            }
+            p {
+                font-size: 15px;
+                color: #a1a1a1;
+            }
+        }
+    }
+}
+
+.advantages-strip {
+    .container {
+        padding: 40px;
+        display: grid;
+        gap: 30px;
+        h2 {
+            font-size: 30px;
+            color: rgb(45, 45, 45);
+            text-transform: uppercase;
+        }
+        .advantages-list {
+            display: flex;
+            gap: 20px;
+            .advantage {
+                display: grid;
+                gap: 10px;
+                outline: 1px solid rgb(228, 228, 228);
+                padding: 20px;
+                h3 {
+                    font-size: 20px;
+                    color: rgb(83, 83, 83);
+                }
+                p {
+                    font-size: 15px;
+                    color: #909090;
+                }
+            }
+        }
+    }
+}
+
+.make-in-india {
+    padding: 40px;
+    padding-bottom: 80px;
+    display: grid;
+    gap: 10px;
+    background: radial-gradient(500px, rgb(35, 35, 35), black);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    justify-items: center;
+    align-content: center;
+    span {
+        color: orangered;
+        font-weight: 600;
+    }
+    .mii-head {
+        font-size: 50px;
+        font-weight: 700;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 10px;
+        width: fit-content;
+    }
+    .mii-content-ar {
+        display: grid;
+        grid-template-columns: 500px 500px;
+        gap: 20px;
+        .mii-content {
+            font-size: 20px;
+            text-align: left;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border: 1px solid rgb(55, 55, 55);
+        }
+    }
+    .mii-icon {
+        width: 400px;
+        filter: invert(1);
+        mix-blend-mode: lighten;
+        height: 200px;
+        object-fit: cover;
     }
 }
 
@@ -2744,21 +2848,76 @@ fieldset {
     }
 }
 
+.advantages-ar {
+    background-color: white;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    .title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .icon {
+            color: orangered;
+        }
+    }
+    .adv:nth-child(odd) {
+        padding: 40px;
+        display: grid;
+        gap: 10px;
+        background-color: rgb(18, 18, 18);
+        .title {
+            font-size: 30px;
+            font-weight: 600;
+            color: white;
+        }
+        .content {
+            font-size: 20px;
+            color: #9b9b9b;
+        }
+    }
+    .adv:nth-child(even) {
+        padding: 40px;
+        display: grid;
+        gap: 10px;
+        .title {
+            font-size: 30px;
+            font-weight: 600;
+        }
+        .content {
+            font-size: 20px;
+        }
+    }
+}
+
 .review-ar {
     background-color: rgb(255, 255, 255);
-    display: flex;
     gap: 40px;
     flex-wrap: wrap;
     padding: 40px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    .rating-card:hover {
+        background-color: rgb(47, 47, 47);
+        summary {
+            display: grid;
+            padding: 20px;
+            color: white;
+            text-wrap: wrap;
+        }
+        .rating-card-top {
+            display: none;
+        }
+        .user-info {
+            display: none;
+        }
+    }
     .rating-card {
         animation: floating 0.5s cubic-bezier(0.1, 0.1, 0.1, 1) reverse;
         background-color: white;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.128);
-        display: grid;
-        gap: 20px;
-        flex: 1;
-        min-width: fit-content;
-        max-width: 800px;
+        summary {
+            display: none;
+        }
         .rating-card-top {
             display: flex;
             gap: 20px;
@@ -2773,6 +2932,7 @@ fieldset {
                 .name {
                     font-size: 15px;
                     font-weight: 600;
+                    width: 300px;
                 }
                 .id {
                     font-size: 15px;
@@ -2913,9 +3073,9 @@ fieldset {
 
 .cart {
     height: fit-content;
-    padding: 0px 40px;
+    padding: 40px 40px;
     display: grid;
-    gap: 20px;
+    gap: 10px;
     align-content: start;
     .cart-products {
         display: flex;
@@ -2932,7 +3092,7 @@ fieldset {
         padding: 20px;
         justify-content: center;
         height: 140px;
-        width: fit-content;
+        margin: 10px;
         .cart-product-image {
             height: 100%;
             aspect-ratio: 1;
@@ -2954,8 +3114,8 @@ fieldset {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: black;
-                color: white;
+                background-color: rgb(255, 255, 255);
+                color: rgb(0, 0, 0);
                 border-radius: 5px;
                 cursor: pointer;
                 border: 0px;
@@ -2963,11 +3123,8 @@ fieldset {
                 flex: 1;
                 font-size: 20px;
             }
-            .control:nth-child(1):hover {
-                background-color: rgb(128, 0, 0);
-            }
-            .control:nth-child(2):hover {
-                background-color: green;
+            .control:hover {
+                color: rgb(185, 0, 0);
             }
         }
     }

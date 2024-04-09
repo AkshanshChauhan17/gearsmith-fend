@@ -51,6 +51,7 @@ export default function Review() {
                                 <div className="time">{d.rating_timestamp}</div>
                             </div>
                         </div>
+                        <summary>{d.comment}</summary>
                     </div>
                 })
             }

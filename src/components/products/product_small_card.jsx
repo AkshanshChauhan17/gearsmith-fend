@@ -6,6 +6,7 @@ import { isEmptyObject } from "jquery";
 
 export default function ProductSmallCard({spd, data, image, url, name, price, isHide, pg}) {
     const [rating, setRating] = useState({})
+    const [ratingSum, setRatingSum] = useState()
 
     const fetchData = async (url, setDataFunction) => {
         try {
@@ -15,6 +16,7 @@ export default function ProductSmallCard({spd, data, image, url, name, price, is
     
             const d = await getRequest(url)
             setDataFunction(d)
+            setRatingSum(d.newRatingPercentage.five_star + d.newRatingPercentage.four_star + d.newRatingPercentage.three_star + d.newRatingPercentage.two_star + d.newRatingPercentage.one_star)
             return d
         } catch (error) {
             throw error
@@ -32,7 +34,7 @@ export default function ProductSmallCard({spd, data, image, url, name, price, is
     
     useEffect(() => {
       getRatingPercentage()
-      console.log("dd")
+    //   console.log("dd")
     }, [data])
     
 
@@ -77,7 +79,7 @@ export default function ProductSmallCard({spd, data, image, url, name, price, is
                                 return <AiOutlineStar key={i} />
                             }
                         })
-                    } ({rating.averageRating===null ? "NaN" : rating.averageRating+"/5"})
+                    } {rating.averageRating===null ? <div className="text">No Reviw</div> : <div className="text">{ratingSum}</div>}
                 </div>
             </div>
             <div className="color-available">

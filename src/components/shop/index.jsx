@@ -18,6 +18,11 @@ function Shop({setProductData, product_data}) {
     const [totalPages, setTotalPages] = useState(0)
     const cardRef = useRef([])
     const [page, setPage] = useState(1)
+    const products_heading = useRef(null)
+
+    const scrollToProductHeading = ()=>{
+        products_heading.current.scrollIntoView({behavior: 'smooth'})
+    }
 
     useEffect(()=>{
         getRequestStream("product?page=" + page)
@@ -28,7 +33,6 @@ function Shop({setProductData, product_data}) {
             })
         getRequest("product/new_arrive")
             .then((data)=>setAllNewArrivals(data))
-        window.scrollTo(0, 0)
     }, [page])
 
     const feedProductData = (d) => {
@@ -72,6 +76,10 @@ function Shop({setProductData, product_data}) {
         }
     }
 
+    useEffect(()=>{
+        window.scroll(0, 0)
+    }, [])
+
     if(allNewArrivals.length===0) {
         return <div className="loading-ar">
             <div className="loader"></div>
@@ -114,7 +122,7 @@ function Shop({setProductData, product_data}) {
             </div>
             <hr />
             <div className="head">
-                    <div className="heading">
+                    <div className="heading" ref={products_heading}>
                         Products
                         <AiFillCaretRight className="icon" />
                     </div>
@@ -240,7 +248,7 @@ function Shop({setProductData, product_data}) {
                 <div className="pagination">
                             {
                                 [...Array(totalPages)].map((e, i)=>{
-                                    return <div className={page===i+1 ? "selected-page" : "unselected-page"} key={i} onClick={()=>setPage(i+1)}>{i + 1}</div>
+                                    return <div className={page===i+1 ? "selected-page" : "unselected-page"} key={i} onClick={()=>{setPage(i+1); scrollToProductHeading()}}>{i + 1}</div>
                                 })
                             }
                         </div>

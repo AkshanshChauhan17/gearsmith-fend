@@ -2,6 +2,9 @@ import { useState } from "react"
 import { getRequest } from "../../functions/get.req"
 import { AiOutlineDelete, AiOutlineDeliveredProcedure, AiOutlineLoading } from "react-icons/ai"
 import { MdProductionQuantityLimits } from "react-icons/md"
+import { BiCross } from "react-icons/bi"
+import { FaCross } from "react-icons/fa6"
+import { CgClose } from "react-icons/cg"
 
 export default function CartProduct({pi, pq, hrcDef, ps, pc}) {
     const [productData, setProductData] = useState({})
@@ -45,7 +48,7 @@ export default function CartProduct({pi, pq, hrcDef, ps, pc}) {
                 <button className="control" disabled={onClickRemove} onClick={()=>{hrcDef(pi);}}>
                     {
                         onClickRemove ? <AiOutlineLoading className="loader" /> : <span>
-                            <AiOutlineDelete />Remove
+                            <CgClose size={30} />
                         </span>
                     }
                 </button>
