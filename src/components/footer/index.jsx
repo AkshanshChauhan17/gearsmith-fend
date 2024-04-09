@@ -28,7 +28,8 @@ export default function Footer() {
                     <Link className="section-link" to="/advantages">Advantages</Link>
                     <Link className="section-link" to="/account">Account</Link>
                     <Link className="section-link" to="/forum">Forum</Link>
-                    <Link className="section-link" to="/policy">Private Policy</Link>
+                    <Link className="section-link" to="/privacy-policy">Privacy Policy</Link>
+                    <Link className="section-link" to="/terms-conditions">Terms & Conditions</Link>
                 </div>
                 <div className="section">
                     <div className="section-heading">Contact Us</div>
