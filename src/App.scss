@@ -3314,6 +3314,13 @@ fieldset {
     .tc-ar {
         zoom: 0.6;
     }
+    .profile {
+        padding: 0px;
+        .profile-left {
+            width: 100%;
+            padding: 0px 0px;
+        }
+    }
     .nav {
         top: 0px;
         z-index: 400;
