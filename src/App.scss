@@ -3131,20 +3131,195 @@ fieldset {
 }
 
 @media screen and (max-width: 768px) {
+    .review-ar {
+        zoom: 0.6;
+        display: grid;
+        padding: 20px;
+        gap: 20px;
+        grid-template-columns: auto;
+    }
+    .about {
+        zoom: 0.6;
+        .main-heading {
+            display: grid;
+            padding: 0px;
+            .left {
+                padding: 0px;
+                margin: 40px 20px;
+            }
+            .right {
+                aspect-ratio: 1;
+                margin: 0px;
+            }
+        }
+        .story {
+            padding: 0px;
+            .left {
+                padding: 10px;
+                .story-subheading {
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+        }
+        section {
+            display: grid;
+            padding: 0px;
+        }
+        .values-ar {
+            .values {
+                display: grid;
+                grid-template-columns: auto;
+            }
+        }
+        .promises-social-ar {
+            display: grid;
+        }
+    }
+    .advantage {
+        width: 100%;
+        zoom: 0.6;
+        .scrolling-text {
+            padding: 40px 10px;
+        }
+        .make-in-india {
+            display: grid;
+            padding: 10px;
+            .mii-content-ar {
+                display: grid;
+                grid-template-columns: auto;
+            }
+        }
+        .advantages-strip-pay {
+            padding: 0px;
+        }
+        .ways-ar {
+            .way {
+                display: grid;
+            }
+        }
+        .advantages-strip {
+            padding: 0px;
+            margin: 0px;
+            .container {
+                margin: 0px;
+                .advantages-list {
+                    display: grid;
+                    .advantage {
+                        width: calc(100% - 40px);
+                        margin: 0px;
+                        padding: 20px;
+                    }
+                }
+            }
+        }
+        .advantages-ar {
+            display: grid;
+            grid-template-columns: auto;
+        }
+    }
+    .product-view-ar {
+        .review-arr {
+            .review-section-inputs {
+                width: 100vw;
+                padding: 0px;
+                margin: 0px;
+                .review-top {
+                    margin: 0px;
+                    display: grid;
+                    gap: 10px;
+                    justify-content: center;
+                    .stars {
+                        width: 100%;
+                        font-size: 20px;
+                        display: flex;
+                        align-items: center;
+                        align-content: center;
+                        .filled {
+                            font-size: 40px;
+                        }
+                        .empty {
+                            font-size: 40px;
+                        }
+                    }
+                    .profile {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        .review-heading {
+            width: 100vw;
+        }
+        .url-top {
+            font-size: 10px;
+            padding: 0px 10px;
+        }
+        .product-view {
+            padding: 0px;
+            margin: 0px;
+            width: 100vw;
+            .product-view-left {
+                padding: 0px;
+                margin: 0px;
+            }
+            .product-view-right {
+                zoom: 0.8;
+                padding: 0px 20px;
+            }
+        }
+    }
     .shop {
         .heading {
             font-size: 10px;
         }
+        .middle-block {
+            width: 100vw;
+            padding: 0px;
+            margin: 0px;
+            .filters {
+                padding: 20px;
+                justify-items: center;
+                display: grid;
+                .sort-ar {
+                    display: grid;
+                }
+            }
+            .product-feature-ar {
+                position: relative;
+                .features-ar {
+                    position: absolute;
+                    z-index: 100;
+                    width: calc(100vw - 80px);
+                    display: grid;
+                }
+            }
+        }
+        .new-arrivals {
+            margin: 20px;
+            .product-card {
+                width: 100%;
+            }
+        }
     }
     body {
-        width: 100vw;
-        border: 2px solid black;
-        padding: 0px;
+        border: 0px solid black;
+        overflow-x: hidden;
         justify-items: center;
         justify-content: center;
     }
+    .privacy-policy {
+        zoom: 0.6;
+    }
+    .tc-ar {
+        zoom: 0.6;
+    }
     .nav {
-        width: 100vw;
+        top: 0px;
+        z-index: 400;
+        .controls {
+            display: flex;
+        }
         .top {
             display: grid;
             justify-items: center;
@@ -3154,7 +3329,7 @@ fieldset {
             display: grid;
             justify-items: center;
             gap: 40px;
-            padding: 40px 20px;
+            padding: 40px 0px;
             .nav-links-ar {
                 width: 100vw;
                 display: grid;
@@ -3195,69 +3370,58 @@ fieldset {
             flex: 1;
             margin: 0px 20px;
         }
+        .all-rating {
+            width: 100%;
+        }
+    }
+    .cart {
+        zoom: 0.6;
+        padding: 0px;
+        .cart-product {
+            background-color: white;
+            .controls {
+                padding: 0px;
+                width: 30px;
+                .control {
+                    padding: 0px;
+                    width: fit-content;
+                }
+            }
+        }
     }
     .home {
+        width: 100%;
         display: grid;
-        width: 100vw;
+        zoom: 0.6;
         .ad {
-            width: 100vw;
-            height: 50vh;
             .text {
-                width: calc(100vw - 40px);
-                height: 100%;
-                padding: 0px 20px;
                 .title {
                     width: 100%;
-                    font-size: 30px;
-                }
-                .subtitle {
-                    font-size: 15px;
-                    color: rgb(200, 200, 200);
-                }
-                button {
-                    font-size: 15px;
                 }
             }
         }
         .ad2 {
-            width: 100vw;
-            height: 50vh;
             .text {
-                width: calc(100vw - 40px);
-                height: 100%;
-                padding: 0px 20px;
                 .title {
                     width: 100%;
-                    font-size: 30px;
-                }
-                .subtitle {
-                    font-size: 15px;
-                    color: rgb(200, 200, 200);
-                }
-                button {
-                    font-size: 15px;
                 }
             }
         }
         .product-types {
-            width: calc(100vw - 40px);
             padding: 0px;
             display: grid;
             padding: 20px;
+            grid-template-columns: auto auto;
             justify-content: center;
         }
         .section {
-            margin: 20px 0px;
-            width: 100vw;
-            padding: 0px;
+            padding: 20px 0px;
             display: grid;
             gap: 10px;
             .big-font {
-                font-size: 30px;
                 padding: 20px;
             }
             .small-font {
-                font-size: 15px;
                 padding: 20px;
             }
         }
@@ -3265,7 +3429,6 @@ fieldset {
             display: grid;
         }
         .middle {
-            width: 100vw;
             padding: 0px;
             display: grid;
             gap: 20px;
@@ -3303,19 +3466,15 @@ fieldset {
             }
         }
         .bottom {
-            width: 100vw;
             padding: 0px;
             display: grid;
             gap: 0px;
-            .left {
-                width: 100vw;
-                height: 50vh;
-            }
+            .left {}
             .right {
-                width: calc(100vw - 40px);
-                padding: 20px;
+                padding: 0px;
                 display: grid;
-                height: fit-content;
+                aspect-ratio: auto;
+                padding: 40px;
             }
         }
     }
