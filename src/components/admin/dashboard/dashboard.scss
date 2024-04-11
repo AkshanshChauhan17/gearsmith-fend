@@ -1,0 +1,91 @@
+.dashboard {
+    background-color: rgb(230, 230, 230);
+    display: flex;
+    .side-nav-ar {
+        display: grid;
+        gap: 40px;
+    }
+    .side-nav-ar {
+        background-color: rgb(255, 255, 255);
+        padding: 20px;
+        color: rgb(50, 50, 50);
+        font-size: 15px;
+        font-weight: 200;
+        width: fit-content;
+        .side-nav-link {
+            display: grid;
+            gap: 10px;
+            .side-nav {
+                display: flex;
+                gap: 10px;
+                font-size: 20px;
+                font-weight: 600;
+            }
+            .sub-link {
+                display: grid;
+                gap: 10px;
+                padding: 10px 20px;
+            }
+        }
+    }
+    .right-ar {
+        width: 400px;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+        align-content: start;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding: 10px;
+        .order-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            display: grid;
+            gap: 10px;
+            height: fit-content;
+            .title {
+                color: #8e8e8e;
+                font-size: 10px;
+            }
+            .price {
+                font-size: 24px;
+                font-weight: 600;
+            }
+            .percentage {
+                font-size: 10px;
+                display: flex;
+                gap: 4px;
+                .up {
+                    display: flex;
+                    gap: 4px;
+                    color: rgb(0, 189, 0);
+                }
+                .down {
+                    display: flex;
+                    gap: 4px;
+                    color: rgb(189, 0, 0);
+                }
+                .text {
+                    color: #8e8e8e;
+                }
+            }
+        }
+    }
+}
+
+select {
+    width: 200px;
+    height: 30px;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23343a40' height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M4.51 8.59l5.3-5.3c0.31-0.31 0.75-0.31 1.06 0L15.49 8.59c0.31 0.31 0.31 0.75 0 1.06L9.95 17.3c-0.31 0.31-0.75 0.31-1.06 0L4.51 9.66c-0.31-0.31-0.31-0.75 0-1.06z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}

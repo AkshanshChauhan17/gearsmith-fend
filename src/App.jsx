@@ -21,6 +21,7 @@ import PaymentForm from './components/order'
 import { PrivacyPolicy } from './components/privacy_policy'
 import TermAndCondition from './components/tc'
 import Review from './components/reviews'
+import Dashboard from './components/admin/dashboard'
 
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState([])
@@ -75,6 +76,7 @@ function App({login_status, setLoginStatus}) {
     <div className="app">
         <Navigation lsDef={setLoginStatus} ls={login_status} ud={userData} um={userMeta} />
         <Routes>
+          <Route path='/admin/dashboard' element={<Dashboard />} />
           <Route path='/' element={<Home />} />
           <Route path='/shop' element={<Shop />} />
           <Route path='/product/:name' element={<Products ud={userData} />} />
