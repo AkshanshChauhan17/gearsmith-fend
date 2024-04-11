@@ -69,6 +69,8 @@ export default function Admin() {
             setColorList(newColor)
         }
 
+        const [imageSelectionLoading, setImageSelectionLoading] = useState(false)
+
         useEffect(()=>{
             const newSizeList = [selectSize1, selectSize2, selectSize3, selectSize4]
             setSizeList(newSizeList)
@@ -95,53 +97,72 @@ export default function Admin() {
             setMedia(updatedMedia)
         }
 
-        const handleImageChange = (e) => {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-    
-            reader.onload = () => {
-                const img = new Image();
-                img.src = reader.result;
-    
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-    
-                    // Resize for small image
-                    const smallWidth = 100; // Set your desired width
-                    const smallHeight = (img.height / img.width) * smallWidth;
-                    canvas.width = smallWidth;
-                    canvas.height = smallHeight;
-                    ctx.drawImage(img, 0, 0, smallWidth, smallHeight);
-                    const smallBase64 = canvas.toDataURL('image/jpeg');
-    
-                    // Resize for medium image
-                    const mediumWidth = 300; // Set your desired width
-                    const mediumHeight = (img.height / img.width) * mediumWidth;
-                    canvas.width = mediumWidth;
-                    canvas.height = mediumHeight;
-                    ctx.drawImage(img, 0, 0, mediumWidth, mediumHeight);
-                    const mediumBase64 = canvas.toDataURL('image/jpeg');
-    
-                    // Resize for large image
-                    const largeWidth = 600; // Set your desired width
-                    const largeHeight = (img.height / img.width) * largeWidth;
-                    canvas.width = largeWidth;
-                    canvas.height = largeHeight;
-                    ctx.drawImage(img, 0, 0, largeWidth, largeHeight);
-                    const largeBase64 = canvas.toDataURL('image/jpeg');
-    
-                    const newMedia = [...media, {
-                        small: smallBase64,
-                        medium: mediumBase64,
-                        large: largeBase64
-                    }]
-                    setMedia(newMedia);
+        const addImage = async (file) => {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+        
+                reader.onload = () => {
+                    const img = new Image();
+                    img.src = reader.result;
+        
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+        
+                        // Resize for small image
+                        const smallWidth = 100; // Set your desired width
+                        const smallHeight = (img.height / img.width) * smallWidth;
+                        canvas.width = smallWidth;
+                        canvas.height = smallHeight;
+                        ctx.drawImage(img, 0, 0, smallWidth, smallHeight);
+                        const smallBase64 = canvas.toDataURL('image/jpeg');
+        
+                        // Resize for medium image
+                        const mediumWidth = 300; // Set your desired width
+                        const mediumHeight = (img.height / img.width) * mediumWidth;
+                        canvas.width = mediumWidth;
+                        canvas.height = mediumHeight;
+                        ctx.drawImage(img, 0, 0, mediumWidth, mediumHeight);
+                        const mediumBase64 = canvas.toDataURL('image/jpeg');
+        
+                        // Resize for large image
+                        const largeWidth = 600; // Set your desired width
+                        const largeHeight = (img.height / img.width) * largeWidth;
+                        canvas.width = largeWidth;
+                        canvas.height = largeHeight;
+                        ctx.drawImage(img, 0, 0, largeWidth, largeHeight);
+                        const largeBase64 = canvas.toDataURL('image/jpeg');
+        
+                        resolve({
+                            small: smallBase64,
+                            medium: mediumBase64,
+                            large: largeBase64
+                        });
+                    };
                 };
-            };
-    
-            reader.readAsDataURL(file);
+        
+                reader.onerror = (error) => {
+                    reject(error);
+                };
+        
+                reader.readAsDataURL(file);
+            });
         };
+        
+        const handleImageChange = async (e) => {
+            setImageSelectionLoading(true)
+            const files = e.target.files;
+            const newMedia = [];
+        
+            for (const file of [...files]) {
+                const image = await addImage(file);
+                newMedia.push(image);
+            }
+        
+            setMedia([...newMedia]);
+            setImageSelectionLoading(false)
+        };
+        
 
         if(loading) {
             return <div className="loading-ar">
@@ -252,6 +273,9 @@ export default function Admin() {
                         <div className="image-upload-ar">
                             <div className="images-selected">
                                 {
+                                    imageSelectionLoading ? <div className="loading-ar">
+                                        <div className="loader"></div>
+                                    </div> :
                                     media.map((img, i)=>{
                                         return <div className="image">
                                             <img src={img.small} className="image" key={i}/>
@@ -261,7 +285,7 @@ export default function Admin() {
                                 }
                             </div>
                             <div className="image-uploader">
-                                <input type="file" accept="image/*" onChange={(e)=>{handleImageChange(e); e.target.value=null}} />
+                                <input type="file" accept="image/*" multiple onChange={(e)=>{handleImageChange(e); e.target.value=null}} />
                                 <input type="button" className="button" value="Delete All Images" onClick={()=>setMedia([])} />
                             </div>
                         </div>

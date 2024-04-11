@@ -3131,6 +3131,34 @@ fieldset {
 }
 
 @media screen and (max-width: 768px) {
+    .admin {
+        zoom: 0.6;
+        padding: 40px 0px;
+    }
+    .login-section {
+        * {
+            min-width: 10px;
+        }
+        zoom: 0.6;
+        padding: 10px;
+        form {
+            padding: 40px;
+        }
+    }
+    .signin-section {
+        border: 0px;
+        outline: 0px;
+        * {
+            min-width: 10px;
+        }
+        zoom: 0.6;
+        padding: 10px;
+        form {
+            border: 0px;
+            outline: 0px;
+            padding: 0px;
+        }
+    }
     .review-ar {
         zoom: 0.6;
         display: grid;
@@ -3277,9 +3305,13 @@ fieldset {
             width: 100vw;
             padding: 0px;
             margin: 0px;
+            .products {
+                justify-content: center;
+                gap: 80px;
+            }
             .filters {
                 padding: 20px;
-                justify-items: center;
+                justify-content: left;
                 display: grid;
                 .sort-ar {
                     display: grid;
@@ -3307,6 +3339,8 @@ fieldset {
         overflow-x: hidden;
         justify-items: center;
         justify-content: center;
+        margin: 0px;
+        background-color: black;
     }
     .privacy-policy {
         zoom: 0.6;

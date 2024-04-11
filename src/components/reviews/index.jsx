@@ -1,17 +1,33 @@
 import { useEffect, useState } from "react"
 import { getRequest } from "../../functions/get.req"
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"
+import Graph from "../graph/line"
 
 export default function Review() {
     const [ratingList, setRatingList] = useState([])
     const [ratingIndex, setRatingIndex] = useState(0)
+    const [graphData, setGraphData] = useState({
+        lb: [],
+        dt: []
+    })
 
     useEffect(()=>{
         getRequest("product/rate/all/" + ratingIndex)
             .then((list)=>{
                 const newRatingList = [...ratingList, ...list]
                 setRatingList(newRatingList)
-                console.log(list)
+                var all_rating = []
+                newRatingList.map((r)=>{
+                    all_rating.push(r.rating)
+                })
+                var all_productName = []
+                newRatingList.map((n)=>{
+                    all_productName.push(n.id)
+                })
+                setGraphData({
+                    dt: all_rating,
+                    lb: all_productName
+                })
             }).catch((err)=>{
                 console.log(err)
             })
@@ -25,6 +41,7 @@ export default function Review() {
 
     return (
         <div className="review-ar">
+            <Graph dt={graphData.dt} lb={graphData.lb} />
             {
                 ratingList.map((d, i)=>{
                     return <div className="rating-card" key={i}>
