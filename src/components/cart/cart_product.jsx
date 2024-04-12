@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { getRequest } from "../../functions/get.req"
 import { AiOutlineDelete, AiOutlineDeliveredProcedure, AiOutlineLoading } from "react-icons/ai"
 import { MdProductionQuantityLimits } from "react-icons/md"
@@ -6,25 +6,26 @@ import { BiCross } from "react-icons/bi"
 import { FaCross } from "react-icons/fa6"
 import { CgClose } from "react-icons/cg"
 import { Link } from "react-router-dom"
+import { isEmptyObject } from "jquery"
 
-export default function CartProduct({pi, pq, hrcDef, ps, pc}) {
+export default function CartProduct({pi, pq, hrcDef, ps, pc, rc}) {
     const [productData, setProductData] = useState({})
     const [onClickRemove, setOnClickRemove] = useState(false)
     const [quantity, setQuantity] = useState(pq)
 
-    useState(()=>{
+    useEffect(()=>{
         setOnClickRemove(true)
-        
-        getRequest("product/" + pi)
+        console.log(pi)
+        getRequest("product/cart/" + pi)
             .then((pd)=>{
                 const newProductData = pd;
-                setProductData(newProductData)
+                setProductData(newProductData[0])
                 setOnClickRemove(false)
             })
             .catch(err=>console.log(err))
-    }, [hrcDef])
+    }, [rc, hrcDef, pi])
 
-    if(productData.length===0) {
+    if(isEmptyObject(productData)) {
         return <div className="loading-ar">
             <div className="loader"></div>
         </div>
@@ -32,17 +33,16 @@ export default function CartProduct({pi, pq, hrcDef, ps, pc}) {
 
     return (
         <div className="cart-product">
-            <img src={productData.media && JSON.parse(productData.media)[0].medium} className="cart-product-image" />
+            <img src={productData.media} className="cart-product-image" />
             <div className="info-ar">
                 <Link to={"/product/" + productData.product_id} className="upper">
-                    <AiOutlineDeliveredProcedure size={20} /> {productData.product_id}
+                    <div className="bottom">
+                        <h3>{productData.name}</h3>
+                        <h2>₹{productData.price * quantity}</h2>
+                    </div>
                 </Link>
                 <div className="bottom">
                     <b>Quantity</b> <input disabled type="number" value={quantity} onChange={(e)=>setQuantity(e.target.value)} min={1} max={100}/>
-                </div>
-                <div className="bottom">
-                    <h3>{productData.name}</h3>
-                    <h2>₹{productData.price * quantity}</h2>
                 </div>
             </div>
             <div className="controls">

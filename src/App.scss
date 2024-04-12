@@ -2440,10 +2440,11 @@ fieldset {
 }
 
 .advantages-strip-pay {
+    background: linear-gradient(45deg, rgb(0, 53, 152), rgb(0, 89, 255));
     padding: 80px;
     h2 {
         font-size: 30px;
-        color: rgb(45, 45, 45);
+        color: rgb(255, 255, 255);
         text-transform: uppercase;
         padding: 40px;
         padding-bottom: 0px;
@@ -2453,28 +2454,29 @@ fieldset {
         padding: 40px;
         display: grid;
         gap: 20px;
-        grid-template-columns: auto auto;
+        grid-template-columns: 30vw 30vw;
+        grid-template-rows: auto auto;
         justify-items: center;
         justify-content: center;
         .advantage {
-            width: 300px;
+            background: rgba(0, 89, 255, 0.205);
             display: grid;
             gap: 20px;
             padding: 20px;
-            border: 1px solid rgb(231, 231, 231);
+            border: 1px solid rgba(231, 231, 231, 0.2);
             h3 {
                 display: flex;
                 align-items: center;
                 gap: 10px;
                 font-size: 20px;
-                color: rgb(67, 67, 67);
+                color: rgb(255, 255, 255);
                 .icon {
-                    color: rgb(67, 67, 67);
+                    color: rgb(255, 255, 255);
                 }
             }
             p {
                 font-size: 15px;
-                color: #a1a1a1;
+                color: hsl(0, 0%, 85%);
             }
         }
     }
@@ -2516,7 +2518,7 @@ fieldset {
     padding-bottom: 80px;
     display: grid;
     gap: 10px;
-    background: radial-gradient(500px, rgb(35, 35, 35), black);
+    background: radial-gradient(1000px, rgb(54, 20, 0), rgb(56, 56, 56), rgb(0, 54, 0));
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
@@ -3056,6 +3058,79 @@ fieldset {
 
 .review {}
 
+.mid-cart {
+    display: grid;
+    grid-template-columns: auto auto;
+    .zip-ar {
+        position: relative;
+        .zip-selection-ar {
+            background-color: white;
+            position: absolute;
+            width: 100%;
+            height: fit-content;
+            display: grid;
+            gap: 5px;
+            z-index: 600;
+            height: 200px;
+            overflow-y: scroll;
+            .post-office {
+                font-size: 15px;
+                padding: 10px;
+                height: fit-content;
+                margin: 0px;
+            }
+            .post-office:hover {
+                color: white;
+                background-color: black;
+            }
+        }
+    }
+    .cart-checkout-ar {
+        .checkout {
+            margin: 0 auto;
+            h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            form {
+                display: grid;
+                div {
+                    margin-bottom: 15px;
+                    display: flex;
+                    flex-direction: column;
+                    label {
+                        margin-bottom: 5px;
+                        font-weight: bold;
+                    }
+                    input[type='text'] {
+                        padding: 8px;
+                        font-size: 15px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        transition: border-color 0.3s ease;
+                        &:focus {
+                            border-color: #007bff;
+                            outline: none;
+                        }
+                    }
+                }
+                button[type='submit'] {
+                    padding: 10px 20px;
+                    background-color: #007bff;
+                    color: #fff;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                    &:hover {
+                        background-color: #0056b3;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .cart {
     height: fit-content;
     padding: 40px 40px;
@@ -3066,17 +3141,18 @@ fieldset {
         display: flex;
         gap: 10px;
         flex-wrap: wrap;
+        flex: 1;
     }
     .cart-product {
         zoom: 1;
         background-color: white;
         display: flex;
+        flex-wrap: wrap;
         gap: 20px;
         align-items: center;
         border: 1px solid rgba(0, 0, 0, 0.2);
         padding: 20px;
         justify-content: center;
-        height: 140px;
         margin: 10px;
         .cart-product-image {
             height: 100%;
@@ -3084,16 +3160,16 @@ fieldset {
         }
         .info-ar {
             gap: 10px;
-            width: 100%;
+            flex: 1;
             display: grid;
+            gap: 20px;
             align-content: space-between;
         }
         .controls {
             display: flex;
             gap: 20px;
             align-content: space-between;
-            height: 100%;
-            aspect-ratio: 1;
+            height: fit-content;
             .control {
                 padding: 15px 10px;
                 display: flex;

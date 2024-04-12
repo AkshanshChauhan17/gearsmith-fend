@@ -2452,7 +2452,7 @@
         width: calc(100vw - 40px);
         h2 {
             font-size: 20px;
-            color: rgb(45, 45, 45);
+            color: rgb(255, 255, 255);
             text-transform: uppercase;
             padding: 0px;
             padding-bottom: 0px;
@@ -2466,25 +2466,26 @@
             grid-template-columns: auto;
             justify-items: center;
             justify-content: center;
+            padding: 20px;
             .advantage {
                 width: 100%;
                 display: grid;
                 gap: 20px;
                 padding: 20px;
-                border: 1px solid rgb(231, 231, 231);
+                border: 1px solid rgba(231, 231, 231, 0.2);
                 h3 {
                     display: flex;
                     align-items: center;
                     gap: 10px;
                     font-size: 20px;
-                    color: rgb(67, 67, 67);
+                    color: rgb(255, 255, 255);
                     .icon {
-                        color: rgb(67, 67, 67);
+                        color: rgb(255, 255, 255);
                     }
                 }
                 p {
                     font-size: 15px;
-                    color: #a1a1a1;
+                    color: #d2d2d2;
                 }
             }
         }
