@@ -10,11 +10,16 @@ export default function Navigation({ls, ud, um}) {
 
     const [navigation, setNavigation] = useState([])
     const [clicked, setClicked] = useState(0)
-    const [isOpenNav, setIsOpenNav] = useState(false)
+    const [isOpenNav, setIsOpenNav] = useState(true)
     const [winSize, setWinSize] = useState(0)
 
     window.onresize = ()=>{
         setWinSize(window.innerWidth)
+        if(window.innerWidth > 750) {
+            setIsOpenNav(true)
+        } else {
+            setIsOpenNav(false)
+        }
     }
 
     useEffect(()=>{

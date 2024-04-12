@@ -3,6 +3,7 @@ import { AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineRight } from "react-i
 import { MdAccessTime, MdOutlineLocalHospital, MdOutlineSecurity } from "react-icons/md";
 import url_main from "../../functions/url";
 import { Link } from "react-router-dom";
+import { FaGem, FaGlobe, FaLeaf, FaLightbulb, FaUser, FaUsers } from "react-icons/fa";
 
 export default function Home() {
     const [sliderIndex, setSliderIndex] = useState(0)
@@ -20,6 +21,39 @@ export default function Home() {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    const aboutData = {
+        "About Gearsmith Section": {
+          "title": "About Gearsmith",
+          "points": [
+            {
+              "icon": <FaUsers className="icon" />,
+              "text": "Community: At Gearsmith, we're more than just a clothing brand – we're a community of outdoor enthusiasts, athletes, and adventurers."
+            },
+            {
+              "icon": <FaGem className="icon" />,
+              "text": "Quality: We believe in delivering exceptional quality in every product we offer, ensuring that our gear stands up to the demands of your active lifestyle."
+            },
+            {
+              "icon": <FaLightbulb className="icon" />,
+              "text": "Innovation: We're constantly pushing the boundaries of technical apparel, incorporating the latest advancements in materials and design to enhance performance and comfort."
+            },
+            {
+              "icon": <FaLeaf className="icon" />,
+              "text": "Sustainability: We're committed to reducing our environmental footprint and promoting sustainable practices throughout our supply chain, from sourcing materials to manufacturing and distribution."
+            },
+            {
+              "icon": <FaUser className="icon" />,
+              "text": "Meet the Team: Get to know the passionate individuals behind the Gearsmith brand, from our designers and product developers to our customer support team. We're here to help you find the perfect gear for your adventures."
+            },
+            {
+              "icon": <FaGlobe className="icon" />,
+              "text": "Join the Adventure: Become a part of the Gearsmith community and connect with like-minded adventurers from around the world. Share your stories, photos, and experiences with us and fellow gear enthusiasts."
+            }
+          ]
+        }
+      }
+      
     
     const product_type_links = ["New Arrivals", "Bag & Packs", "Footwear", "Accessories"]
     return (
@@ -46,6 +80,23 @@ export default function Home() {
                         </div>
                     })
                 }
+            </div>
+            <div className="home-about">
+                <div className="title">
+                    {
+                        aboutData["About Gearsmith Section"].title
+                    }
+                </div>
+                <div className="points">
+                    {
+                        aboutData["About Gearsmith Section"].points.map((points, i)=>{
+                            return <div className="point">
+                                {points.icon}
+                                <div className="text">{points.text}</div>
+                            </div>
+                        })
+                    }
+                </div>
             </div>
             <div className="ad2">
                 <div className="text">

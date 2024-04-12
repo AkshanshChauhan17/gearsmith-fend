@@ -1,16 +1,6 @@
 @font-face {
     font-family: 'font_r';
-    src: url("./assets/Raleway-Regular.ttf");
-}
-
-@font-face {
-    font-family: 'font_b';
-    src: url("./assets/Raleway-Bold.ttf");
-}
-
-@font-face {
-    font-family: 'font_i';
-    src: url("./assets/Raleway-Italic.ttf");
+    src: url("./assets/Oswald-VariableFont_wght.ttf");
 }
 
 * {
@@ -2230,16 +2220,17 @@ fieldset {
         background-color: white;
         display: grid;
         align-items: center;
-        gap: 80px;
+        gap: 20px;
         background-color: black;
         color: white;
         justify-items: center;
-        padding: 100px 40px;
+        padding: 80px 40px;
         background-image: url("http://3.91.203.73:1000/static/images/bg-layer.webp");
         .big-font {
-            font-size: 50px;
+            font-size: 30px;
             font-weight: 700;
             text-align: center;
+            text-transform: uppercase;
         }
         .middle-flex {
             display: flex;
@@ -2251,8 +2242,8 @@ fieldset {
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
-                background-color: rgb(25, 90, 44);
-                padding: 40px 80px;
+                background-color: rgba(255, 255, 255, 0);
+                padding: 40px;
                 flex: 1;
                 align-items: center;
                 justify-content: center;
@@ -3131,5 +3122,38 @@ fieldset {
     .review-data {
         width: calc(100% - 20px);
         margin: 20px 10px;
+    }
+}
+
+.home-about {
+    padding: 80px;
+    background: radial-gradient(1000px, rgb(10, 10, 10), rgb(32, 32, 32));
+    color: white;
+    display: grid;
+    gap: 80px;
+    .title {
+        font-size: 40px;
+        text-align: center;
+        color: wheat;
+    }
+    .points {
+        display: grid;
+        grid-template-columns: auto auto;
+        font-size: 20px;
+        gap: 20px;
+        .point {
+            display: grid;
+            padding: 40px;
+            gap: 20px;
+            outline: 1px solid wheat;
+            .icon {
+                font-size: 40px;
+                color: orangered;
+            }
+            .text {
+                font-size: 20px;
+                color: wheat;
+            }
+        }
     }
 }
