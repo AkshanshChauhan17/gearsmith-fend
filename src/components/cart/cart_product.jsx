@@ -5,6 +5,7 @@ import { MdProductionQuantityLimits } from "react-icons/md"
 import { BiCross } from "react-icons/bi"
 import { FaCross } from "react-icons/fa6"
 import { CgClose } from "react-icons/cg"
+import { Link } from "react-router-dom"
 
 export default function CartProduct({pi, pq, hrcDef, ps, pc}) {
     const [productData, setProductData] = useState({})
@@ -33,9 +34,9 @@ export default function CartProduct({pi, pq, hrcDef, ps, pc}) {
         <div className="cart-product">
             <img src={productData.media && JSON.parse(productData.media)[0].medium} className="cart-product-image" />
             <div className="info-ar">
-                <div className="upper">
+                <Link to={"/product/" + productData.product_id} className="upper">
                     <AiOutlineDeliveredProcedure size={20} /> {productData.product_id}
-                </div>
+                </Link>
                 <div className="bottom">
                     <b>Quantity</b> <input disabled type="number" value={quantity} onChange={(e)=>setQuantity(e.target.value)} min={1} max={100}/>
                 </div>

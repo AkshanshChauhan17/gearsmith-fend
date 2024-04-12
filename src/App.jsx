@@ -1,5 +1,6 @@
 import './App.scss'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import './App.media.scss'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Navigation from './components/navigation'
 import Shop from './components/shop'
 import Products from './components/shop/products'
@@ -26,8 +27,8 @@ import Dashboard from './components/admin/dashboard'
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState([])
   const [userMeta, setUserMeta] = useState({})
-  const navigate = useNavigate()
   const [loading, setLoading] = useState(true)
+  
 
   const handleVerifyToken = async ()=> {
     await verifyToken()
@@ -44,6 +45,15 @@ function App({login_status, setLoginStatus}) {
       })
       setLoading(false)
   }
+
+  const location = useLocation();
+  
+  useEffect(()=>{
+    window.scrollTo({
+      top: 0,
+      behavior: "instant"
+    })
+  }, [location])
 
   const handleLogout = ()=>{
     localStorage.clear()

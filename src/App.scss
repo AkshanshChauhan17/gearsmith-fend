@@ -136,6 +136,8 @@ hr {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     text-transform: uppercase;
     z-index: 100;
+    position: sticky;
+    top: 0px;
     .top {
         display: flex;
         gap: 20px;
@@ -854,6 +856,9 @@ hr {
             border: 0px;
             flex: 1;
         }
+        .controls {
+            display: flex;
+        }
         .comment-submit {
             padding: 20px;
             border: 0px;
@@ -866,7 +871,7 @@ hr {
             background-color: rgb(255, 255, 255);
             display: flex;
             gap: 10px;
-            justify-content: right;
+            justify-content: space-evenly;
             align-items: center;
         }
         .comment-submit:hover {
@@ -2896,21 +2901,6 @@ fieldset {
     padding: 40px;
     display: grid;
     grid-template-columns: auto auto auto;
-    .rating-card:hover {
-        background-color: rgb(47, 47, 47);
-        summary {
-            display: grid;
-            padding: 20px;
-            color: white;
-            text-wrap: wrap;
-        }
-        .rating-card-top {
-            display: none;
-        }
-        .user-info {
-            display: none;
-        }
-    }
     .rating-card {
         animation: floating 0.5s cubic-bezier(0.1, 0.1, 0.1, 1) reverse;
         background-color: white;
@@ -3130,393 +3120,16 @@ fieldset {
     }
 }
 
-@media screen and (max-width: 768px) {
-    .admin {
-        zoom: 0.6;
-        padding: 40px 0px;
-    }
-    .login-section {
-        * {
-            min-width: 10px;
-        }
-        zoom: 0.6;
-        padding: 10px;
-        form {
-            padding: 40px;
-        }
-    }
-    .signin-section {
-        border: 0px;
-        outline: 0px;
-        * {
-            min-width: 10px;
-        }
-        zoom: 0.6;
-        padding: 10px;
-        form {
-            border: 0px;
-            outline: 0px;
-            padding: 0px;
-        }
-    }
-    .review-ar {
-        zoom: 0.6;
-        display: grid;
-        padding: 20px;
-        gap: 20px;
-        grid-template-columns: auto;
-    }
-    .about {
-        zoom: 0.6;
-        .main-heading {
-            display: grid;
-            padding: 0px;
-            .left {
-                padding: 0px;
-                margin: 40px 20px;
-            }
-            .right {
-                aspect-ratio: 1;
-                margin: 0px;
-            }
-        }
-        .story {
-            padding: 0px;
-            .left {
-                padding: 10px;
-                .story-subheading {
-                    width: 100%;
-                    text-align: center;
-                }
-            }
-        }
-        section {
-            display: grid;
-            padding: 0px;
-        }
-        .values-ar {
-            .values {
-                display: grid;
-                grid-template-columns: auto;
-            }
-        }
-        .promises-social-ar {
-            display: grid;
-        }
-    }
-    .advantage {
-        width: 100%;
-        zoom: 0.6;
-        .scrolling-text {
-            padding: 40px 10px;
-        }
-        .make-in-india {
-            display: grid;
-            padding: 10px;
-            .mii-content-ar {
-                display: grid;
-                grid-template-columns: auto;
-            }
-        }
-        .advantages-strip-pay {
-            padding: 0px;
-        }
-        .ways-ar {
-            .way {
-                display: grid;
-            }
-        }
-        .advantages-strip {
-            padding: 0px;
-            margin: 0px;
-            .container {
-                margin: 0px;
-                .advantages-list {
-                    display: grid;
-                    .advantage {
-                        width: calc(100% - 40px);
-                        margin: 0px;
-                        padding: 20px;
-                    }
-                }
-            }
-        }
-        .advantages-ar {
-            display: grid;
-            grid-template-columns: auto;
-        }
-    }
-    .product-view-ar {
-        .review-arr {
-            .review-section-inputs {
-                width: 100vw;
-                padding: 0px;
-                margin: 0px;
-                .review-top {
-                    margin: 0px;
-                    display: grid;
-                    gap: 10px;
-                    justify-content: center;
-                    .stars {
-                        width: 100%;
-                        font-size: 20px;
-                        display: flex;
-                        align-items: center;
-                        align-content: center;
-                        .filled {
-                            font-size: 40px;
-                        }
-                        .empty {
-                            font-size: 40px;
-                        }
-                    }
-                    .profile {
-                        width: 100%;
-                    }
-                }
-            }
-        }
-        .review-heading {
-            width: 100vw;
-        }
-        .url-top {
-            font-size: 10px;
-            padding: 0px 10px;
-        }
-        .product-view {
-            padding: 0px;
-            margin: 0px;
-            width: 100vw;
-            .product-view-left {
-                padding: 0px;
-                margin: 0px;
-            }
-            .product-view-right {
-                zoom: 0.8;
-                padding: 0px 20px;
-            }
-        }
-    }
-    .shop {
-        .heading {
-            font-size: 10px;
-        }
-        .middle-block {
-            width: 100vw;
-            padding: 0px;
-            margin: 0px;
-            .products {
-                justify-content: center;
-                gap: 80px;
-            }
-            .filters {
-                padding: 20px;
-                justify-content: left;
-                display: grid;
-                .sort-ar {
-                    display: grid;
-                }
-            }
-            .product-feature-ar {
-                position: relative;
-                .features-ar {
-                    position: absolute;
-                    z-index: 100;
-                    width: calc(100vw - 80px);
-                    display: grid;
-                }
-            }
-        }
-        .new-arrivals {
-            margin: 20px;
-            .product-card {
-                width: 100%;
-            }
-        }
-    }
-    body {
-        border: 0px solid black;
-        overflow-x: hidden;
-        justify-items: center;
-        justify-content: center;
-        margin: 0px;
-        background-color: black;
-    }
-    .privacy-policy {
-        zoom: 0.6;
-    }
-    .tc-ar {
-        zoom: 0.6;
-    }
-    .profile {
-        padding: 0px;
-        .profile-left {
-            width: 100%;
-            padding: 0px 0px;
-        }
-    }
-    .nav {
-        top: 0px;
-        z-index: 400;
-        .controls {
-            display: flex;
-        }
-        .top {
-            display: grid;
-            justify-items: center;
-            padding: 40px 0px;
-        }
-        .bottom {
-            display: grid;
-            justify-items: center;
-            gap: 40px;
-            padding: 40px 0px;
-            .nav-links-ar {
-                width: 100vw;
-                display: grid;
-                justify-items: center;
-                .nav-link {
-                    display: grid;
-                    justify-items: center;
-                }
-                .search-ar {
-                    width: 90vw;
-                }
-            }
-        }
-    }
-    .footer-ar {
-        width: 100vw;
-        padding: 0px;
-        .footer-bottom {
-            padding: 0px;
-            width: 100vw;
-            img {
-                height: 10px;
-            }
-        }
-    }
-    .product-view-ar {
-        padding: 40px 0px;
-        .product-view {
-            zoom: 1;
-        }
-        .upr-rating {
-            padding: 0px 20px;
-        }
-        .review-section-inputs {
-            padding: 0px 20px;
-        }
-        .oth-review-card {
-            flex: 1;
-            margin: 0px 20px;
-        }
-        .all-rating {
-            width: 100%;
-        }
-    }
-    .cart {
-        zoom: 0.6;
-        padding: 0px;
-        .cart-product {
-            background-color: white;
-            .controls {
-                padding: 0px;
-                width: 30px;
-                .control {
-                    padding: 0px;
-                    width: fit-content;
-                }
-            }
-        }
-    }
-    .home {
-        width: 100%;
-        display: grid;
-        zoom: 0.6;
-        .ad {
-            .text {
-                .title {
-                    width: 100%;
-                }
-            }
-        }
-        .ad2 {
-            .text {
-                .title {
-                    width: 100%;
-                }
-            }
-        }
-        .product-types {
-            padding: 0px;
-            display: grid;
-            padding: 20px;
-            grid-template-columns: auto auto;
-            justify-content: center;
-        }
-        .section {
-            padding: 20px 0px;
-            display: grid;
-            gap: 10px;
-            .big-font {
-                padding: 20px;
-            }
-            .small-font {
-                padding: 20px;
-            }
-        }
-        .product-types {
-            display: grid;
-        }
-        .middle {
-            padding: 0px;
-            display: grid;
-            gap: 20px;
-            .big-font {
-                font-size: 30px;
-                padding: 20px;
-            }
-            .middle-flex {
-                padding: 0px 20px;
-                .middle-flex-box {
-                    background-color: rgba(23, 23, 23, 0.297);
-                    .icon {
-                        font-size: 40px;
-                        color: orangered;
-                    }
-                    .text {
-                        font-size: 15px;
-                    }
-                }
-            }
-            .middle-button {
-                background-color: rgb(0, 0, 0);
-                color: white;
-                border: 0px;
-                width: calc(100vw - 40px);
-                margin: 0px 20px;
-                margin-bottom: 20px;
-                font-weight: 600;
-                .text {
-                    font-size: 15px;
-                }
-                .icon {
-                    font-size: 15px;
-                }
-            }
-        }
-        .bottom {
-            padding: 0px;
-            display: grid;
-            gap: 0px;
-            .left {}
-            .right {
-                padding: 0px;
-                display: grid;
-                aspect-ratio: auto;
-                padding: 40px;
-            }
-        }
+.comment {
+    background-color: rgb(255, 255, 255);
+    color: #747474;
+    padding: 20px;
+    height: 100%;
+}
+
+.graph {
+    .review-data {
+        width: calc(100% - 20px);
+        margin: 20px 10px;
     }
 }

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { getRequest } from "../../functions/get.req"
 import { addProductToCart } from "../cart/post.reqs"
-import { AiFillLock, AiOutlineLoading, AiOutlineRollback, AiOutlineSend, AiOutlineSwapRight } from "react-icons/ai"
+import { AiFillLock, AiOutlineClose, AiOutlineLoading, AiOutlineRollback, AiOutlineSend, AiOutlineSwapRight } from "react-icons/ai"
 import { Link } from "react-router-dom"
 import Rating from "./rating"
 import user from "../../assets/images/unnamed.webp"
@@ -75,6 +75,7 @@ function Products({ud}) {
             })
             await getRating()
             getRatingPercentage()
+            setRatingLoad(false)
     }
 
     const handleAddToCart = ()=>{
@@ -230,7 +231,7 @@ function Products({ud}) {
                             <input className="submit-quantity" type="number" min={1} max={100} required value={quantity} onChange={(e)=>setQuantity(e.target.value)}/>
                             <button className="button-atoc" disabled={addToCartStatus.status} onClick={()=>handleAddToCart()}>
                                 {
-                                    onClickAddToCart ? <AiOutlineLoading className="loader" /> : addToCartStatus.message
+                                    onClickAddToCart ? <AiOutlineLoading className="loader" size={17} /> : addToCartStatus.message
                                 }
                             </button>
                         </div> : <div className="submit-ar" style={{opacity: 0.5}}>
@@ -247,7 +248,7 @@ function Products({ud}) {
             <div className="review-arr">
                 <div className="review-heading">
                 <div className="heading-text">Make Reviews</div> <AiOutlineSwapRight className="icon" />
-            </div>
+            </div> 
             <div className="review-section-inputs">
                 <div className="review-top">
                 <div className="stars">
@@ -273,11 +274,12 @@ function Products({ud}) {
                 <div hidden={rating===0}>
                     <textarea cols="30" rows="10" className="comment" value={comment} placeholder="comment here" onChange={(e)=>setComment(e.target.value)}></textarea>
                     <div className="controls">
-                        <button className="comment-submit" onClick={()=>handleRating()}>Post<AiOutlineSend /></button>
+                        <button className="comment-submit" onClick={()=>setRating(0)}>Cancel<AiOutlineClose /></button>
+                        {ratingLoad ? <button className="comment-submit"><AiOutlineLoading className="loader" /></button> : <button className="comment-submit" onClick={()=>handleRating()}>Post<AiOutlineSend /></button>}
                     </div>
                 </div>
             </div>
-                </div>
+            </div>
             <div className="review-heading">
                 <div className="heading-text">View Reviews</div> ({ratingData.length}) <AiOutlineSwapRight className="icon" />
             </div>

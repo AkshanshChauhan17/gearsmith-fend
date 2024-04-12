@@ -5,13 +5,15 @@ import { useEffect, useRef, useState } from "react"
 import { connect } from "react-redux"
 import { setProductData } from "../../redux/store/actions"
 import { getRequest, getRequestStream } from "../../functions/get.req"
+import { MdClose, MdMenuOpen } from "react-icons/md"
+import { BsMenuDown, BsMenuUp } from "react-icons/bs"
 
 
 function Shop({setProductData, product_data}) {
     const [pagingIndex, setPagingIndex] = useState(0)
     const [allProduct, setAllProduct] = useState([])
     const [allNewArrivals, setAllNewArrivals] = useState([])
-    const [featureVisible, setFeatureVisible] = useState(true)
+    const [featureVisible, setFeatureVisible] = useState(false)
     const [allProductDefault, setAllProductDefault] = useState([])
     const [filter, setFilter] = useState("--filter--")
     const [zoomProduct, setZoomProduct] = useState(0)
@@ -136,15 +138,15 @@ function Shop({setProductData, product_data}) {
                     {
                         featureVisible ?
                         <div className="features-btn" onClick={()=>setFeatureVisible(false)}>
-                            <b>FEATURE CLOSE</b><AiOutlineUp />
+                            <BsMenuDown size={20} />
                         </div> : <div className="features-btn" onClick={()=>setFeatureVisible(true)}>
-                            <b>FEATURE OPEN</b><AiOutlineDown />
+                            <BsMenuUp size={20} />
                         </div>
                     }
                     <div className="items-counter">
-                        <b>TOTAL PRODUCTS:</b> {
+                        <b>{
                             allProduct.length
-                        } <span></span> in {page} Page
+                        }</b> Products in Page <b>{page}</b>
                     </div>
                     <div className="sort-ar">
                         SORT BY: <select value={filter} onChange={(e)=>sortProduct(e.target.value)}>
@@ -155,9 +157,9 @@ function Shop({setProductData, product_data}) {
                             <option value="price 50000 to 0">Cost 50000 to 0</option>
                         </select>
                         <select value={zoomProduct} onChange={(e)=>setZoomProduct(e.target.value)}>
-                            <option value={1}>Zoom at 0x</option>
-                            <option value={0.9}>Zoom at -1x</option>
-                            <option value={0.8}>Zoom at -2x</option>
+                            <option value={1}>Normal</option>
+                            <option value={0.6}>Small</option>
+                            <option value={0.4}>Small-X</option>
                         </select>
                     </div>
                 </div>

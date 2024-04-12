@@ -2,9 +2,11 @@ import { useEffect, useState } from "react"
 import { getRequest } from "../../functions/get.req"
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"
 import Graph from "../graph/line"
+import { Link } from "react-router-dom"
 
 export default function Review() {
     const [ratingList, setRatingList] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
     const [ratingIndex, setRatingIndex] = useState(0)
     const [graphData, setGraphData] = useState({
         lb: [],
@@ -28,6 +30,7 @@ export default function Review() {
                     dt: all_rating,
                     lb: all_productName
                 })
+                setIsLoading(false)
             }).catch((err)=>{
                 console.log(err)
             })
@@ -40,8 +43,9 @@ export default function Review() {
     }
 
     return (
+        <div className="review">
+        <div className="graph"><Graph dt={graphData.dt} lb={graphData.lb} /></div>
         <div className="review-ar">
-            <Graph dt={graphData.dt} lb={graphData.lb} />
             {
                 ratingList.map((d, i)=>{
                     return <div className="rating-card" key={i}>
@@ -49,7 +53,7 @@ export default function Review() {
                             <div className="product-image" style={{backgroundImage: `url(${d.media})`, width: 100, height: 100, backgroundRepeat: "no-repeat"}}></div>
                             <div className="info">
                                 <div className="name">{d.name}</div>
-                                <div className="id">{d.product_id}</div>
+                                <Link to={"/product/" + d.product_id} className="id">{d.product_id}</Link>
                                 <div className="rating">
                                     {
                                         [...Array(5)].map((_, i)=>{
@@ -68,11 +72,16 @@ export default function Review() {
                                 <div className="time">{d.rating_timestamp}</div>
                             </div>
                         </div>
-                        <summary>{d.comment}</summary>
+                        <div className="comment">{d.comment}</div>
                     </div>
                 })
             }
-            <div className="load-btn" onClick={()=>setRatingIndex(ratingIndex+1)}>load more...</div>
+            {
+                isLoading ? <div className="loading-ar">
+                    <div className="loader"></div>
+                </div> : <div className="load-btn" onClick={()=>{setRatingIndex(ratingIndex+1); setIsLoading(true);}}>load more...</div>
+            }
+        </div>
         </div>
     )
 }

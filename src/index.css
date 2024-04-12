@@ -4,7 +4,7 @@
 }
 
 * {
-  outline: 0px solid rgb(21, 0, 255);
+  outline: 1px solid rgb(21, 0, 255);
   padding: 0px;
   margin: 0px;
 }

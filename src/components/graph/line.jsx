@@ -24,7 +24,7 @@ const Graph = ({dt, lb}) => {
   };
   return (
     <div>
-      <Line data={data} options={options} />
+      <Line className='review-data' data={data} options={options} />
     </div>
   );
 };
