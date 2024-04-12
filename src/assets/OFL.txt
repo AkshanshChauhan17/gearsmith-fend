@@ -1,5 +1,4 @@
-Copyright (c) 2011, wmk69 (wmk69@o2.pl),
-with Reserved Font Name NovaSquare.
+Copyright 2011 The Roboto Project Authors (https://github.com/googlefonts/roboto-classic)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:

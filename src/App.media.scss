@@ -2,6 +2,39 @@
     .items-counter {
         margin: auto;
     }
+    .section-footer {
+        display: flex;
+        gap: 0px;
+        margin-top: 20px;
+        border-top: 0px solid gainsboro;
+        padding: 0px 0px;
+        .point {
+            display: grid;
+            justify-items: left;
+            gap: 10px;
+            outline: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            flex: 1;
+            cursor: help;
+            .icon {
+                color: rgb(167, 167, 167);
+                font-size: 20px;
+            }
+            .text {
+                font-size: 10px;
+                color: rgb(61, 61, 61);
+            }
+        }
+        .point:hover {
+            outline-color: black;
+            .icon {
+                color: black;
+            }
+            .text {
+                color: black;
+            }
+        }
+    }
     * {
         font-family: font_r;
     }
@@ -109,7 +142,7 @@
         .top {
             display: grid;
             gap: 10px;
-            font-size: 10px;
+            font-size: 15px;
             align-items: center;
             justify-content: unset;
             padding: 20px;
@@ -153,7 +186,7 @@
                     gap: 10px;
                     justify-content: space-between;
                     .button-in {
-                        font-size: 15px;
+                        font-size: 20px;
                         font-weight: 600;
                     }
                 }
@@ -179,11 +212,14 @@
             .nav-controls {
                 display: flex;
                 gap: 20px;
+                position: fixed;
+                top: 8px;
+                right: 10px;
                 .nav-icon {
                     font-size: 30px;
                     display: flex;
                     align-items: center;
-                    color: black;
+                    color: rgb(45, 45, 45);
                 }
                 .nav-icon:hover {
                     color: rgb(62, 62, 62);
@@ -1952,21 +1988,23 @@
                     font-size: 20px;
                     font-weight: 500;
                     margin-bottom: 10px;
+                    font-weight: 800;
                 }
                 .section-content {
-                    font-size: 10px;
+                    font-size: 15px;
+                    font-weight: 100;
                 }
                 .section-link {
                     color: white;
                     text-decoration: none;
-                    font-size: 10px;
+                    font-size: 15px;
                 }
                 .section-link:hover {
                     color: rgb(255, 120, 120);
                 }
                 .link-white-ar {
                     width: 100%;
-                    font-size: 20px;
+                    font-size: 30px;
                     display: flex;
                     justify-content: center;
                     gap: 20px;
@@ -2005,12 +2043,12 @@
         .small-font {
             font-size: 15px;
             font-weight: 300;
-            text-align: left;
+            text-align: center;
         }
         .big-font {
             font-size: 25px;
             font-weight: 700;
-            text-align: left;
+            text-align: center;
         }
         .ad {
             background-image: url("./assets/images/background.jpg");
@@ -2288,7 +2326,7 @@
             .section-right {
                 flex: 1;
                 min-width: 100px;
-                display: flex;
+                display: none;
                 justify-content: space-evenly;
                 align-items: center;
                 gap: 10px;
@@ -3115,6 +3153,41 @@
         .review-data {
             width: calc(100% - 20px);
             margin: 20px 10px;
+        }
+    }
+    .home-about {
+        padding: 40px 20px;
+        background: radial-gradient(1000px, rgb(10, 10, 10), rgb(32, 32, 32));
+        color: white;
+        display: grid;
+        gap: 40px;
+        .title {
+            font-size: 28px;
+            font-weight: 900;
+            text-align: center;
+            color: wheat;
+        }
+        .points {
+            display: grid;
+            grid-template-columns: auto;
+            font-size: 15px;
+            gap: 20px;
+            .point {
+                display: grid;
+                padding: 40px;
+                gap: 20px;
+                justify-items: center;
+                outline: 1px solid rgba(245, 222, 179, 0.2);
+                .icon {
+                    font-size: 28px;
+                    color: orangered;
+                }
+                .text {
+                    font-size: 15px;
+                    color: wheat;
+                    text-align: center;
+                }
+            }
         }
     }
 }

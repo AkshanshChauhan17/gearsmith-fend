@@ -9,14 +9,13 @@ export default function Cart({ud}) {
     const [userCartData, setUserCartData] = useState([])
     const [removeCount, setRemoveCount] = useState(1)
     var [totalCost, setTotalCost] = useState(0)
-    var navigate = useNavigate()
+    const [loading, setLoading] = useState(true)
 
     const handleRemoveFormCart = (product_id)=> {
         removeProductFromCart(ud.email, product_id)
             .then(()=>{
                 const i = removeCount + 1
                 setRemoveCount(i)
-                navigate(0)
             })
             .catch((e)=>console.error(e))
     }
@@ -35,11 +34,18 @@ export default function Cart({ud}) {
                 newUserCartData = res
                 setUserCartData(newUserCartData)
             }).catch((err)=>console.error(err))
+            .finally(()=>setLoading(false))
     }, [removeCount])
     
     if(userCartData.length===0) {
         return <div className="loading-ar gap-10 font-ss">
             no data found  <AiTwotoneWarning />
+        </div>
+    }
+
+    if(loading) {
+        return <div className="loading-ar">
+            <div className="loader"></div>
         </div>
     }
 

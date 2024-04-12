@@ -246,9 +246,7 @@ function Products({ud}) {
                 </div>
             </div>
             <div className="review-arr">
-                <div className="review-heading">
-                <div className="heading-text">Make Reviews</div> <AiOutlineSwapRight className="icon" />
-            </div> 
+                
             <div className="review-section-inputs">
                 <div className="review-top">
                 <div className="stars">

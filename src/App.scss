@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'font_r';
-    src: url("./assets/Oswald-VariableFont_wght.ttf");
+    src: url("./assets/static/RobotoCondensed-Regular.ttf");
 }
 
 * {
@@ -114,7 +114,8 @@ hr {
 
 hr {
     opacity: 0.4;
-    width: calc(100%);
+    width: calc(95%);
+    margin: auto;
 }
 
 .nav {
@@ -125,7 +126,7 @@ hr {
     background-color: rgb(255, 255, 255);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     text-transform: uppercase;
-    z-index: 100;
+    z-index: 1000;
     position: sticky;
     top: 0px;
     .top {
@@ -845,6 +846,7 @@ hr {
             outline: 0px solid rgb(211, 211, 211);
             border: 0px;
             flex: 1;
+            height: fit-content;
         }
         .controls {
             display: flex;
@@ -861,7 +863,7 @@ hr {
             background-color: rgb(255, 255, 255);
             display: flex;
             gap: 10px;
-            justify-content: space-evenly;
+            justify-content: center;
             align-items: center;
         }
         .comment-submit:hover {
@@ -1391,7 +1393,7 @@ form {
     display: grid;
     gap: 20px;
     padding: 0px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(237, 237, 237);
     .head {
         background-image: url("./assets/images/movable-bg.gif");
         background-size: 100px;
@@ -2076,12 +2078,13 @@ fieldset {
             }
             .subtitle {
                 font-size: 20px;
+                font-weight: 300;
             }
             button {
                 width: fit-content;
                 padding: 15px 30px;
                 font-size: 20px;
-                font-weight: 700;
+                font-weight: 400;
                 color: white;
                 background-color: rgb(255, 77, 0);
                 outline: 0px;
@@ -2117,12 +2120,13 @@ fieldset {
             .subtitle {
                 font-size: 20px;
                 text-align: right;
+                font-weight: 300;
             }
             button {
                 width: fit-content;
                 padding: 15px 30px;
                 font-size: 20px;
-                font-weight: 700;
+                font-weight: 400;
                 color: white;
                 background-color: rgb(255, 77, 0);
                 outline: 0px;
@@ -2144,7 +2148,7 @@ fieldset {
             }
             .product-button {
                 font-size: 20px;
-                font-weight: 700;
+                font-weight: 400;
                 text-decoration: none;
                 color: rgb(114, 114, 114);
                 display: flex;
@@ -3125,27 +3129,68 @@ fieldset {
     }
 }
 
+.section-footer {
+    display: flex;
+    gap: 0px;
+    margin-top: 20px;
+    border-top: 0px solid gainsboro;
+    padding: 40px 0px;
+    .point {
+        display: grid;
+        justify-items: left;
+        gap: 10px;
+        outline: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        flex: 1;
+        cursor: help;
+        .icon {
+            color: rgb(167, 167, 167);
+            font-size: 30px;
+        }
+        .text {
+            font-size: 15px;
+            color: rgb(61, 61, 61);
+        }
+    }
+    .point:hover {
+        outline-color: black;
+        .icon {
+            color: black;
+        }
+        .text {
+            color: black;
+        }
+    }
+}
+
 .home-about {
     padding: 80px;
-    background: radial-gradient(1000px, rgb(10, 10, 10), rgb(32, 32, 32));
+    background-image: url("./assets/images/movable-bg.gif");
+    background-size: 500px;
+    background-color: rgb(28, 28, 28);
+    background-blend-mode: darken;
     color: white;
     display: grid;
     gap: 80px;
     .title {
         font-size: 40px;
+        font-weight: 900;
         text-align: center;
         color: wheat;
+        text-transform: uppercase;
     }
     .points {
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: auto auto auto;
         font-size: 20px;
         gap: 20px;
         .point {
             display: grid;
             padding: 40px;
             gap: 20px;
-            outline: 1px solid wheat;
+            background-color: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(5px);
+            outline: 1px solid rgba(245, 222, 179, 0);
             .icon {
                 font-size: 40px;
                 color: orangered;

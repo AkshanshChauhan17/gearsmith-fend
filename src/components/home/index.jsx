@@ -4,6 +4,7 @@ import { MdAccessTime, MdOutlineLocalHospital, MdOutlineSecurity } from "react-i
 import url_main from "../../functions/url";
 import { Link } from "react-router-dom";
 import { FaGem, FaGlobe, FaLeaf, FaLightbulb, FaUser, FaUsers } from "react-icons/fa";
+import { BiCog, BiHappyBeaming, BiHide, BiRocket, BiRun, BiShield, BiTargetLock, BiWorld } from "react-icons/bi";
 
 export default function Home() {
     const [sliderIndex, setSliderIndex] = useState(0)
@@ -53,6 +54,53 @@ export default function Home() {
           ]
         }
       }
+
+    const technicalData = {
+        "Tactical Apparel Elevates the Operator's Performance": {
+            "title": "Gear Enhances Operator Performance",
+          "points": [
+            {
+              "icon": <BiShield className="icon" />,
+              "text": "Durability: Gearsmith tactical apparel withstands toughest conditions for reliable performance."
+            },
+            {
+              "icon": <BiCog className="icon" />,
+              "text": "Functionality: Strategically designed features enhance efficiency and effectiveness in operations."
+            },
+            {
+              "icon": <BiHappyBeaming className="icon" />,
+              "text": "Comfort: Ergonomic design provides freedom of movement for agile performance."
+            },
+            {
+              "icon": <BiHide className="icon" />,
+              "text": "Stealth: Advanced camouflage ensures optimal concealment and tactical advantage."
+            },
+            {
+              "icon": <BiRocket className="icon" />,
+              "text": "Gearsmith Difference: Experience elite tactical apparel for unparalleled performance."
+            }
+          ]
+        }
+      }
+      
+    const taftData = {
+        "Tactical Apparel for the Indian Masses & Armed Forces": {
+          "points": [
+            {
+              "title": "Enhanced Performance",
+              "icon": <BiRun className="icon" />
+            },
+            {
+              "title": "Adaptability to Indian Conditions",
+              "icon": <BiWorld className="icon" />
+            },
+            {
+              "title": "Mission-Ready Gear",
+              "icon": <BiTargetLock className="icon" />
+            }
+          ]
+        }
+      }
       
     
     const product_type_links = ["New Arrivals", "Bag & Packs", "Footwear", "Accessories"]
@@ -81,7 +129,7 @@ export default function Home() {
                     })
                 }
             </div>
-            <div className="home-about">
+            <div className="home-about" style={{backgroundPositionY: scrollY*0.5}}>
                 <div className="title">
                     {
                         aboutData["About Gearsmith Section"].title
@@ -90,7 +138,7 @@ export default function Home() {
                 <div className="points">
                     {
                         aboutData["About Gearsmith Section"].points.map((points, i)=>{
-                            return <div className="point">
+                            return <div className="point" key={i}>
                                 {points.icon}
                                 <div className="text">{points.text}</div>
                             </div>
@@ -123,6 +171,16 @@ export default function Home() {
                             Reliable and functional gear can optimise and increase the efficiency of an operator. We'll get you the best. 
                         </div>
                     </div>
+                    <div className="section-footer">
+                        {
+                            taftData["Tactical Apparel for the Indian Masses & Armed Forces"].points.map((d, i)=>{
+                                return <div className="point">
+                                    {d.icon}
+                                    <div className="text">{d.title}</div>
+                                </div>
+                            })
+                        }
+                    </div>
                 </div>
                 <div className="section-right">
                     <AiOutlineArrowLeft className="arrow" onClick={()=>setSliderIndex(sliderIndex===0 ? 1 : 0)}/>
@@ -132,26 +190,22 @@ export default function Home() {
                     <AiOutlineArrowRight className="arrow" onClick={()=>setSliderIndex(sliderIndex===1 ? 0 : 1)}/>
                 </div>
             </div>
-            <div className="middle" style={{backgroundPositionY: scrollY*0.5}}>
-                <div className="big-font">Tactical  apparel elevates the operator's</div>
-                <div className="middle-flex">
-                    <div className="middle-flex-box">
-                        <MdOutlineSecurity className="icon" />
-                        <div className="text">SECURITY</div>
-                    </div>
-                    <div className="middle-flex-box">
-                        <MdAccessTime className="icon" />
-                        <div className="text">SECURITY</div>
-                    </div>
-                    <div className="middle-flex-box">
-                        <MdOutlineLocalHospital className="icon" />
-                        <div className="text">SECURITY</div>
-                    </div>
+            <div className="home-about" style={{backgroundPositionY: scrollY*0.5}}>
+                <div className="title">
+                    {
+                        technicalData["Tactical Apparel Elevates the Operator's Performance"].title
+                    }
                 </div>
-                <button className="middle-button">
-                    <div className="text">Shop Now</div>
-                    <AiOutlineArrowRight className="icon" />
-                </button>
+                <div className="points">
+                    {
+                        technicalData["Tactical Apparel Elevates the Operator's Performance"].points.map((points, i)=>{
+                            return <div className="point" key={i}>
+                                {points.icon}
+                                <div className="text">{points.text}</div>
+                            </div>
+                        })
+                    }
+                </div>
             </div>
             <form action="" className="bottom">
                 <div className="left" onMouseMove={(e)=>handleMovement(e)} style={{filter: `brightness(10) drop-shadow(0px 20px 5px rgba(0, 0, 0, 0.2))`}}></div>

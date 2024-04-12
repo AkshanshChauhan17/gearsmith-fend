@@ -46,10 +46,10 @@ export default function Navigation({ls, ud, um}) {
                 isOpenNav ?
             <>
             <div className="top">
-                <Link onClick={()=>setIsOpenNav(false)} className="top-link">SHIP TO: India <div className="india-flag-icon"></div></Link>
-                <Link onClick={()=>setIsOpenNav(false)} className="top-link">GIFT CARDS</Link>
-                <Link onClick={()=>setIsOpenNav(false)} className="top-link">STORE LOCATION</Link>
-                <Link onClick={()=>setIsOpenNav(false)} to="user/profile" className="top-link">MY ACCOUNT</Link>
+                <Link onClick={()=>setIsOpenNav(winSize<750 ? false : true)} className="top-link">SHIP TO: India <div className="india-flag-icon"></div></Link>
+                <Link onClick={()=>setIsOpenNav(winSize<750 ? false : true)} className="top-link">GIFT CARDS</Link>
+                <Link onClick={()=>setIsOpenNav(winSize<750 ? false : true)} className="top-link">STORE LOCATION</Link>
+                <Link onClick={()=>setIsOpenNav(winSize<750 ? false : true)} to="user/profile" className="top-link">MY ACCOUNT</Link>
             </div>
             <div className="bottom">
                 <div className="nav-left">
@@ -59,7 +59,7 @@ export default function Navigation({ls, ud, um}) {
                     <div className="nav-link">
                         {
                             navigation.map((link, i)=>{
-                                return <Link  className={clicked===link.path ? "link button-in color-white hover active" : "link button-in color-white hover inactive"} to={link.path} key={i} onClick={()=>{setClicked(link.path); setIsOpenNav(false);}}>{link.name}</Link>
+                                return <Link  className={clicked===link.path ? "link button-in color-white hover active" : "link button-in color-white hover inactive"} to={link.path} key={i} onClick={()=>{setClicked(link.path); setIsOpenNav(winSize<750 ? false : true);}}>{link.name}</Link>
                             })
                         }   
                     </div>
@@ -68,7 +68,7 @@ export default function Navigation({ls, ud, um}) {
                         <AiOutlineSearch className="icon" />
                     </div>
                     <div className="nav-controls">
-                        <Link onClick={()=>setIsOpenNav(false)}  to="/user/cart" className="nav-icon">
+                        <Link onClick={()=>setIsOpenNav(winSize<750 ? false : true)}  to="/user/cart" className="nav-icon">
                             <AiOutlineShoppingCart />
                         </Link>
                     </div>

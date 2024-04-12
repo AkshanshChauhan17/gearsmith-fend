@@ -1,6 +1,6 @@
 import './App.scss'
 import './App.media.scss'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import Navigation from './components/navigation'
 import Shop from './components/shop'
 import Products from './components/shop/products'
@@ -29,6 +29,7 @@ function App({login_status, setLoginStatus}) {
   const [userMeta, setUserMeta] = useState({})
   const [loading, setLoading] = useState(true)
   
+  const navigate = useNavigate()
 
   const handleVerifyToken = async ()=> {
     await verifyToken()
