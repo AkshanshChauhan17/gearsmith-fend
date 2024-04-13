@@ -6,7 +6,7 @@ import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai'
 import { GrClose } from "react-icons/gr"
 import { BiMenu } from "react-icons/bi"
 
-export default function Navigation({ls, ud, um}) {
+export default function Navigation({ls, ud, um, cartData}) {
 
     const [navigation, setNavigation] = useState([])
     const [clicked, setClicked] = useState(0)
@@ -69,7 +69,7 @@ export default function Navigation({ls, ud, um}) {
                     </div>
                     <div className="nav-controls">
                         <Link onClick={()=>setIsOpenNav(winSize<750 ? false : true)}  to="/user/cart" className="nav-icon">
-                            <AiOutlineShoppingCart />
+                            <AiOutlineShoppingCart /><div className="text">{cartData.length}</div>
                         </Link>
                     </div>
                 </div>

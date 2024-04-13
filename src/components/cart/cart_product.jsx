@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react"
 import { getRequest } from "../../functions/get.req"
-import { AiOutlineDelete, AiOutlineDeliveredProcedure, AiOutlineLoading } from "react-icons/ai"
-import { MdProductionQuantityLimits } from "react-icons/md"
-import { BiCross } from "react-icons/bi"
-import { FaCross } from "react-icons/fa6"
+import { AiOutlineClose, AiOutlineLoading } from "react-icons/ai"
 import { CgClose } from "react-icons/cg"
 import { Link } from "react-router-dom"
 import { isEmptyObject } from "jquery"
@@ -23,7 +20,7 @@ export default function CartProduct({pi, pq, hrcDef, ps, pc, rc}) {
                 setOnClickRemove(false)
             })
             .catch(err=>console.log(err))
-    }, [rc, hrcDef, pi])
+    }, [rc, hrcDef, pi, pq])
 
     if(isEmptyObject(productData)) {
         return <div className="loading-ar">
@@ -32,28 +29,34 @@ export default function CartProduct({pi, pq, hrcDef, ps, pc, rc}) {
     }
 
     return (
-        <div className="cart-product">
-            <img src={productData.media} className="cart-product-image" />
-            <div className="info-ar">
-                <Link to={"/product/" + productData.product_id} className="upper">
-                    <div className="bottom">
-                        <h3>{productData.name}</h3>
-                        <h2>₹{productData.price * quantity}</h2>
-                    </div>
+        <tr>
+            <td>
+                <img src={productData.media} class="cart-product-image" />
+            </td>
+            <td>
+                <Link to={"/product/" + productData.product_id} class="upper link">
+                    {productData.name}
                 </Link>
-                <div className="bottom">
-                    <b>Quantity</b> <input disabled type="number" value={quantity} onChange={(e)=>setQuantity(e.target.value)} min={1} max={100}/>
-                </div>
-            </div>
-            <div className="controls">
-                <button className="control" disabled={onClickRemove} onClick={()=>{hrcDef(pi);}}>
+            </td>
+            <td>
+                {quantity}
+            </td>
+            <td>
+                ₹{productData.price}
+            </td>
+            <td>
+                {ps}
+            </td>
+            <td>
+                {pc}
+            </td>
+            <td>
+                <button class="control" disabled={onClickRemove} onClick={(e)=>hrcDef(pi)}>
                     {
-                        onClickRemove ? <AiOutlineLoading className="loader" /> : <span>
-                            <CgClose size={30} />
-                        </span>
+                        onClickRemove ? <AiOutlineLoading class="loader" /> : <AiOutlineClose />
                     }
                 </button>
-            </div>
-        </div>
+            </td>
+        </tr>
     )
 }

@@ -3,7 +3,9 @@ import url_main from "../../functions/url"
 import logo from "../../assets/images/gearsmith-logo.webp"
 import { AiOutlineLoading } from "react-icons/ai"
 
-export default function PaymentForm() {
+export default function PaymentForm({data_d, u_email, paymentRes, setPaymentRes}) {
+    const  [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
     function loadScript(src) {
         return new Promise((resolve) => {
             const script = document.createElement("script");
@@ -19,6 +21,7 @@ export default function PaymentForm() {
     }
 
     async function displayRazorpay() {
+        setLoading(true)
         const res = await loadScript(
             "https://checkout.razorpay.com/v1/checkout.js"
         )
@@ -35,7 +38,8 @@ export default function PaymentForm() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    amount: 1000
+                    userToken: localStorage.token,
+                    user_address: JSON.stringify(data_d.shipping_address)
                 })
             })
 
@@ -52,13 +56,14 @@ export default function PaymentForm() {
                 key: "rzp_test_cWx0FiWY7TRc5L",
                 amount: amount.toString(),
                 currency: currency,
-                name: "Akshansh",
-                description: "test transaction",
-                image: {logo},
+                name: data_d.user_meta.first_name + " " + data_d.user_meta.last_name,
+                description: `${data_d.user_meta.first_name} Checkout From GearSmith on ${new Date().toISOString().split("T")[0] + "at" + new Date().toISOString().split("T")[1]}`,
+                image: data_d.user_meta.profile_photo.large,
                 order_id: order_id,
                 handler: async function (response) {
                     var data = {
                         orderCreationId: order_id,
+                        userToken: localStorage.token,
                         razorpay_payment_id: response.razorpay_payment_id,
                         razorpay_order_id: response.razorpay_order_id,
                         razorpay_signature: response.razorpay_signature,
@@ -71,18 +76,19 @@ export default function PaymentForm() {
                         body: JSON.stringify(data)
                     });
                     const res = await responsee.json();
-                    console.log(res);
+                    setLoading(false)
+                    setPaymentRes(res)
                 },
                 prefill: {
-                    name: "Akshansh",
-                    email: "Akshansh@gmailc.om",
-                    contact: "2222222222"
+                    name: data_d.user_meta.first_name + " " + data_d.user_meta.last_name,
+                    email: u_email,
+                    contact: data_d.user_meta.mobile_no
                 },
                 notes: {
-                    address: "donn, con, in"
+                    address: `${data_d.user_meta.first_name} Checkout From GearSmith on ${new Date().toISOString().split("T")[0] + "at" + new Date().toISOString().split("T")[1]}`
                 },
                 theme: {
-                    color: "#61dafb"
+                    color: "#000000"
                 }
             }
             const paymentObject = new window.Razorpay(options)
@@ -95,13 +101,18 @@ export default function PaymentForm() {
 
     return (
         <div className="payment-form">
-            <header className="payment-heade">
-                <img src={logo} className="payment-logo" alt="logo" />
-                <p></p>
-                <button className="payment-button" onClick={displayRazorpay}>
-                    Pay
-                </button>
-            </header>
+            {
+                loading ? <div className="loading-ar">
+                    <div className="loader"></div>
+                </div> :
+                <header className="payment-heade">
+                    <img src={logo} className="payment-logo" alt="logo" />
+                    <p className={paymentRes.status ? "alert" : "success"}>{paymentRes.message}</p>
+                    <button className="payment-button" onClick={displayRazorpay}>
+                        Place Order
+                    </button>
+                </header>
+            }
         </div>
     )
 }

@@ -2,26 +2,33 @@ import React, { useState } from 'react';
 import { FaShippingFast } from 'react-icons/fa';
 import { getRequest } from '../../functions/get.req';
 import { isEmptyObject } from 'jquery';
+import PaymentForm from '../order';
 
-function CheckoutForm() {
+function CheckoutForm({ud_d, ps, psDef}) {
     const [postOffice, setPostOffice] = useState([])
     const [hidden, setHidden] = useState(true)
-  const [shippingAddress, setShippingAddress] = useState({
-    name: '',
-    block: '',
-    district: '',
-    region: '',
-    state: '',
-    zip: '',
-});
+    const [data, setData] = useState({})
+
+    const [shippingAddress, setShippingAddress] = useState({
+        name: '',
+        block: '',
+        district: '',
+        region: '',
+        state: '',
+        zip: '',
+    })
+
+  const [addressOne, setAddressOne] = useState('')
+  const [addressTwo, setAddressTwo] = useState('')
+  const [addressThree, setAddressThree] = useState('')
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setShippingAddress({
       ...shippingAddress,
       [name]: value,
-    });
-  };
+    })
+  }
 
   const reqZipCode = (value)=>{
     fetch("https://api.postalpincode.in/pincode/" + value)
@@ -53,15 +60,27 @@ function CheckoutForm() {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission, e.g., send data to backend
-    console.log('Submitting shipping address:', shippingAddress);
-  };
+    e.preventDefault()
+    const data = {
+      user_meta: JSON.parse(ud_d.meta),
+      shipping_address: {
+        auto: shippingAddress,
+        manual: [
+          addressOne,
+          addressTwo,
+          addressThree
+        ]
+      },
+      userToken: localStorage.token,
+    }
+    setData(data)
+  }
 
   return (
     <div className='checkout'>
       <h2 className='flex center gap-20'>Shipping Address<FaShippingFast /></h2>
-      <form onSubmit={handleSubmit}>
+      {
+        isEmptyObject(data) ? <form onSubmit={handleSubmit}>
         <div className="address-ar" style={hidden ? {display: "none"} : {display: ""}}>
         <div>
           <label htmlFor="firstName">Name:</label>
@@ -142,8 +161,37 @@ function CheckoutForm() {
             </div>
           }
         </div>
-        <button type="submit">Submit</button>
-      </form>
+        Fill Shipping Address Manually
+        <div>
+          <label htmlFor="add 1">Address 1:</label>
+          <input
+            type="text"
+            name="add 1"
+            value={addressOne}
+            onChange={(e)=>setAddressOne(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="add 2">Address 2:</label>
+          <input
+            type="text"
+            name="add 2"
+            value={addressTwo}
+            onChange={(e)=>setAddressTwo(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="add 3">Address 3:</label>
+          <input
+            type="text"
+            name="add 3"
+            value={addressThree}
+            onChange={(e)=>setAddressThree(e.target.value)}
+          />
+        </div>
+        <button type="submit">Checkout</button>
+      </form> : <PaymentForm paymentRes={ps} setPaymentRes={psDef} data_d={data} u_email={ud_d.email} />
+      }
     </div>
   );
 }

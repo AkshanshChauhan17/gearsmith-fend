@@ -23,11 +23,14 @@ import { PrivacyPolicy } from './components/privacy_policy'
 import TermAndCondition from './components/tc'
 import Review from './components/reviews'
 import Dashboard from './components/admin/dashboard'
+import { getRequest } from './functions/get.req'
+import MyOrder from './components/order/myorder'
 
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState([])
   const [userMeta, setUserMeta] = useState({})
   const [loading, setLoading] = useState(true)
+  const [cartData, setCartData] = useState([])
   
   const navigate = useNavigate()
 
@@ -62,8 +65,17 @@ function App({login_status, setLoginStatus}) {
     navigate("/")
   }
 
+  const g_cart = ()=>{
+    getRequest("order/checkout?token=" + localStorage.token)
+      .then((cart_data)=>setCartData(cart_data))
+      .catch((err)=>console.error(err))
+  }
+
   useEffect(()=>{
     handleVerifyToken()
+    getRequest("order/checkout?token=" + localStorage.token)
+      .then((cart_data)=>setCartData(cart_data))
+      .catch((err)=>console.error(err))
   }, [])
 
   if(loading) {
@@ -85,18 +97,18 @@ function App({login_status, setLoginStatus}) {
 
   return (
     <div className="app">
-        <Navigation lsDef={setLoginStatus} ls={login_status} ud={userData} um={userMeta} />
+        <Navigation lsDef={setLoginStatus} ls={login_status} ud={userData} um={userMeta} cartData={cartData} />
         <Routes>
           <Route path='/admin/dashboard' element={<Dashboard />} />
           <Route path='/' element={<Home />} />
           <Route path='/shop' element={<Shop />} />
-          <Route path='/product/:name' element={<Products ud={userData} />} />
+          <Route path='/product/:name' element={<Products ud={userData} gcDef={g_cart} />} />
           <Route path='/admin' element={<Admin />} />
           <Route path='/advantage' element={<Advantages />} />
           <Route path='/about' element={<AboutUs />} />
-          <Route path='/user/cart' element={<Cart ud={userData} />} />
+          <Route path='/user/cart' element={<Cart ud={userData} gcDef={g_cart} />} />
           <Route path='/user/profile' element={<Profile ud={userData} um={userMeta} logOut={handleLogout} />} />
-          <Route path='/order' element={<PaymentForm />} />
+          <Route path='/myorder' element={<MyOrder />} />
           <Route path='/reviews' element={<Review />} />
           <Route path='/privacy-policy' element={<PrivacyPolicy />} />
           <Route path='/terms-conditions' element={<TermAndCondition />} />

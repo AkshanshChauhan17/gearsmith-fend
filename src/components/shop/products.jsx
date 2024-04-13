@@ -9,7 +9,7 @@ import Rating from "./rating"
 import user from "../../assets/images/unnamed.webp"
 import { postRating } from "./rating.post"
 
-function Products({ud}) {
+function Products({ud, gcDef}) {
     const [productColorIndex, setProductColorIndex] = useState(0)
     const [productColor, setProductColor] = useState([])
     const [productImages, setProductImages] = useState([])
@@ -96,6 +96,7 @@ function Products({ud}) {
             .catch((e)=>console.error(e))
             .finally(()=>{
                 setOnClickAddToCart(false)
+                gcDef()
             })
     }
 
