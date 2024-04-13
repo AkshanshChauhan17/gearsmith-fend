@@ -2437,7 +2437,7 @@ fieldset {
                             color: white;
                         }
                         p {
-                            font-size: 15px;
+                            font-size: 20px;
                             color: #c4c4c4;
                         }
                     }
@@ -2483,7 +2483,7 @@ fieldset {
                 }
             }
             p {
-                font-size: 15px;
+                font-size: 20px;
                 color: hsl(0, 0%, 85%);
             }
         }
@@ -2513,7 +2513,7 @@ fieldset {
                     color: rgb(83, 83, 83);
                 }
                 p {
-                    font-size: 15px;
+                    font-size: 20px;
                     color: #909090;
                 }
             }
@@ -2895,6 +2895,48 @@ fieldset {
         }
         .content {
             font-size: 20px;
+        }
+    }
+}
+
+.my-order {
+    padding: 40px;
+    display: grid;
+    gap: 30px;
+    table {
+        border: 0px solid rgba(0, 0, 0, 0.2);
+        tr {
+            th {
+                padding: 20px;
+                outline: 0px solid rgba(0, 0, 0, 0.2);
+            }
+            td {
+                border-top: 0px solid rgba(0, 0, 0, 0.2);
+                padding: 20px;
+            }
+        }
+        tr:nth-child(even) {
+            background-color: #00000010;
+            text-align: center;
+            color: gray;
+        }
+        tr:nth-child(odd) {
+            background-color: #00000005;
+            text-align: center;
+            color: gray;
+        }
+        thead {
+            tr:nth-child(1) {
+                text-align: center;
+                background-color: rgba(44, 44, 49, 0);
+                color: rgb(40, 40, 40);
+            }
+        }
+        tbody {
+            tr:hover {
+                color: rgb(0, 132, 241);
+                cursor: pointer;
+            }
         }
     }
 }

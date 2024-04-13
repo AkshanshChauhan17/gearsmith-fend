@@ -34,7 +34,7 @@ export default function MyOrder() {
                 <tr>
                     {
                         Object.keys(orders[0]).map((e, i)=>{
-                            if(e==="id" || e==="product_list" || e==="user_address" || e==="user_meta" || e==="is_conform" || e==="is_cancel") {
+                            if(e==="id"  || e==="user_id" || e==="product_list" || e==="user_address" || e==="user_meta" || e==="is_conform" || e==="is_cancel") {
                                 return null
                             }
                             return <th key={i}>{e}</th>
@@ -47,7 +47,7 @@ export default function MyOrder() {
                     <tr key={index} onClick={()=>openInformation(index)}>
                         {
                             Object.keys(order).map((e, i)=>{
-                                if(e==="id" || e==="product_list" || e==="user_address" || e==="user_meta" || e==="is_conform" || e==="is_cancel") {
+                                if(e==="id" || e==="user_id"  || e==="product_list" || e==="user_address" || e==="user_meta" || e==="is_conform" || e==="is_cancel") {
                                     return null
                                 }
                                 return <td key={i}>{order[e]}</td>
@@ -67,13 +67,11 @@ export default function MyOrder() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>
-                            {
-                                JSON.parse(orders[index].product_list).map((e, i)=>{
-                                    return <Link to={"/product/" + e.product_id}>{e.product_id}</Link>
-                                })
-                            }
-                        </td>
+                        {
+                            JSON.parse(orders[index].product_list).map((e, i)=>{
+                                return <td><Link to={"/product/" + e.product_id}>{e.product_id}</Link></td>
+                            })
+                        }
                     </tr>
                 </tbody>
             </table>
