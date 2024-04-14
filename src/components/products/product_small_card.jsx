@@ -60,7 +60,7 @@ export default function ProductSmallCard({spd, data, image, url, name, price, is
         }
     }
     return (
-        <div className="product-small-card">
+        <Link to={url} onClick={()=>spd({data, image})} className="product-small-card text link">
             {
                 <div className="product-dp-ar">
                     <img className="product-dp" src={image} alt="" loading="lazy" />
@@ -68,7 +68,6 @@ export default function ProductSmallCard({spd, data, image, url, name, price, is
             }
             <div className="product-data">
                 <Link className="product-heading" to={url} onClick={()=>spd({data, image})}>{name}</Link>
-                <div className="product-price">{price}</div>
                 <div className="product-rating">
                     {
                         [...Array(5)].map((_, i)=>{
@@ -79,8 +78,9 @@ export default function ProductSmallCard({spd, data, image, url, name, price, is
                                 return <AiOutlineStar key={i} />
                             }
                         })
-                    } {rating.averageRating===null ? <div className="text">No Reviw</div> : <div className="text">{ratingSum}</div>}
+                    } {rating.averageRating===null ? <div className="text">No Reviews</div> : <div className="text">{ratingSum} Reviews</div>}
                 </div>
+                <div className="product-price">{price}</div>
             </div>
             <div className="color-available">
             {
@@ -89,10 +89,10 @@ export default function ProductSmallCard({spd, data, image, url, name, price, is
                 })
             }
             </div>
-            <div className="product-bottom">
+            {/* <div className="product-bottom">
                 <Link className="text view-button" to={url} onClick={()=>spd({data, image})}>VIEW NOW</Link>
                 <div className="like-button" onClick={handleShareButtonClick}> SHARE NOW </div>
-            </div>
-        </div>
+            </div> */}
+        </Link>
     )
 }

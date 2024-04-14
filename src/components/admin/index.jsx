@@ -133,6 +133,8 @@ export default function Admin() {
                         ctx.drawImage(img, 0, 0, largeWidth, largeHeight);
                         const largeBase64 = canvas.toDataURL('image/jpeg');
         
+                        console.log(smallBase64, mediumBase64, largeBase64)
+
                         resolve({
                             small: smallBase64,
                             medium: mediumBase64,

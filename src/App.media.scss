@@ -1211,8 +1211,8 @@
         display: grid;
         scroll-snap-align: start;
         gap: 1px;
-        min-width: 150px;
-        max-width: 300px;
+        min-width: 240px;
+        max-width: 250px;
         background-color: #e6e6e6;
         flex: 1;
         box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
@@ -1288,7 +1288,7 @@
                 color: rgb(0, 0, 0);
             }
             .product-rating {
-                font-size: 15px;
+                font-size: 20px;
                 text-align: center;
                 color: rgb(255, 157, 11);
                 display: flex;
@@ -1299,18 +1299,15 @@
                 }
             }
             .product-price {
-                font-size: 15px;
+                font-size: 20px;
                 font-weight: 400;
                 text-align: center;
                 justify-content: space-between;
-                color: rgb(215, 1, 1);
+                color: rgb(0, 0, 0);
                 background: linear-gradient(90deg, rgba(255, 255, 255, 0) -300%, rgb(255, 255, 255));
                 width: fit-content;
-                padding: 5px 10px;
+                padding: 0px 10px;
                 height: 20px;
-                position: absolute;
-                top: 10px;
-                right: 10px;
                 font-weight: 600;
             }
             // .product-price::before {
@@ -1530,12 +1527,12 @@
             }
         }
         .products {
-            display: grid;
+            display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 10px;
             align-content: baseline;
             justify-content: center;
-            padding: 20px 0px;
+            padding: 10px 0px;
         }
     }
     .middle-block {

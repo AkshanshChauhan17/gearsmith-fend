@@ -1,8 +1,7 @@
 import { useState } from "react"
-import { AiFillLike, AiOutlineLike } from "react-icons/ai"
+import { AiFillDelete } from "react-icons/ai"
 
-export default function Rating({i, data, user}) {
-    const [isLike, setIsLike] = useState(true)
+export default function Rating({i, data, user_data, rRDef}) {
     return <div className="oth-review-card" key={i}>
         <div className="top-user-info">
             <img src={data.rating_image} alt="" />
@@ -31,14 +30,10 @@ export default function Rating({i, data, user}) {
                 data.comment
             }
         </div>
-        {/* <br />
         <div className="bottom-controls">
             {
-                isLike ?
-                    <AiOutlineLike className="like-button" onClick={()=>setIsLike(false)} />
-                :
-                    <AiFillLike className="like-button" onClick={()=>setIsLike(true)} />
+                user_data.email===data.user_email && <span className="flex center gap-5" onClick={()=>rRDef(data.product_id)}><AiFillDelete /> Remove</span>
             }
-        </div> */}
+        </div>
     </div>
 }

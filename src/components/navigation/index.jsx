@@ -3,7 +3,7 @@ import { getRequest } from "../../functions/get.req"
 import { Link } from "react-router-dom"
 import { imageList } from "../../functions/images"
 import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai'
-import { GrClose } from "react-icons/gr"
+import { GrClose, GrDown, GrUp } from "react-icons/gr"
 import { BiMenu } from "react-icons/bi"
 
 export default function Navigation({ls, ud, um, cartData}) {
@@ -12,6 +12,16 @@ export default function Navigation({ls, ud, um, cartData}) {
     const [clicked, setClicked] = useState(0)
     const [isOpenNav, setIsOpenNav] = useState(true)
     const [winSize, setWinSize] = useState(0)
+    const [isOpenBanner, setIsOpenBanner] = useState(true)
+    const [currentTextIndex, setCurrentTextIndex] = useState(1)
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCurrentTextIndex((prevIndex) => (prevIndex + 1) % 4);
+        }, 3000);
+    
+        return () => clearInterval(intervalId);
+      }, [])
 
     window.onresize = ()=>{
         setWinSize(window.innerWidth)
@@ -35,6 +45,22 @@ export default function Navigation({ls, ud, um, cartData}) {
     return (
         <div className="nav" style={{backgroundImage: "url(" + imageList[2] + ")"}}>
             {
+                winSize>750 && isOpenBanner && <div className="banner">
+                    <div className={currentTextIndex===0 ? "rotating-text-view" : "rotating-text-hide"}>
+                        Gear Up in Technical Excellence
+                    </div>
+                    <div className={currentTextIndex===1 ? "rotating-text-view" : "rotating-text-hide"}>
+                        Discover Innovation, Wear Confidence
+                    </div>
+                    <div className={currentTextIndex===2 ? "rotating-text-view" : "rotating-text-hide"}>
+                        Elevate Your Performance, Define Your Style
+                    </div>
+                    <div className={currentTextIndex===3 ? "rotating-text-view" : "rotating-text-hide"}>
+                        Unleash Adventure with GearSmith's Finest
+                    </div>
+                </div>
+            }
+            {
                 winSize<750 && <div className="controls">
                 {
                     isOpenNav ? <GrClose size={25} onClick={()=>setIsOpenNav(false)}/>
@@ -50,6 +76,12 @@ export default function Navigation({ls, ud, um, cartData}) {
                 <Link onClick={()=>setIsOpenNav(winSize<750 ? false : true)} className="top-link">GIFT CARDS</Link>
                 <Link onClick={()=>setIsOpenNav(winSize<750 ? false : true)} className="top-link">STORE LOCATION</Link>
                 <Link onClick={()=>setIsOpenNav(winSize<750 ? false : true)} to="user/profile" className="top-link">MY ACCOUNT</Link>
+                {
+                    winSize>750 && isOpenBanner ? 
+                        <GrUp className="top-link" style={{cursor: "pointer"}} onClick={()=>setIsOpenBanner(false)}/> 
+                            :
+                        <GrDown className="top-link" style={{cursor: "pointer"}} onClick={()=>setIsOpenBanner(true)}/>
+                }
             </div>
             <div className="bottom">
                 <div className="nav-left">
@@ -67,6 +99,8 @@ export default function Navigation({ls, ud, um, cartData}) {
                         <input type="text"/>
                         <AiOutlineSearch className="icon" />
                     </div>
+                </div>
+                <div className="nav-links-ar">
                     <div className="nav-controls">
                         <Link onClick={()=>setIsOpenNav(winSize<750 ? false : true)}  to="/user/cart" className="nav-icon">
                             <AiOutlineShoppingCart /><div className="text">{cartData.length}</div>

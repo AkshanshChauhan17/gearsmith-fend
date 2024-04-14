@@ -150,8 +150,8 @@ hr {
         gap: 40px;
         background-color: rgb(240, 240, 240);
         align-items: center;
-        justify-content: center;
-        padding: 10px;
+        justify-content: space-between;
+        padding: 10px 80px;
         .nav-left {
             height: 40px;
             filter: invert(1) brightness(0);
@@ -260,23 +260,23 @@ hr {
 .product-card {
     margin: 40px;
     color: rgb(196, 196, 196);
-    outline: 0px solid rgba(0, 0, 0, 0.2);
+    outline: 1px solid rgba(0, 0, 0, 0.2);
     display: flex;
     scroll-snap-align: center;
     margin: 2px;
     height: 500px;
     width: 70%;
     position: relative;
-    align-items: center;
     justify-content: center;
     .product-dp-ar {
         overflow: hidden;
         position: relative;
-        height: 100%;
+        width: 400%;
         aspect-ratio: 1;
         .product-dp {
-            width: 100%;
+            height: 100%;
             aspect-ratio: 1;
+            object-fit: cover;
         }
         .product-dp-url:hover {
             background-color: rgba(0, 0, 0, 0.80);
@@ -317,17 +317,16 @@ hr {
     }
     .product-data {
         width: calc(100% - 40px);
-        position: absolute;
-        padding: 20px;
+        position: relative;
+        padding: 40px;
         display: flex;
         flex-direction: column;
         gap: 10px;
         border-top: 1px solid rgba(0, 0, 0, 0.2);
-        background: linear-gradient(180deg, rgb(0, 0, 0), rgba(36, 36, 36, 0.8));
+        background: linear-gradient(90deg, rgb(0, 0, 0), rgba(0, 0, 0, 0.8));
         backdrop-filter: blur(40px);
         color: rgb(255, 255, 255);
         bottom: 0px;
-        height: 200px;
         .product-heading {
             font-size: 24px;
             font-weight: 700;
@@ -422,7 +421,7 @@ hr {
 
 .product-view-ar {
     display: grid;
-    padding: 80px 40px;
+    padding: 40px 80px;
     background-color: whitesmoke;
     gap: 10px;
     .review-heading {
@@ -532,13 +531,13 @@ hr {
     .product-view {
         display: flex;
         gap: 10px;
-        zoom: 1.5;
+        zoom: 1;
         flex-wrap: wrap;
         position: relative;
         background-color: white;
         justify-content: center;
         .product-view-left {
-            width: 300px;
+            width: 500px;
             padding: 20px;
             display: grid;
             flex-direction: column;
@@ -554,6 +553,7 @@ hr {
                 .product-view-image {
                     height: calc(100% - 5px);
                     width: calc(100% - 1px);
+                    object-fit: cover;
                 }
             }
             .product-view-image-slider-controls {
@@ -571,6 +571,7 @@ hr {
                     scroll-snap-align: center;
                     opacity: 0.5;
                     cursor: pointer;
+                    object-fit: cover;
                 }
                 .product-view-control-image-active {
                     opacity: 1;
@@ -579,6 +580,7 @@ hr {
                     scroll-snap-align: center;
                     outline: 2px solid rgb(143, 143, 143);
                     cursor: pointer;
+                    object-fit: cover;
                 }
             }
         }
@@ -588,6 +590,8 @@ hr {
             display: grid;
             gap: 10px;
             padding: 20px;
+            zoom: 1.7;
+            align-content: center;
             .product-header {
                 display: flex;
                 align-items: center;
@@ -1223,13 +1227,14 @@ form {
     max-width: 300px;
     background-color: #e6e6e6;
     flex: 1;
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     .product-dp-ar {
         overflow: hidden;
         position: relative;
         width: 100%;
-        aspect-ratio: 1.5;
+        aspect-ratio: 1;
         .product-dp {
+            object-fit: cover;
             width: 100%;
             aspect-ratio: 1;
             transition-duration: 0.2s;
@@ -1281,7 +1286,7 @@ form {
         flex-direction: column;
         border-top: 0px solid rgba(0, 0, 0, 0.2);
         background-color: rgb(255, 255, 255);
-        gap: 10px;
+        gap: 5px;
         height: fit-content;
         align-items: center;
         .product-heading {
@@ -1296,30 +1301,27 @@ form {
             color: rgb(0, 0, 0);
         }
         .product-rating {
-            font-size: 15px;
+            font-size: 20px;
             text-align: center;
             color: rgb(255, 157, 11);
             display: flex;
             align-items: center;
             gap: 2px;
             .text {
-                color: black;
+                font-size: 13px;
+                color: rgb(36, 36, 36);
             }
         }
         .product-price {
-            font-size: 15px;
+            font-size: 20px;
             font-weight: 400;
             text-align: center;
             justify-content: space-between;
-            color: rgb(215, 1, 1);
             background: linear-gradient(90deg, rgba(255, 255, 255, 0) -300%, rgb(255, 255, 255));
             width: fit-content;
-            padding: 5px 10px;
             height: 20px;
-            position: absolute;
-            top: 10px;
-            right: 10px;
             font-weight: 600;
+            color: rgb(1, 1, 1);
         }
         // .product-price::before {
         //     content: "";
@@ -1342,7 +1344,7 @@ form {
         padding: 0px;
         .view-button {
             padding: 15px;
-            font-size: 12px;
+            font-size: 13px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1367,7 +1369,7 @@ form {
         }
         .like-button {
             padding: 15px;
-            font-size: 12px;
+            font-size: 13px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1401,7 +1403,7 @@ form {
     display: grid;
     gap: 20px;
     padding: 0px;
-    background-color: rgb(237, 237, 237);
+    background-color: rgb(255, 255, 255);
     .head {
         background-image: url("./assets/images/movable-bg.gif");
         background-size: 100px;
@@ -2447,6 +2449,39 @@ fieldset {
     }
 }
 
+.banner {
+    background-color: rgb(46, 46, 46);
+    color: white;
+    padding: 40px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 900;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-close {
+    display: none;
+}
+
+.rotating-text-view {
+    position: absolute;
+    transition-duration: 1s;
+    opacity: 1;
+    z-index: 100;
+    top: 25px;
+}
+
+.rotating-text-hide {
+    position: absolute;
+    transition-duration: 0.5s;
+    opacity: 0;
+    z-index: 2;
+    top: -100px;
+}
+
 .advantages-strip-pay {
     background: linear-gradient(45deg, rgb(0, 53, 152), rgb(0, 89, 255));
     padding: 80px;
@@ -2949,16 +2984,17 @@ fieldset {
     display: grid;
     grid-template-columns: auto auto auto;
     .rating-card {
-        animation: floating 0.5s cubic-bezier(0.1, 0.1, 0.1, 1) reverse;
+        animation: floating 0.3s cubic-bezier(0.1, 0.1, 0.1, 1) reverse;
         background-color: white;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.128);
+        height: fit-content;
         summary {
             display: none;
         }
         .rating-card-top {
             display: flex;
             gap: 20px;
-            padding: 20px;
+            padding: 10px;
             .product-image {
                 aspect-ratio: 1;
             }
@@ -2991,8 +3027,8 @@ fieldset {
             align-items: center;
             justify-content: left;
             background-color: rgb(44, 44, 44);
-            padding: 20px;
-            gap: 20px;
+            padding: 10px;
+            gap: 10px;
             .user-info-top {
                 display: grid;
                 gap: 5px;
@@ -3007,8 +3043,8 @@ fieldset {
                 }
             }
             .user-icon {
-                width: 50px;
-                height: 50px;
+                width: 40px;
+                height: 40px;
                 background-size: cover;
                 border-radius: 50%;
             }

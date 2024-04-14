@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import { connect } from "react-redux"
 import { setProductData } from "../../redux/store/actions"
 import { getRequest, getRequestStream } from "../../functions/get.req"
-import { MdClose, MdMenuOpen } from "react-icons/md"
+import { MdClose, MdMenu, MdMenuOpen } from "react-icons/md"
 import { BsMenuDown, BsMenuUp } from "react-icons/bs"
 
 
@@ -96,14 +96,9 @@ function Shop({setProductData, product_data}) {
                         New Arrivals
                         <AiFillCaretRight className="icon" />
                     </div>
-                    <div className="sub-heading">
-                        Everything is new and Fresh
-                    </div>
                 </div>
-                <br />
-                <hr />
-                <br />
                 <button className="ctrl-button left" disabled={pagingIndex<=0} onClick={()=>{setPagingIndex(pagingIndex-1); scrollToCard(pagingIndex-1);}}><AiOutlineArrowLeft /></button>
+                <br />
                 <div className="new-arrivals">
                     {
                         allNewArrivals.map((d, i)=>{
@@ -112,6 +107,7 @@ function Shop({setProductData, product_data}) {
                     }
                 </div>
                 <button className="ctrl-button right" disabled={pagingIndex>=allNewArrivals.length -1} onClick={()=>{setPagingIndex(pagingIndex+1); scrollToCard(pagingIndex+1);}}><AiOutlineArrowRight /></button>
+                <br />
                 <div className="new-arrivals-slider-controls">
                     <div className="paging">
                         {
@@ -122,7 +118,6 @@ function Shop({setProductData, product_data}) {
                     </div>
                 </div>
             </div>
-            <hr />
             <div className="head">
                     <div className="heading" ref={products_heading}>
                         Products
@@ -132,15 +127,14 @@ function Shop({setProductData, product_data}) {
                         Here are all Products
                     </div>
                 </div>
-                <hr />
             <div className="middle-block">
                 <div className="filters">
                     {
                         featureVisible ?
                         <div className="features-btn" onClick={()=>setFeatureVisible(false)}>
-                            <BsMenuDown size={20} />
+                            <MdMenuOpen size={20} />
                         </div> : <div className="features-btn" onClick={()=>setFeatureVisible(true)}>
-                            <BsMenuUp size={20} />
+                            <MdMenu size={20} />
                         </div>
                     }
                     <div className="items-counter">

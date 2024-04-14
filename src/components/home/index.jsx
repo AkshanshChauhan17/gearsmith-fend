@@ -103,7 +103,7 @@ export default function Home() {
       }
       
     
-    const product_type_links = ["New Arrivals", "Bag & Packs", "Footwear", "Accessories"]
+    const product_type_links = [["New Arrivals", "/shop"], ["Bag & Packs", "/shop"], ["Footwear", "/shop"], ["Accessories", "/shop"]]
     return (
         <div className="home">
             <div className="ad">
@@ -121,15 +121,15 @@ export default function Home() {
             </div>
             <div className="product-types">
                 {
-                    product_type_links.map((product_name, i)=>{
+                    product_type_links.map((product, i)=>{
                         return <div className="product" key={i}>
-                            <div className="product-heading">{product_name}</div>
-                            <Link to={"/product/" + product_name} className="product-button">Shop Now<AiOutlineRight className="arrow" /></Link>
+                            <div className="product-heading">{product[0]}</div>
+                            <Link to={product[1]} className="product-button">Shop Now<AiOutlineRight className="arrow" /></Link>
                         </div>
                     })
                 }
             </div>
-            <div className="home-about" style={{backgroundPositionY: scrollY*0.5}}>
+            <div className="home-about">
                 <div className="title">
                     {
                         aboutData["About Gearsmith Section"].title
@@ -190,7 +190,7 @@ export default function Home() {
                     <AiOutlineArrowRight className="arrow" onClick={()=>setSliderIndex(sliderIndex===1 ? 0 : 1)}/>
                 </div>
             </div>
-            <div className="home-about" style={{backgroundPositionY: scrollY*0.5}}>
+            <div className="home-about">
                 <div className="title">
                     {
                         technicalData["Tactical Apparel Elevates the Operator's Performance"].title

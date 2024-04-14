@@ -7,7 +7,7 @@ import { AiFillLock, AiOutlineClose, AiOutlineLoading, AiOutlineRollback, AiOutl
 import { Link } from "react-router-dom"
 import Rating from "./rating"
 import user from "../../assets/images/unnamed.webp"
-import { postRating } from "./rating.post"
+import { postRating, removeRating } from "./rating.post"
 
 function Products({ud, gcDef}) {
     const [productColorIndex, setProductColorIndex] = useState(0)
@@ -66,9 +66,12 @@ function Products({ud, gcDef}) {
         setRatingLoad(true)
         await postRating(ud.email, JSON.parse(ud.meta).profile_photo.small, productData.product_id, rating, comment)
             .then((e)=>{
-                if(e.affectedRows>=1) {
+                if(e.status) {
                     setRating(0)
                     setComment("")
+                } else {
+                    setRating(0)
+                    alert(e.message)
                 }
             }).catch((err)=>{
                 console.error(err)
@@ -76,6 +79,17 @@ function Products({ud, gcDef}) {
             await getRating()
             getRatingPercentage()
             setRatingLoad(false)
+    }
+
+    const handleRemoveRating = async(p_id)=>{
+        await removeRating(ud.email, p_id)
+            .then((e)=>{
+                null
+            }).catch((err)=>{
+                console.error(err)
+            })
+            await getRating()
+            getRatingPercentage()
     }
 
     const handleAddToCart = ()=>{
@@ -339,7 +353,7 @@ function Products({ud, gcDef}) {
                     <div className="all-rating">
                         {
                             ratingData.map((data, i)=>{
-                                return <Rating data={data} i={i} />
+                                return <Rating data={data} i={i} user_data={ud} rRDef={handleRemoveRating}/>
                             })
                         }
                     </div>
