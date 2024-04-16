@@ -5,8 +5,9 @@ import url_main from "../../functions/url";
 import { Link } from "react-router-dom";
 import { FaGem, FaGlobe, FaLeaf, FaLightbulb, FaUser, FaUsers } from "react-icons/fa";
 import { BiCog, BiHappyBeaming, BiHide, BiRocket, BiRun, BiShield, BiTargetLock, BiWorld } from "react-icons/bi";
+import UserLogin from "../auth/user.login";
 
-export default function Home() {
+export default function Home({with_login}) {
     const [sliderIndex, setSliderIndex] = useState(0)
     const slider_images = [url_main + "static/images/home-slider-1.webp", url_main + "static/images/home-slider-2.webp"]
     const [scrollY, setScrollY] = useState(0);
@@ -146,6 +147,16 @@ export default function Home() {
                     }
                 </div>
             </div>
+        {with_login ? <div className="product-types">
+                <div className="product">
+                    <div className="product-heading">Already have account</div>
+                    <Link to={"/login"} className="product-button">Login Now<AiOutlineRight className="arrow" /></Link>
+                </div>
+                <div className="product">
+                <div className="product-heading">I am new here</div>
+                <Link to={"/register"} className="product-button">Register Now<AiOutlineRight className="arrow" /></Link>
+            </div>
+        </div> : null}
             <div className="ad2">
                 <div className="text">
                     <div className="title">

@@ -1,11 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import url_main from "../../functions/url"
 import logo from "../../assets/images/gearsmith-logo.webp"
-import { AiOutlineLoading } from "react-icons/ai"
+import { useNavigate } from "react-router-dom"
 
-export default function PaymentForm({data_d, u_email, paymentRes, setPaymentRes}) {
+export default function PaymentForm({data_d, u_email, paymentRes, setPaymentRes, setLoadingPage}) {
     const  [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
+    const navigate = useNavigate();
     function loadScript(src) {
         return new Promise((resolve) => {
             const script = document.createElement("script");
@@ -94,10 +95,20 @@ export default function PaymentForm({data_d, u_email, paymentRes, setPaymentRes}
             const paymentObject = new window.Razorpay(options)
             paymentObject.open()
         } catch (error) {
-            console.error('Error creating order:', error)
             setError('Failed to create order')
+            setLoading(false)
         }
     }
+
+    useEffect(()=>{
+        if(paymentRes.status) {
+            setLoadingPage(true)
+            setTimeout(()=>{
+                setLoadingPage(false)
+                navigate("/myorder")
+            }, 3000)
+        }
+    }, [paymentRes])
 
     return (
         <div className="payment-form">

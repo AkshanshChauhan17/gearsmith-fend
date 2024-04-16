@@ -197,7 +197,7 @@ function Products({ud, gcDef}) {
                                                 <span
                                                 key={i} 
                                                 className={i < Math.round(fiveStarRatingPercentage.averageRating) ? "filled" : "empty"}
-                                                onClick={()=>handleClick(ratingValue)}>
+                                                >
                                                     &#9733;
                                                 </span>
                                             )
@@ -313,7 +313,7 @@ function Products({ud, gcDef}) {
                                                 <span
                                                 key={i} 
                                                 className={i < Math.round(fiveStarRatingPercentage.averageRating) ? "filled" : "empty"}
-                                                onClick={()=>handleClick(ratingValue)}>
+                                                >
                                                     &#9733;
                                                 </span>
                                             )

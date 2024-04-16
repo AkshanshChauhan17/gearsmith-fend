@@ -4,7 +4,7 @@ import { getRequest } from '../../functions/get.req';
 import { isEmptyObject } from 'jquery';
 import PaymentForm from '../order';
 
-function CheckoutForm({ud_d, ps, psDef}) {
+function CheckoutForm({ud_d, ps, psDef, slpDef}) {
     const [postOffice, setPostOffice] = useState([])
     const [hidden, setHidden] = useState(true)
     const [data, setData] = useState({})
@@ -190,7 +190,7 @@ function CheckoutForm({ud_d, ps, psDef}) {
           />
         </div>
         <button type="submit">Checkout</button>
-      </form> : <PaymentForm paymentRes={ps} setPaymentRes={psDef} data_d={data} u_email={ud_d.email} />
+      </form> : <PaymentForm paymentRes={ps} setPaymentRes={psDef} data_d={data} u_email={ud_d.email} setLoadingPage={slpDef} />
       }
     </div>
   );

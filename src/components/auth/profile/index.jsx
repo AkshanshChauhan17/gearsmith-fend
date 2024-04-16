@@ -40,7 +40,7 @@ export default function Profile({um, ud, logOut}) {
                     </div>
                     <div className="control">
                         <FaCartArrowDown className="left-icon" />
-                        <div className="middle-text">My Order</div> 
+                        <Link to="/myorder" className="middle-text">My Order</Link> 
                         <FaArrowRight className="right-icon" />
                     </div>
                     <div className="control" onClick={()=>logOut()}>

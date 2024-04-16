@@ -1,6 +1,6 @@
 import './App.scss'
 import './App.media.scss'
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
+import { Routes, Route, useLocation, useNavigate, Link } from 'react-router-dom'
 import Navigation from './components/navigation'
 import Shop from './components/shop'
 import Products from './components/shop/products'
@@ -25,6 +25,8 @@ import Review from './components/reviews'
 import Dashboard from './components/admin/dashboard'
 import { getRequest } from './functions/get.req'
 import MyOrder from './components/order/myorder'
+import { imageList } from './functions/images'
+import { SiOpsgenie } from 'react-icons/si'
 
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState([])
@@ -40,7 +42,7 @@ function App({login_status, setLoginStatus}) {
         console.log(res)
         if(res.message != "Authorized") {
           setLoginStatus(false)
-          navigate("/")
+          localStorage.clear()
         } else {
           setLoginStatus(true)
           setUserData(res.result[0])
@@ -48,6 +50,12 @@ function App({login_status, setLoginStatus}) {
         }
       })
       setLoading(false)
+  }
+
+  function ErrorPage(){
+    return <div className="">
+      <div>404 Page Not Found Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia laborum possimus animi eaque, itaque commodi explicabo, dolore reprehenderit rem fuga voluptatibus molestias architecto praesentium soluta ut deleniti voluptatem modi mollitia. <SiOpsgenie /></div>
+    </div>
   }
 
   const location = useLocation();
@@ -87,12 +95,26 @@ function App({login_status, setLoginStatus}) {
   }
 
   if(!login_status) {
-    return <>
+    return <div className="app">
+      <div className='nav'>
+      <div className="bottom">
+        <div className="nav-left">
+          <img src={imageList[0]} alt="" style={{filter: "invert(1)"}} />
+        </div>
+        <div className="nav-links-ar">
+          <div className="nav-link">
+            <Link to={"/login"} className="link button-in color-white">Login</Link>/<Link to={"/register"} className="link button-in color-white">Register</Link>
+          </div>
+        </div>    
+      </div>
+      </div>
       <Routes>
-        <Route path='/' element={<UserLogin lsDef={setLoginStatus} />} />
+        <Route path='/' element={<Home with_login={true} />} />
+        <Route path='/login' element={<UserLogin lsDef={setLoginStatus} />} />
         <Route path='/register' element={<UserSignin ls={login_status} lsDef={setLoginStatus} />} />
+        <Route element={<ErrorPage />} />
       </Routes>
-    </>
+    </div>
   }
 
   return (

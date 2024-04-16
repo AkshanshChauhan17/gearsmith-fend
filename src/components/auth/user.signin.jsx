@@ -76,6 +76,7 @@ export default function UserSignin({lsDef, ls}) {
                         lsDef(true)
                         localStorage.setItem("token", res.token)
                         alert(res.message)
+                        window.location.href = "/"
                     } else {
                         localStorage.clear()
                         alert(res.message)
@@ -155,7 +156,7 @@ export default function UserSignin({lsDef, ls}) {
                 <br />
                 <div className="footer">
                 Already Having Account
-                <Link to="/">Login Here</Link>
+                <Link to="/login">Login Here</Link>
                 </div>
             </form>
         </div>

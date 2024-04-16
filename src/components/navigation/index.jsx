@@ -43,7 +43,7 @@ export default function Navigation({ls, ud, um, cartData}) {
     }, [])
 
     return (
-        <div className="nav" style={{backgroundImage: "url(" + imageList[2] + ")"}}>
+        <div className="nav">
             {
                 winSize>750 && isOpenBanner && <div className="banner">
                     <div className={currentTextIndex===0 ? "rotating-text-view" : "rotating-text-hide"}>

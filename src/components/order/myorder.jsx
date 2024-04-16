@@ -2,6 +2,9 @@ import { useEffect, useState } from "react"
 import { getRequest } from "../../functions/get.req"
 import { CgClose } from "react-icons/cg"
 import { Link } from "react-router-dom"
+import OrderCard from "./ordercard"
+import { MdPending } from "react-icons/md"
+import { GoAlert } from "react-icons/go"
 
 export default function MyOrder() {
     const [orders, setOrders] = useState([])
@@ -26,56 +29,45 @@ export default function MyOrder() {
     }
     return(
         <div className="my-order">
-            <h2>{open ? `View: ${orders[index].order_id}` : "Order Summary"}</h2>
-            {
-            !open ?
-            <table>
-                <thead>
-                <tr>
-                    {
-                        Object.keys(orders[0]).map((e, i)=>{
-                            if(e==="id"  || e==="user_id" || e==="product_list" || e==="user_address" || e==="user_meta" || e==="is_conform" || e==="is_cancel") {
-                                return null
-                            }
-                            return <th key={i}>{e}</th>
-                        })
-                    }
-                </tr>
-                </thead>
-                <tbody>
-                {orders.map((order, index) => (
-                    <tr key={index} onClick={()=>openInformation(index)}>
-                        {
-                            Object.keys(order).map((e, i)=>{
-                                if(e==="id" || e==="user_id"  || e==="product_list" || e==="user_address" || e==="user_meta" || e==="is_conform" || e==="is_cancel") {
-                                    return null
+            <h2>Order Summary</h2>
+            <div className="order-list">
+                {
+                    orders.map((p, ii)=>{
+                        console.log(p)
+                        return <div className="orders" key={ii}>
+                            <div className="order-info">
+                                <div className="small-section">
+                                    <div className="section">
+                                        {p.order_id}
+                                    </div>
+                                    <div className="section">
+                                        {p.is_conform ? <span className="confirm">Ordered</span> : <span className="pending">Pending <GoAlert /></span>}
+                                    </div>
+                                </div>
+                                <div className="big-section">
+                                    <div className="section">
+                                        {new Date(p.timestamp).toDateString()}
+                                    </div>
+                                    <div className="section">
+                                        <b>Total:</b> ₹{p.total_cost}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="order-ar">
+                                {
+                                    JSON.parse(p.product_list).length===1 ? <h4>Product</h4> :
+                                    <h4>Product Group</h4>
                                 }
-                                return <td key={i}>{order[e]}</td>
-                            })
-                        }
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-            :
-            <table>
-                <CgClose onClick={()=>setOpen(false)} />
-                <thead>
-                    <tr>
-                        <th>Product List</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        {
-                            JSON.parse(orders[index].product_list).map((e, i)=>{
-                                return <td><Link to={"/product/" + e.product_id}>{e.product_id}</Link></td>
-                            })
-                        }
-                    </tr>
-                </tbody>
-            </table>
-            }
+                                {
+                                    JSON.parse(p.product_list).map((e, i)=>{
+                                        return <OrderCard data={e} key={i} />
+                                    })
+                                }
+                            </div>
+                        </div>
+                    })
+                }
+            </div>
         </div>
     )
 }

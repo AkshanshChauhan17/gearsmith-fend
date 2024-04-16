@@ -2,13 +2,14 @@ import { useEffect, useState } from "react"
 import { getRequest } from "../../functions/get.req"
 import CartProduct from "./cart_product"
 import { removeProductFromCart } from "./post.reqs"
-import { AiTwotoneWarning } from "react-icons/ai"
+import { AiOutlineLoading, AiTwotoneWarning } from "react-icons/ai"
 import CheckoutForm from "./checkout"
 
 export default function Cart({ud, gcDef}) {
     const [userCartData, setUserCartData] = useState([])
     const [removeCount, setRemoveCount] = useState(1)
     var [totalCost, setTotalCost] = useState(0)
+    const [loadingPage, setLoadingPage] = useState(false)
     const [loading, setLoading] = useState(true)
     const [paymentRes, setPaymentRes] = useState({})
 
@@ -50,6 +51,12 @@ export default function Cart({ud, gcDef}) {
         </div>
     }
 
+    if(loadingPage) {
+        return <div className="flex center full">
+            <AiOutlineLoading className="loader" size={40} />...redirect to my order page
+        </div>
+    }
+
     return (
         <div className="cart">
             <h1>Total Products in Cart: {userCartData.length}</h1>
@@ -73,7 +80,7 @@ export default function Cart({ud, gcDef}) {
                     }
                 </table>
                 <div className="cart-checkout-ar">
-                    <CheckoutForm ps={paymentRes} psDef={setPaymentRes} ud_d={ud} />
+                    <CheckoutForm slpDef={setLoadingPage} ps={paymentRes} psDef={setPaymentRes} ud_d={ud} />
                 </div>
             </div>
         </div>
