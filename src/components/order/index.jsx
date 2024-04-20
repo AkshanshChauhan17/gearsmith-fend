@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import url_main from "../../functions/url"
 import logo from "../../assets/images/gearsmith-logo.webp"
 import { useNavigate } from "react-router-dom"
+import { AiOutlineLoading } from "react-icons/ai"
 
 export default function PaymentForm({data_d, u_email, paymentRes, setPaymentRes, setLoadingPage}) {
     const  [error, setError] = useState("")
@@ -112,18 +113,13 @@ export default function PaymentForm({data_d, u_email, paymentRes, setPaymentRes,
 
     return (
         <div className="payment-form">
-            {
-                loading ? <div className="loading-ar">
-                    <div className="loader"></div>
-                </div> :
-                <header className="payment-heade">
-                    <img src={logo} className="payment-logo" alt="logo" />
-                    <p className={paymentRes.status ? "alert" : "success"}>{paymentRes.message}</p>
-                    <button className="payment-button" onClick={displayRazorpay}>
-                        Place Order
-                    </button>
-                </header>
-            }
+            <header className="payment-heade">
+                <img src={logo} className="payment-logo" alt="logo" />
+                <p className={paymentRes.status ? "alert" : "success"}>{paymentRes.message}</p>
+                <button className="payment-button" disabled={loading} onClick={displayRazorpay}>
+                    { loading ? <AiOutlineLoading className="loader" /> : "Place Order" }
+                </button>
+            </header>
         </div>
     )
 }

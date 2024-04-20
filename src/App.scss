@@ -653,6 +653,9 @@ hr {
                 font-size: 30px;
                 font-weight: 700;
                 margin-bottom: 20px;
+                display: flex;
+                gap: 10px;
+                align-items: center;
             }
             .product-text {
                 font-size: 15px;
@@ -786,8 +789,7 @@ hr {
 }
 
 .review-arr {
-    display: grid;
-    flex-direction: column;
+    display: flex;
     flex: 1;
     gap: 10px;
     .review-heading {
@@ -817,12 +819,14 @@ hr {
         display: grid;
         gap: 10px;
         padding: 0px;
+        flex: 1;
         .review-top {
             display: flex;
             align-items: center;
             background-color: white;
             padding: 20px;
-            justify-content: space-between;
+            gap: 20px;
+            justify-content: center;
             .stars {
                 display: flex;
                 align-items: center;
@@ -1182,6 +1186,20 @@ form {
     }
 }
 
+.prv-price {
+    color: gray;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.discount {
+    background-color: rgb(224, 0, 0);
+    padding: 2px 8px;
+    color: white;
+    font-size: 15px;
+    width: fit-content;
+}
+
 .pagination {
     display: flex;
     padding: 10px;
@@ -1215,6 +1233,23 @@ form {
     }
     .page:hover {
         background-color: rgb(91, 91, 91);
+    }
+}
+
+.product-summary {
+    padding: 20px;
+    font-size: 20px;
+    flex: 1;
+    background-color: white;
+    color: rgb(143, 143, 143);
+    display: grid;
+    gap: 40px;
+    align-content: start;
+    .heading {
+        text-align: left;
+        color: black;
+        font-size: 20px;
+        font-weight: 600;
     }
 }
 
@@ -1318,12 +1353,15 @@ form {
             font-size: 20px;
             font-weight: 400;
             text-align: center;
+            align-items: center;
             justify-content: space-between;
             background: linear-gradient(90deg, rgba(255, 255, 255, 0) -300%, rgb(255, 255, 255));
             width: fit-content;
-            height: 20px;
+            height: fit-content;
             font-weight: 600;
             color: rgb(1, 1, 1);
+            display: flex;
+            gap: 5px;
         }
         // .product-price::before {
         //     content: "";
@@ -1864,7 +1902,7 @@ fieldset {
 
 .order-list {
     display: grid;
-    gap: 40px;
+    gap: 25px;
     .confirm {
         color: rgb(0, 175, 0);
     }
@@ -1874,8 +1912,8 @@ fieldset {
     .orders {
         display: grid;
         gap: 10px;
-        padding: 10px;
-        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
         .order-info {
             display: grid;
             gap: 4px;
@@ -3284,6 +3322,16 @@ fieldset {
     .cart-checkout-ar {
         .checkout {
             margin: 0px;
+            padding: 0px 20px;
+            .payment-heade {
+                display: grid;
+                justify-content: center;
+                button {
+                    padding: 10px 20px;
+                    background-color: white;
+                    cursor: pointer;
+                }
+            }
             h2 {
                 text-align: right;
                 margin-bottom: 20px;

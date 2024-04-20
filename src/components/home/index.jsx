@@ -5,7 +5,6 @@ import url_main from "../../functions/url";
 import { Link } from "react-router-dom";
 import { FaGem, FaGlobe, FaLeaf, FaLightbulb, FaUser, FaUsers } from "react-icons/fa";
 import { BiCog, BiHappyBeaming, BiHide, BiRocket, BiRun, BiShield, BiTargetLock, BiWorld } from "react-icons/bi";
-import UserLogin from "../auth/user.login";
 
 export default function Home({with_login}) {
     const [sliderIndex, setSliderIndex] = useState(0)
@@ -115,9 +114,9 @@ export default function Home({with_login}) {
                     <div className="subtitle">
                         Stay Dry, Stay Comfortable, Stay Adventurous
                     </div>
-                    <button>
-                        SHOP NOW
-                    </button>
+                    <Link to={"/shop"}>
+                        <button>SHOP NOW</button>
+                    </Link>
                 </div>
             </div>
             <div className="product-types">
@@ -165,9 +164,9 @@ export default function Home({with_login}) {
                     <div className="subtitle">
                         Unleash Your Potential with Innovative Technical Clothing
                     </div>
-                    <button>
-                        EXPLORE NOW
-                    </button>
+                    <Link to={"/shop"}>
+                        <button>EXPLORE NOW</button>
+                    </Link>
                 </div>
             </div>
             <div className="section">

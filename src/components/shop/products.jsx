@@ -206,7 +206,7 @@ function Products({ud, gcDef}) {
                                 </div>
                             }
                         </div>
-                    <div className="product-price">₹ {productData.price}</div>
+                        <div className="product-price">{productData.previous_price === productData.price || productData.previous_price===0 ? "₹" + productData.price : <><s className="prv-price">₹{productData.previous_price}</s> ₹{productData.price} <div className="discount">{productData.discount} Discount</div></>}</div>
                     {/* <div className="product-text">Sales Tex Included</div>
                     <br />
                     <div className="product-content">
@@ -261,10 +261,13 @@ function Products({ud, gcDef}) {
                 </div>
             </div>
             <div className="review-arr">
-                
+            <div className="product-summary">
+                <div className="heading">Description</div>
+                {productData.product_summary}
+            </div>
             <div className="review-section-inputs">
                 <div className="review-top">
-                <div className="stars">
+                <div className="stars" style={rating===0 ? {zoom: "2"}: {}}>
                     {
                         [...Array(5)].map((_, i)=>{
                             const ratingValue = i + 1
@@ -279,7 +282,7 @@ function Products({ud, gcDef}) {
                         })
                     } ({rating}/5)
                 </div>
-                <div className="profile">
+                <div className="profile" style={rating===0 ? {display: "none"} : {}}>
                     {ud.email}
                     <img src={JSON.parse(ud.meta).profile_photo.small} alt="" />
                 </div>
@@ -308,7 +311,6 @@ function Products({ud, gcDef}) {
                                 <div className="stars-rv">
                                     {
                                         [...Array(5)].map((_, i)=>{
-                                            const ratingValue = i + 1
                                             return (
                                                 <span
                                                 key={i} 

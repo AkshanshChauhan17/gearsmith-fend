@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { getRequest } from "../../functions/get.req";
 import { isEmptyObject } from "jquery";
 
-export default function ProductSmallCard({spd, data, image, url, name, price, isHide, pg}) {
+export default function ProductSmallCard({spd, data, image, url, name, price, isHide, pg, previous_price}) {
     const [rating, setRating] = useState({})
     const [ratingSum, setRatingSum] = useState()
 
@@ -80,7 +80,7 @@ export default function ProductSmallCard({spd, data, image, url, name, price, is
                         })
                     } {rating.averageRating===null ? <div className="text">No Reviews</div> : <div className="text">{ratingSum} Reviews</div>}
                 </div>
-                <div className="product-price">{price}</div>
+                <div className="product-price">{previous_price === price || previous_price===0 ? price : <><s className="prv-price">₹{previous_price}</s> {price} <div className="discount">{data.discount} Discount</div></>}</div>
             </div>
             <div className="color-available">
             {
