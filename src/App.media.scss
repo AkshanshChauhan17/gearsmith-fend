@@ -392,6 +392,8 @@
                 font-weight: 400;
                 color: rgb(170, 170, 170);
                 font-style: italic;
+                padding: 0px;
+                background-color: transparent;
             }
             .product-small-text {
                 font-size: 10px;
@@ -1258,7 +1260,7 @@
         scroll-snap-align: start;
         gap: 1px;
         min-width: 240px;
-        max-width: 250px;
+        max-width: calc(100% - 20px);
         background-color: #e6e6e6;
         flex: 1;
         box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
