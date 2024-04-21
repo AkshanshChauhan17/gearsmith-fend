@@ -1900,6 +1900,13 @@ fieldset {
     height: 100vh;
 }
 
+.error-page {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .order-list {
     display: grid;
     gap: 25px;

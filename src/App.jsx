@@ -27,6 +27,7 @@ import { getRequest } from './functions/get.req'
 import MyOrder from './components/order/myorder'
 import { imageList } from './functions/images'
 import { SiOpsgenie } from 'react-icons/si'
+import { BiError } from 'react-icons/bi'
 
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState([])
@@ -53,8 +54,8 @@ function App({login_status, setLoginStatus}) {
   }
 
   function ErrorPage(){
-    return <div className="">
-      <div>404 Page Not Found Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia laborum possimus animi eaque, itaque commodi explicabo, dolore reprehenderit rem fuga voluptatibus molestias architecto praesentium soluta ut deleniti voluptatem modi mollitia. <SiOpsgenie /></div>
+    return <div className="error-page">
+      <div className='message'>404 Page Not Found <BiError /></div>
     </div>
   }
 
@@ -112,7 +113,7 @@ function App({login_status, setLoginStatus}) {
         <Route path='/' element={<Home with_login={true} />} />
         <Route path='/login' element={<UserLogin lsDef={setLoginStatus} />} />
         <Route path='/register' element={<UserSignin ls={login_status} lsDef={setLoginStatus} />} />
-        <Route element={<ErrorPage />} />
+        <Route path='/*' element={<ErrorPage />} />
       </Routes>
     </div>
   }
@@ -134,6 +135,7 @@ function App({login_status, setLoginStatus}) {
           <Route path='/reviews' element={<Review />} />
           <Route path='/privacy-policy' element={<PrivacyPolicy />} />
           <Route path='/terms-conditions' element={<TermAndCondition />} />
+          <Route path='/*' element={<ErrorPage />} />
         </Routes>
         <Footer />
     </div>
