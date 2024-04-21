@@ -7,7 +7,7 @@ const Graph = ({dt, lb}) => {
     labels: lb,
     datasets: [
       {
-        label: 'Rating Products',
+        label: 'Rating',
         data: dt,
         fill: false,
         borderColor: 'rgb(75, 192, 192)',

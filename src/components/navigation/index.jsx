@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { getRequest } from "../../functions/get.req"
 import { Link } from "react-router-dom"
 import { imageList } from "../../functions/images"
@@ -14,6 +14,8 @@ export default function Navigation({ls, ud, um, cartData}) {
     const [winSize, setWinSize] = useState(0)
     const [isOpenBanner, setIsOpenBanner] = useState(true)
     const [currentTextIndex, setCurrentTextIndex] = useState(1)
+    const [searchRes, setSearchRes] = useState([])
+    const qu = useRef(null)
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -30,6 +32,12 @@ export default function Navigation({ls, ud, um, cartData}) {
         } else {
             setIsOpenNav(false)
         }
+    }
+
+    function handleSearch(q) {
+        getRequest("user/search?q=" + q)
+            .then((e)=>setSearchRes(e))
+            .catch((err)=>console.error(err))
     }
 
     useEffect(()=>{
@@ -91,13 +99,24 @@ export default function Navigation({ls, ud, um, cartData}) {
                     <div className="nav-link">
                         {
                             navigation.map((link, i)=>{
-                                return <Link  className={clicked===link.path ? "link button-in color-white hover active" : "link button-in color-white hover inactive"} to={link.path} key={i} onClick={()=>{setClicked(link.path); setIsOpenNav(winSize<750 ? false : true);}}>{link.name}</Link>
+                                return <Link className={clicked===link.path ? "link button-in color-white hover active" : "link button-in color-white hover inactive"} to={link.path} key={i} onClick={()=>{setClicked(link.path); setIsOpenNav(winSize<750 ? false : true);}}>{link.name}</Link>
                             })
                         }   
                     </div>
                     <div className="search-ar">
-                        <input type="text"/>
+                        <input type="text" onChange={(e)=>handleSearch(e.target.value)} ref={qu}/>
                         <AiOutlineSearch className="icon" />
+                        {searchRes.length!==0 && <div className="search-res-ar">
+                            {
+                                searchRes.map((e, i)=>{
+                                    console.log(e.product_id, i)
+                                    return <div className="search-res" key={i}>
+                                        <div className="price">₹{e.price}</div>
+                                        <Link className="res" to={"/product/" + e.product_id} onClick={()=>{setSearchRes([]); qu.current.value = null;}}>{e.name}</Link>
+                                    </div>
+                                })
+                            }
+                        </div>}
                     </div>
                 </div>
                 <div className="nav-links-ar">

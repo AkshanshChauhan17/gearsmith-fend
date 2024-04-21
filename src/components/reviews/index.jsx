@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 export default function Review() {
     const [ratingList, setRatingList] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-    const [ratingIndex, setRatingIndex] = useState(0)
+    const [ratingIndex, setRatingIndex] = useState(1)
     const [graphData, setGraphData] = useState({
         lb: [],
         dt: []
@@ -24,7 +24,7 @@ export default function Review() {
                 })
                 var all_productName = []
                 newRatingList.map((n)=>{
-                    all_productName.push(n.id)
+                    all_productName.push(new Date(n.rating_timestamp).toDateString())
                 })
                 setGraphData({
                     dt: all_rating,
@@ -72,7 +72,9 @@ export default function Review() {
                                 <div className="time">{d.rating_timestamp}</div>
                             </div>
                         </div>
-                        <div className="comment">{d.comment}</div>
+                        {
+                            d.comment!=="" && d.comment!==null ? <div className="comment">{d.comment}</div> : null
+                        }
                     </div>
                 })
             }

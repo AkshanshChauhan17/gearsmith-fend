@@ -104,10 +104,8 @@ export default function PaymentForm({data_d, u_email, paymentRes, setPaymentRes,
     useEffect(()=>{
         if(paymentRes.status) {
             setLoadingPage(true)
-            setTimeout(()=>{
-                setLoadingPage(false)
-                navigate("/myorder")
-            }, 3000)
+            setLoadingPage(false)
+            navigate("/myorder")
         }
     }, [paymentRes])
 

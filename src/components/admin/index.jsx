@@ -293,7 +293,7 @@ export default function Admin() {
                         </div>
                     </div>
                     <br />
-                    <input type="submit" className="button" value="Add New Product" />
+                    <input type="submit" className="button" value="Add New Product" hidden={media.length===0} />
                 </form>
             </div>
         )

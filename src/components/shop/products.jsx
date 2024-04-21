@@ -9,7 +9,7 @@ import Rating from "./rating"
 import user from "../../assets/images/unnamed.webp"
 import { postRating, removeRating } from "./rating.post"
 
-function Products({ud, gcDef}) {
+function Products({ud, gcDef, change}) {
     const [productColorIndex, setProductColorIndex] = useState(0)
     const [productColor, setProductColor] = useState([])
     const [productImages, setProductImages] = useState([])
@@ -148,7 +148,7 @@ function Products({ud, gcDef}) {
         })
         .catch(err => console.error(err))
         window.scrollTo(0, 0)
-    }, [])
+    }, [change])
 
     if(isEmptyObject(productData) || isEmptyObject(fiveStarRatingPercentage)) {
         return <div className="loading-ar">

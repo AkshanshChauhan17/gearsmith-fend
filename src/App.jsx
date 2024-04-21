@@ -125,7 +125,7 @@ function App({login_status, setLoginStatus}) {
           <Route path='/admin/dashboard' element={<Dashboard />} />
           <Route path='/' element={<Home />} />
           <Route path='/shop' element={<Shop />} />
-          <Route path='/product/:name' element={<Products ud={userData} gcDef={g_cart} />} />
+          <Route path='/product/:name' element={<Products ud={userData} gcDef={g_cart} change={location} />} />
           <Route path='/admin' element={<Admin />} />
           <Route path='/advantage' element={<Advantages />} />
           <Route path='/about' element={<AboutUs />} />
