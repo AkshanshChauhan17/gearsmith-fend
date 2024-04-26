@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import postNewProduct from "./admin.functions/post.reqs"
 import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai"
+import MyLineChart from "./MyLineChart"
 
 export default function Admin() {
     const AddProduct = ()=> {
