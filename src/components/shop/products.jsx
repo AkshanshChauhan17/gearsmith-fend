@@ -207,14 +207,14 @@ function Products({ud, gcDef, change}) {
                             }
                         </div>
                         <div className="product-price">{productData.previous_price === productData.price || productData.previous_price===0 ? "₹" + productData.price : <><s className="prv-price">₹{productData.previous_price}</s> ₹{productData.price} <div className="discount">{productData.discount} Discount</div></>}</div>
-                    {/* <div className="product-text">Sales Tex Included</div>
-                    <br />
-                    <div className="product-content">
-                        {
-                            productData.product_summary
-                        }
-                    </div>
-                    <br /> */}
+                        {/* <div className="product-text">Sales Tex Included</div>
+                        <br />
+                        <div className="product-content">
+                            {
+                                productData.product_summary
+                            }
+                        </div>
+                        <br /> */}
                     <div className="product-color-section">
                         {productColor.length>0 && <div className="product-color-text"><b>Color:</b> {productColor[productColorIndex].color_name}</div>}
                         <div className="product-color-selection-ar">

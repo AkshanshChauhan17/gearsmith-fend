@@ -30,6 +30,8 @@ export default function Footer() {
                     {/* <Link className="section-link" to="/forum">Forum</Link> */}
                     <Link className="section-link" to="/privacy-policy">Privacy Policy</Link>
                     <Link className="section-link" to="/terms-conditions">Terms & Conditions</Link>
+                    <Link className="section-link" to="/rrcp">Return, Refund & Cancellation Policy</Link>
+                    <Link className="section-link" to="/sdp">Shipping & Delivery Policy</Link>
                 </div>
                 <div className="section">
                     <div className="section-heading">Contact Us</div>
@@ -54,7 +56,7 @@ export default function Footer() {
                 </div>
                 <div className="bottom-section-inner">
                     <div className="copy">
-                    Copyright ©2022 by Gearsmith
+                        Copyright ©2022 by Gearsmith
                     </div>
                 </div>
             </div>
