@@ -28,6 +28,8 @@ import MyOrder from './components/order/myorder'
 import { imageList } from './functions/images'
 import { SiOpsgenie } from 'react-icons/si'
 import { BiError } from 'react-icons/bi'
+import ReturnRefundCancellationPolicy from './components/rrc'
+import ShippingAndDeliveryPolicy from './components/sdp'
 
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState([])
@@ -124,6 +126,8 @@ function App({login_status, setLoginStatus}) {
         <Routes>
           <Route path='/admin/dashboard' element={<Dashboard />} />
           <Route path='/' element={<Home />} />
+          <Route path='/rrcp' element={<ReturnRefundCancellationPolicy />} />
+          <Route path='/sdp' element={<ShippingAndDeliveryPolicy />} />
           <Route path='/shop' element={<Shop />} />
           <Route path='/product/:name' element={<Products ud={userData} gcDef={g_cart} change={location} />} />
           <Route path='/admin' element={<Admin />} />

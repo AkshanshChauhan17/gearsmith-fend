@@ -44,7 +44,6 @@ export default function Review() {
 
     return (
         <div className="review">
-        <div className="graph"><Graph dt={graphData.dt} lb={graphData.lb} /></div>
         <div className="review-ar">
             {
                 ratingList.map((d, i)=>{

@@ -39,7 +39,7 @@ export default function AboutUs() {
         <div className="right"></div>
       </div>
       <section>
-        <div style={{backgroundImage: "url('"+ url_main +"static/images/about-i.webp')", backgroundPositionY: scrollY*0.2 - 300}} className="image"></div>
+        <div style={{backgroundImage: "url('"+ url_main +"static/images/about-i.webp')"}} className="image"></div>
         <div className="text">
             <h2 className="inner-heading">AIM <AiFillRightSquare /></h2>
             <p className="content">GearSmith specializes in cutting-edge tactical gear, catering to the diverse requirements of uniformed professionals. Our range seamlessly integrates advanced technology and practicality, guaranteeing peak performance and safety in every scenario. Join our community and gear up with confidence, supported by GearSmith's unwavering dedication to perfection.</p>
@@ -64,7 +64,7 @@ export default function AboutUs() {
             <h2 className="inner-heading">VISION <AiFillRightSquare /></h2>
             <p className="content">We specialize in crafting military-grade tactical equipment tailored for Indian climates, ensuring their suitability for mission-oriented operations. Our dedication to excellence guarantees gear that performs reliably in any situation, empowering personnel with confidence in their equipment.</p>
         </div>
-        <div style={{backgroundImage: "url('" + url_main + "static/images/about-ii.webp')", backgroundPositionY: scrollY*0.2 - 300}} alt="" className="image" />
+        <div style={{backgroundImage: "url('" + url_main + "static/images/about-ii.webp')"}} alt="" className="image" />
       </section>
       <div className="values-ar">
       <div className="values-heading">Our Mission <AiOutlineRight className="icon" /></div>
@@ -81,7 +81,7 @@ export default function AboutUs() {
         </div>
       </div>
       <section>
-        <div style={{backgroundImage: "url('" + url_main + "static/images/about-iii.webp')", backgroundPositionY: scrollY*0.2 - 300}} alt="" className="image" />
+        <div style={{backgroundImage: "url('" + url_main + "static/images/about-iii.webp')"}} alt="" className="image" />
         <div className="text">
             <h2 className="inner-heading">CONCEPTUALIZATION <AiFillRightSquare /></h2>
             <p className="content">Designed by Ex Indian Army Special Forces who has the rich experience of having served in the icy Himalayas to the lush subtropical jungles of the northeast, from urban built-up areas in Delhi to the saline waters of the Indian ocean. We would like to provide the products to get the job done when it counts the most.</p>

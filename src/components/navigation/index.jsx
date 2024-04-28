@@ -74,7 +74,7 @@ export default function Navigation({ls, ud, um, cartData}) {
                     isOpenNav ? <GrClose size={25} onClick={()=>setIsOpenNav(false)}/>
                     : <BiMenu size={25} onClick={()=>setIsOpenNav(true)}/>
                 }
-            </div>
+                </div>
             }
             {
                 isOpenNav ?
@@ -85,15 +85,16 @@ export default function Navigation({ls, ud, um, cartData}) {
                 <Link onClick={()=>setIsOpenNav(winSize<750 ? false : true)} className="top-link">STORE LOCATION</Link>
                 <Link onClick={()=>setIsOpenNav(winSize<750 ? false : true)} to="user/profile" className="top-link">MY ACCOUNT</Link>
                 {
-                    winSize>750 && isOpenBanner ? 
-                        <GrUp className="top-link" style={{cursor: "pointer"}} onClick={()=>setIsOpenBanner(false)}/> 
+                    isOpenBanner ? 
+                        <GrUp className="top-link" style={{cursor: "pointer", display: winSize<750 ? "none" : null}} onClick={()=>setIsOpenBanner(false)}/> 
                             :
-                        <GrDown className="top-link" style={{cursor: "pointer"}} onClick={()=>setIsOpenBanner(true)}/>
+                        <GrDown className="top-link" style={{cursor: "pointer", display: winSize<750 ? "none" : null}} onClick={()=>setIsOpenBanner(true)}/>
                 }
             </div>
             <div className="bottom">
                 <div className="nav-left">
                     <img src={imageList[0]} alt="" style={{filter: "invert(1)"}} />
+                    <img src={imageList[1]} alt="" style={{filter: "invert(1)", width: 200}} />
                 </div>
                 <div className="nav-links-ar">
                     <div className="nav-link">
@@ -103,7 +104,9 @@ export default function Navigation({ls, ud, um, cartData}) {
                             })
                         }   
                     </div>
-                    <div className="search-ar">
+                </div>
+                <div className="nav-links-ar">
+                <div className="search-ar">
                         <input type="text" onChange={(e)=>handleSearch(e.target.value)} ref={qu}/>
                         <AiOutlineSearch className="icon" />
                         {searchRes.length!==0 && <div className="search-res-ar">
@@ -118,8 +121,6 @@ export default function Navigation({ls, ud, um, cartData}) {
                             }
                         </div>}
                     </div>
-                </div>
-                <div className="nav-links-ar">
                     <div className="nav-controls">
                         <Link onClick={()=>setIsOpenNav(winSize<750 ? false : true)}  to="/user/cart" className="nav-icon">
                             <AiOutlineShoppingCart /><div className="text">{cartData.length}</div>

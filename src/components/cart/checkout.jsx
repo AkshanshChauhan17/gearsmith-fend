@@ -78,7 +78,7 @@ function CheckoutForm({ud_d, ps, psDef, slpDef}) {
 
   return (
     <div className='checkout'>
-      <h2 className='flex center gap-20'>Shipping Address<FaShippingFast /></h2>
+      {isEmptyObject(data) ? <h2 className='flex center gap-20'>Shipping Address<FaShippingFast /></h2>:null}
       {
         isEmptyObject(data) ? <form onSubmit={handleSubmit}>
         <div className="address-ar" style={hidden ? {display: "none"} : {display: ""}}>

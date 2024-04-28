@@ -16,7 +16,7 @@ export default function TermAndCondition() {
                         return(
                             <div className="tc-content">
                                 <div className="tc-content-title">{data.title} <PiCaretRight className="icon"/></div>
-                                <div className="tc-content-text">{data.content}</div>
+                                <pre className="tc-content-text">{data.content}</pre>
                             </div>
                         )
                     })

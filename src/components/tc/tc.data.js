@@ -135,21 +135,21 @@ export const ts_data = [{
     content: "The Owner is not liable for any damage that may occur to You as a result of Your use of the Website or Services, to the fullest extent permitted by law. The maximum liability of the Owner arising from or relating to these Terms of Service is limited to the lesser of Rs. 1000 (Rupees One Thousand only) or the amount You paid to the Owner in the last six (6) months. This section applies to any and all claims by You, including, but not limited to, lost profits or revenues, consequential or punitive damages, negligence, strict liability, fraud, or torts of any kind."
 }, {
     title: "GENERAL PROVISIONS:",
-    content: `a) LANGUAGE: All communications made or notices given pursuant to these Terms of Service shall be in the English language.
+    content: `a) LANGUAGE: All communications made or notices given pursuant to these Terms of Service shall be in the English language. 
+    
+b) JURISDICTION, VENUE & GOVERNING LAW: Through Your use of the Website or Services, You agree that the laws of India shall govern any matter or dispute relating to or arising out of these Terms of Service, as well as any dispute of any kind that may arise between You and the Owner, with the exception of its conflict of law provisions. In case any litigation specifically permitted under these Terms of Service is initiated, the Parties agree to submit to the exclusive jurisdiction of the courts at New Delhi, India. The Parties agree that this choice of law, venue, and jurisdiction provision is not permissive, but rather mandatory in nature. You hereby waive the right to any objection of venue, including assertion of the doctrine of forum non-conveniens or similar doctrine.
 
-    b) JURISDICTION, VENUE & GOVERNING LAW: Through Your use of the Website or Services, You agree that the laws of India shall govern any matter or dispute relating to or arising out of these Terms of Service, as well as any dispute of any kind that may arise between You and the Owner, with the exception of its conflict of law provisions. In case any litigation specifically permitted under these Terms of Service is initiated, the Parties agree to submit to the exclusive jurisdiction of the courts at New Delhi, India. The Parties agree that this choice of law, venue, and jurisdiction provision is not permissive, but rather mandatory in nature. You hereby waive the right to any objection of venue, including assertion of the doctrine of forum non-conveniens or similar doctrine.
-    
-    c) ASSIGNMENT: This Agreement, or the rights granted hereunder, may not be assigned, sold, leased or otherwise transferred in whole or part by You. Should these Terms of Service, or the rights granted hereunder, by assigned, sold, leased or otherwise transferred by the Owner, the rights and liabilities of the Owner will bind and inure to any assignees, administrators, successors and executors.
-    
-    d) SEVERABILITY: If any part or sub-part of these Terms of Service is held invalid or unenforceable by a court of law or competent arbitrator, the remaining parts and sub-parts will be enforced to the maximum extent possible. In such condition, the remainder of these Terms of Service shall continue in full force.
-    
-    e) NO WAIVER: In the event that We fail to enforce any provision of these Terms of Service, this shall not constitute a waiver of any future enforcement of that provision or of any other provision. Waiver of any part or sub-part of these Terms of Service will not constitute a waiver of any other part or sub-part.
-    
-    f) HEADINGS FOR CONVENIENCE ONLY: Headings of parts and sub-parts under these Terms of Service are for convenience and organization, only. Headings shall not affect the meaning of any provisions of these Terms of Service.
-    
-    g) NO AGENCY, PARTNERSHIP OR JOINT VENTURE: No agency, partnership, or joint venture has been created between the Parties as a result of these Terms of Service. No Party has any authority to bind the other to third parties.
-    
-    h) FORCE MAJEURE: The Owner is not liable for any failure to perform due to causes beyond its reasonable control including, but not limited to, acts of God, acts of civil authorities, acts of military authorities, riots, embargoes, acts of nature and natural disasters, and other acts which may be due to unforeseen circumstances.
-    
-    i) ELECTRONIC COMMUNICATIONS PERMITTED: Electronic communications are permitted to both Parties under these Terms of Service, including e-mail or fax. For any questions or concerns, please email Us at the following address: gmithpvtltd@gmail.com.`
+c) ASSIGNMENT: This Agreement, or the rights granted hereunder, may not be assigned, sold, leased or otherwise transferred in whole or part by You. Should these Terms of Service, or the rights granted hereunder, by assigned, sold, leased or otherwise transferred by the Owner, the rights and liabilities of the Owner will bind and inure to any assignees, administrators, successors and executors.
+
+d) SEVERABILITY: If any part or sub-part of these Terms of Service is held invalid or unenforceable by a court of law or competent arbitrator, the remaining parts and sub-parts will be enforced to the maximum extent possible. In such condition, the remainder of these Terms of Service shall continue in full force.
+
+e) NO WAIVER: In the event that We fail to enforce any provision of these Terms of Service, this shall not constitute a waiver of any future enforcement of that provision or of any other provision. Waiver of any part or sub-part of these Terms of Service will not constitute a waiver of any other part or sub-part.
+
+f) HEADINGS FOR CONVENIENCE ONLY: Headings of parts and sub-parts under these Terms of Service are for convenience and organization, only. Headings shall not affect the meaning of any provisions of these Terms of Service.
+
+g) NO AGENCY, PARTNERSHIP OR JOINT VENTURE: No agency, partnership, or joint venture has been created between the Parties as a result of these Terms of Service. No Party has any authority to bind the other to third parties.
+
+h) FORCE MAJEURE: The Owner is not liable for any failure to perform due to causes beyond its reasonable control including, but not limited to, acts of God, acts of civil authorities, acts of military authorities, riots, embargoes, acts of nature and natural disasters, and other acts which may be due to unforeseen circumstances.
+
+i) ELECTRONIC COMMUNICATIONS PERMITTED: Electronic communications are permitted to both Parties under these Terms of Service, including e-mail or fax. For any questions or concerns, please email Us at the following address: gmithpvtltd@gmail.com.`
 }]

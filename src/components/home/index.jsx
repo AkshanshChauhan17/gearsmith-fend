@@ -129,7 +129,7 @@ export default function Home({with_login}) {
                     })
                 }
             </div>
-            <div className="home-about">
+            {/* <div className="home-about">
                 <div className="title">
                     {
                         aboutData["About Gearsmith Section"].title
@@ -145,7 +145,7 @@ export default function Home({with_login}) {
                         })
                     }
                 </div>
-            </div>
+            </div> */}
         {with_login ? <div className="product-types">
                 <div className="product">
                     <div className="product-heading">Already have account</div>

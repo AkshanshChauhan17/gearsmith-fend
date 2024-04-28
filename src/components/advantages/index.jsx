@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import url_main from "../../functions/url";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai"
-import { ad_data } from "./advantages.data";
+import { ad_data, defaultData } from "./advantages.data";
 import mii from "../../assets/images/makeinindia.jpg"
 import { BiRightArrow, BiRightArrowAlt } from "react-icons/bi";
 import { FaAtom, FaCcAmex, FaCcMastercard, FaCcVisa, FaCloudsmith, FaDollarSign, FaDrawPolygon, FaGooglePay, FaHardHat, FaLungs, FaMicroscope, FaMountain, FaRunning, FaShieldAlt, FaSnowflake, FaStarOfLife, FaSun, FaThermometerHalf, FaUserCheck, FaUsers, FaWater, FaWeight, FaWeightHanging } from "react-icons/fa";
@@ -97,22 +97,14 @@ export default function Advantages() {
         </div>
         <div className="right">
           <div className="container">
-            <div className="content-part">
-              <h2>Advanced Security Features</h2>
-              <p>Utilize our cutting-edge security measures to safeguard your personal information and ensure secure transactions.</p>
-            </div>
-            <div className="content-part">
-              <h2>24/7 Monitoring</h2>
-              <p>Benefit from continuous monitoring and threat detection to prevent unauthorized access and maintain the integrity of your data.</p>
-            </div>
-            <div className="content-part">
-              <h2>Data Encryption</h2>
-              <p>Protect your sensitive data with robust encryption methods, ensuring confidentiality and privacy in every interaction.</p>
-            </div>
-            <div className="content-part">
-              <h2>Multi-factor Authentication</h2>
-              <p>Enhance security with multi-factor authentication, adding an extra layer of protection to your accounts and transactions.</p>
-            </div>
+            {
+              defaultData[0].points.map((e, i)=>{
+                return <div className="content-part" key={i}>
+                  <h2>{e.title}</h2>
+                  <p>{e.description}</p>
+                </div>
+              })
+            }
         </div>
         </div>
         </div>
@@ -142,22 +134,14 @@ export default function Advantages() {
         <div className="way">
           <div className="right">
           <div className="container">
-            <div className="content-part">
-              <h2>Improved Performance</h2>
-              <p>Experience enhanced performance with our latest technology, designed to optimize speed, efficiency, and reliability.</p>
-            </div>
-            <div className="content-part">
-              <h2>Advanced Features</h2>
-              <p>Unlock new capabilities with advanced features and functionalities, providing greater flexibility and control over your tasks.</p>
-            </div>
-            <div className="content-part">
-              <h2>Seamless Integration</h2>
-              <p>Integrate seamlessly with existing systems and workflows, ensuring smooth transitions and maximizing productivity.</p>
-            </div>
-            <div className="content-part">
-              <h2>Scalability</h2>
-              <p>Scale your operations effortlessly with our scalable solutions, adapting to your growing needs without compromising performance.</p>
-            </div>
+            {
+              defaultData[1].points.map((e, i)=>{
+                return <div className="content-part" key={i}>
+                  <h2>{e.title}</h2>
+                  <p>{e.description}</p>
+                </div>
+              })
+            }
           </div>
         </div>
           <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (2).webp" + "')"}}>
@@ -192,22 +176,14 @@ export default function Advantages() {
           </div>
             <div className="right">
             <div className="container">
-          <div className="content-part">
-            <h2>Real-time Insights</h2>
-            <p>Gain access to real-time insights and analytics, empowering you to make informed decisions and optimize your strategies.</p>
-          </div>
-          <div className="content-part">
-            <h2>Comprehensive Reporting</h2>
-            <p>Generate comprehensive reports and visualizations, providing a clear overview of your operations and performance metrics.</p>
-          </div>
-          <div className="content-part">
-            <h2>Customizable Dashboards</h2>
-            <p>Create customizable dashboards tailored to your specific needs, allowing you to track key metrics and monitor progress at a glance.</p>
-          </div>
-          <div className="content-part">
-            <h2>Alerting and Notification</h2>
-            <p>Receive alerts and notifications in real-time, ensuring timely responses to critical events and potential issues.</p>
-          </div>
+            {
+              defaultData[2].points.map((e, i)=>{
+                return <div className="content-part" key={i}>
+                  <h2>{e.title}</h2>
+                  <p>{e.description}</p>
+                </div>
+              })
+            }
         </div>
           </div>
         </div>
@@ -236,22 +212,14 @@ export default function Advantages() {
         <div className="way">
           <div className="right">
           <div className="container">
-        <div className="content-part">
-          <h2>Scalable Storage Solutions</h2>
-          <p>Access scalable storage solutions tailored to your needs, allowing you to store and manage data efficiently as your business grows.</p>
-        </div>
-        <div className="content-part">
-          <h2>High Availability</h2>
-          <p>Ensure high availability and reliability of your data with redundant storage systems and robust disaster recovery mechanisms.</p>
-        </div>
-        <div className="content-part">
-          <h2>Flexible Storage Options</h2>
-          <p>Choose from a range of flexible storage options, including cloud-based storage, on-premises solutions, and hybrid deployments.</p>
-        </div>
-        <div className="content-part">
-          <h2>Security and Compliance</h2>
-          <p>Protect your data with advanced security measures and ensure compliance with industry regulations and data protection standards.</p>
-        </div>
+          {
+              defaultData[3].points.map((e, i)=>{
+                return <div className="content-part" key={i}>
+                  <h2>{e.title}</h2>
+                  <p>{e.description}</p>
+                </div>
+              })
+            }
       </div>
           </div>
           <div className="left" style={{backgroundImage: "url('" + url_main + "static/images/av-images (3).webp" + "')"}}>
@@ -286,22 +254,14 @@ export default function Advantages() {
         </div>
           <div className="right">
           <div className="container">
-        <div className="content-part">
-          <h2>Modern Design</h2>
-          <p>Experience modern and sleek design aesthetics that enhance user experience and engagement.</p>
-        </div>
-        <div className="content-part">
-          <h2>Visual Appeal</h2>
-          <p>Create visually appealing interfaces with attention to detail, color harmony, and typography.</p>
-        </div>
-        <div className="content-part">
-          <h2>User-Centric Approach</h2>
-          <p>Adopt a user-centric approach to design, focusing on usability, accessibility, and intuitive navigation.</p>
-        </div>
-        <div className="content-part">
-          <h2>Branding Integration</h2>
-          <p>Integrate branding elements seamlessly into the design, reinforcing brand identity and recognition.</p>
-        </div>
+          {
+              defaultData[4].points.map((e, i)=>{
+                return <div className="content-part" key={i}>
+                  <h2>{e.title}</h2>
+                  <p>{e.description}</p>
+                </div>
+              })
+            }
       </div>
           </div>
         </div>

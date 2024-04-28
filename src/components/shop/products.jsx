@@ -179,7 +179,7 @@ function Products({ud, gcDef, change}) {
                 <div className="product-view-right">
                     <div className="product-header">
                         <div className="left">
-                            <div className="gearsmith-logo"></div>
+                            {/* <div className="gearsmith-logo"></div> */}
                             <div className="gearsmith-name">Gearsmith</div>
                         </div>
                         <div className="right">
