@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import postNewProduct from "./admin.functions/post.reqs"
 import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai"
+import { useNavigate } from "react-router-dom"
 
 export default function Admin() {
     const AddProduct = ()=> {
@@ -19,8 +20,8 @@ export default function Admin() {
         const [selectSize2, setSelectSize2] = useState({})
         const [selectSize3, setSelectSize3] = useState({})
         const [selectSize4, setSelectSize4] = useState({})
-        const [detail, setDetail] = useState()
-        const [disclaimer, setDisclaimer] = useState()
+        const [detail, setDetail] = useState("")
+        const [disclaimer, setDisclaimer] = useState("")
 
         const [sizes, setSizes] = useState({
             chest: {
@@ -58,6 +59,8 @@ export default function Admin() {
                 }
             }));
         };
+
+        var navigator = useNavigate();
 
         const [uploadSuccess, setUploadSuccess] = useState({
             status: false,
@@ -204,7 +207,6 @@ export default function Admin() {
             setImageSelectionLoading(false)
         };
         
-
         if(loading) {
             return <div className="loading-ar">
                 <div className="loader"></div>
@@ -212,17 +214,7 @@ export default function Admin() {
         }
 
         if(uploadSuccess.visible) {
-            return <div className="success-message flex center" style={{backgroundColor: uploadSuccess.status ? "darkgreen" : "darkred", color: "white", padding: "20px 40px", justifyContent: "space-evenly", fontSize: "30px"}}>
-                <AiFillCheckCircle />
-                {
-                    uploadSuccess.message
-                }
-                <AiFillCloseCircle style={{cursor: "pointer"}} onClick={()=>setUploadSuccess({
-                    status: false,
-                    message: "",
-                    visible: false
-                })} />
-            </div>
+            navigator("/shop")
         }
 
         return(
@@ -352,13 +344,13 @@ export default function Admin() {
                     </div>
                     <br />
                     <br />
-                    <div className="grid gap-20">
+                    <div className="d grid gap-20">
                         <h4>Package Detail</h4>
                         <textarea name="" id="" cols="30" rows="10" onChange={(e)=>setDetail(e.target.value)}></textarea>
                     </div>
                     <br />
                     <br />
-                    <div className="grid gap-20">
+                    <div className="d grid gap-20">
                         <h4>Disclaimer</h4>
                         <textarea name="" id="" cols="30" rows="10" onChange={(e)=>setDisclaimer(e.target.value)}></textarea>
                     </div>
