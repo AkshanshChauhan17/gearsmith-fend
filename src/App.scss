@@ -306,6 +306,30 @@ hr {
     gap: 10px;
 }
 
+.size-guide {
+    display: grid;
+    padding: 30px 0px;
+    gap: 20px;
+    table {
+        outline: 1px solid black;
+        th {
+            padding: 10px;
+            outline: 1px solid rgba(0, 0, 0, 0.2);
+        }
+        td {
+            outline: 1px solid rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            text-align: center;
+            input {
+                font-size: 20px;
+                text-align: center;
+                width: 100%;
+                border: 0px;
+            }
+        }
+    }
+}
+
 .product-card {
     margin: 40px;
     color: rgb(196, 196, 196);

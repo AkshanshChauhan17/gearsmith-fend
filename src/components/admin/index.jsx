@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import postNewProduct from "./admin.functions/post.reqs"
 import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai"
-import MyLineChart from "./MyLineChart"
 
 export default function Admin() {
     const AddProduct = ()=> {
@@ -20,6 +19,45 @@ export default function Admin() {
         const [selectSize2, setSelectSize2] = useState({})
         const [selectSize3, setSelectSize3] = useState({})
         const [selectSize4, setSelectSize4] = useState({})
+        const [detail, setDetail] = useState()
+        const [disclaimer, setDisclaimer] = useState()
+
+        const [sizes, setSizes] = useState({
+            chest: {
+                S: '',
+                M: '',
+                L: '',
+                XL: ''
+            },
+            length: {
+                S: '',
+                M: '',
+                L: '',
+                XL: ''
+            },
+            sleeve: {
+                S: '',
+                M: '',
+                L: '',
+                XL: ''
+            },
+            shoulder: {
+                S: '',
+                M: '',
+                L: '',
+                XL: ''
+            }
+        });
+    
+        const handleChange = (category, size, value) => {
+            setSizes(prevSizes => ({
+                ...prevSizes,
+                [category]: {
+                    ...prevSizes[category],
+                    [size]: value
+                }
+            }));
+        };
 
         const [uploadSuccess, setUploadSuccess] = useState({
             status: false,
@@ -79,7 +117,7 @@ export default function Admin() {
 
         const handleFormSubmit = async()=> {
             setLoading(true)
-            await postNewProduct(name, price, media, colorList, sizeList, productSummary)
+            await postNewProduct(name, price, media, colorList, sizeList, productSummary, sizes, detail, disclaimer)
                 .then((res)=>{
                     if(res.affectedRows!=0) {
                         setLoading(false)
@@ -238,7 +276,8 @@ export default function Admin() {
                     <br />
                     <div className="size-select-ar">
                         Select Available Size:
-                        <br /><br />
+                        <br />
+                        <br />
                         <div className="selected-size-ar"> 
                             {
                                 sizeList.map((s, i)=>{
@@ -257,10 +296,10 @@ export default function Admin() {
                                     const sizeListElement = [setSelectSize1, setSelectSize2, setSelectSize3, setSelectSize4]
                                     return (
                                         <div className="select-size" key={i}>
-                                            <div className="size">
+                                            <label className="size">
                                                 <input type="checkbox" onChange={(e)=>sizeListElement[i](e.target.checked ? {size_name: size.size_name, size: size.size} : {})} />
                                                 {size.size_name} {size.size}
-                                            </div>
+                                            </label>
                                         </div>
                                     )
                                 })
@@ -269,8 +308,64 @@ export default function Admin() {
                     </div>
                     <br />
                     <br />
+                    <div className="form-heading">Upload Product Details</div>
+                    <div className="form-subheading">Add details like Package Detail, Disclaimer, Size Guide etc. </div>
+                    <div className="size-guide">
+                        <h4>Size Guild</h4>
+                        <table>
+                        <tr>
+                            <th>SIZE (INCH)</th>
+                            <th>S</th>
+                            <th>M</th>
+                            <th>L</th>
+                            <th>XL</th>
+                        </tr>
+                        <tr>
+                            <td>CHEST</td>
+                            <td><input type="tel" onChange={(e) => handleChange('chest', 'S', e.target.value)} /></td>
+                            <td><input type="tel" onChange={(e) => handleChange('chest', 'M', e.target.value)} /></td>
+                            <td><input type="tel" onChange={(e) => handleChange('chest', 'L', e.target.value)} /></td>
+                            <td><input type="tel" onChange={(e) => handleChange('chest', 'XL', e.target.value)} /></td>
+                        </tr>
+                        <tr>
+                            <td>LENGTH</td>
+                            <td><input type="tel" onChange={(e) => handleChange('length', 'S', e.target.value)} /></td>
+                            <td><input type="tel" onChange={(e) => handleChange('length', 'M', e.target.value)} /></td>
+                            <td><input type="tel" onChange={(e) => handleChange('length', 'L', e.target.value)} /></td>
+                            <td><input type="tel" onChange={(e) => handleChange('length', 'XL', e.target.value)} /></td>
+                        </tr>
+                        <tr>
+                            <td>SLEEVE</td>
+                            <td><input type="tel" onChange={(e) => handleChange('sleeve', 'S', e.target.value)} /></td>
+                            <td><input type="tel" onChange={(e) => handleChange('sleeve', 'M', e.target.value)} /></td>
+                            <td><input type="tel" onChange={(e) => handleChange('sleeve', 'L', e.target.value)} /></td>
+                            <td><input type="tel" onChange={(e) => handleChange('sleeve', 'XL', e.target.value)} /></td>
+                        </tr>
+                        <tr>
+                            <td>SHOULDER</td>
+                            <td><input type="tel" onChange={(e) => handleChange('shoulder', 'S', e.target.value)} /></td>
+                            <td><input type="tel" onChange={(e) => handleChange('shoulder', 'M', e.target.value)} /></td>
+                            <td><input type="tel" onChange={(e) => handleChange('shoulder', 'L', e.target.value)} /></td>
+                            <td><input type="tel" onChange={(e) => handleChange('shoulder', 'XL', e.target.value)} /></td>
+                        </tr>
+                    </table>
+                    </div>
+                    <br />
+                    <br />
+                    <div className="grid gap-20">
+                        <h4>Package Detail</h4>
+                        <textarea name="" id="" cols="30" rows="10" onChange={(e)=>setDetail(e.target.value)}></textarea>
+                    </div>
+                    <br />
+                    <br />
+                    <div className="grid gap-20">
+                        <h4>Disclaimer</h4>
+                        <textarea name="" id="" cols="30" rows="10" onChange={(e)=>setDisclaimer(e.target.value)}></textarea>
+                    </div>
+                    <br />
+                    <br />
                     <div>
-                        <div className="form-heading">Upload Images</div>
+                    <div className="form-heading">Upload Images</div>
                         <div className="form-subheading">Upload Images for Your Product</div>
                         <br />
                         <div className="image-upload-ar">

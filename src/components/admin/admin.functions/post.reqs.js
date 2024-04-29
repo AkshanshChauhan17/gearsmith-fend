@@ -1,7 +1,7 @@
 import { getRequest } from "../../../functions/get.req";
 import url_main from "../../../functions/url";
 
-const postNewProduct = async(name, price, media, color_list, size_list, product_summary) => {
+const postNewProduct = async(name, price, media, color_list, size_list, product_summary, sizes, detail, disclaimer) => {
     var res = null;
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -12,7 +12,10 @@ const postNewProduct = async(name, price, media, color_list, size_list, product_
         media: media,
         color_list,
         size_list,
-        product_summary: product_summary
+        product_summary: product_summary,
+        size_table: sizes,
+        detail: detail,
+        disclaimer: disclaimer
     });
 
     const requestOptions = {

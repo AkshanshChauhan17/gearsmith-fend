@@ -119,16 +119,16 @@ export default function Home({with_login}) {
                     </Link>
                 </div>
             </div>
-            <div className="product-types">
-                {
-                    product_type_links.map((product, i)=>{
-                        return <div className="product" key={i}>
-                            <div className="product-heading">{product[0]}</div>
-                            <Link to={product[1]} className="product-button">Shop Now<AiOutlineRight className="arrow" /></Link>
-                        </div>
-                    })
-                }
-            </div>
+        {with_login ? null : <div className="product-types">
+            {
+                product_type_links.map((product, i)=>{
+                    return <div className="product" key={i}>
+                        <div className="product-heading">{product[0]}</div>
+                        <Link to={product[1]} className="product-button">Shop Now<AiOutlineRight className="arrow" /></Link>
+                    </div>
+                })
+            }
+        </div>}
             {/* <div className="home-about">
                 <div className="title">
                     {
@@ -147,6 +147,7 @@ export default function Home({with_login}) {
                 </div>
             </div> */}
         {with_login ? <div className="product-types">
+        <div className="product"></div>
                 <div className="product">
                     <div className="product-heading">Already have account</div>
                     <Link to={"/login"} className="product-button">Login Now<AiOutlineRight className="arrow" /></Link>
@@ -155,6 +156,7 @@ export default function Home({with_login}) {
                 <div className="product-heading">I am new here</div>
                 <Link to={"/register"} className="product-button">Register Now<AiOutlineRight className="arrow" /></Link>
             </div>
+            <div className="product"></div>
         </div> : null}
             <div className="ad2">
                 <div className="text">
