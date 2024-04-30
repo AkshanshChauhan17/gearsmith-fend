@@ -55,7 +55,7 @@ export default function PaymentForm({data_d, u_email, paymentRes, setPaymentRes,
             const {amount, id: order_id, currency} = result
 
             var options = {
-                key: "rzp_test_cWx0FiWY7TRc5L",
+                key: "rzp_live_rs6UWRJ2Auh5hC",
                 amount: amount.toString(),
                 currency: currency,
                 name: data_d.user_meta.first_name + " " + data_d.user_meta.last_name,
