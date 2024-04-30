@@ -436,6 +436,56 @@ hr {
     }
 }
 
+.fullscreen-control {
+    position: fixed;
+    z-index: 2000;
+    background-color: white;
+    font-size: 40px;
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 10px;
+    left: 10px;
+    opacity: 0.2;
+}
+
+.fullscreen-control:hover {
+    opacity: 1;
+}
+
+.orientation-control {
+    position: fixed;
+    z-index: 2000;
+    background-color: white;
+    font-size: 40px;
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 10px;
+    left: 80px;
+    opacity: 0.2;
+}
+
+.orientation-control:hover {
+    opacity: 1;
+}
+
+.control-selected {
+    color: white;
+    background-color: orangered;
+    opacity: 1;
+}
+
 .upr-rating {
     display: grid;
     gap: 1px;

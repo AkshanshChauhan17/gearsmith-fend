@@ -27,6 +27,7 @@ function Products({ud, gcDef, change}) {
     const [ratingData, setRatingData] = useState([])
     const [totalRating, setTotalRating] = useState(0)
     const [ratingLoad, setRatingLoad] = useState(false)
+    const [productSizeTable, setProductSizeTable] = useState({})
     const [fiveStarRatingPercentage, setFiveStartRatingPercentage] = useState({})
 
     const handleClick = (selectedRating) => {
@@ -145,6 +146,7 @@ function Products({ud, gcDef, change}) {
             setProductSize(JSON.parse(productResponse.size_list))
             setProductImages(JSON.parse(productResponse.media))
             setProductPrice(productResponse.price)
+            setProductSizeTable(JSON.parse(productResponse.size_table))
         })
         .catch(err => console.error(err))
         window.scrollTo(0, 0)
@@ -259,6 +261,58 @@ function Products({ud, gcDef, change}) {
                         </div>
                     }
                 </div>
+            </div>
+            <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "10px", alignItems: "flex-start", alignContent: "flex-start", justifyContent: "flex-start", justifyItems: "flex-start"}}>
+            <div className="size-guide" style={{flex: 1, minWidth: 300, padding: 20, backgroundColor: "white", display: productData.size_table==='{"chest":{"S":"","M":"","L":"","XL":""},"length":{"S":"","M":"","L":"","XL":""},"sleeve":{"S":"","M":"","L":"","XL":""},"shoulder":{"S":"","M":"","L":"","XL":""}}' ? "none" : ""}}>
+                        <h3>Size Guild</h3>
+                        <table style={{backgroundColor: "white", outline: 0}}>
+                        <tr>
+                            <th>SIZE (INCH)</th>
+                            <th>S</th>
+                            <th>M</th>
+                            <th>L</th>
+                            <th>XL</th>
+                        </tr>
+                        <tr>
+                            <td>CHEST</td>
+                            <td>{productSizeTable.chest.S}</td>
+                            <td>{productSizeTable.chest.M}</td>
+                            <td>{productSizeTable.chest.L}</td>
+                            <td>{productSizeTable.chest.XL}</td>
+                        </tr>
+                        <tr>
+                            <td>LENGTH</td>
+                            <td>{productSizeTable.length.S}</td>
+                            <td>{productSizeTable.length.M}</td>
+                            <td>{productSizeTable.length.L}</td>
+                            <td>{productSizeTable.length.XL}</td>
+                        </tr>
+                        <tr>
+                            <td>SLEEVE</td>
+                            <td>{productSizeTable.sleeve.S}</td>
+                            <td>{productSizeTable.sleeve.M}</td>
+                            <td>{productSizeTable.sleeve.L}</td>
+                            <td>{productSizeTable.sleeve.XL}</td>
+                        </tr>
+                        <tr>
+                            <td>SHOULDER</td>
+                            <td>{productSizeTable.shoulder.S}</td>
+                            <td>{productSizeTable.shoulder.M}</td>
+                            <td>{productSizeTable.shoulder.L}</td>
+                            <td>{productSizeTable.shoulder.XL}</td>
+                        </tr>
+                    </table>
+                    </div>
+                    <div className="d grid gap-20" style={{flex: 1, minWidth: 300, height: "calc(100% - 40px)", alignItems: "start", alignContent: "start", fontSize: 18, display: productData.detail!=="" ? "" : "none", padding: 20, backgroundColor: "white", border: 0}}>
+                        <h3 style={{margin: 0}}>Package Detail</h3>
+                        <br />
+                        <pre disabled style={{border: 0, padding: 0, color: "gray", backgroundColor: "white", textWrap: "wrap", lineBreak: "auto", whiteSpace: "pre-wrap", lineHeight: 1.4}}>{productData.detail}</pre>
+                    </div>
+                    <div className="d grid gap-20" style={{flex: 1, minWidth: 300, height: "calc(100% - 40px)", alignItems: "start", alignContent: "start", fontSize: 18, display: productData.disclaimer!=="" ? "" : "none", padding: 20, backgroundColor: "white"}}>
+                        <h3 style={{margin: 0}}>Disclaimer</h3>
+                        <br />
+                        <pre disabled style={{border: 0, padding: 0, color: "gray", backgroundColor: "white", textWrap: "wrap", lineBreak: "auto", whiteSpace: "pre-wrap", lineHeight: 1.4}}>{productData.disclaimer}</pre>
+                    </div>
             </div>
             <div className="review-arr">
             <div className="product-summary">

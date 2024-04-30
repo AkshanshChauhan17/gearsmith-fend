@@ -27,16 +27,17 @@ import { getRequest } from './functions/get.req'
 import MyOrder from './components/order/myorder'
 import { imageList } from './functions/images'
 import { SiOpsgenie } from 'react-icons/si'
-import { BiError } from 'react-icons/bi'
+import { BiError, BiExitFullscreen, BiFullscreen } from 'react-icons/bi'
 import ReturnRefundCancellationPolicy from './components/rrc'
 import ShippingAndDeliveryPolicy from './components/sdp'
+import { BsSignTurnLeft, BsSignTurnRight } from 'react-icons/bs'
 
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState([])
   const [userMeta, setUserMeta] = useState({})
   const [loading, setLoading] = useState(true)
   const [cartData, setCartData] = useState([])
-  
+  const [isFullScreen, setIsFullScreen] = useState(false)
   const navigate = useNavigate()
 
   const handleVerifyToken = async ()=> {
@@ -89,6 +90,44 @@ function App({login_status, setLoginStatus}) {
       .catch((err)=>console.error(err))
   }, [])
 
+  const handleFullScreen = ()=>{
+    if(isFullScreen) {
+      if (document.exitFullscreen) {
+        document.exitFullscreen().then(() => {
+          console.log('Exited fullscreen mode');
+        }).catch((err) => {
+          console.error('Error attempting to exit full-screen mode:', err);
+        });
+      }
+    } else {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().then(() => {
+          console.log('Entered fullscreen mode');
+        }).catch((err) => {
+          console.error('Error attempting to enable full-screen mode:', err);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().then(() => {
+            console.log('Exited fullscreen mode');
+          }).catch((err) => {
+            console.error('Error attempting to exit full-screen mode:', err);
+          });
+        }
+      }
+    }
+  }
+
+  useEffect(()=>{
+    document.addEventListener("fullscreenchange",()=>{
+      if(!document.fullscreenElement) {
+        setIsFullScreen(false)
+      } else {
+        setIsFullScreen(true)
+      }
+    })
+  }, [])
+
   if(loading) {
     return <div className="logo-loading-ar">
       <div className="logo-loader">
@@ -122,6 +161,11 @@ function App({login_status, setLoginStatus}) {
 
   return (
     <div className="app">
+        <div className={isFullScreen ? "fullscreen-control control-selected" : "fullscreen-control" } onClick={()=>{isFullScreen ? setIsFullScreen(false) : setIsFullScreen(true); handleFullScreen()}}>
+          {
+            isFullScreen ? <BiExitFullscreen /> : <BiFullscreen />
+          }
+        </div>
         <Navigation lsDef={setLoginStatus} ls={login_status} ud={userData} um={userMeta} cartData={cartData} />
         <Routes>
           <Route path='/admin/dashboard' element={<Dashboard />} />
