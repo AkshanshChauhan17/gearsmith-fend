@@ -263,9 +263,10 @@ function Products({ud, gcDef, change}) {
                 </div>
             </div>
             <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "10px", alignItems: "flex-start", alignContent: "flex-start", justifyContent: "flex-start", justifyItems: "flex-start"}}>
-            <div className="size-guide" style={{flex: 1, minWidth: 300, padding: 20, backgroundColor: "white", display: productData.size_table==='{"chest":{"S":"","M":"","L":"","XL":""},"length":{"S":"","M":"","L":"","XL":""},"sleeve":{"S":"","M":"","L":"","XL":""},"shoulder":{"S":"","M":"","L":"","XL":""}}' ? "none" : ""}}>
-                        <h3>Size Guild</h3>
-                        <table style={{backgroundColor: "white", outline: 0}}>
+            {   productSizeTable.chest ?
+                <div className="size-guide" style={{flex: 1, minWidth: 300, padding: 20, backgroundColor: "white", display: productData.size_table==='{"chest":{"S":"","M":"","L":"","XL":""},"length":{"S":"","M":"","L":"","XL":""},"sleeve":{"S":"","M":"","L":"","XL":""},"shoulder":{"S":"","M":"","L":"","XL":""}}' ? "none" : ""}}>
+                    <h3>Size Guild</h3>
+                    <table style={{backgroundColor: "white", outline: 0}}>
                         <tr>
                             <th>SIZE (INCH)</th>
                             <th>S</th>
@@ -302,7 +303,40 @@ function Products({ud, gcDef, change}) {
                             <td>{productSizeTable.shoulder.XL}</td>
                         </tr>
                     </table>
-                    </div>
+                </div> : <div className="size-guide" style={{flex: 1, minWidth: 300, padding: 20, backgroundColor: "white", display: productData.size_table==='{"chest":{"S":"","M":"","L":"","XL":""},"length":{"S":"","M":"","L":"","XL":""},"sleeve":{"S":"","M":"","L":"","XL":""},"shoulder":{"S":"","M":"","L":"","XL":""}}' ? "none" : ""}}>
+                    <h3>Size Guild</h3>
+                    <table style={{backgroundColor: "white", outline: 0}}>
+                        <tr>
+                            <th>SIZE (INCH)</th>
+                            <th>S</th>
+                            <th>M</th>
+                            <th>L</th>
+                            <th>XL</th>
+                        </tr>
+                        <tr>
+                            <td>WAIST</td>
+                            <td>{productSizeTable.waist.S}</td>
+                            <td>{productSizeTable.waist.M}</td>
+                            <td>{productSizeTable.waist.L}</td>
+                            <td>{productSizeTable.waist.XL}</td>
+                        </tr>
+                        <tr>
+                            <td>LENGTH</td>
+                            <td>{productSizeTable.length.S}</td>
+                            <td>{productSizeTable.length.M}</td>
+                            <td>{productSizeTable.length.L}</td>
+                            <td>{productSizeTable.length.XL}</td>
+                        </tr>
+                        <tr>
+                            <td>THIGH</td>
+                            <td>{productSizeTable.thigh.S}</td>
+                            <td>{productSizeTable.thigh.M}</td>
+                            <td>{productSizeTable.thigh.L}</td>
+                            <td>{productSizeTable.thigh.XL}</td>
+                        </tr>
+                    </table>
+                </div>
+            }
                     <div className="d grid gap-20" style={{flex: 1, minWidth: 300, height: "calc(100% - 40px)", alignItems: "start", alignContent: "start", fontSize: 18, display: productData.detail!=="" ? "" : "none", padding: 20, backgroundColor: "white", border: 0}}>
                         <h3 style={{margin: 0}}>Package Detail</h3>
                         <br />
