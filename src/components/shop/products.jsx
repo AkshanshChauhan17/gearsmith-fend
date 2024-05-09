@@ -207,6 +207,11 @@ function Products({ud, gcDef, change}) {
                                     } <div className="stars-rv-text">{ratingData.length} reviews</div>
                                 </div>
                             }
+                            <div className="in-stock">
+                                {
+                                    productData.is_available ? "TRUE" : "FALSE"
+                                }
+                            </div>
                         </div>
                         <div className="product-price">{productData.previous_price === productData.price || productData.previous_price===0 ? "₹" + productData.price : <><s className="prv-price">₹{productData.previous_price}</s> ₹{productData.price} <div className="discount">{productData.discount} Discount</div></>}</div>
                         {/* <div className="product-text">Sales Tex Included</div>
@@ -236,7 +241,7 @@ function Products({ud, gcDef, change}) {
                                         if(isEmptyObject(ps)) {
                                             return null
                                         }
-                                        return <button className={productSizeSelected===ps.size_name + " " + ps.size ? "drop-size-btn-selected" : "drop-size-btn"} value={ps.size_name + " " + ps.size} key={i} onClick={(e)=>setProductSizeSelected(e.target.value)}>{ps.size}</button>
+                                        return <button className={productSizeSelected===ps.size_name + " " + ps.size ? "drop-size-btn-selected" : "drop-size-btn"} value={ps.size ? ps.size_name + " " + ps.size : ps.size_name } key={i} onClick={(e)=>setProductSizeSelected(e.target.value)}>{ps.size_name}</button>
                                     })
                                 }
                             </div>
@@ -262,10 +267,46 @@ function Products({ud, gcDef, change}) {
                     }
                 </div>
             </div>
-            <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "10px", alignItems: "flex-start", alignContent: "flex-start", justifyContent: "flex-start", justifyItems: "flex-start"}}>
+            <div className="review-arr">
+            <div className="product-summary">
+                <div className="heading">Description</div>
+                {productData.product_summary}
+            </div>
+            <div className="review-section-inputs">
+                <div className="review-top">
+                <div className="stars" style={rating===0 ? {zoom: "2"}: {}}>
+                    {
+                        [...Array(5)].map((_, i)=>{
+                            const ratingValue = i + 1
+                            return (
+                                <span
+                                key={i} 
+                                className={ratingValue <= rating ? "filled" : "empty"}
+                                onClick={()=>handleClick(ratingValue)}>
+                                    &#9733;
+                                </span>
+                            )
+                        })
+                    } ({rating}/5)
+                </div>
+                <div className="profile" style={rating===0 ? {display: "none"} : {}}>
+                    {ud.email}
+                    <img src={JSON.parse(ud.meta).profile_photo.small} alt="" />
+                </div>
+                </div>
+                <div hidden={rating===0}>
+                    <textarea cols="30" rows="10" className="comment" value={comment} placeholder="comment here" onChange={(e)=>setComment(e.target.value)}></textarea>
+                    <div className="controls">
+                        <button className="comment-submit" onClick={()=>setRating(0)}>Cancel<AiOutlineClose /></button>
+                        {ratingLoad ? <button className="comment-submit"><AiOutlineLoading className="loader" /></button> : <button className="comment-submit" onClick={()=>handleRating()}>Post<AiOutlineSend /></button>}
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div style={{display: "flex", flexWrap: "wrap", gap: "10px"}}>
             {   productSizeTable.chest ?
                 <div className="size-guide" style={{flex: 1, minWidth: 300, padding: 20, backgroundColor: "white", display: productData.size_table==='{"chest":{"S":"","M":"","L":"","XL":""},"length":{"S":"","M":"","L":"","XL":""},"sleeve":{"S":"","M":"","L":"","XL":""},"shoulder":{"S":"","M":"","L":"","XL":""}}' ? "none" : ""}}>
-                    <h3>Size Guild</h3>
+                    <h3>Size Guide</h3>
                     <table style={{backgroundColor: "white", outline: 0}}>
                         <tr>
                             <th>SIZE (INCH)</th>
@@ -304,7 +345,7 @@ function Products({ud, gcDef, change}) {
                         </tr>
                     </table>
                 </div> : <div className="size-guide" style={{flex: 1, minWidth: 300, padding: 20, backgroundColor: "white", display: productData.size_table==='{"chest":{"S":"","M":"","L":"","XL":""},"length":{"S":"","M":"","L":"","XL":""},"sleeve":{"S":"","M":"","L":"","XL":""},"shoulder":{"S":"","M":"","L":"","XL":""}}' ? "none" : ""}}>
-                    <h3>Size Guild</h3>
+                    <h3>Size Guide</h3>
                     <table style={{backgroundColor: "white", outline: 0}}>
                         <tr>
                             <th>SIZE (INCH)</th>
@@ -337,52 +378,16 @@ function Products({ud, gcDef, change}) {
                     </table>
                 </div>
             }
-                    <div className="d grid gap-20" style={{flex: 1, minWidth: 300, height: "calc(100% - 40px)", alignItems: "start", alignContent: "start", fontSize: 18, display: productData.detail!=="" ? "" : "none", padding: 20, backgroundColor: "white", border: 0}}>
+                    <div className="d grid" style={{flex: 1, minWidth: 300, alignItems: "start", alignContent: "start", fontSize: 18, display: productData.detail!=="" ? "grid" : "none", padding: 20, backgroundColor: "white", border: 0}}>
                         <h3 style={{margin: 0}}>Package Detail</h3>
                         <br />
                         <pre disabled style={{border: 0, padding: 0, color: "gray", backgroundColor: "white", textWrap: "wrap", lineBreak: "auto", whiteSpace: "pre-wrap", lineHeight: 1.4}}>{productData.detail}</pre>
                     </div>
-                    <div className="d grid gap-20" style={{flex: 1, minWidth: 300, height: "calc(100% - 40px)", alignItems: "start", alignContent: "start", fontSize: 18, display: productData.disclaimer!=="" ? "" : "none", padding: 20, backgroundColor: "white"}}>
+                    <div className="d grid" style={{flex: 1, minWidth: 300, alignItems: "start", alignContent: "start", fontSize: 18, display: productData.disclaimer!=="" ? "" : "none", padding: 20, backgroundColor: "white"}}>
                         <h3 style={{margin: 0}}>Disclaimer</h3>
                         <br />
                         <pre disabled style={{border: 0, padding: 0, color: "gray", backgroundColor: "white", textWrap: "wrap", lineBreak: "auto", whiteSpace: "pre-wrap", lineHeight: 1.4}}>{productData.disclaimer}</pre>
                     </div>
-            </div>
-            <div className="review-arr">
-            <div className="product-summary">
-                <div className="heading">Description</div>
-                {productData.product_summary}
-            </div>
-            <div className="review-section-inputs">
-                <div className="review-top">
-                <div className="stars" style={rating===0 ? {zoom: "2"}: {}}>
-                    {
-                        [...Array(5)].map((_, i)=>{
-                            const ratingValue = i + 1
-                            return (
-                                <span
-                                key={i} 
-                                className={ratingValue <= rating ? "filled" : "empty"}
-                                onClick={()=>handleClick(ratingValue)}>
-                                    &#9733;
-                                </span>
-                            )
-                        })
-                    } ({rating}/5)
-                </div>
-                <div className="profile" style={rating===0 ? {display: "none"} : {}}>
-                    {ud.email}
-                    <img src={JSON.parse(ud.meta).profile_photo.small} alt="" />
-                </div>
-                </div>
-                <div hidden={rating===0}>
-                    <textarea cols="30" rows="10" className="comment" value={comment} placeholder="comment here" onChange={(e)=>setComment(e.target.value)}></textarea>
-                    <div className="controls">
-                        <button className="comment-submit" onClick={()=>setRating(0)}>Cancel<AiOutlineClose /></button>
-                        {ratingLoad ? <button className="comment-submit"><AiOutlineLoading className="loader" /></button> : <button className="comment-submit" onClick={()=>handleRating()}>Post<AiOutlineSend /></button>}
-                    </div>
-                </div>
-            </div>
             </div>
             <div className="review-heading">
                 <div className="heading-text">View Reviews</div> ({ratingData.length}) <AiOutlineSwapRight className="icon" />

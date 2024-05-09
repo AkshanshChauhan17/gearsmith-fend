@@ -310,6 +310,7 @@ hr {
     display: grid;
     padding: 30px 0px;
     gap: 20px;
+    align-content: start;
     table {
         outline: 1px solid black;
         th {
@@ -3535,7 +3536,7 @@ fieldset {
 }
 
 .cart {
-    height: fit-content;
+    min-height: 100vh;
     padding: 40px 40px;
     display: grid;
     gap: 10px;

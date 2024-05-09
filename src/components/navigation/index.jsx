@@ -115,7 +115,7 @@ export default function Navigation({ls, ud, um, cartData}) {
                                     console.log(e.product_id, i)
                                     return <div className="search-res" key={i}>
                                         <div className="price">₹{e.price}</div>
-                                        <Link className="res" to={"/product/" + e.product_id} onClick={()=>{setSearchRes([]); qu.current.value = null;}}>{e.name}</Link>
+                                        <a className="res" href={"/product/" + e.product_id} onClick={()=>{setSearchRes([]); qu.current.value = null;}}>{e.name}</a>
                                     </div>
                                 })
                             }

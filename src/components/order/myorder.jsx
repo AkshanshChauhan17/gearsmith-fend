@@ -24,7 +24,7 @@ export default function MyOrder() {
 
     if(orders.length===0) {
         return <div className="loading-ar">
-            <div className="loader"></div>
+            No order list
         </div>
     }
     return(
@@ -33,7 +33,6 @@ export default function MyOrder() {
             <div className="order-list">
                 {
                     orders.map((p, ii)=>{
-                        console.log(p)
                         return <div className="orders" key={ii}>
                             <div className="order-info">
                                 <div className="small-section">
