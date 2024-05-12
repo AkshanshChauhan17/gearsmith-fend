@@ -497,6 +497,8 @@ hr {
         font-size: 25px;
         height: fit-content;
         background-color: rgb(255, 255, 255);
+        display: flex;
+        justify-content: space-between;
         .stars-rv {
             display: flex;
             gap: 10px;
@@ -762,6 +764,26 @@ hr {
                 display: flex;
                 align-items: center;
                 margin-bottom: 20px;
+                display: flex;
+                justify-content: space-between;
+                .in-stock {
+                    font-size: 10px;
+                    font-weight: 600;
+                    .message {
+                        background-color: rgb(194, 255, 194);
+                        outline: 1px solid green;
+                        color: green;
+                        padding: 4px 10px;
+                        border-radius: 10px;
+                    }
+                    .message-out {
+                        background-color: rgb(255, 194, 194);
+                        outline: 1px solid rgb(128, 0, 0);
+                        color: rgb(128, 0, 0);
+                        padding: 4px 10px;
+                        border-radius: 10px;
+                    }
+                }
                 .stars-rv {
                     display: flex;
                     align-items: center;

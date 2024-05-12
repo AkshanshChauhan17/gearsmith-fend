@@ -209,7 +209,7 @@ function Products({ud, gcDef, change}) {
                             }
                             <div className="in-stock">
                                 {
-                                    productData.is_available ? "TRUE" : "FALSE"
+                                    productData.is_available ? <div className="message" title={"Product with id: " + productData.product_id + " is Available in Stock"}>Available</div> : <div className="message-out" title={"Product with id: " + productData.product_id + " is Out of Stock"}>Out of Stock</div>
                                 }
                             </div>
                         </div>
