@@ -1,6 +1,8 @@
 import { AiFillBell, AiFillMail, AiFillMessage, AiFillSetting, AiOutlineLogout } from "react-icons/ai";
 import { FaAngleRight, FaArrowRight, FaCartArrowDown, FaMailBulk, FaSignOutAlt, FaUser } from "react-icons/fa"
 import { Link } from "react-router-dom";
+import url_main from "../../../functions/url";
+import ProgressiveImage from "../../image";
 
 export default function Profile({um, ud, logOut}) {
     return (
@@ -8,7 +10,7 @@ export default function Profile({um, ud, logOut}) {
             <div className="profile-left">
                 <div className="top-details">
                     <div className="details">
-                        <img src={um.profile_photo.large} alt="" className="profile-image" />
+                        <ProgressiveImage lowResolutionSrc={url_main + "media/image/user/" + ud.email + "?r=50"} highResolutionSrc={url_main + "media/image/user/" + ud.email + "?r=500"} className={"profile-image"}/>
                         <div className="info-text"><b>{um.first_name} {um.last_name}</b></div>
                         <div className="info-text">{ud.email}</div>
                     </div>

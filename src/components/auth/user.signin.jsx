@@ -12,64 +12,65 @@ export default function UserSignin({lsDef, ls}) {
     const [l_name, setLastName] = useState("")
     const [f_name, setFirstName] = useState("")
     const [mobile, setMobile] = useState("")
+    const [image, setImage] = useState()
 
-    const [base64Images, setBase64Images] = useState({
-        small: '',
-        medium: '',
-        large: ''
-    });
+    // const [base64Images, setBase64Images] = useState({
+    //     small: '',
+    //     medium: '',
+    //     large: ''
+    // });
 
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
+    // const handleImageChange = (e) => {
+    //     const file = e.target.files[0];
+    //     const reader = new FileReader();
 
-        reader.onload = () => {
-            const img = new Image();
-            img.src = reader.result;
+    //     reader.onload = () => {
+    //         const img = new Image();
+    //         img.src = reader.result;
 
-            img.onload = () => {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
+    //         img.onload = () => {
+    //             const canvas = document.createElement('canvas');
+    //             const ctx = canvas.getContext('2d');
 
-                // Resize for small image
-                const smallWidth = 100; // Set your desired width
-                const smallHeight = (img.height / img.width) * smallWidth;
-                canvas.width = smallWidth;
-                canvas.height = smallHeight;
-                ctx.drawImage(img, 0, 0, smallWidth, smallHeight);
-                const smallBase64 = canvas.toDataURL('image/jpeg');
+    //             // Resize for small image
+    //             const smallWidth = 100; // Set your desired width
+    //             const smallHeight = (img.height / img.width) * smallWidth;
+    //             canvas.width = smallWidth;
+    //             canvas.height = smallHeight;
+    //             ctx.drawImage(img, 0, 0, smallWidth, smallHeight);
+    //             const smallBase64 = canvas.toDataURL('image/jpeg');
 
-                // Resize for medium image
-                const mediumWidth = 300; // Set your desired width
-                const mediumHeight = (img.height / img.width) * mediumWidth;
-                canvas.width = mediumWidth;
-                canvas.height = mediumHeight;
-                ctx.drawImage(img, 0, 0, mediumWidth, mediumHeight);
-                const mediumBase64 = canvas.toDataURL('image/jpeg');
+    //             // Resize for medium image
+    //             const mediumWidth = 300; // Set your desired width
+    //             const mediumHeight = (img.height / img.width) * mediumWidth;
+    //             canvas.width = mediumWidth;
+    //             canvas.height = mediumHeight;
+    //             ctx.drawImage(img, 0, 0, mediumWidth, mediumHeight);
+    //             const mediumBase64 = canvas.toDataURL('image/jpeg');
 
-                // Resize for large image
-                const largeWidth = 600; // Set your desired width
-                const largeHeight = (img.height / img.width) * largeWidth;
-                canvas.width = largeWidth;
-                canvas.height = largeHeight;
-                ctx.drawImage(img, 0, 0, largeWidth, largeHeight);
-                const largeBase64 = canvas.toDataURL('image/jpeg');
+    //             // Resize for large image
+    //             const largeWidth = 600; // Set your desired width
+    //             const largeHeight = (img.height / img.width) * largeWidth;
+    //             canvas.width = largeWidth;
+    //             canvas.height = largeHeight;
+    //             ctx.drawImage(img, 0, 0, largeWidth, largeHeight);
+    //             const largeBase64 = canvas.toDataURL('image/jpeg');
 
-                setBase64Images({
-                    small: smallBase64,
-                    medium: mediumBase64,
-                    large: largeBase64
-                });
-            };
-        };
+    //             setBase64Images({
+    //                 small: smallBase64,
+    //                 medium: mediumBase64,
+    //                 large: largeBase64
+    //             });
+    //         };
+    //     };
 
-        reader.readAsDataURL(file);
-    }
+    //     reader.readAsDataURL(file);
+    // }
 
     const handleSignin = (url)=>{
         setLoading(true)
         const signIn = async ()=> {
-            await authPostRequest(url, {email: email, password: password, meta: { first_name: f_name, last_name: l_name, mobile_no: mobile, profile_photo: base64Images}})
+            await authPostRequest(url, {email: email, password: password, meta: { first_name: f_name, last_name: l_name, mobile_no: mobile}, image: image})
                 .then(async (res)=>{
                     console.log(res)
                     if(res.token) {
@@ -92,11 +93,6 @@ export default function UserSignin({lsDef, ls}) {
     const clearAllUseState = ()=>{
         setEmail("")
         setPassword("")
-        setBase64Images({
-            small: '',
-            medium: '',
-            large: ''
-        })
         setLoading(false)
         setFocusField(400)
     }
@@ -117,8 +113,8 @@ export default function UserSignin({lsDef, ls}) {
                 <div className="form-section">
                     <div className="left-section">
                         <div className="selected-image-section">
-                            <img src={base64Images.large} alt="" />
-                            <input type="file" accept="image/*"  onChange={(e)=>{handleImageChange(e)}} required />
+                            <img src={image ? URL.createObjectURL(image) : ""} alt="" />
+                            <input type="file" accept="image/*"  onChange={(e)=>{setImage(e.target.files[0])}} required />
                         </div>
                         </div>
                         <div className="right-section">

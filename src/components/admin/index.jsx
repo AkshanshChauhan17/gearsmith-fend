@@ -22,6 +22,7 @@ export default function Admin() {
         const [selectSize4, setSelectSize4] = useState({})
         const [detail, setDetail] = useState("")
         const [disclaimer, setDisclaimer] = useState("")
+        const [selectedFiles, setSelectedFiles] = useState([])
 
         const [sizes, setSizes] = useState({
             chest: {
@@ -69,8 +70,6 @@ export default function Admin() {
         })
 
         const [loading, setLoading] = useState(false)
-
-        const [media, setMedia] = useState([])
 
         const resetAll = ()=> {
             setColorList([])
@@ -120,7 +119,7 @@ export default function Admin() {
 
         const handleFormSubmit = async()=> {
             setLoading(true)
-            await postNewProduct(name, price, media, colorList, sizeList, productSummary, sizes, detail, disclaimer)
+            await postNewProduct(name, price, selectedFiles, colorList, sizeList, productSummary, sizes, detail, disclaimer)
                 .then((res)=>{
                     if(res.affectedRows!=0) {
                         setLoading(false)
@@ -134,77 +133,13 @@ export default function Admin() {
             resetAll()
         }
 
-        const handleDeleteImage = (indexToRemove)=>{
-            const updatedMedia = media.filter((_, index)=>index!==indexToRemove)
-            setMedia(updatedMedia)
-        }
-
-        const addImage = async (file) => {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-        
-                reader.onload = () => {
-                    const img = new Image();
-                    img.src = reader.result;
-        
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        const ctx = canvas.getContext('2d');
-        
-                        // Resize for small image
-                        const smallWidth = 100; // Set your desired width
-                        const smallHeight = (img.height / img.width) * smallWidth;
-                        canvas.width = smallWidth;
-                        canvas.height = smallHeight;
-                        ctx.drawImage(img, 0, 0, smallWidth, smallHeight);
-                        const smallBase64 = canvas.toDataURL('image/jpeg');
-        
-                        // Resize for medium image
-                        const mediumWidth = 300; // Set your desired width
-                        const mediumHeight = (img.height / img.width) * mediumWidth;
-                        canvas.width = mediumWidth;
-                        canvas.height = mediumHeight;
-                        ctx.drawImage(img, 0, 0, mediumWidth, mediumHeight);
-                        const mediumBase64 = canvas.toDataURL('image/jpeg');
-        
-                        // Resize for large image
-                        const largeWidth = 600; // Set your desired width
-                        const largeHeight = (img.height / img.width) * largeWidth;
-                        canvas.width = largeWidth;
-                        canvas.height = largeHeight;
-                        ctx.drawImage(img, 0, 0, largeWidth, largeHeight);
-                        const largeBase64 = canvas.toDataURL('image/jpeg');
-        
-                        console.log(smallBase64, mediumBase64, largeBase64)
-
-                        resolve({
-                            small: smallBase64,
-                            medium: mediumBase64,
-                            large: largeBase64
-                        });
-                    };
-                };
-        
-                reader.onerror = (error) => {
-                    reject(error);
-                };
-        
-                reader.readAsDataURL(file);
-            });
+        const handleMultipleFile = (e)=>{
+            const files = Array.from(e.target.files);
+            setSelectedFiles(files);
         };
-        
-        const handleImageChange = async (e) => {
-            setImageSelectionLoading(true)
-            const files = e.target.files;
-            const newMedia = [];
-        
-            for (const file of [...files]) {
-                const image = await addImage(file);
-                newMedia.push(image);
-            }
-        
-            setMedia([...newMedia]);
-            setImageSelectionLoading(false)
+
+        const removeImage = (indexToRemove) => {
+            setSelectedFiles(selectedFiles.filter((_, index) => index !== indexToRemove));
         };
         
         if(loading) {
@@ -366,22 +301,22 @@ export default function Admin() {
                                     imageSelectionLoading ? <div className="loading-ar">
                                         <div className="loader"></div>
                                     </div> :
-                                    media.map((img, i)=>{
+                                    selectedFiles.map((img, i)=>{
                                         return <div className="image">
-                                            <img src={img.small} className="image" key={i}/>
-                                            <AiFillCloseCircle className="cross" onClick={()=>handleDeleteImage(i)} /> 
+                                            <img src={URL.createObjectURL(img)} className="image" key={i}/>
+                                            <AiFillCloseCircle className="cross" onClick={()=>removeImage(i)} /> 
                                         </div>
                                     })
                                 }
                             </div>
                             <div className="image-uploader">
-                                <input type="file" accept="image/*" multiple onChange={(e)=>{handleImageChange(e); e.target.value=null}} />
-                                <input type="button" className="button" value="Delete All Images" onClick={()=>setMedia([])} />
+                                <input type="file" accept="image/*" multiple onChange={(e)=>{handleMultipleFile(e); e.target.value=null}} />
+                                <input type="button" className="button" value="Delete All Images" onClick={()=>setSelectedFiles([])} />
                             </div>
                         </div>
                     </div>
                     <br />
-                    <input type="submit" className="button" value="Add New Product" hidden={media.length===0} />
+                    <input type="submit" className="button" value="Add New Product" hidden={selectedFiles.length===0} />
                 </form>
             </div>
         )

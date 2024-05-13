@@ -3,6 +3,7 @@ import { getRequest } from "../../functions/get.req"
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"
 import Graph from "../graph/line"
 import { Link } from "react-router-dom"
+import url_main from "../../functions/url"
 
 export default function Review() {
     const [ratingList, setRatingList] = useState([])
@@ -38,7 +39,7 @@ export default function Review() {
     
     if(ratingList.length===0) {
         return <div className="loading-ar">
-            <div className="loader"></div>
+            No rating found
         </div>
     }
 
@@ -49,7 +50,7 @@ export default function Review() {
                 ratingList.map((d, i)=>{
                     return <div className="rating-card" key={i}>
                         <div className="rating-card-top">
-                            <div className="product-image" style={{backgroundImage: `url(${d.media})`, width: 100, height: 100, backgroundRepeat: "no-repeat"}}></div>
+                            <div className="product-image" style={{backgroundImage: `url(${url_main + d.media + "?r=100"})`, width: 100, height: 100, backgroundRepeat: "no-repeat"}}></div>
                             <div className="info">
                                 <div className="name">{d.name}</div>
                                 <Link to={"/product/" + d.product_id} className="id">{d.product_id}</Link>
@@ -65,7 +66,7 @@ export default function Review() {
                             </div>
                         </div>
                         <div className="user-info">
-                        <div className="user-icon" style={{backgroundImage: `url(${d.rating_image})`, backgroundRepeat: "no-repeat"}}></div>
+                        <div className="user-icon" style={{backgroundImage: `url(${url_main + d.rating_image + "?r=100"})`, backgroundRepeat: "no-repeat"}}></div>
                             <div className="user-info-top">
                                 <div className="user-name">{d.user_email}</div>
                                 <div className="time">{d.rating_timestamp}</div>

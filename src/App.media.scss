@@ -2,6 +2,28 @@
     .items-counter {
         margin: auto;
     }
+    .size-guide {
+        padding: 20px;
+        h3 {
+            font-size: 15px;
+        }
+        table {
+            font-size: 12px;
+        }
+    }
+    .d {
+        min-width: 60vw;
+        padding: 20px;
+        h3 {
+            font-size: 15px;
+        }
+        pre {
+            font-size: 12px;
+        }
+    }
+    .d:nth-child(3) {
+        margin-bottom: 10px;
+    }
     .section-footer {
         display: flex;
         gap: 0px;
@@ -124,6 +146,13 @@
         opacity: 0.4;
         width: 95vw;
         margin: auto;
+    }
+    .gearsmit-logo-nav {
+        background-image: url("./assets/images/gearsmith-logo.webp");
+        width: 30px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
     }
     .nav {
         padding: 0px;
@@ -311,18 +340,19 @@
         display: flex;
         scroll-snap-align: center;
         margin: 2px;
-        height: 500px;
-        width: 100%;
+        height: 400px;
+        min-width: 100%;
         position: relative;
         align-items: center;
         justify-content: center;
         .product-dp-ar {
             overflow: hidden;
             position: relative;
-            height: 100%;
+            width: 100%;
             aspect-ratio: 1;
             .product-dp {
                 width: 100%;
+                object-fit: contain;
                 aspect-ratio: 1;
             }
             .product-dp-url:hover {
@@ -363,6 +393,7 @@
             }
         }
         .product-data {
+            opacity: 0;
             width: calc(100% - 40px);
             position: absolute;
             padding: 20px;
@@ -468,9 +499,10 @@
     }
     .product-view-ar {
         display: grid;
-        padding: 60px 0px;
+        padding: 20px 0px;
         background-color: whitesmoke;
-        gap: 10px;
+        gap: 0px;
+        width: calc(100vw);
         .review-heading {
             font-size: 20px;
             font-weight: 600;
@@ -498,9 +530,12 @@
             display: grid;
             flex-wrap: wrap;
             gap: 10px;
+            padding: 20px;
             .stars {
+                margin-top: 10px;
                 display: flex;
                 align-items: center;
+                justify-content: center;
                 font-size: 15px;
                 cursor: pointer;
                 gap: 10px;
@@ -516,29 +551,38 @@
             }
             .oth-review-card {
                 background-color: white;
-                border-radius: 5px;
+                border-radius: 0px;
                 font-size: 15px;
-                padding: 20px;
-                margin: 0px 10px;
+                padding: 0px;
                 flex-wrap: wrap;
                 display: grid;
-                gap: 4px;
+                gap: 0px;
                 cursor: pointer;
                 width: 100%;
+                padding: 20px;
                 box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
                 .bottom-controls {
                     display: flex;
                     align-items: center;
                     gap: 10px;
-                    padding-top: 10px;
+                    padding: 0;
+                    margin-top: 10px;
                     .like-button {
                         color: #9b9b9b;
                         font-size: 20px;
                     }
+                    span {
+                        padding: 5px 10px;
+                        background-color: rgb(255, 93, 93);
+                        color: white;
+                    }
+                    span:active {
+                        background-color: rgb(171, 0, 0);
+                    }
                 }
                 .top-user-info {
                     display: flex;
-                    gap: 20px;
+                    gap: 10px;
                     img {
                         width: 50px;
                         height: 50px;
@@ -558,9 +602,10 @@
                     }
                 }
                 .top-middle {
-                    width: calc(100vw - 60px);
+                    width: calc(100vw - 40px);
                     word-wrap: break-word;
                     color: #9b9b9b;
+                    margin-top: 10px;
                 }
             }
         }
@@ -581,15 +626,15 @@
         }
         .product-view {
             display: flex;
-            gap: 10px;
+            gap: 20px;
             zoom: 0.6;
             flex-wrap: wrap;
             position: relative;
-            background-color: white;
+            background-color: rgb(245, 245, 245);
             justify-content: center;
             .product-view-left {
                 width: 100%;
-                padding: 20px;
+                padding: 0px;
                 display: grid;
                 flex-direction: column;
                 background-color: white;
@@ -638,6 +683,9 @@
                 display: grid;
                 gap: 10px;
                 padding: 20px;
+                align-content: start;
+                height: fit-content;
+                margin-bottom: 10px;
                 .product-header {
                     display: flex;
                     align-items: center;
@@ -673,7 +721,7 @@
                 .total-rating-rv {
                     display: flex;
                     align-items: center;
-                    margin-bottom: 20px;
+                    margin: 10px 0px;
                     .stars-rv {
                         display: flex;
                         align-items: center;
@@ -833,6 +881,13 @@
         flex-direction: column;
         flex: 1;
         gap: 10px;
+        .product-summary {
+            gap: 10px;
+            .heading {
+                font-size: 15px;
+            }
+            font-size: 15px;
+        }
         .review-heading {
             height: fit-content;
             font-size: 20px;
@@ -862,6 +917,7 @@
             padding: 0px;
             z-index: 200;
             height: fit-content;
+            margin-bottom: 10px;
             .review-top {
                 width: calc(100% - 40px);
                 display: grid;
@@ -1268,7 +1324,7 @@
             overflow: hidden;
             position: relative;
             width: 100%;
-            aspect-ratio: 1.5;
+            aspect-ratio: 1;
             .product-dp {
                 width: 100%;
                 aspect-ratio: 1;
@@ -1482,6 +1538,7 @@
             position: relative;
             align-items: center;
             margin: 0px 0px;
+            background-color: white;
             * {
                 transition-duration: 0.1s;
             }
@@ -1531,7 +1588,7 @@
         }
         .filters {
             margin: 0px 0px;
-            padding: 10px 20px;
+            padding: 20px 20px;
             background-color: rgb(255, 255, 255);
             border: 1px solid rgb(197, 197, 197);
             z-index: 100;
@@ -1561,7 +1618,8 @@
                     font-size: 15px;
                     color: rgb(41, 41, 41);
                     padding: 5px 10px;
-                    background-color: rgb(255, 255, 255);
+                    width: 100%;
+                    background-color: rgb(232, 232, 232);
                     outline: 0px;
                     border: 0px;
                     option {
@@ -1602,14 +1660,14 @@
             z-index: 100;
             left: 0px;
             padding: 10px;
-            bottom: -30px;
+            bottom: -15px;
         }
         .right {
             padding: 10px;
             position: absolute;
             z-index: 100;
             right: 0px;
-            bottom: -30px;
+            bottom: -15px;
         }
     }
     .ctrl-button {
@@ -2102,37 +2160,39 @@
             background-repeat: no-repeat;
             background-size: cover;
             width: 100vw;
-            height: 100vh;
+            height: fit-content;
             .text {
-                background: linear-gradient(90deg, rgba(0, 0, 0, 0.9), rgba(67, 34, 34, 0) 200%);
-                width: calc(100% - 80px);
-                height: calc(100% - 80px);
-                padding: 40px 40px;
+                background: none;
+                background-color: rgba(0, 0, 0, 0.7);
+                width: calc(100% - 40px);
+                height: calc(100% - 20px);
+                padding: 40px 20px;
                 color: white;
                 display: grid;
                 align-content: center;
-                gap: 20px;
+                gap: 10px;
                 .title {
-                    font-size: 30px;
+                    font-size: 24px;
                     font-weight: 700;
                     width: 100%;
-                    text-align: center;
+                    text-align: left;
                 }
                 .subtitle {
-                    font-size: 15px;
-                    text-align: center;
+                    font-size: 10px;
+                    text-align: left;
                 }
                 button {
                     width: fit-content;
-                    padding: 15px 30px;
+                    padding: 15px 0px;
                     font-size: 15px;
                     font-weight: 700;
                     color: white;
-                    background-color: rgb(255, 77, 0);
+                    background-color: transparent;
                     outline: 0px;
                     border: 0px;
                     margin: auto;
-                    margin-top: 40px;
+                    margin-top: 20px;
+                    color: white;
                 }
             }
         }
@@ -2143,37 +2203,37 @@
             background-repeat: no-repeat;
             background-size: cover;
             width: 100vw;
-            height: 100vh;
+            height: fit-content;
             .text {
                 background: linear-gradient(90deg, rgba(67, 34, 34, 0), rgba(0, 0, 0, 0.9)100%);
-                width: calc(100% - 80px);
-                height: calc(100% - 80px);
-                padding: 40px 40px;
+                width: calc(100% - 40px);
+                height: calc(100% - 20px);
+                padding: 40px 20px;
                 color: white;
                 display: grid;
                 align-content: center;
-                justify-items: center;
-                gap: 20px;
+                gap: 10px;
                 .title {
-                    font-size: 30px;
+                    font-size: 24px;
                     font-weight: 700;
                     width: 100%;
-                    text-align: center;
+                    text-align: right;
                 }
                 .subtitle {
-                    font-size: 15px;
-                    text-align: center;
+                    font-size: 10px;
+                    text-align: left;
                 }
                 button {
                     width: fit-content;
-                    padding: 15px 30px;
+                    padding: 15px 0px;
                     font-size: 15px;
                     font-weight: 700;
                     color: white;
-                    background-color: rgb(255, 77, 0);
+                    background-color: transparent;
                     outline: 0px;
                     border: 0px;
-                    margin-top: 40px;
+                    margin-top: 20px;
+                    color: white;
                 }
             }
         }
@@ -2981,6 +3041,8 @@
                 gap: 20px;
                 padding: 20px;
                 .product-image {
+                    background-size: cover;
+                    background-position: center;
                     aspect-ratio: 1;
                 }
                 .info {

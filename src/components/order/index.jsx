@@ -8,6 +8,7 @@ export default function PaymentForm({data_d, u_email, paymentRes, setPaymentRes,
     const  [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
+    console.log(data_d)
     function loadScript(src) {
         return new Promise((resolve) => {
             const script = document.createElement("script");
@@ -24,14 +25,6 @@ export default function PaymentForm({data_d, u_email, paymentRes, setPaymentRes,
 
     async function displayRazorpay() {
         setLoading(true)
-        const res = await loadScript(
-            "https://checkout.razorpay.com/v1/checkout.js"
-        )
-
-        if(!res) {
-            alert("Razorpay SDK failed to load, Are you online?")
-            return
-        }
 
         try {
             const response = await fetch(url_main + 'order/create_order', {
@@ -60,7 +53,7 @@ export default function PaymentForm({data_d, u_email, paymentRes, setPaymentRes,
                 currency: currency,
                 name: data_d.user_meta.first_name + " " + data_d.user_meta.last_name,
                 description: `${data_d.user_meta.first_name} Checkout From GearSmith on ${new Date().toISOString().split("T")[0] + "at" + new Date().toISOString().split("T")[1]}`,
-                image: data_d.user_meta.profile_photo.large,
+                image: data_d.user_profile,
                 order_id: order_id,
                 handler: async function (response) {
                     var data = {
@@ -99,7 +92,19 @@ export default function PaymentForm({data_d, u_email, paymentRes, setPaymentRes,
             setError('Failed to create order')
             setLoading(false)
         }
+        console.log("TEST 6 -> PASS")
     }
+
+    useEffect(()=>{
+        const res = loadScript(
+            "https://checkout.razorpay.com/v1/checkout.js"
+        )
+
+        if(!res) {
+            alert("Razorpay SDK failed to load, Are you online?")
+            return
+        }
+    }, [])
 
     useEffect(()=>{
         if(paymentRes.status) {

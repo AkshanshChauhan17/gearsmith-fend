@@ -8,6 +8,8 @@ import { Link } from "react-router-dom"
 import Rating from "./rating"
 import user from "../../assets/images/unnamed.webp"
 import { postRating, removeRating } from "./rating.post"
+import url_main from "../../functions/url"
+import ProgressiveImage from "../image"
 
 function Products({ud, gcDef, change}) {
     const [productColorIndex, setProductColorIndex] = useState(0)
@@ -65,7 +67,7 @@ function Products({ud, gcDef, change}) {
 
     const handleRating = async()=>{
         setRatingLoad(true)
-        await postRating(ud.email, JSON.parse(ud.meta).profile_photo.small, productData.product_id, rating, comment)
+        await postRating(ud.email, productData.product_id, rating, comment)
             .then((e)=>{
                 if(e.status) {
                     setRating(0)
@@ -167,13 +169,13 @@ function Products({ud, gcDef, change}) {
             <div className="product-view">
                 <div className="product-view-left">
                     <div className="product-view-image-slider">
-                    <img className="product-view-image" src={productImages[imageIndex].large} alt="" />
+                    <ProgressiveImage className="product-view-image" lowResolutionSrc={url_main + productImages[imageIndex] + "?r=50"} highResolutionSrc={url_main + productImages[imageIndex] + "?r=500"} />
                     </div>
                     <br />
                     <div className="product-view-image-slider-controls">
                         {
                             productImages.map((image, i)=>{
-                                return <img className={imageIndex===i ? "product-view-control-image-active" : "product-view-control-image"} onClick={()=>setImageIndex(i)} loading="lazy" key={i} src={image.small} /> 
+                                return <img className={imageIndex===i ? "product-view-control-image-active" : "product-view-control-image"} onClick={()=>setImageIndex(i)} loading="lazy" key={i} src={url_main + image + "?r=100"} /> 
                             })
                         }
                     </div>
@@ -241,7 +243,7 @@ function Products({ud, gcDef, change}) {
                                         if(isEmptyObject(ps)) {
                                             return null
                                         }
-                                        return <button className={productSizeSelected===ps.size_name + " " + ps.size ? "drop-size-btn-selected" : "drop-size-btn"} value={ps.size ? ps.size_name + " " + ps.size : ps.size_name } key={i} onClick={(e)=>setProductSizeSelected(e.target.value)}>{ps.size_name}</button>
+                                        return <button className={productSizeSelected===ps.size_name + " " + ps.size || productSizeSelected===ps.size_name ? "drop-size-btn-selected" : "drop-size-btn"} value={ps.size ? ps.size_name + " " + ps.size : ps.size_name } key={i} onClick={(e)=>setProductSizeSelected(e.target.value)}>{ps.size_name}</button>
                                     })
                                 }
                             </div>
@@ -291,7 +293,7 @@ function Products({ud, gcDef, change}) {
                 </div>
                 <div className="profile" style={rating===0 ? {display: "none"} : {}}>
                     {ud.email}
-                    <img src={JSON.parse(ud.meta).profile_photo.small} alt="" />
+                    <img src={url_main + "media/image/user/" + ud.email} alt="" />
                 </div>
                 </div>
                 <div hidden={rating===0}>
@@ -305,7 +307,7 @@ function Products({ud, gcDef, change}) {
             </div>
             <div style={{display: "flex", flexWrap: "wrap", gap: "10px"}}>
             {   productSizeTable.chest ?
-                <div className="size-guide" style={{flex: 1, minWidth: 300, padding: 20, backgroundColor: "white", display: productData.size_table==='{"chest":{"S":"","M":"","L":"","XL":""},"length":{"S":"","M":"","L":"","XL":""},"sleeve":{"S":"","M":"","L":"","XL":""},"shoulder":{"S":"","M":"","L":"","XL":""}}' ? "none" : ""}}>
+                <div className="size-guide" style={{flex: 1, backgroundColor: "white", display: productData.size_table==='{"chest":{"S":"","M":"","L":"","XL":""},"length":{"S":"","M":"","L":"","XL":""},"sleeve":{"S":"","M":"","L":"","XL":""},"shoulder":{"S":"","M":"","L":"","XL":""}}' ? "none" : ""}}>
                     <h3>Size Guide</h3>
                     <table style={{backgroundColor: "white", outline: 0}}>
                         <tr>
@@ -344,7 +346,7 @@ function Products({ud, gcDef, change}) {
                             <td>{productSizeTable.shoulder.XL}</td>
                         </tr>
                     </table>
-                </div> : <div className="size-guide" style={{flex: 1, minWidth: 300, padding: 20, backgroundColor: "white", display: productData.size_table==='{"chest":{"S":"","M":"","L":"","XL":""},"length":{"S":"","M":"","L":"","XL":""},"sleeve":{"S":"","M":"","L":"","XL":""},"shoulder":{"S":"","M":"","L":"","XL":""}}' ? "none" : ""}}>
+                </div> : <div className="size-guide" style={{flex: 1, backgroundColor: "white", display: productData.size_table==='{"chest":{"S":"","M":"","L":"","XL":""},"length":{"S":"","M":"","L":"","XL":""},"sleeve":{"S":"","M":"","L":"","XL":""},"shoulder":{"S":"","M":"","L":"","XL":""}}' ? "none" : ""}}>
                     <h3>Size Guide</h3>
                     <table style={{backgroundColor: "white", outline: 0}}>
                         <tr>
@@ -378,12 +380,12 @@ function Products({ud, gcDef, change}) {
                     </table>
                 </div>
             }
-                    <div className="d grid" style={{flex: 1, minWidth: 300, alignItems: "start", alignContent: "start", fontSize: 18, display: productData.detail!=="" ? "grid" : "none", padding: 20, backgroundColor: "white", border: 0}}>
+                    <div className="d grid" style={{flex: 1, alignItems: "start", alignContent: "start", fontSize: 18, display: productData.detail!=="" ? "grid" : "none", backgroundColor: "white", border: 0}}>
                         <h3 style={{margin: 0}}>Package Detail</h3>
                         <br />
                         <pre disabled style={{border: 0, padding: 0, color: "gray", backgroundColor: "white", textWrap: "wrap", lineBreak: "auto", whiteSpace: "pre-wrap", lineHeight: 1.4}}>{productData.detail}</pre>
                     </div>
-                    <div className="d grid" style={{flex: 1, minWidth: 300, alignItems: "start", alignContent: "start", fontSize: 18, display: productData.disclaimer!=="" ? "" : "none", padding: 20, backgroundColor: "white"}}>
+                    <div className="d grid" style={{flex: 1, alignItems: "start", alignContent: "start", fontSize: 18, display: productData.disclaimer!=="" ? "" : "none", backgroundColor: "white"}}>
                         <h3 style={{margin: 0}}>Disclaimer</h3>
                         <br />
                         <pre disabled style={{border: 0, padding: 0, color: "gray", backgroundColor: "white", textWrap: "wrap", lineBreak: "auto", whiteSpace: "pre-wrap", lineHeight: 1.4}}>{productData.disclaimer}</pre>

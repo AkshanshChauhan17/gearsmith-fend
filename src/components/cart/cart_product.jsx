@@ -4,6 +4,7 @@ import { AiOutlineClose, AiOutlineLoading } from "react-icons/ai"
 import { CgClose } from "react-icons/cg"
 import { Link } from "react-router-dom"
 import { isEmptyObject } from "jquery"
+import url_main from "../../functions/url"
 
 export default function CartProduct({pi, pq, hrcDef, ps, pc, rc}) {
     const [productData, setProductData] = useState({})
@@ -12,7 +13,6 @@ export default function CartProduct({pi, pq, hrcDef, ps, pc, rc}) {
 
     useEffect(()=>{
         setOnClickRemove(true)
-        console.log(pi)
         getRequest("product/cart/" + pi)
             .then((pd)=>{
                 const newProductData = pd;
@@ -20,7 +20,13 @@ export default function CartProduct({pi, pq, hrcDef, ps, pc, rc}) {
                 setOnClickRemove(false)
             })
             .catch(err=>console.log(err))
+        return ()=>{
+            setProductData({})
+            setOnClickRemove(false)
+        }
     }, [rc, hrcDef, pi, pq])
+
+    console.log(productData)
 
     if(isEmptyObject(productData)) {
         return <div className="loading-ar">
@@ -31,7 +37,7 @@ export default function CartProduct({pi, pq, hrcDef, ps, pc, rc}) {
     return (
         <tr>
             <td>
-                <img src={productData.media} class="cart-product-image" />
+                <img src={url_main + productData.media + "?r=50"} class="cart-product-image" />
             </td>
             <td>
                 <Link to={"/product/" + productData.product_id} class="upper link">

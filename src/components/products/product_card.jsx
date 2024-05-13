@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AiFillLeftSquare, AiOutlineArrowRight, AiOutlineRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import ProgressiveImage from "../image";
 
 export default function ProductCard({rotate, spd, data, pagingIndex, index, pushRef, image, name, price, isTex, url, scDef, spiDef}) {
     const cardRef = useRef(null)
@@ -10,7 +11,7 @@ export default function ProductCard({rotate, spd, data, pagingIndex, index, push
     return (
         <div className={index===pagingIndex ? "product-card focused" : "product-card" } ref={cardRef} onClick={()=>{scDef(index); spiDef(index);}}>
             <div className="product-dp-ar">
-                <img className="product-dp" src={image} alt="" loading="lazy"/>
+                <ProgressiveImage lowResolutionSrc={image + "?r=100"} highResolutionSrc={image + "?r=1000"} className="product-dp" />
                 <div className="product-dp-url">
                     <Link className="text" to={url} onClick={()=>spd({data, image})}>VIEW <AiOutlineArrowRight className="arrow" /></Link>
                 </div>

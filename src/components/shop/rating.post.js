@@ -1,6 +1,6 @@
 import url_main from "../../functions/url";
 
-export async function postRating(user_email, user_image, product_id, rating, comment) {
+export async function postRating(user_email, product_id, rating, comment) {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Uo-T-f-0-0", localStorage.token);
@@ -9,8 +9,7 @@ export async function postRating(user_email, user_image, product_id, rating, com
         "user_email": user_email,
         "product_id": product_id,
         "comment": comment,
-        "rating": rating,
-        "image": user_image
+        "rating": rating
     });
 
     const requestOptions = {

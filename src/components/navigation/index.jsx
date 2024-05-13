@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { getRequest } from "../../functions/get.req"
 import { Link } from "react-router-dom"
 import { imageList } from "../../functions/images"
-import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai'
+import { AiOutlineRadarChart, AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai'
 import { GrClose, GrDown, GrUp } from "react-icons/gr"
 import { BiMenu } from "react-icons/bi"
 
@@ -122,13 +122,21 @@ export default function Navigation({ls, ud, um, cartData}) {
                         </div>}
                     </div>
                     <div className="nav-controls">
+                    <div className="gearsmit-logo-nav"></div>
                         <Link onClick={()=>setIsOpenNav(winSize<750 ? false : true)}  to="/user/cart" className="nav-icon">
                             <AiOutlineShoppingCart /><div className="text">{cartData.length}</div>
                         </Link>
                     </div>
                 </div>
             </div>
-            </> : null }
+            </> : <div className="bottom" style={{padding: 0}}>
+                <div className="nav-controls">
+                <div className="gearsmit-logo-nav"></div>
+                    <Link onClick={()=>setIsOpenNav(winSize<750 ? false : true)}  to="/user/cart" className="nav-icon">
+                        <AiOutlineShoppingCart /><div className="text">{cartData.length}</div>
+                    </Link>
+                </div>
+            </div> }
         </div>
     )
 }

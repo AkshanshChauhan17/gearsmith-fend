@@ -7,6 +7,7 @@ import { setProductData } from "../../redux/store/actions"
 import { getRequest, getRequestStream } from "../../functions/get.req"
 import { MdClose, MdMenu, MdMenuOpen } from "react-icons/md"
 import { BsMenuDown, BsMenuUp } from "react-icons/bs"
+import url_main from "../../functions/url"
 
 
 function Shop({setProductData, product_data}) {
@@ -102,7 +103,7 @@ function Shop({setProductData, product_data}) {
                 <div className="new-arrivals">
                     {
                         allNewArrivals.map((d, i)=>{
-                            return <ProductCard spd={feedProductData} data={d} pushRef={pushRef} cardRef={cardRef} image={d.media} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.product_id} key={i} index={i} pagingIndex={pagingIndex} spiDef={setPagingIndex} scDef={scrollToCard} />
+                            return <ProductCard spd={feedProductData} data={d} pushRef={pushRef} cardRef={cardRef} image={url_main + d.media} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.product_id} key={i} index={i} pagingIndex={pagingIndex} spiDef={setPagingIndex} scDef={scrollToCard} />
                         })
                     }
                 </div>
@@ -236,7 +237,7 @@ function Shop({setProductData, product_data}) {
                     <div className="products" style={{zoom: zoomProduct}}>
                         {
                             allProduct.map((d, i)=>{
-                                return <ProductSmallCard pg={page} spd={feedProductData} previous_price={d.previous_price} data={d} image={d.media} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.product_id} key={i}/>
+                                return <ProductSmallCard pg={page} spd={feedProductData} previous_price={d.previous_price} data={d} image={url_main + d.media} name={d.name} price={"₹" + d.price} isTex={true} url={"/product/" + d.product_id} key={i}/>
                             })
                         }
                     </div>

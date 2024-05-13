@@ -1,11 +1,9 @@
-export default async function authPostRequest(url, data) {
+export default async function authPostRequest(url, email, password) {
     const myHeaders = new Headers();
 
     const formdata = new FormData();
-    formdata.append("email", data.email);
-    formdata.append("password", data.password);
-    formdata.append("meta", JSON.stringify(data.meta));
-    formdata.append("image", data.image, data.image.name);
+    formdata.append("email", email);
+    formdata.append("password", password);
 
     const requestOptions = {
         method: "POST",

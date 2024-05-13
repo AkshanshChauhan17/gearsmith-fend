@@ -1,27 +1,28 @@
 import { getRequest } from "../../../functions/get.req";
 import url_main from "../../../functions/url";
 
-const postNewProduct = async(name, price, media, color_list, size_list, product_summary, sizes, detail, disclaimer) => {
+const postNewProduct = async(name, price, image_list, color_list, size_list, product_summary, sizes, detail, disclaimer) => {
     var res = null;
     const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
 
-    const raw = JSON.stringify({
-        name: name,
-        price: price,
-        media: media,
-        color_list,
-        size_list,
-        product_summary: product_summary,
-        size_table: sizes,
-        detail: detail,
-        disclaimer: disclaimer
+    const formdata = new FormData();
+    formdata.append("name", name);
+    formdata.append("price", price);
+    formdata.append("size_list", JSON.stringify(size_list));
+    formdata.append("media", "");
+    formdata.append("color_list", JSON.stringify(color_list));
+    image_list.forEach((file, index) => {
+        formdata.append(`imageFiles`, file, `product_image_${index}.jpg`);
     });
+    formdata.append("product_summary", product_summary);
+    formdata.append("size_table", JSON.stringify(sizes));
+    formdata.append("detail", detail);
+    formdata.append("disclaimer", disclaimer);
 
     const requestOptions = {
         method: "POST",
         headers: myHeaders,
-        body: raw,
+        body: formdata,
         redirect: "follow"
     };
 

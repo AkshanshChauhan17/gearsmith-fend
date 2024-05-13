@@ -5,11 +5,13 @@ import url_main from "../../functions/url";
 import { Link } from "react-router-dom";
 import { FaGem, FaGlobe, FaLeaf, FaLightbulb, FaUser, FaUsers } from "react-icons/fa";
 import { BiCog, BiHappyBeaming, BiHide, BiRocket, BiRun, BiShield, BiTargetLock, BiWorld } from "react-icons/bi";
+import ProgressiveImage from "../image";
 
 export default function Home({with_login}) {
     const [sliderIndex, setSliderIndex] = useState(0)
     const slider_images = [url_main + "static/images/home-slider-1.webp", url_main + "static/images/home-slider-2.webp"]
     const [scrollY, setScrollY] = useState(0);
+    const [topThreeProduct, setTopThreeProduct] = useState([]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -17,6 +19,12 @@ export default function Home({with_login}) {
         };
 
         window.addEventListener('scroll', handleScroll);
+
+        fetch(url_main + "product/top_3_rated_products")
+            .then(e=>e.json())
+            .then((product)=>{
+                setTopThreeProduct(product)
+            })
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
@@ -171,8 +179,9 @@ export default function Home({with_login}) {
                     </Link>
                 </div>
             </div>
-            <div className="section">
-                <div className="section-left">
+            <div className="top-three-products">
+                <div className="heading">TOP RATED PRODUCTS</div>
+                {/* <div className="section-left">
                     <div className="section-left-upper">
                         <div className="big-font">
                             TACTICAL APPAREL FOR THE INDIAN masses & armed FORCES.
@@ -200,6 +209,20 @@ export default function Home({with_login}) {
                         <img src={slider_images[sliderIndex]} className="slider-image" />
                     </div>
                     <AiOutlineArrowRight className="arrow" onClick={()=>setSliderIndex(sliderIndex===1 ? 0 : 1)}/>
+                </div> */}
+                <div className="top-three-product-list">
+                {
+                    topThreeProduct.length!=0 && topThreeProduct.map((p, i)=>{
+                        return <div className="tt-product-card" key={i}>
+                            <ProgressiveImage highResolutionSrc={url_main + "media/image/product/" + p.product_id + "/1?r=1000"} lowResolutionSrc={url_main + "media/image/product/" + p.product_id + "?r=100"} className={"tt-product-card-image"} />
+                            {
+                                p.rating_number>1 ? <div className="rating-view-text">{p.rating_number} users have rated this product with a {p.avg_rating} star rating</div>
+                                :
+                                <div className="rating-view-text">{p.rating_number} user has rated this product with a {p.avg_rating} star rating</div>
+                            }
+                        </div>
+                    })
+                }
                 </div>
             </div>
             <div className="home-about">

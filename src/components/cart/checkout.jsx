@@ -3,6 +3,7 @@ import { FaShippingFast } from 'react-icons/fa';
 import { getRequest } from '../../functions/get.req';
 import { isEmptyObject } from 'jquery';
 import PaymentForm from '../order';
+import url_main from '../../functions/url';
 
 function CheckoutForm({ud_d, ps, psDef, slpDef}) {
     const [postOffice, setPostOffice] = useState([])
@@ -62,6 +63,7 @@ function CheckoutForm({ud_d, ps, psDef, slpDef}) {
   const handleSubmit = (e) => {
     e.preventDefault()
     const data = {
+      user_profile: url_main + ud_d.user_profile + "?r=100",
       user_meta: JSON.parse(ud_d.meta),
       shipping_address: {
         auto: shippingAddress,

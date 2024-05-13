@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { AiFillStar, AiOutlineArrowRight, AiOutlineEye, AiOutlineHeart, AiOutlineLike, AiOutlineShareAlt, AiOutlineStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { getRequest } from "../../functions/get.req";
-import { isEmptyObject } from "jquery";
+import ProgressiveImage from "../image";
 
-export default function ProductSmallCard({spd, data, image, url, name, price, isHide, pg, previous_price}) {
+export default function ProductSmallCard({spd, data, image, url, name, price, isHide, pg, previous_price, low_image, high_image}) {
     const [rating, setRating] = useState({})
     const [ratingSum, setRatingSum] = useState()
 
@@ -63,7 +63,7 @@ export default function ProductSmallCard({spd, data, image, url, name, price, is
         <Link to={url} onClick={()=>spd({data, image})} className="product-small-card text link">
             {
                 <div className="product-dp-ar">
-                    <img className="product-dp" src={image} alt="" loading="lazy" />
+                    <ProgressiveImage lowResolutionSrc={image + "?r=50"} highResolutionSrc={image + "?r=500"} className="product-dp" />
                 </div>
             }
             <div className="product-data">
