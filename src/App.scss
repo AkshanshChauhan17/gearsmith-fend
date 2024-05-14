@@ -2957,6 +2957,49 @@ fieldset {
     }
 }
 
+.values-ar {
+    display: grid;
+    width: 100%;
+    background-color: rgb(30, 30, 30);
+    .values-heading {
+        font-size: 30px;
+        color: white;
+        font-weight: 600;
+        padding: 40px;
+        display: flex;
+        align-items: center;
+        .icon {
+            color: orangered;
+        }
+    }
+    .values {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        gap: 40px;
+        padding: 40px;
+        .values-columns {
+            display: grid;
+            gap: 10px;
+            .h {
+                color: #ffffff;
+                font-size: 20px;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                .icon {
+                    color: orangered;
+                }
+            }
+            .sh {
+                color: #c6c6c6;
+                font-size: 15px;
+                font-weight: 100;
+            }
+        }
+    }
+}
+
 .about {
     display: grid;
     background-color: rgb(255, 255, 255);
@@ -3128,48 +3171,6 @@ fieldset {
             flex: 1;
         }
     }
-    .values-ar {
-        display: grid;
-        width: 100%;
-        background-color: rgb(30, 30, 30);
-        .values-heading {
-            font-size: 30px;
-            color: white;
-            font-weight: 600;
-            padding: 40px;
-            display: flex;
-            align-items: center;
-            .icon {
-                color: orangered;
-            }
-        }
-        .values {
-            display: grid;
-            grid-template-columns: auto auto auto auto;
-            gap: 40px;
-            padding: 40px;
-            .values-columns {
-                display: grid;
-                gap: 10px;
-                .h {
-                    color: #ffffff;
-                    font-size: 20px;
-                    font-weight: 600;
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                    .icon {
-                        color: orangered;
-                    }
-                }
-                .sh {
-                    color: #c6c6c6;
-                    font-size: 15px;
-                    font-weight: 100;
-                }
-            }
-        }
-    }
     section {
         display: flex;
         flex-wrap: wrap;
@@ -3300,9 +3301,14 @@ fieldset {
             flex: 1;
             display: grid;
             position: relative;
+            filter: brightness(0.9);
             .tt-product-card-image {
                 width: 100%;
                 aspect-ratio: 1;
+            }
+            .starts {
+                color: white;
+                font-size: 20px;
             }
             .rating-view-text {
                 position: absolute;
@@ -3310,48 +3316,13 @@ fieldset {
                 width: calc(100% - 40px);
                 height: 80px;
                 bottom: 0px;
-                color: white;
+                color: rgba(255, 255, 255, 0.9);
                 background-color: #0054ae;
                 padding: 20px;
             }
         }
-    }
-}
-
-.top-three-products {
-    padding: 20px;
-    display: grid;
-    gap: 40px;
-    .heading {
-        font-size: 20px;
-    }
-    .top-three-product-list {
-        display: flex;
-        gap: 20px;
-        justify-content: left;
-        overflow: hidden;
-        overflow-x: scroll;
-        scroll-behavior: smooth;
-        scroll-snap-type: x mandatory;
-        .tt-product-card {
-            min-width: 100%;
-            display: grid;
-            position: relative;
-            scroll-snap-align: center;
-            .tt-product-card-image {
-                width: 100%;
-                aspect-ratio: 1;
-            }
-            .rating-view-text {
-                position: absolute;
-                font-size: 15px;
-                width: calc(100% - 10px);
-                height: 40px;
-                bottom: 0px;
-                color: white;
-                background-color: #0054ae;
-                padding: 5px;
-            }
+        .tt-product-card:hover {
+            filter: brightness(1);
         }
     }
 }
@@ -3818,9 +3789,8 @@ fieldset {
 
 .home-about {
     padding: 80px;
-    background-image: url("./assets/images/movable-bg.gif");
     background-size: 500px;
-    background-color: rgb(28, 28, 28);
+    background-color: rgb(255, 255, 255);
     background-blend-mode: darken;
     color: white;
     display: grid;
@@ -3829,7 +3799,7 @@ fieldset {
         font-size: 40px;
         font-weight: 900;
         text-align: center;
-        color: wheat;
+        color: rgb(0, 0, 0);
         text-transform: uppercase;
     }
     .points {
@@ -3843,14 +3813,14 @@ fieldset {
             gap: 20px;
             background-color: rgba(0, 0, 0, 0);
             backdrop-filter: blur(5px);
-            outline: 1px solid rgba(245, 222, 179, 0);
+            outline: 1px solid rgb(255, 215, 187);
             .icon {
                 font-size: 40px;
                 color: orangered;
             }
             .text {
                 font-size: 20px;
-                color: wheat;
+                color: rgb(54, 54, 54);
             }
         }
     }

@@ -148,8 +148,8 @@ function Shop({setProductData, product_data}) {
                             <option value="--filter--">--Filter--</option>
                             <option value="name a to z">Name A to Z</option>
                             <option value="name z to a">Name Z to A</option>
-                            <option value="price 0 to 50000">Cost 0 to 50000</option>
-                            <option value="price 50000 to 0">Cost 50000 to 0</option>
+                            <option value="price 0 to 50000">Price Low to High</option>
+                            <option value="price 50000 to 0">Price High to Low</option>
                         </select>
                         <select value={zoomProduct} onChange={(e)=>setZoomProduct(e.target.value)}>
                             <option value={1}>Normal</option>

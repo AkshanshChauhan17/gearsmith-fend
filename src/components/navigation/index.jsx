@@ -10,7 +10,7 @@ export default function Navigation({ls, ud, um, cartData}) {
 
     const [navigation, setNavigation] = useState([])
     const [clicked, setClicked] = useState(0)
-    const [isOpenNav, setIsOpenNav] = useState(true)
+    const [isOpenNav, setIsOpenNav] = useState(false)
     const [winSize, setWinSize] = useState(0)
     const [isOpenBanner, setIsOpenBanner] = useState(true)
     const [currentTextIndex, setCurrentTextIndex] = useState(1)
@@ -41,6 +41,11 @@ export default function Navigation({ls, ud, um, cartData}) {
     }
 
     useEffect(()=>{
+        if(window.innerWidth > 750) {
+            setIsOpenNav(true)
+        } else {
+            setIsOpenNav(false)
+        }
         setWinSize(window.innerWidth)
         getRequest("navigation")
             .then((e)=>setNavigation(e))

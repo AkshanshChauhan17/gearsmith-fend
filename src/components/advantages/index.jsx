@@ -50,9 +50,9 @@ export default function Advantages() {
           </div>
         </div>
       </div>
-      <div className="make-in-india">
+      <div className="make-in-india" style={{padding: 20}}>
       <img className="mii-icon" src={mii} alt="Make in India Logo" />
-        <div className="mii-content-ar">
+        {/* <div className="mii-content-ar">
           <div className="mii-content">
             <span>"Make in India"</span> is an initiative launched by the Government of India to encourage companies to manufacture their products in India. It aims to promote India as a global manufacturing hub and attract foreign investment.
           </div>
@@ -65,7 +65,7 @@ export default function Advantages() {
           <div className="mii-content">
             <span>Gearsmith</span> Technical Clothing is proud to be a part of the <span>Make in India</span> initiative. Our products are manufactured in India, supporting local industries and contributing to the country's economic growth.
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="advantages-strip">
       <div className="container">
@@ -266,29 +266,6 @@ export default function Advantages() {
           </div>
         </div>
       </div>
-      <div className="advantages-strip-pay">
-        <h2>
-        Secure Online Payment Options
-        </h2>
-      <div className="container">
-        <div className="advantage">
-          <h3><FaGooglePay className="icon" size={32} />Google Pay</h3>
-          <p>Securely make payments using Google Pay for a seamless checkout experience.</p>
-        </div>
-        <div className="advantage">
-          <h3><FaCcMastercard className="icon" size={32} /> Mastercard</h3>
-          <p>Accepted worldwide, use your Mastercard for quick and easy online transactions.</p>
-        </div>
-        <div className="advantage">
-          <h3><FaCcVisa className="icon" size={32} /> Visa</h3>
-          <p>Make payments with confidence using Visa, a trusted and widely accepted payment method.</p>
-        </div>
-        <div className="advantage">
-          <h3><FaCcAmex className="icon" size={32} /> American Express</h3>
-          <p>Enjoy the convenience and rewards of American Express for your online purchases.</p>
-        </div>
-      </div>
-    </div>
       <div className="advantages-ar">
         {
           ad_data.map((d, i)=>{

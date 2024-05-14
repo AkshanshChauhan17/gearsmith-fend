@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineRight } from "react-icons/ai";
+import { AiFillStar, AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineRight } from "react-icons/ai";
 import { MdAccessTime, MdOutlineLocalHospital, MdOutlineSecurity } from "react-icons/md";
 import url_main from "../../functions/url";
 import { Link } from "react-router-dom";
-import { FaGem, FaGlobe, FaLeaf, FaLightbulb, FaUser, FaUsers } from "react-icons/fa";
+import { FaCcAmex, FaCcMastercard, FaCcVisa, FaGem, FaGlobe, FaGooglePay, FaLeaf, FaLightbulb, FaUser, FaUsers } from "react-icons/fa";
 import { BiCog, BiHappyBeaming, BiHide, BiRocket, BiRun, BiShield, BiTargetLock, BiWorld } from "react-icons/bi";
 import ProgressiveImage from "../image";
+import { BsArrowLeftSquare, BsArrowRight, BsArrowRightSquare } from "react-icons/bs";
+import { mission_statement, our_value } from "../about/about.data";
 
 export default function Home({with_login}) {
     const [sliderIndex, setSliderIndex] = useState(0)
@@ -111,7 +113,7 @@ export default function Home({with_login}) {
       }
       
     
-    const product_type_links = [["New Arrivals", "/shop"], ["Bag & Packs", "/shop"], ["Footwear", "/shop"], ["Accessories", "/shop"]]
+    const product_type_links = [["New Arrivals", "/shop"], ["Combo Pack", "/shop"], ["Top Rated", "/shop"], ["Accessories", "/shop"]]
     return (
         <div className="home">
             <div className="ad">
@@ -123,7 +125,7 @@ export default function Home({with_login}) {
                         Stay Dry, Stay Comfortable, Stay Adventurous
                     </div>
                     <Link to={"/shop"}>
-                        <button>SHOP NOW</button>
+                        <button>SHOP NOW <BsArrowRightSquare size={10} style={{color: "orangered"}} /></button>
                     </Link>
                 </div>
             </div>
@@ -175,7 +177,7 @@ export default function Home({with_login}) {
                         Unleash Your Potential with Innovative Technical Clothing
                     </div>
                     <Link to={"/shop"}>
-                        <button>EXPLORE NOW</button>
+                        <button><BsArrowLeftSquare size={10} style={{color: "orangered"}} /> EXPLORE NOW</button>
                     </Link>
                 </div>
             </div>
@@ -213,18 +215,36 @@ export default function Home({with_login}) {
                 <div className="top-three-product-list">
                 {
                     topThreeProduct.length!=0 && topThreeProduct.map((p, i)=>{
-                        return <div className="tt-product-card" key={i}>
+                        return <Link to={"/product/" + p.product_id} className="tt-product-card" key={i}>
                             <ProgressiveImage highResolutionSrc={url_main + "media/image/product/" + p.product_id + "/1?r=1000"} lowResolutionSrc={url_main + "media/image/product/" + p.product_id + "?r=100"} className={"tt-product-card-image"} />
                             {
-                                p.rating_number>1 ? <div className="rating-view-text">{p.rating_number} users have rated this product with a {p.avg_rating} star rating</div>
+                                p.rating_number>1 ? <div className="rating-view-text">{p.rating_number} users have rated this product with a<br />{[...Array(p.avg_rating)].map((e)=>{
+                                    return <AiFillStar className="starts" />
+                                })} star rating</div>
                                 :
-                                <div className="rating-view-text">{p.rating_number} user has rated this product with a {p.avg_rating} star rating</div>
+                                <div className="rating-view-text">{p.rating_number} user has rated this product with a <br />{[...Array(p.avg_rating)].map((e)=>{
+                                    return <AiFillStar className="starts" />
+                                })} star rating</div>
                             }
-                        </div>
+                        </Link>
                     })
                 }
                 </div>
             </div>
+            <div className="values-ar">
+      <div className="values-heading">Our Mission <AiOutlineRight className="icon" /></div>
+      <hr />
+        <div className="values">
+          {
+            mission_statement.subheadings.map((ms, i)=>{
+              return <div className="values-columns" key={i}>
+              <div className="h">{ms.icon} {ms.title}</div>
+              <div className="sh">{ms.content}</div>
+            </div>
+            })
+          }
+        </div>
+      </div>
             <div className="home-about">
                 <div className="title">
                     {
@@ -242,7 +262,7 @@ export default function Home({with_login}) {
                     }
                 </div>
             </div>
-            <form action="" className="bottom">
+            {/* <form action="" className="bottom">
                 <div className="left" onMouseMove={(e)=>handleMovement(e)} style={{filter: `brightness(10) drop-shadow(0px 20px 5px rgba(0, 0, 0, 0.2))`}}></div>
                 <div className="right">
                     <div className="right-title">Get Updates</div>
@@ -254,7 +274,46 @@ export default function Home({with_login}) {
                         <input type="submit" value="Subscribe" />
                     </div>
                 </div>
-            </form>
+            </form> */}
+            <div className="values-ar">
+                <div className="values-heading">Our Values <AiOutlineRight className="icon" /></div>
+                <hr />
+                    <div className="values">
+                    {
+                        our_value.sections.map((vc, i)=>{
+                        return <div className="values-columns" key={i}>
+                        <div className="h">{vc.content.icon} {vc.title}</div>
+                        <div className="sh">{vc.content.text}</div>
+                        </div>
+                        })
+                    }
+                    </div>
+                </div>
+            <div>
+                <div className="advantages-strip-pay">
+                    <h2>
+                    Secure Online Payment Options
+                    </h2>
+                    <div className="container">
+                        <div className="advantage">
+                        <h3><FaGooglePay className="icon" size={32} />Google Pay</h3>
+                        <p>Securely make payments using Google Pay for a seamless checkout experience.</p>
+                        </div>
+                        <div className="advantage">
+                        <h3><FaCcMastercard className="icon" size={32} /> Mastercard</h3>
+                        <p>Accepted worldwide, use your Mastercard for quick and easy online transactions.</p>
+                        </div>
+                        <div className="advantage">
+                        <h3><FaCcVisa className="icon" size={32} /> Visa</h3>
+                        <p>Make payments with confidence using Visa, a trusted and widely accepted payment method.</p>
+                        </div>
+                        <div className="advantage">
+                        <h3><FaCcAmex className="icon" size={32} /> American Express</h3>
+                        <p>Enjoy the convenience and rewards of American Express for your online purchases.</p>
+                    </div>
+                </div>
+            </div>
+            </div>
         </div>
     )
 }

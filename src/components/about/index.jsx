@@ -31,13 +31,13 @@ export default function AboutUs() {
           <div className="logo"></div>
         </div>
       </div>
-      <div className="story">
+      {/* <div className="story">
         <div className="left">
         <div className="story-heading">OUR STORY</div>
         <div className="story-subheading">GearSmith was born out of a shared love for outdoor adventures and a frustration with the lack of technical clothing options that truly met the needs of modern explorers. Fueled by our passion for innovation and commitment to quality, we set out on a journey to redefine what technical clothing means. Since our inception, we've been dedicated to designing and curating a collection of cutting-edge apparel that seamlessly blends performance, durability, and style.</div>
         </div>
         <div className="right"></div>
-      </div>
+      </div> */}
       <section>
         <div style={{backgroundImage: "url('"+ url_main +"static/images/about-i.webp')"}} className="image"></div>
         <div className="text">
@@ -45,20 +45,6 @@ export default function AboutUs() {
             <p className="content">GearSmith specializes in cutting-edge tactical gear, catering to the diverse requirements of uniformed professionals. Our range seamlessly integrates advanced technology and practicality, guaranteeing peak performance and safety in every scenario. Join our community and gear up with confidence, supported by GearSmith's unwavering dedication to perfection.</p>
         </div>
       </section>
-      <div className="values-ar">
-      <div className="values-heading">Our Values <AiOutlineRight className="icon" /></div>
-      <hr />
-        <div className="values">
-          {
-            our_value.sections.map((vc, i)=>{
-              return <div className="values-columns" key={i}>
-              <div className="h">{vc.content.icon} {vc.title}</div>
-              <div className="sh">{vc.content.text}</div>
-            </div>
-            })
-          }
-        </div>
-      </div>
       <section>
         <div className="text">
             <h2 className="inner-heading">VISION <AiFillRightSquare /></h2>
@@ -66,20 +52,6 @@ export default function AboutUs() {
         </div>
         <div style={{backgroundImage: "url('" + url_main + "static/images/about-ii.webp')"}} alt="" className="image" />
       </section>
-      <div className="values-ar">
-      <div className="values-heading">Our Mission <AiOutlineRight className="icon" /></div>
-      <hr />
-        <div className="values">
-          {
-            mission_statement.subheadings.map((ms, i)=>{
-              return <div className="values-columns" key={i}>
-              <div className="h">{ms.icon} {ms.title}</div>
-              <div className="sh">{ms.content}</div>
-            </div>
-            })
-          }
-        </div>
-      </div>
       <section>
         <div style={{backgroundImage: "url('" + url_main + "static/images/about-iii.webp')"}} alt="" className="image" />
         <div className="text">
