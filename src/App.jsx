@@ -50,7 +50,7 @@ function App({login_status, setLoginStatus}) {
         } else {
           setLoginStatus(true)
           setUserData(res.result[0])
-          setUserMeta(JSON.parse(res.result[0].meta))
+          setUserMeta(res.result[0].meta)
         }
       })
       setLoading(false)

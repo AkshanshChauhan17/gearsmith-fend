@@ -1,14 +1,13 @@
-export default async function authPostRequest(url, email, password) {
+export default async function authPostLoginRequest(url, data) {
     const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-    const formdata = new FormData();
-    formdata.append("email", email);
-    formdata.append("password", password);
+    var raw = JSON.stringify(data)
 
     const requestOptions = {
         method: "POST",
         headers: myHeaders,
-        body: formdata,
+        body: raw,
         redirect: "follow"
     };
 

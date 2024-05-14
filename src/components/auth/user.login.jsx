@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import url_main from "../../functions/url"
-import authPostRequest from "./post.req.login"
+import authPostLoginRequest from "./post.req.login"
 
 export default function UserLogin({lsDef}) {
     const [focusField, setFocusField] = useState()
@@ -12,7 +12,7 @@ export default function UserLogin({lsDef}) {
     const handleLogin = (url)=>{
         setLoading(true)
         const login = async ()=> {
-            await authPostRequest(url, email, password)
+            await authPostLoginRequest(url, {email: email, password: password})
                 .then(async(res)=>{
                     if(res.loginStatus) {
                         await lsDef(res.loginStatus)
@@ -30,13 +30,6 @@ export default function UserLogin({lsDef}) {
             clearAllUseState()
         }
         login()
-    }
-
-    const clearAllUseState = ()=>{
-        setEmail("")
-        setPassword("")
-        setLoading(false)
-        setFocusField(400)
     }
 
     if(loading) {
