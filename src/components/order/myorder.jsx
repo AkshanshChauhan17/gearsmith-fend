@@ -13,7 +13,10 @@ export default function MyOrder() {
 
     useEffect(()=>{
         getRequest("order/user/" + localStorage.token)
-            .then((ords)=>setOrders(ords))
+            .then((ords)=>{
+                setOrders(ords);
+                console.log(ords)
+            })
             .catch((err)=>console.error(err))
     }, [])
 
@@ -54,11 +57,11 @@ export default function MyOrder() {
                             </div>
                             <div className="order-ar">
                                 {
-                                    JSON.parse(p.product_list).length===1 ? <h4>Product</h4> :
+                                    JSON.parse(JSON.parse(`"${p.product_list}"`)).length===1 ? <h4>Product</h4> :
                                     <h4>Product Group</h4>
                                 }
                                 {
-                                    JSON.parse(p.product_list).map((e, i)=>{
+                                    JSON.parse(JSON.parse(`"${p.product_list}"`)).map((e, i)=>{
                                         return <OrderCard data={e} key={i} />
                                     })
                                 }
