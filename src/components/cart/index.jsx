@@ -31,7 +31,6 @@ export default function Cart({ud, gcDef}) {
                 })
                 setTotalCost(newTotalCost)
                 setUserCartData(res)
-                console.log(res, userCartData)
             }).catch((err)=>console.error(err))
             .finally(()=>{
                 setLoading(false)

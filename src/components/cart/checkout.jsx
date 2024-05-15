@@ -35,7 +35,6 @@ function CheckoutForm({ud_d, ps, psDef, slpDef}) {
     fetch("https://api.postalpincode.in/pincode/" + value)
         .then((data)=>data.json())
         .then((jsonZipCodeData)=>{
-            console.log(jsonZipCodeData)
             if(jsonZipCodeData[0].Status === "Success") {
                 return setPostOffice(jsonZipCodeData[0].PostOffice)
             }
@@ -64,7 +63,7 @@ function CheckoutForm({ud_d, ps, psDef, slpDef}) {
     e.preventDefault()
     const data = {
       user_profile: url_main + ud_d.user_profile + "?r=100",
-      user_meta: JSON.parse(ud_d.meta),
+      user_meta: JSON.parse(JSON.parse(`"${ud_d.meta}"`)),
       shipping_address: {
         auto: shippingAddress,
         manual: [

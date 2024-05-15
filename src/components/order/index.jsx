@@ -8,7 +8,7 @@ export default function PaymentForm({data_d, u_email, paymentRes, setPaymentRes,
     const  [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
-    console.log(data_d)
+
     function loadScript(src) {
         return new Promise((resolve) => {
             const script = document.createElement("script");
@@ -53,7 +53,7 @@ export default function PaymentForm({data_d, u_email, paymentRes, setPaymentRes,
                 currency: currency,
                 name: data_d.user_meta.first_name + " " + data_d.user_meta.last_name,
                 description: `${data_d.user_meta.first_name} Checkout From GearSmith on ${new Date().toISOString().split("T")[0] + "at" + new Date().toISOString().split("T")[1]}`,
-                image: data_d.user_profile,
+                image: url_main + "media/image/user/" + u_email + "?r=100",
                 order_id: order_id,
                 handler: async function (response) {
                     var data = {
@@ -92,7 +92,6 @@ export default function PaymentForm({data_d, u_email, paymentRes, setPaymentRes,
             setError('Failed to create order')
             setLoading(false)
         }
-        console.log("TEST 6 -> PASS")
     }
 
     useEffect(()=>{

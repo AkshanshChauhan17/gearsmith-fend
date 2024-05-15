@@ -43,14 +43,13 @@ function App({login_status, setLoginStatus}) {
   const handleVerifyToken = async ()=> {
     await verifyToken()
       .then((res)=>{
-        console.log(res)
         if(res.message != "Authorized") {
           setLoginStatus(false)
           localStorage.clear()
         } else {
           setLoginStatus(true)
           setUserData(res.result[0])
-          setUserMeta(res.result[0].meta)
+          setUserMeta(JSON.parse(`"${res.result[0].meta}"`))
         }
       })
       setLoading(false)
