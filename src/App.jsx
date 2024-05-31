@@ -31,6 +31,8 @@ import { BiError, BiExitFullscreen, BiFullscreen } from 'react-icons/bi'
 import ReturnRefundCancellationPolicy from './components/rrc'
 import ShippingAndDeliveryPolicy from './components/sdp'
 import { BsSignTurnLeft, BsSignTurnRight } from 'react-icons/bs'
+import Combo from './components/shop/combo'
+import Accssories from './components/shop/accssories'
 
 function App({login_status, setLoginStatus}) {
   const [userData, setUserData] = useState([])
@@ -183,6 +185,8 @@ function App({login_status, setLoginStatus}) {
           <Route path='/privacy-policy' element={<PrivacyPolicy />} />
           <Route path='/terms-conditions' element={<TermAndCondition />} />
           <Route path='/*' element={<ErrorPage />} />
+          <Route path='/combo' element={<Combo />} />
+          <Route path='/accessories' element={<Accssories />} />
         </Routes>
         <Footer />
     </div>

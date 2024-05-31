@@ -113,13 +113,13 @@ export default function Home({with_login}) {
       }
       
     
-    const product_type_links = [["New Arrivals", "/shop"], ["Combo Pack", "/shop"], ["Top Rated", "/shop"], ["Accessories", "/shop"]]
+    const product_type_links = [["New Arrivals", "/shop"], ["Combo Pack", "/combo"], ["Top Rated", "/shop"], ["Accessories", "/accessories"]]
     return (
         <div className="home">
             <div className="ad">
                 <div className="text">
                     <div className="title">
-                        Conquer the Elements with Gear Smith
+                        Conquer the Elements with Gearsmith
                     </div>
                     <div className="subtitle">
                         Stay Dry, Stay Comfortable, Stay Adventurous

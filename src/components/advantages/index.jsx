@@ -50,23 +50,6 @@ export default function Advantages() {
           </div>
         </div>
       </div>
-      <div className="make-in-india" style={{padding: 20}}>
-      <img className="mii-icon" src={mii} alt="Make in India Logo" />
-        {/* <div className="mii-content-ar">
-          <div className="mii-content">
-            <span>"Make in India"</span> is an initiative launched by the Government of India to encourage companies to manufacture their products in India. It aims to promote India as a global manufacturing hub and attract foreign investment.
-          </div>
-          <div className="mii-content">
-            The initiative focuses on various sectors such as automobiles, aviation, biotechnology, chemicals, construction, defense manufacturing, electrical machinery, and more.
-          </div>
-          <div className="mii-content">
-            By <span>manufacturing products in India</span>, companies can benefit from factors such as a large consumer market, skilled workforce, improving infrastructure, ease of doing business reforms, and government incentives.
-          </div>
-          <div className="mii-content">
-            <span>Gearsmith</span> Technical Clothing is proud to be a part of the <span>Make in India</span> initiative. Our products are manufactured in India, supporting local industries and contributing to the country's economic growth.
-          </div>
-        </div> */}
-      </div>
       <div className="advantages-strip">
       <div className="container">
         <h2>Advantages of Gearsmith Technical Clothing</h2>

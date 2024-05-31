@@ -4,6 +4,7 @@ import icon_g_pay from '../../assets/images/google-pay.png'
 import icon_master_card from '../../assets/images/master-card.webp'
 import icon_visa from '../../assets/images/visa.png'
 import icon_american_express from '../../assets/images/american-express.png'
+import mii from "../../assets/images/makeinindia.jpg"
 
 export default function Footer() {
     return (
@@ -45,6 +46,10 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
+            </div>
+            <hr />
+            <div className="make-in-india" style={{padding: 20}}>
+                <img className="mii-icon" src={mii} alt="Make in India Logo" />
             </div>
             <hr />
             <div className="footer-bottom">
